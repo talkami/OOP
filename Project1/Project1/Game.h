@@ -4,12 +4,14 @@
 #include "Player.h"
 #include "Board.h"
 
-
 class Game {
 	Player A;
 	Player B;
 	Board game_board;
 	int turn;
+public:
+	Game();
+	~Game();
 };
 
 #endif
