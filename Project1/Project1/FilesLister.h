@@ -1,4 +1,8 @@
 #pragma once
+#include <dirent.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 class FilesLister{
 public:
@@ -23,9 +27,7 @@ public:
 			closedir(dir);
 		}
 		else{
-			/* could not open directory
-			Remark: IN YOUR CODE, handle this error as well (e.g. throw an exception)... */
-			//cout << "Error: could not open directory: " <<  this->m_basePath << endl;
+			std::cout << "Wrong path: <" << this->m_basePath << ">" << std::endl;
 			return;
 		}
 		//sort our vector
