@@ -9,28 +9,15 @@ public:
 	}
 
 	//get only files we want
-	virtual void refresh() override{
-		//calling father refresh, and then filter files
-		FilesLister::refresh();
-		this->filterFiles();
-	}
+	virtual void refresh() override; 
 
 protected:
 	//filter files that dont end with suffix_
-	void filterFiles(){
-		vector<string> temp = this->m_filesList; //save list of files
-		this->m_filesList.clear();
-
-		for (vector<string>::iterator itr = temp.begin(); itr != temp.end(); ++itr){
-			if (endsWith(*itr, this->m_suffix)){
-				this->m_filesList.push_back(*itr);
-			}
-		}
-	}
-
+	void filterFiles();
+	
 	//checks if value ends with ending
-	static inline bool endsWith(std::string value, std::string ending){
-		if (ending.size() > value.size()){
+	static inline bool endsWith(std::string value, std::string ending) {
+		if (ending.size() > value.size()) {
 			//basic check
 			return false;
 		}
