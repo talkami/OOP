@@ -13,7 +13,7 @@ std::pair<int, int> Player::attack() {
 	if (this->attackNumber >= this->maxMoves) {
 		return NULL;
 	}
-	return this->attackMoves[this->attackNumber++];
+	return this->attackMoves[this->attackMoves];
 }
 
 void Player::getMoves(const string& attackFile) {
@@ -73,5 +73,25 @@ bool Player::hasFinishedAttacking() {
 void notifyOnAttackResult(int player, int row, int col, AttackResult result) {};
 
 bool Player::hasNoMoreBoats(){
-	
+	if (numOfBoats == 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Player::addBoat() {
+	this->numOfBoats += 1;
+}
+
+void Player::removeBoat() {
+	if (this->numOfBoats == 0) {
+		std::cout << "Error: Player has no more boats to remove." << std::endl;
+	}
+	this->numOfBoats -= 1;
+}
+
+int Player::getNumOfBoats() {
+	return this->numOfBoats;
 }

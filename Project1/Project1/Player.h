@@ -1,24 +1,24 @@
 #ifndef __myproject_Tires_h__
 #define __myproject_Tires_h__
 
-#include "Board.h"
-#include "Boat.h"
 #include <vector>
+#include <utility> 
 
 class Player: public IBattleshipGameAlgo {
-	Boat boats[5];
 	char player_board[10][10];
 	int gameScore;
 	int totalScore;
 	int wins;
-	vector<pair<int, int>> attackMoves;
+	std::vector<std::pair<int, int>> attackMoves;
 	int attackNumber;
 	int maxMoves;
+	int numOfBoats;
+
 
 public:
-	Player() : gameScore(0), totalScore(0), wins(0){}
+	Player() : gameScore(0), totalScore(0), wins(0), numOfBoats(0){}
 	~Player() {
-		delete[] boats;
+		delete[] player_board;
 	}
 	virtual void setBoard(const char** board, int numRows, int numCols) override; // called once to notify player on his board
 	virtual std::pair<int, int> attack() override; // ask player for his move
@@ -28,6 +28,9 @@ public:
 	static std::vector<std::string> split(const std::string &s, char delim);
 	bool hasFinishedAttacking();
 	bool hasNoMoreBoats();
+	void addBoat();
+	void removeBoat();
+	int getNumOfBoats();
 
 };
 
