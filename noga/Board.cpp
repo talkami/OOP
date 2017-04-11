@@ -19,7 +19,7 @@ matrix(NULL){}
 
 
 //load board function
-void Board::loadBoard(const string& boardFile) {
+void Board::loadBoard(const string& boardFile, Player A, Player B) {
 
 	/// there is so much shit need to be chekced here!!
 	string board[10];
@@ -103,19 +103,25 @@ void Board::loadBoard(const string& boardFile) {
 
 // attack function - get pair and attack at the <x,y> point in the "matrix" variable.
 // maybe will print out the attack- ask Tal- remember remember!!!!!!!!!!!!!!!
-	void Board::play_attack(pair<int, int>){
-		int x = pair.getFirst(); //????
-		int y = pair.getSecond(); // ????????????
+	AttackResult Board::play_attack(pair<int, int>){
+		int x = pair.first; //????
+		int y = pair.second; // ????????????
 		AttackResult result = matrix[x][y].attack();
+		return result;
 		// print the attack result?
 	}
 
 
 
 	//inner function helping the loadBoard. pretty much useless outside.
-	int Board::setBoardsToPoint(Point* point, int i, int j, int size, int player){
+	int Board::setBoardsToPoint(Point* point, int i, int j, int size, int player, Player A, Player B){
 		if (point->getNear == 0){
-			Boat boat = Boat(size, point, player);
+			if (player == 0){
+				Boat boat = Boat(size, player, &A);
+			}
+			else{
+				Boat boat = Boat(size, player, &B);
+			}
 			point->setBoat(boat);
 			if (i > 0){
 				point->getLeft->setNear(1);
@@ -130,7 +136,7 @@ void Board::loadBoard(const string& boardFile) {
 					Boat boat = point->getLeft->getBoat();
 					if (boat != NULL){
 						if (boat.getSize() == size && boat.getHorizontal() < 2 && boat.getPointsNum() < size && boat.getPlayer() == player{
-							boat.AddPoint(*point);
+							boat.AddPoint();
 							boat.setHorizontal(1);
 							if (j > 0){
 								point->getUp->setNear(1);
@@ -146,7 +152,7 @@ void Board::loadBoard(const string& boardFile) {
 					Boat boat = point->getUp->getBoat();
 					if (boat != NULL){
 						if (boat.getSize() == size && boat.getHorizontal() != 1 && boat.getPointsNum() < size && boat.getPlayer() == player{
-							boat.AddPoint(*point);
+							boat.AddPoint();
 							boat.setHorizontal(2);
 							if (i > 0){
 								point->getLeft->setNear(1);

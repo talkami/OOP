@@ -3,14 +3,14 @@
 
 class Boat{
 	int size;
-	Point points [];
 	int horizontal;
 	int pointsNum;
 	int player;
 	int hit;
+	Player* PlayerPointer;
 };
 public:
-	Boat(int size, Point point, int player);
+	Boat(int size, int player, Player* PlayerPointer);
 	~Boat();
 	int getHorizontal;
 	int getPlayer();
@@ -18,7 +18,7 @@ public:
 	int getSize();
 	int isSunk();
 	void setHit(int hitPoints);
-	void addPoint(Point point);
+	void addPoint();
 	void setHorizontal(int horizontal);
 
 private:

@@ -4,15 +4,15 @@
 class Board {
 	Point matrix[10][10];
 public:
-	void loadBoard(const string& boardFile);
+	void loadBoard(const string& boardFile, Player A, Player B);
 	Board(){}
 	~Board(){delete[] board;}
-	void play_attack(pair <int, int>);
+	AttackResult play_attack(pair <int, int>);
 
 	//not used constructor
 	//Board(const string& boardFile);
 private:
-	int setBoardsToPoint(Point* point, int i, int j, int size, int player);
+	int setBoardsToPoint(Point* point, int i, int j, int size, int player, Player A, Player B);
 
 };
 
