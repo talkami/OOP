@@ -16,10 +16,10 @@ std::pair<int, int> Player::attack() {
 	return this->attackMoves[this->attackMoves];
 }
 
-void Player::getMoves(const string& attackFile) {
+void Player::getMoves(const std::string& attackFile) {
 	this->attackMoves.clear();
 	ifstream fin(attackFile);
-	string line;
+	std::string line;
 	while (getline(fin, line)){ 
 		this->processLine(line);
 	}
@@ -27,8 +27,8 @@ void Player::getMoves(const string& attackFile) {
 	this->maxMoves = this->attackMoves.size();
 }
 
-void Player::processLine(const string& line) {
-	vector<string> tokens = split(line, ',');
+void Player::processLine(const std::string& line) {
+	vector<std::string> tokens = split(line, ',');
 	int num1;
 	int num2;
 	if (tokens.size() < 2) {
@@ -94,4 +94,8 @@ void Player::removeBoat() {
 
 int Player::getNumOfBoats() {
 	return this->numOfBoats;
+}
+
+int Player::getGameScore() {
+	return this->gameScore;
 }
