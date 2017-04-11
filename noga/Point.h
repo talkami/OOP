@@ -13,9 +13,11 @@ class Point {
 	int hit;
 public:
 	Point();
-	Point(int x, int y, Boat boat = NULL, int near = 0, Point* up= NULL, Point* down= NULL, Point* left = NULL, Point* right= NULL);
+	//never used constructor
+	//Point(int x, int y, Boat boat = NULL, int near = 0, Point* up= NULL, Point* down= NULL, Point* left = NULL, Point* right= NULL);
 	AttackResult attack();
 	~Point();
+
 	int getNear();
 	void setNear(int near);
 	Point* getUp();
@@ -28,6 +30,10 @@ public:
 	void setRight(Point* point);
 	Boat getBoat();
 	void setBoat(Boat);
+	int getX();
+	void setX(int x);
+	int getY();
+	void setY(int y);
 };
 
 #endif

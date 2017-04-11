@@ -10,13 +10,19 @@ class Game {
 	Board game_board;
 	int turn;
 public:
-	Game(Player A, Player B, Board game_board);
+	//core functions
+	Game();
 	~Game();
-	AttackResult play_turn();
+	int initGame(const string adrress);
+	int playGame();
+	
+
+	//getters if need
+
+	//setters if need
 
 private:
-	void Game::switchTurn();
-	int Game::getTurn()const;
+	void setNextTurn(AttackResult result);
 	void endGame();
 };
 #endif
