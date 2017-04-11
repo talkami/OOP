@@ -1,14 +1,40 @@
 #include "Game.h"
 
-Game::Game(Player A, Player B, Board game_board):
-	A (A), B(B), game_board(game_board), turn=0 {}
 
-const string& Person::getName()const {
-	return name;
+//empty constructor
+Game::Game():
+	A (NULL), B(NULL), game_board(NULL), turn=0 {}
+
+
+//init the game
+int Game::initGame(const string adrress){
+	//http://stackoverflow.com/questions/19189014/how-do-i-find-files-with-a-specific-extension-in-a-directory-that-is-provided-by
+
+
+	this.game_board = new Board;
+	this.A = new Player;
+	this.B = new Player;
+
+
 }
-int Game::getTurn()const {
-	return turn;
+
+int Game::playGame(){
+
 }
+
+
+// private functions
+
+void Game::endGame(){
+
+}
+void Game::setNextTurn(AttackResult result){
+
+}
+
+
+
+// former functions- DELETE
 void Game::switchTurn(){
 	if (getTurn == 0){
 		this.turn = 1;
@@ -17,13 +43,16 @@ void Game::switchTurn(){
 		this.turn = 0;
 	}
 }
+
+
+// playing 1 turn
 AttackResult Game::play_turn(){
 	string next_attack;
 	if (getTurn == 0){
 		if (A.finished){
 			if (B.finished){
 				this.endGame();
-			}			
+			}
 			return NULL;
 		}
 		next_attack = A.attack();
@@ -39,12 +68,9 @@ AttackResult Game::play_turn(){
 	}
 
 	AttackResult attack_result = this.game_board.play_attack(next_attack);
-	
+
 	if (AttackResult == Sink){
 		//who take care of updating the points?
 	}
 	return attack_result;
-}
-void Game::endGame(){
-
 }

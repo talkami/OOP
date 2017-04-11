@@ -1,9 +1,14 @@
 #include "Game.h"
 
-Point::Point(int x, int y, Boat boat = NULL, int near = 0, Point * up = NULL, Point* down = NULL, Point* left = NULL, Point* right = NULL) :
-x(x), y(y), boat(boat), near(near), up(up), down(down), left(left), right(right), hit = 0 {}
+// never used constructor
+//Point::Point(int x, int y, Boat boat = NULL, int near = 0, Point * up = NULL, Point* down = NULL, Point* left = NULL, Point* right = NULL) :
+//x(x), y(y), boat(boat), near(near), up(up), down(down), left(left), right(right), hit = 0 {}
+
+// empty constructor
 Point::Point():
 x(-1), y(-1), boat(NULL), near(0), up(NULL), down(NULL), left(NULL), right(NULL), hit = 0{}
+
+// do the attack on this point
 AttackResult Point ::attack() {
 	if (this.boat == NULL){
 		return Miss;
@@ -16,12 +21,13 @@ AttackResult Point ::attack() {
 				return Hit;
 			}
 			else{
-				// update the points
+				// update the players points
 				return Sink;
 			}
 		}
 		else{
-			return Miss;
+			// the attack was successful but this point is already hurt
+			return Hit;
 		}
 	}
 	
@@ -46,7 +52,12 @@ Point* Point::getLeft(){
 Point* Point::getRight(){
 	return this.Right;
 }
-
+int Point::getX(){
+	return this.x;
+}
+int Point::getY(){
+	return this.y;
+}
 //setters
 void Point::setBoat(Boat boat){
 	this.boat = boat;
@@ -65,4 +76,10 @@ void Point::setLeft(Point* Left){
 }
 void Point::setRight(Point* Right){
 	this.Right = Right;
+}
+void Point::setX(int x){
+	this.x = x;
+}
+void Point::setY(int y){
+	this.y = y;
 }

@@ -20,7 +20,10 @@ public:
 	void setHit(int hitPoints);
 	void addPoint(Point point);
 	void setHorizontal(int horizontal);
-	
+
+private:
+	void notifyPlayerSunk();
+	void notifyPlayerCreated();
 
 };
 

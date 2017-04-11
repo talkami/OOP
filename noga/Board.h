@@ -4,11 +4,16 @@
 class Board {
 	Point matrix[10][10];
 public:
-	void getBoard(const string& boardFile);
+	void loadBoard(const string& boardFile);
 	Board(){}
-	Board(const string& boardFile);
 	~Board(){delete[] board;}
 	void play_attack(pair <int, int>);
+
+	//not used constructor
+	//Board(const string& boardFile);
+private:
+	int setBoardsToPoint(Point* point, int i, int j, int size, int player);
+
 };
 
 #endif
