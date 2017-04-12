@@ -5,6 +5,7 @@
 #include "SeaBattleBoardLister.h"
 #include "AttackAFileLister.h"
 #include "AttackBFileLister.h"
+#include "IBattleshipGameAlgo.h"
 
 
 class Game {
@@ -21,8 +22,8 @@ class Game {
 	bool setNextTurn(AttackResult res);
 
 public:
-	Game();
-	~Game();
+	Game() { std::cout << "In Game constructor, about to create a new game." << std::endl; }
+	~Game() { std::cout << "In Game destructor, about to delete game." << std::endl; }
 	bool initGame(const std::string& path);
 	bool playGame();
 	bool endGame();

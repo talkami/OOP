@@ -4,6 +4,7 @@
 
 class FilesListerWithSuffix : public FilesLister {
 public:
+	FilesListerWithSuffix(){}
 	//constructor
 	FilesListerWithSuffix(const std::string& basePath, const std::string& suffix)
 		: FilesLister(basePath) //invokes father constructor

@@ -1,4 +1,5 @@
 #pragma once
+#include "IBattleshipGameAlgo.h"
 
 #include <vector>
 #include <utility> 
@@ -14,10 +15,8 @@ class Player: public IBattleshipGameAlgo {
 	int numOfBoats;
 
 public:
-	Player() : gameScore(0), totalScore(0), wins(0), numOfBoats(0){}
-	~Player() {
-		delete[] player_board;
-	}
+	Player();
+	~Player();
 	virtual void setBoard(const char** board, int numRows, int numCols) override; // called once to notify player on his board
 	virtual std::pair<int, int> attack() override; // ask player for his move
 	virtual void notifyOnAttackResult(int player, int row, int col, AttackResult result) override; // notify on last move result

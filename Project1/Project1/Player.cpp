@@ -4,20 +4,29 @@
 #include <sstream>
 #include <cstring>
 
+Player::Player() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {
+	std::cout << "In Player constructor, about to create a new player." << std::endl;
+}
+Player::~Player() {
+	std::cout << "In Game destructor, about to delete game." << std::endl;
+	delete[] & player_board;
+}
+
 void Player::setBoard(const char** board, int numRows, int numCols) {
 	memcpy(this->player_board, board, sizeof(char) * numRows * numCols);
 	}
 
 std::pair<int, int> Player::attack() {
 	if (this->attackNumber >= this->maxMoves) {
-		return NULL;
+		std::pair<int, int> res(-1, -1);
+		return res;
 	}
 	return this->attackMoves[this->attackNumber++];
 }
 
 void Player::getMoves(const std::string& attackFile) {
 	this->attackMoves.clear();
-	ifstream fin(attackFile);
+	std::ifstream fin(attackFile);
 	std::string line;
 	while (getline(fin, line)){ 
 		this->processLine(line);
@@ -27,7 +36,7 @@ void Player::getMoves(const std::string& attackFile) {
 }
 
 void Player::processLine(const std::string& line) {
-	vector<std::string> tokens = split(line, ',');
+	std::vector<std::string> tokens = split(line, ',');
 	int num1;
 	int num2;
 	if (tokens.size() < 2) {
@@ -37,14 +46,14 @@ void Player::processLine(const std::string& line) {
 		num1 = stoi(tokens[0]);
 		num2 = stoi(tokens[1]);
 	}
-	catch (std::invalid_argument& e) {
+	catch (std::invalid_argument& ) {
 		return;
 	}
 	if ((num1 < 1) || (num1 > 10) || (num2 < 1) || (num2 > 10)) {
 		return;
 	}
 
-	pair<int, int> aPair(num1, num2);	
+	std::pair<int, int> aPair(num1, num2);	
 	this->attackMoves.push_back(aPair);
 	return;	
 }
@@ -69,7 +78,7 @@ bool Player::hasFinishedAttacking() {
 		return false;
 	}
 }
-void notifyOnAttackResult(int player, int row, int col, AttackResult result) {}
+void Player::notifyOnAttackResult(int player, int row, int col, AttackResult result) {}
 
 bool Player::hasNoMoreBoats(){
 	if (numOfBoats == 0) {

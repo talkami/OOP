@@ -1,23 +1,14 @@
 ﻿  main.cpp
-c:\users\tal\oop\project1\project1\player.h(6): error C2504: 'IBattleshipGameAlgo': base class undefined
-c:\users\tal\oop\project1\project1\player.h(23): error C2061: syntax error: identifier 'AttackResult'
-c:\users\tal\oop\project1\project1\player.h(21): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(22): error C3668: 'Player::attack': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(23): error C3668: 'Player::notifyOnAttackResult': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(19): warning C4154: deletion of an array expression; conversion to pointer supplied
 c:\users\tal\oop\project1\project1\board.h(4): error C3646: 'matrix': unknown override specifier
 c:\users\tal\oop\project1\project1\board.h(4): error C2143: syntax error: missing ',' before '['
 c:\users\tal\oop\project1\project1\board.h(4): error C2143: syntax error: missing ')' before ';'
 c:\users\tal\oop\project1\project1\board.h(4): error C2238: unexpected token(s) preceding ';'
 c:\users\tal\oop\project1\project1\board.h(6): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
 c:\users\tal\oop\project1\project1\board.h(6): error C2143: syntax error: missing ',' before '&'
-c:\users\tal\oop\project1\project1\board.h(9): error C3646: 'play_attack': unknown override specifier
-c:\users\tal\oop\project1\project1\board.h(9): error C2059: syntax error: '('
-c:\users\tal\oop\project1\project1\board.h(9): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\board.h(9): error C2061: syntax error: identifier 'pair'
 c:\users\tal\oop\project1\project1\board.h(14): error C2061: syntax error: identifier 'Point'
 c:\users\tal\oop\project1\project1\board.h(8): error C2065: 'board': undeclared identifier
 c:\users\tal\oop\project1\project1\board.h(8): error C2541: 'delete': cannot delete objects that are not pointers
-c:\users\tal\oop\project1\project1\game.h(21): error C2061: syntax error: identifier 'AttackResult'
   Point.cpp
 c:\users\tal\oop\project1\project1\point.h(6): error C3646: 'boat': unknown override specifier
 c:\users\tal\oop\project1\project1\point.h(6): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
@@ -89,132 +80,22 @@ c:\users\tal\oop\project1\project1\point.cpp(84): error C2228: left of '.y' must
   c:\users\tal\oop\project1\project1\point.cpp(84): note: type is 'Point *const '
   c:\users\tal\oop\project1\project1\point.cpp(84): note: did you intend to use '->' instead?
   Player.cpp
-c:\users\tal\oop\project1\project1\player.h(6): error C2504: 'IBattleshipGameAlgo': base class undefined
-c:\users\tal\oop\project1\project1\player.h(23): error C2061: syntax error: identifier 'AttackResult'
-c:\users\tal\oop\project1\project1\player.h(21): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(22): error C3668: 'Player::attack': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(23): error C3668: 'Player::notifyOnAttackResult': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(19): warning C4154: deletion of an array expression; conversion to pointer supplied
-c:\users\tal\oop\project1\project1\player.cpp(13): error C2440: 'return': cannot convert from 'int' to 'std::pair<int,int>'
-  c:\users\tal\oop\project1\project1\player.cpp(13): note: No constructor could take the source type, or constructor overload resolution was ambiguous
-c:\users\tal\oop\project1\project1\player.cpp(20): error C2065: 'ifstream': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(20): error C2146: syntax error: missing ';' before identifier 'fin'
-c:\users\tal\oop\project1\project1\player.cpp(20): error C3861: 'fin': identifier not found
-c:\users\tal\oop\project1\project1\player.cpp(22): error C2065: 'fin': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(30): error C2065: 'vector': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(30): error C2275: 'std::string': illegal use of this type as an expression
-  c:\users\tal\oop\project1\project1\player.cpp(30): note: see declaration of 'std::string'
-c:\users\tal\oop\project1\project1\player.cpp(30): error C2065: 'tokens': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(33): error C2065: 'tokens': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(33): error C2228: left of '.size' must have class/struct/union
-  c:\users\tal\oop\project1\project1\player.cpp(33): note: type is 'unknown-type'
-c:\users\tal\oop\project1\project1\player.cpp(37): error C2065: 'tokens': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(37): error C3861: 'stoi': identifier not found
-c:\users\tal\oop\project1\project1\player.cpp(38): error C2065: 'tokens': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(38): error C3861: 'stoi': identifier not found
-c:\users\tal\oop\project1\project1\player.cpp(47): error C2065: 'pair': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(47): error C2062: type 'int' unexpected
-c:\users\tal\oop\project1\project1\player.cpp(48): error C2065: 'aPair': undeclared identifier
-c:\users\tal\oop\project1\project1\player.cpp(72): error C2061: syntax error: identifier 'AttackResult'
   Game.cpp
-c:\users\tal\oop\project1\project1\player.h(6): error C2504: 'IBattleshipGameAlgo': base class undefined
-c:\users\tal\oop\project1\project1\player.h(23): error C2061: syntax error: identifier 'AttackResult'
-c:\users\tal\oop\project1\project1\player.h(21): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(22): error C3668: 'Player::attack': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(23): error C3668: 'Player::notifyOnAttackResult': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(19): warning C4154: deletion of an array expression; conversion to pointer supplied
 c:\users\tal\oop\project1\project1\board.h(4): error C3646: 'matrix': unknown override specifier
 c:\users\tal\oop\project1\project1\board.h(4): error C2143: syntax error: missing ',' before '['
 c:\users\tal\oop\project1\project1\board.h(4): error C2143: syntax error: missing ')' before ';'
 c:\users\tal\oop\project1\project1\board.h(4): error C2238: unexpected token(s) preceding ';'
 c:\users\tal\oop\project1\project1\board.h(6): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
 c:\users\tal\oop\project1\project1\board.h(6): error C2143: syntax error: missing ',' before '&'
-c:\users\tal\oop\project1\project1\board.h(9): error C3646: 'play_attack': unknown override specifier
-c:\users\tal\oop\project1\project1\board.h(9): error C2059: syntax error: '('
-c:\users\tal\oop\project1\project1\board.h(9): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\board.h(9): error C2061: syntax error: identifier 'pair'
 c:\users\tal\oop\project1\project1\board.h(14): error C2061: syntax error: identifier 'Point'
 c:\users\tal\oop\project1\project1\board.h(8): error C2065: 'board': undeclared identifier
 c:\users\tal\oop\project1\project1\board.h(8): error C2541: 'delete': cannot delete objects that are not pointers
-c:\users\tal\oop\project1\project1\game.h(21): error C2061: syntax error: identifier 'AttackResult'
-c:\users\tal\oop\project1\project1\game.cpp(6): error C2512: 'SeaBattleBoardLister': no appropriate default constructor available
-  c:\users\tal\oop\project1\project1\seabattleboardlister.h(5): note: see declaration of 'SeaBattleBoardLister'
-c:\users\tal\oop\project1\project1\game.cpp(6): error C2512: 'AttackAFileLister': no appropriate default constructor available
-  c:\users\tal\oop\project1\project1\attackafilelister.h(6): note: see declaration of 'AttackAFileLister'
-c:\users\tal\oop\project1\project1\game.cpp(6): error C2512: 'AttackBFileLister': no appropriate default constructor available
-  c:\users\tal\oop\project1\project1\attackbfilelister.h(5): note: see declaration of 'AttackBFileLister'
-c:\users\tal\oop\project1\project1\game.cpp(13): error C2440: 'delete': cannot convert from 'Board' to 'void*'
-  c:\users\tal\oop\project1\project1\game.cpp(13): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-c:\users\tal\oop\project1\project1\game.cpp(14): error C2440: 'delete': cannot convert from 'Player' to 'void*'
-  c:\users\tal\oop\project1\project1\game.cpp(14): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-c:\users\tal\oop\project1\project1\game.cpp(15): error C2440: 'delete': cannot convert from 'Player' to 'void*'
-  c:\users\tal\oop\project1\project1\game.cpp(15): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-c:\users\tal\oop\project1\project1\game.cpp(16): error C2440: 'delete': cannot convert from 'SeaBattleBoardLister' to 'void*'
-  c:\users\tal\oop\project1\project1\game.cpp(16): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-c:\users\tal\oop\project1\project1\game.cpp(17): error C2440: 'delete': cannot convert from 'AttackAFileLister' to 'void*'
-  c:\users\tal\oop\project1\project1\game.cpp(17): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-c:\users\tal\oop\project1\project1\game.cpp(18): error C2440: 'delete': cannot convert from 'AttackBFileLister' to 'void*'
-  c:\users\tal\oop\project1\project1\game.cpp(18): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-c:\users\tal\oop\project1\project1\game.cpp(25): error C2660: 'Board::loadBoard': function does not take 3 arguments
-c:\users\tal\oop\project1\project1\game.cpp(29): error C2065: 'TBD': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(30): error C2065: 'TBD': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(49): error C2039: 'play_attack': is not a member of 'Board'
-  c:\users\tal\oop\project1\project1\board.h(3): note: see declaration of 'Board'
-c:\users\tal\oop\project1\project1\game.cpp(50): error C2660: 'Player::notifyOnAttackResult': function does not take 4 arguments
-c:\users\tal\oop\project1\project1\game.cpp(51): error C2660: 'Player::notifyOnAttackResult': function does not take 4 arguments
-c:\users\tal\oop\project1\project1\game.cpp(52): error C2660: 'Game::setNextTurn': function does not take 1 arguments
-c:\users\tal\oop\project1\project1\game.cpp(65): error C2065: 'result': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(70): error C2065: 'result': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(75): error C2065: 'result': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(80): error C2065: 'result': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(82): error C2065: 'result': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(85): error C2511: 'bool Game::setNextTurn(AttackResult)': overloaded member function not found in 'Game'
-  c:\users\tal\oop\project1\project1\game.h(10): note: see declaration of 'Game'
-c:\users\tal\oop\project1\project1\game.cpp(87): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(87): error C2227: left of '->A' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(87): error C2228: left of '.hasFinishedAttacking' must have class/struct/union
-c:\users\tal\oop\project1\project1\game.cpp(88): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(88): error C2227: left of '->B' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(88): error C2228: left of '.hasFinishedAttacking' must have class/struct/union
-c:\users\tal\oop\project1\project1\game.cpp(90): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(90): error C2227: left of '->turn' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(95): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(95): error C2227: left of '->turn' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(99): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(99): error C2227: left of '->B' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(99): error C2228: left of '.hasFinishedAttacking' must have class/struct/union
-c:\users\tal\oop\project1\project1\game.cpp(101): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(101): error C2227: left of '->turn' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(108): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(108): error C2227: left of '->turn' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(117): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(117): error C2227: left of '->A' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(117): error C2228: left of '.hasNoMoreBoats' must have class/struct/union
-c:\users\tal\oop\project1\project1\game.cpp(119): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(119): error C2227: left of '->winner' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(120): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(120): error C2227: left of '->B' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(120): error C2228: left of '.addWin' must have class/struct/union
-c:\users\tal\oop\project1\project1\game.cpp(121): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(121): error C2227: left of '->turn' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(124): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(124): error C2227: left of '->B' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(124): error C2228: left of '.hasNoMoreBoats' must have class/struct/union
-c:\users\tal\oop\project1\project1\game.cpp(126): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(126): error C2227: left of '->winner' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(127): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(127): error C2227: left of '->A' must point to class/struct/union/generic type
-c:\users\tal\oop\project1\project1\game.cpp(127): error C2228: left of '.addWin' must have class/struct/union
-c:\users\tal\oop\project1\project1\game.cpp(128): error C2671: 'Game::setNextTurn': static member functions do not have 'this' pointers
-c:\users\tal\oop\project1\project1\game.cpp(128): error C2227: left of '->turn' must point to class/struct/union/generic type
-  FilesListerWithSuffix.cpp
-  FilesLister.cpp
+c:\users\tal\oop\project1\project1\game.cpp(8): error C2660: 'Board::loadBoard': function does not take 3 arguments
+c:\users\tal\oop\project1\project1\game.cpp(12): error C2065: 'TBD': undeclared identifier
+c:\users\tal\oop\project1\project1\game.cpp(13): error C2065: 'TBD': undeclared identifier
+c:\users\tal\oop\project1\project1\game.cpp(36): error C2660: 'Board::play_attack': function does not take 1 arguments
   Boat.cpp
-c:\users\tal\oop\project1\project1\player.h(6): error C2504: 'IBattleshipGameAlgo': base class undefined
-c:\users\tal\oop\project1\project1\player.h(23): error C2061: syntax error: identifier 'AttackResult'
-c:\users\tal\oop\project1\project1\player.h(21): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(22): error C3668: 'Player::attack': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(23): error C3668: 'Player::notifyOnAttackResult': method with override specifier 'override' did not override any base class methods
-c:\users\tal\oop\project1\project1\player.h(19): warning C4154: deletion of an array expression; conversion to pointer supplied
 c:\users\tal\oop\project1\project1\boat.h(13): error C2059: syntax error: 'public'
 c:\users\tal\oop\project1\project1\boat.h(14): error C2062: type 'int' unexpected
 c:\users\tal\oop\project1\project1\boat.h(15): error C2588: '::~Boat': illegal global destructor

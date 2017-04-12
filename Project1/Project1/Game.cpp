@@ -1,28 +1,11 @@
 #include "Game.h"
-#include "IBattleshipGameAlgo.h"
-
 #include <utility>
-
-Game::Game() {
-	this->gameBoard = Board();
-	this->A = Player();
-	this->B = Player();
-}
-
-Game::~Game() {
-	delete this->gameBoard;
-	delete this->A;
-	delete this->B;
-	delete this->boardFileLister;
-	delete this->playerAFileLister;
-	delete this->playerBFileLister;
-}
 
 bool Game::initGame(const std::string& path) {
 	bool result;
 	result = this->getInitFiles(path);
 	if (result) {
-		this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], &this->A, &this->B);
+		this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], this->A, this->B);
 		this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
 		this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
 		this->turn = 0;
@@ -45,6 +28,10 @@ bool Game::playGame() {
 		else {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
 			return false;
+		}if (nextMove.first == -1 || nextMove.second == -1) {
+			if (!(this->setNextTurn(AttackResult::Miss))) {
+				return false;
+			}
 		}
 		res = this->gameBoard.play_attack(nextMove);
 		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
@@ -62,7 +49,7 @@ bool Game::playGame() {
 }
 
 bool Game::getInitFiles(const std::string& path) {
-	result = true;
+	bool result = true;
 
 	this->boardFileLister = SeaBattleBoardLister(path);
 	if (this->boardFileLister.getFilesList().size() == 0) {

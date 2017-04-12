@@ -9,6 +9,7 @@
 class FilesLister{
 	static std::string concatenateAbsolutePath(const std::string& dirPath, const std::string& fileName);
 public:
+	FilesLister(){}
 	FilesLister(const std::string & basePath): m_basePath(basePath){this->refresh();}
 	std::vector<std::string> getFilesList();
 	virtual void refresh();
