@@ -18,7 +18,7 @@ class Game {
 	char winner;
 
 	bool getInitFiles(const std::string& path);
-	void setNextTurn(AttackResult res);
+	bool setNextTurn(AttackResult res);
 
 public:
 	Game();

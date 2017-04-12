@@ -13,7 +13,6 @@ class Player: public IBattleshipGameAlgo {
 	int maxMoves;
 	int numOfBoats;
 
-
 public:
 	Player() : gameScore(0), totalScore(0), wins(0), numOfBoats(0){}
 	~Player() {
@@ -31,5 +30,6 @@ public:
 	void removeBoat();
 	int getNumOfBoats();
 	int getGameScore();
-
+	void addWin();
+	void increaseScore(int amount);
 };

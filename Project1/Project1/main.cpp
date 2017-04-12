@@ -14,7 +14,6 @@ int main(int argc, char* argv[]){
 	else {
 		path = "";
 	}
-
 	
 	if ((dir = opendir(path.c_str())) == NULL) {
 		std::cout << "Wrong path: " << path << std::endl;
@@ -31,7 +30,6 @@ int main(int argc, char* argv[]){
 	if (!successfulPlay) {
 		return -1;
 	}
-
-
+	
 	return 0;
 }

@@ -8,26 +8,32 @@ Game::Game() {
 	this->A = Player();
 	this->B = Player();
 }
+
 Game::~Game() {
 	delete this->gameBoard;
 	delete this->A;
 	delete this->B;
+	delete this->boardFileLister;
+	delete this->playerAFileLister;
+	delete this->playerBFileLister;
 }
 
 bool Game::initGame(const std::string& path) {
 	bool result;
 	result = this->getInitFiles(path);
 	if (result) {
-		this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0]);
+		this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], &this->A, &this->B);
 		this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
 		this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
 		this->turn = 0;
+		this->A.setBoard(TBD, 10, 10);//SET TBD!!!!!
+		this->B.setBoard(TBD, 10, 10);
 	}
 	return result;
 }
 
 bool Game::playGame() {
-	while (this->turn > 0) {
+	while (this->turn >= 0) {
 		std::pair<int, int> nextMove;
 		AttackResult res;
 		if (this->turn == 0) {
@@ -111,12 +117,14 @@ bool Game::setNextTurn(AttackResult res) {
 			if (this->A.hasNoMoreBoats()) {
 				//player A is out of boats - player B wins
 				this->winner = 'B';
+				this->B.addWin();
 				this->turn = -1;
 				return true;
 			}
 			else if (this->B.hasNoMoreBoats()) {
 				//player B is out of boats - player A wins
 				this->winner = 'A';
+				this->A.addWin();
 				this->turn = -1;
 				return true;
 			}

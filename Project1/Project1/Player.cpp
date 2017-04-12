@@ -6,14 +6,13 @@
 
 void Player::setBoard(const char** board, int numRows, int numCols) {
 	memcpy(this->player_board, board, sizeof(char) * numRows * numCols);
-
-}
+	}
 
 std::pair<int, int> Player::attack() {
 	if (this->attackNumber >= this->maxMoves) {
 		return NULL;
 	}
-	return this->attackMoves[this->attackMoves];
+	return this->attackMoves[this->attackNumber++];
 }
 
 void Player::getMoves(const std::string& attackFile) {
@@ -41,13 +40,13 @@ void Player::processLine(const std::string& line) {
 	catch (std::invalid_argument& e) {
 		return;
 	}
-	if ((num1 <1) || (num1 > 10) || (num2 < 1) || (num2 > 10)) {
+	if ((num1 < 1) || (num1 > 10) || (num2 < 1) || (num2 > 10)) {
 		return;
 	}
 
 	pair<int, int> aPair(num1, num2);	
 	this->attackMoves.push_back(aPair);
-	
+	return;	
 }
 
 std::vector<std::string> Player::split(const std::string &s, char delim) {
@@ -70,7 +69,7 @@ bool Player::hasFinishedAttacking() {
 		return false;
 	}
 }
-void notifyOnAttackResult(int player, int row, int col, AttackResult result) {};
+void notifyOnAttackResult(int player, int row, int col, AttackResult result) {}
 
 bool Player::hasNoMoreBoats(){
 	if (numOfBoats == 0) {
@@ -98,4 +97,13 @@ int Player::getNumOfBoats() {
 
 int Player::getGameScore() {
 	return this->gameScore;
+}
+
+void Player::addWin() {
+	this->wins++;
+}
+
+void increaseScore(int amount) {
+	this->gameScore += amount;
+	this->totalScore += amount;
 }
