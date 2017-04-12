@@ -6,80 +6,80 @@
 
 // empty constructor
 Point::Point() :
-	x(-1), y(-1), boat(NULL), near(0), up(NULL), down(NULL), left(NULL), right(NULL), hit = 0{}
+	x(-1), y(-1), boat(nullptr), near(false), up(nullptr), down(nullptr), left(nullptr), right(nullptr), hit(false) {}
 
-	// do the attack on this point
-	AttackResult Point::attack() {
-	if (this.boat == NULL) {
-		return Miss;
+// do the attack on this point
+AttackResult Point::attack() {
+	if (this->boat == nullptr) {
+		return AttackResult::Miss;
 	}
 	else {
-		if (hit = 0) {
-			this.boat.setHit(this.boat.getHit + 1);
-			this.hit = 1;
-			if (boat.isSunk == 0) {
-				return Hit;
+		if (!hit) {
+			this->boat->setHit(this->boat->getHit() + 1);
+			this->hit = true;
+			if (!boat->isSunk()) {
+				return AttackResult::Hit;
 			}
 			else {
-				// update the players points
-				return Sink;
+
+				return AttackResult::Sink;
 			}
 		}
 		else {
 			// the attack was successful but this point is already hurt
-			return Hit;
+			return AttackResult::Hit;
 		}
 	}
 
 }
 
 //getters
-Boat Point::getBoat() {
-	return this.boat;
+Boat* Point::getBoat() {
+	return this->boat;
 }
-int Point::getNear() {
-	return this.near;
+bool Point::getNear() {
+	return this->near;
 }
 Point* Point::getUp() {
-	return this.Up;
+	return this->up;
 }
 Point* Point::getDown() {
-	return this.Down;
+	return this->down;
 }
 Point* Point::getLeft() {
-	return this.Left;
+	return this->left;
 }
 Point* Point::getRight() {
-	return this.Right;
+	return this->right;
 }
 int Point::getX() {
-	return this.x;
+	return this->x;
 }
 int Point::getY() {
-	return this.y;
+	return this->y;
 }
 //setters
-void Point::setBoat(Boat boat) {
-	this.boat = boat;
+void Point::setBoat(Boat* boat) {
+	this->boat = boat;
 }
 void Point::setNear(int near) {
-	this.near = near;
+	this->near = near;
 }
 void Point::setUp(Point* Up) {
-	this.Up = Up;
+	this->up = Up;
 }
 void Point::setDown(Point* Down) {
-	this.Down = Down;
+	this->down = Down;
 }
 void Point::setLeft(Point* Left) {
-	this.Left = Left;
+	this->left = Left;
 }
 void Point::setRight(Point* Right) {
-	this.Right = Right;
+	this->right = Right;
 }
 void Point::setX(int x) {
-	this.x = x;
+	this->x = x;
 }
 void Point::setY(int y) {
-	this.y = y;
+	this->y = y;
 }
