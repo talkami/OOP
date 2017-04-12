@@ -1,16 +1,19 @@
-#ifndef __myproject_Tires_h__
-#define __myproject_Tires_h__
+#pragma once
 
+#include "IBattleShipGameAlgo.h"
+#include "Boat.h"
+
+//includes
 class Point {
 	int x;
 	int y;
-	Boat boat;
-	int near; 
+	Boat* boat;
+	bool near; 
 	Point* up;
 	Point* down;
 	Point* left;
 	Point* right;
-	int hit;
+	bool hit;
 public:
 	Point();
 	//never used constructor
@@ -18,7 +21,7 @@ public:
 	AttackResult attack();
 	~Point();
 
-	int getNear();
+	bool getNear();
 	void setNear(int near);
 	Point* getUp();
 	void setUp(Point* point);
@@ -28,12 +31,12 @@ public:
 	void setLeft(Point* point);
 	Point* getRight();
 	void setRight(Point* point);
-	Boat getBoat();
-	void setBoat(Boat);
+	Boat* getBoat();
+	void setBoat(Boat* boat);
 	int getX();
 	void setX(int x);
 	int getY();
 	void setY(int y);
 };
 
-#endif
+
