@@ -110,6 +110,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AttackAFileLister.h" />
+    <ClInclude Include="AttackBFileLister.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Boat.h" />
+    <ClInclude Include="FilesLister.h" />
+    <ClInclude Include="FilesListerWithSuffix.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="IBattleshipGameAlgo.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="SeaBattleBoardLister.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Boat.cpp" />
+    <ClCompile Include="FilesLister.cpp" />
+    <ClCompile Include="FilesListerWithSuffix.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Point.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

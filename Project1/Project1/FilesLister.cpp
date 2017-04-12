@@ -1,10 +1,9 @@
 #include "FilesLister.h"
 
-
 //get all files
 void FilesLister::refresh() {
 	//directory handling
-	DIR * dir;
+	DIR* dir;
 	struct dirent * ent;
 
 	this->m_filesList.clear();
@@ -26,12 +25,12 @@ void FilesLister::refresh() {
 }
 
 //getter for files
-vector<string> FilesLister::getFilesList() {
+std::vector<std::string> FilesLister::getFilesList() {
 	return this->m_filesList;
 }
 
 //concatenating relative path to dir path
-string FilesLister::concatenateAbsolutePath(const string& dirPath, const string& fileName) {
+std::string FilesLister::concatenateAbsolutePath(const std::string& dirPath, const std::string& fileName) {
 	if (dirPath.empty()) { //no dir path is given
 		return fileName;
 	}

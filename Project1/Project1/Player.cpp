@@ -103,7 +103,7 @@ void Player::addWin() {
 	this->wins++;
 }
 
-void increaseScore(int amount) {
+void Player::increaseScore(int amount) {
 	this->gameScore += amount;
 	this->totalScore += amount;
 }

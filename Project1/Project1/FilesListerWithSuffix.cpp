@@ -7,13 +7,12 @@
 		this->filterFiles();
 	}
 
-protected:
 	//filter files that dont end with suffix_
 	void FilesListerWithSuffix::filterFiles() {
-		vector<string> temp = this->m_filesList; //save list of files
+		std::vector<std::string> temp = this->m_filesList; //save list of files
 		this->m_filesList.clear();
 
-		for (vector<string>::iterator itr = temp.begin(); itr != temp.end(); ++itr) {
+		for (std::vector<std::string>::iterator itr = temp.begin(); itr != temp.end(); ++itr) {
 			if (endsWith(*itr, this->m_suffix)) {
 				this->m_filesList.push_back(*itr);
 			}

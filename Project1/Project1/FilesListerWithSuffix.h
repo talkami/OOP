@@ -1,8 +1,11 @@
 #pragma once
-class FilesListerWithSuffix : public FilesLister{
+
+#include "FilesLister.h"
+
+class FilesListerWithSuffix : public FilesLister {
 public:
 	//constructor
-	FilesListerWithSuffix(const string& basePath, const string& suffix)
+	FilesListerWithSuffix(const std::string& basePath, const std::string& suffix)
 		: FilesLister(basePath) //invokes father constructor
 		, m_suffix(suffix){
 		this->filterFiles();
@@ -25,5 +28,5 @@ protected:
 	}
 
 	//extra data member for this class
-	string m_suffix;
+	std::string m_suffix;
 };
