@@ -1,4 +1,5 @@
 #include "Point.h"
+#include <iostream>
 
 // never used constructor
 //Point::Point(int x, int y, Boat boat = NULL, int near = 0, Point * up = NULL, Point* down = NULL, Point* left = NULL, Point* right = NULL) :
@@ -6,7 +7,15 @@
 
 // empty constructor
 Point::Point() :
-	x(-1), y(-1), boat(nullptr), near(false), up(nullptr), down(nullptr), left(nullptr), right(nullptr), hit(false) {}
+	x(-1), y(-1), boat(nullptr), near(false), up(nullptr), 
+	down(nullptr), left(nullptr), right(nullptr), hit(false) {
+		std::cout << "in Point constructor, about to create a new point." << std::endl;
+}
+
+
+Point::~Point() {
+	std::cout << "in Point destructor, about to delete a point." << std::endl;
+}
 
 // do the attack on this point
 AttackResult Point::attack() {
@@ -62,7 +71,7 @@ int Point::getY() {
 void Point::setBoat(Boat* boat) {
 	this->boat = boat;
 }
-void Point::setNear(int near) {
+void Point::setNear(bool near) {
 	this->near = near;
 }
 void Point::setUp(Point* Up) {

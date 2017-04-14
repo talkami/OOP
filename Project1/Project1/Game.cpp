@@ -5,7 +5,7 @@ bool Game::initGame(const std::string& path) {
 	bool result;
 	result = this->getInitFiles(path);
 	if (result) {
-		this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], this->A, this->B);
+		this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], &this->A, &this->B);
 		this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
 		this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
 		this->turn = 0;

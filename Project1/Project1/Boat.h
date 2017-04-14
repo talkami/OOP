@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Player.h"
-#include "Point.h"
 #include "IBattleShipGameAlgo.h"
+
 class Boat {
 	int boatSize;
 	int horizontal;
@@ -18,6 +18,7 @@ class Boat {
 	int setValue(int size);
 
 public:
+	Boat();
 	Boat(int size, int player, Player* PlayerPointer, Player* rival);
 	~Boat();
 

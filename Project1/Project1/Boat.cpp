@@ -1,4 +1,6 @@
 #include "Boat.h"
+#include <iostream>
+
 //constructor
 Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival) {
 	this->boatSize = size;
@@ -11,8 +13,14 @@ Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival) {
 	this->value = setValue(size);
 	notifyPlayerCreated();
 }
-//empty constructor 
 
+Boat::Boat() {
+	std::cout << "in Boat constructor, about to create a new boat." << std::endl;
+}
+
+Boat::~Boat() {
+	std::cout << "in Boat destructor, about to delete a boat." << std::endl;
+}
 
 //getters
 int Boat::getHorizontal() {

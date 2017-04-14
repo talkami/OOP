@@ -22,7 +22,7 @@ public:
 	~Point();
 
 	bool getNear();
-	void setNear(int near);
+	void setNear(bool near);
 	Point* getUp();
 	void setUp(Point* point);
 	Point* getDown();

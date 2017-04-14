@@ -8,6 +8,7 @@
 
 //empty constructor
 Board::Board() {
+	std::cout << "in Board constructor, about to create a new board." << std::endl;
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
 			this->matrix[i][j] = new Point;
@@ -16,6 +17,11 @@ Board::Board() {
 		}
 	}
 }
+
+Board::~Board() {
+	std::cout << "in Board destructor, about to delete a board." << std::endl;
+}
+
 
 
 
@@ -43,14 +49,14 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 			if (i>0) {
 				this->matrix[i][j]->setLeft(this->matrix[i - 1][j]);
 				this->matrix[i - 1][j]->setRight(this->matrix[i][j]);
-				if (this->matrix[i - 1][j]->getBoat != nullptr) {
+				if (this->matrix[i - 1][j]->getBoat() != nullptr) {
 					this->matrix[i][j]->setNear(true);
 				}
 			}
 			if (j>0) {
 				this->matrix[i][j]->setDown(this->matrix[i][j - 1]);
 				this->matrix[i][j - 1]->setUp(this->matrix[i][j]);
-				if (this->matrix[i][j - 1]->getBoat != nullptr) {
+				if (this->matrix[i][j - 1]->getBoat() != nullptr) {
 					this->matrix[i][j]->setNear(true);
 				}
 			}
@@ -119,7 +125,7 @@ AttackResult Board::play_attack(std::pair<int, int> attack) {
 
 //inner function helping the loadBoard. pretty much useless outside.
 int Board::setBoardsToPoint(Point* point, int i, int j, int size, int player, Player* A, Player* B) {
-	if (point->getNear == 0) {
+	if (!point->getNear()) {
 		if (player == 0) {
 			Boat boat = Boat(size, player, A, B);
 			point->setBoat(&boat);
@@ -129,22 +135,22 @@ int Board::setBoardsToPoint(Point* point, int i, int j, int size, int player, Pl
 			point->setBoat(&boat);
 		}
 		if (i > 0) {
-			point->getLeft->setNear(1);
+			point->getLeft()->setNear(true);
 		}
 		if (j > 0) {
-			point->getUp->setNear(1);
+			point->getUp()->setNear(true);
 		}
 	}
 	else {
 		if (size > 1) {
 			if (i > 0) {
-				Boat* boat = point->getLeft->getBoat();
+				Boat* boat = point->getLeft()->getBoat();
 				if (boat != nullptr) {
 					if (boat->getBoatSize() == size && boat->getHorizontal() < 2 && boat->getAcctualSize() < size && boat->getPlayer() == player) {
 						boat->addPoint();
 						boat->setHorizontal(1);
 						if (j > 0) {
-							point->getUp->setNear(1);
+							point->getUp()->setNear(true);
 						}
 					}
 					else {
@@ -154,13 +160,13 @@ int Board::setBoardsToPoint(Point* point, int i, int j, int size, int player, Pl
 				}
 			}
 			if (j > 0) {
-				Boat* boat = point->getUp->getBoat();
+				Boat* boat = point->getUp()->getBoat();
 				if (boat != nullptr) {
 					if (boat->getBoatSize() == size && boat->getHorizontal() != 1 && boat->getAcctualSize() < size && boat->getPlayer() == player) {
 						boat->addPoint();
 						boat->setHorizontal(2);
 						if (i > 0) {
-							point->getLeft->setNear(1);
+							point->getLeft()->setNear(true);
 						}
 					}
 					else {

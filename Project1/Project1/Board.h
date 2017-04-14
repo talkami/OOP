@@ -19,7 +19,7 @@ public:
 	~Board();
 	AttackResult play_attack(std::pair <int, int> attack);
 
-	//not used constructor
+	//unused constructor
 	//Board(const string& boardFile);
 
 };
