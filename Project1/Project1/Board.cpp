@@ -70,45 +70,45 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 
 			//checking the charecter read from the file and putting the boats on the board - checking there is no boat near boat, and no boat is bigger then it's size and there is no unfamiliar chareter
 
-			if (currentChar == 'b') {
+			if (currentChar == 'B') {
 				setBoardsToPoint(this->matrix[i][j], i, j, 1, 0, A, B);
-				this->playerABoard[i][j] = 'b';
+				this->playerABoard[i][j] = 'B';
 				this->playerBBoard[i][j] = ' ';
 			}
-			if (currentChar == 'B') {
+			if (currentChar == 'b') {
 				setBoardsToPoint(this->matrix[i][j], i, j, 1, 1, A, B);
 				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'B';
-			}
-			if (currentChar == 'p') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 2, 0, A, B);
-				this->playerABoard[i][j] = 'p';
-				this->playerBBoard[i][j] = ' ';
+				this->playerBBoard[i][j] = 'b';
 			}
 			if (currentChar == 'P') {
+				setBoardsToPoint(this->matrix[i][j], i, j, 2, 0, A, B);
+				this->playerABoard[i][j] = 'P';
+				this->playerBBoard[i][j] = ' ';
+			}
+			if (currentChar == 'p') {
 				setBoardsToPoint(this->matrix[i][j], i, j, 2, 1, A, B);
 				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'P';
-			}
-			if (currentChar == 'm') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 3, 0, A, B);
-				this->playerABoard[i][j] = 'm';
-				this->playerBBoard[i][j] = ' ';
+				this->playerBBoard[i][j] = 'p';
 			}
 			if (currentChar == 'M') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 3, 1, A, B);
-				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'M';
-			}
-			if (currentChar == 'd') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 4, 0, A, B);
-				this->playerABoard[i][j] = 'd';
+				setBoardsToPoint(this->matrix[i][j], i, j, 3, 0, A, B);
+				this->playerABoard[i][j] = 'M';
 				this->playerBBoard[i][j] = ' ';
 			}
+			if (currentChar == 'm') {
+				setBoardsToPoint(this->matrix[i][j], i, j, 3, 1, A, B);
+				this->playerABoard[i][j] = ' ';
+				this->playerBBoard[i][j] = 'm';
+			}
 			if (currentChar == 'D') {
+				setBoardsToPoint(this->matrix[i][j], i, j, 4, 0, A, B);
+				this->playerABoard[i][j] = 'D';
+				this->playerBBoard[i][j] = ' ';
+			}
+			if (currentChar == 'd') {
 				setBoardsToPoint(this->matrix[i][j], i, j, 4, 1, A, B);
 				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'D';
+				this->playerBBoard[i][j] = 'd';
 			}
 			if (currentChar == ' ') {
 				this->playerABoard[i][j] = ' ';
