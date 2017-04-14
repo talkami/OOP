@@ -1,6 +1,68 @@
-﻿  Game.cpp
-c:\users\tal\oop\project1\project1\game.cpp(12): error C2065: 'TBD': undeclared identifier
-c:\users\tal\oop\project1\project1\game.cpp(13): error C2065: 'TBD': undeclared identifier
+﻿  main.cpp
+c:\users\tal\oop\project1\project1\point.h(10): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(10): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(35): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(35): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(36): error C2061: syntax error: identifier 'Boat'
+  Point.cpp
+c:\users\tal\oop\project1\project1\boat.h(16): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\boat.h(16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\boat.h(16): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\boat.h(24): error C2061: syntax error: identifier 'Point'
+c:\users\tal\oop\project1\project1\boat.h(36): error C2061: syntax error: identifier 'Point'
+  Game.cpp
+c:\users\tal\oop\project1\project1\point.h(10): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(10): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(35): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(35): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(36): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\project1\project1\game.cpp(12): error C2664: 'void Player::setBoard(const char **,int,int)': cannot convert argument 1 from 'char **' to 'const char **'
+  c:\users\tal\oop\project1\project1\game.cpp(12): note: Conversion loses qualifiers
+c:\users\tal\oop\project1\project1\game.cpp(13): error C2664: 'void Player::setBoard(const char **,int,int)': cannot convert argument 1 from 'char **' to 'const char **'
+  c:\users\tal\oop\project1\project1\game.cpp(13): note: Conversion loses qualifiers
+  Boat.cpp
+c:\users\tal\oop\project1\project1\point.h(10): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(10): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(35): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(35): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(36): error C2061: syntax error: identifier 'Boat'
   Board.cpp
+c:\users\tal\oop\project1\project1\point.h(10): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(10): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(35): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project1\project1\point.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project1\project1\point.h(35): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\project1\project1\point.h(36): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\project1\project1\board.cpp(43): error C3867: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::length': non-standard syntax; use '&' to create a pointer to member
+c:\users\tal\oop\project1\project1\board.cpp(43): error C2446: '<': no conversion from 'int' to 'unsigned int (__thiscall std::basic_string<char,std::char_traits<char>,std::allocator<char>>::* )(void) noexcept const'
+  c:\users\tal\oop\project1\project1\board.cpp(43): note: There are no conversions from integral values to pointer-to-member values
+c:\users\tal\oop\project1\project1\board.cpp(59): error C2039: 'getBoat': is not a member of 'Point'
+  c:\users\tal\oop\project1\project1\point.h(7): note: see declaration of 'Point'
+c:\users\tal\oop\project1\project1\board.cpp(66): error C2039: 'getBoat': is not a member of 'Point'
+  c:\users\tal\oop\project1\project1\point.h(7): note: see declaration of 'Point'
+c:\users\tal\oop\project1\project1\board.cpp(124): error C2039: 'getBoat': is not a member of 'Point'
+  c:\users\tal\oop\project1\project1\point.h(7): note: see declaration of 'Point'
+c:\users\tal\oop\project1\project1\board.cpp(176): error C2660: 'Point::setBoat': function does not take 1 arguments
+c:\users\tal\oop\project1\project1\board.cpp(180): error C2660: 'Point::setBoat': function does not take 1 arguments
+c:\users\tal\oop\project1\project1\board.cpp(192): error C2039: 'getBoat': is not a member of 'Point'
+  c:\users\tal\oop\project1\project1\point.h(7): note: see declaration of 'Point'
+c:\users\tal\oop\project1\project1\board.cpp(209): error C2660: 'Point::setBoat': function does not take 1 arguments
+c:\users\tal\oop\project1\project1\board.cpp(213): error C2660: 'Point::setBoat': function does not take 1 arguments
+c:\users\tal\oop\project1\project1\board.cpp(216): error C2227: left of '->setNear' must point to class/struct/union/generic type
+c:\users\tal\oop\project1\project1\board.cpp(219): error C2227: left of '->setNear' must point to class/struct/union/generic type
+c:\users\tal\oop\project1\project1\board.cpp(226): error C2660: 'Point::setBoat': function does not take 1 arguments
+c:\users\tal\oop\project1\project1\board.cpp(239): error C2039: 'getBoat': is not a member of 'Point'
+  c:\users\tal\oop\project1\project1\point.h(7): note: see declaration of 'Point'
+c:\users\tal\oop\project1\project1\board.cpp(253): error C2039: 'getBoat': is not a member of 'Point'
+  c:\users\tal\oop\project1\project1\point.h(7): note: see declaration of 'Point'
+c:\users\tal\oop\project1\project1\board.cpp(259): error C2660: 'Point::setBoat': function does not take 1 arguments
+c:\users\tal\oop\project1\project1\board.cpp(263): error C2660: 'Point::setBoat': function does not take 1 arguments
+c:\users\tal\oop\project1\project1\board.cpp(277): error C2660: 'Point::setBoat': function does not take 1 arguments
   Generating Code...
-c:\users\tal\oop\project1\project1\board.cpp(180): warning C4715: 'Board::setBoardsToPoint': not all control paths return a value

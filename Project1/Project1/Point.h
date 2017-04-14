@@ -14,6 +14,7 @@ class Point {
 	Point* left;
 	Point* right;
 	bool hit;
+
 public:
 	Point();
 	//never used constructor

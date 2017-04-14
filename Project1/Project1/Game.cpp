@@ -9,8 +9,8 @@ bool Game::initGame(const std::string& path) {
 		this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
 		this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
 		this->turn = 0;
-		this->A.setBoard(TBD, 10, 10);//SET TBD!!!!!
-		this->B.setBoard(TBD, 10, 10);
+		this->A.setBoard(this->gameBoard.getPlayerABoard(), 10, 10);//SET TBD!!!!!
+		this->B.setBoard(this->gameBoard.getPlayerBBoard(), 10, 10);
 	}
 	return result;
 }
