@@ -49,9 +49,6 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
 			char currentChar = board[i].at(j);
-			if (currentChar != ' ' && currentChar != 'b'&& currentChar != 'B'&& currentChar != 'p'&& currentChar != 'P'&& currentChar != 'm'&& currentChar != 'M'&& currentChar != 'd'&& currentChar != 'D') {
-				currentChar = ' ';
-			}
 
 			if (i>0) {
 				this->matrix[i][j]->setLeft(this->matrix[i - 1][j]);
@@ -110,7 +107,7 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 				this->playerABoard[i][j] = ' ';
 				this->playerBBoard[i][j] = 'd';
 			}
-			if (currentChar == ' ') {
+			else {
 				this->playerABoard[i][j] = ' ';
 				this->playerBBoard[i][j] = ' ';
 			}
