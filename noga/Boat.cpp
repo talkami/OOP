@@ -1,7 +1,7 @@
 
 #include "Boat.h"
 //constructor
-Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival){
+Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint){
 	this->boatSize = size;
 	this->player = player;
 	this->acctualSize = 1;
@@ -11,6 +11,8 @@ Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival){
 	this->rival = rival;
 	this->value = setValue(size);
 	notifyPlayerCreated();
+	this->valid = true;
+	this->pointsArray[0] = firstPoint;
 }
 //empty constructor 
 
@@ -32,6 +34,9 @@ int Boat::getBoatSize(){
 int Boat::getHit(){
 	return this->hit;
 }
+Player* Boat::getOwner(){
+	return this->owner;
+}
 bool Boat::isSunk(){
 	if (hit == boatSize){
 		return true;
@@ -39,6 +44,10 @@ bool Boat::isSunk(){
 	else{
 		return false;
 	}
+}
+
+bool Boat::isValid(){
+	return this->valid;
 }
 //setters
 void Boat::setHit(int hitPoints){
@@ -49,11 +58,15 @@ void Boat::setHit(int hitPoints){
 	// update the players points
 	//update the player
 }
-void Boat::addPoint(){
+void Boat::addPoint(Point* point){
+	this->pointsArray[this->acctualSize] = point;
 	this->acctualSize = acctualSize + 1;
 }
 void Boat::setHorizontal(int horizontal){
 	this->horizontal = horizontal;
+}
+void Boat::setValid(bool valid){
+	this->valid = valid;
 }
 
 

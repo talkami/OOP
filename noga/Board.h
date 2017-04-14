@@ -8,9 +8,14 @@
 
 class Board {
 	Point* matrix[10][10];
+	//(0) Wrong size or shape for ship <char> for player A,	(1) Wrong size or shape for ship <char> for player B
+	//(2) Too many ships for player A, (3) Too few ships for player A
+	//(4) Too many ships for player B, (5) Too few ships for player B, (6) Adjacent Ships on Board
+	bool errorArray[7];
+	char** playerABoard;
+	char** playerBBoard;
 
-
-	int setBoardsToPoint(Point* point, int i, int j, int size, int player, Player* A, Player* B);
+	void setBoardsToPoint(Point* point, int i, int j, int size, int player, Player* A, Player* B);
 	char ** sendBoardToPlayer(Player* X);
 public:
 
