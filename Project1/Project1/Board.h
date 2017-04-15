@@ -12,8 +12,8 @@ class Board {
 	//(2) Too many ships for player A, (3) Too few ships for player A
 	//(4) Too many ships for player B, (5) Too few ships for player B, (6) Adjacent Ships on Board
 	bool errorArray[7] = { false };
-	char** playerABoard;
-	char** playerBBoard;
+	mutable char** playerABoard;
+	mutable char** playerBBoard;
 
 	void setBoardsToPoint(Point* point, int i, int j, int size, int player, Player* A, Player* B);
 public:

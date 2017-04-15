@@ -40,7 +40,7 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 		if (!std::getline(fin, board[i])) {
 			board[i] = "          ";
 		}
-		while (board[i].length < 10) {
+		while (board[i].length() < 10) {
 			board[i].append(" ");
 		}
 	}
@@ -210,10 +210,10 @@ void Board::setBoardsToPoint(Point* point, int i, int j, int size, int player, P
 							point->setBoat(&newBoat);
 						}
 
-						point->getLeft->setNear(1);
+						point->getLeft()->setNear(true);
 
 						if (j > 0) {
-							point->getUp->setNear(1);
+							point->getUp()->setNear(true);
 						}
 						this->errorArray[6] = true;
 					}
