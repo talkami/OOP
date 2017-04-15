@@ -1,7 +1,7 @@
 #include "Boat.h"
+#include "Point.h"
 #include <iostream>
 
-#include "Boat.h"
 //constructor
 Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint) {
 	std::cout << "in Boat constructor, about to create a new boat." << std::endl;

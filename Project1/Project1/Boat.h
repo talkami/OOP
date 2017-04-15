@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Player.h"
-#include "Point.h"
 #include "IBattleShipGameAlgo.h"
+
+class Point;
 
 class Boat {
 	int boatSize;
