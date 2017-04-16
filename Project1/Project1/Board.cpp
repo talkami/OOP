@@ -13,10 +13,22 @@ Board::Board() {
 			this->matrix[i][j]->setY(j);
 		}
 	}
+	this->playerABoard = new char *[10];
+	this->playerBBoard = new char *[10];
+	for (int i = 0; i < 10; i++) {
+		this->playerABoard[i] = new char[10];
+		this->playerBBoard[i] = new char[10];
+	}
 }
 
 Board::~Board() {
 	std::cout << "in Board destructor, about to delete a board." << std::endl;
+	for (int i = 0; i<10; i++) {
+		delete[]this->playerABoard[i];
+		delete[]this->playerBBoard[i];
+	}
+	delete[]playerABoard;
+	delete[]playerBBoard;
 }
 
 //unused constructor
