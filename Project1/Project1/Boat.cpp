@@ -84,7 +84,7 @@ void Boat::notifyPlayerSunk() {
 void Boat::notifyPlayerCreated() {
 	owner->addBoat();
 }
-int setValue(int size) {
+int Boat::setValue(int size) {
 	if (size == 1) {
 		return 2;
 	}

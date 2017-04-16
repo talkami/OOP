@@ -1,3 +1,4 @@
-﻿  Board.cpp
-Boat.obj : error LNK2019: unresolved external symbol "private: int __thiscall Boat::setValue(int)" (?setValue@Boat@@AAEHH@Z) referenced in function "public: __thiscall Boat::Boat(int,int,class Player *,class Player *,class Point *)" (??0Boat@@QAE@HHPAVPlayer@@0PAVPoint@@@Z)
-C:\Users\tal\OOP\Project1\Debug\Project1.exe : fatal error LNK1120: 1 unresolved externals
+﻿  Boat.cpp
+c:\users\tal\oop\project1\project1\boat.cpp(100): warning C4715: 'Boat::setValue': not all control paths return a value
+  Project1.vcxproj -> C:\Users\tal\OOP\Project1\Debug\Project1.exe
+  Project1.vcxproj -> C:\Users\tal\OOP\Project1\Debug\Project1.pdb (Partial PDB)
