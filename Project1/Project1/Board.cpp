@@ -77,53 +77,7 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 				}
 			}
 
-			//checking the charecter read from the file and putting the boats on the board - checking there is no boat near boat, and no boat is bigger then it's size and there is no unfamiliar chareter
-
-			if (currentChar == 'B') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 1, 0, A, B);
-				this->playerABoard[i][j] = 'B';
-				this->playerBBoard[i][j] = ' ';
-			}
-			if (currentChar == 'b') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 1, 1, A, B);
-				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'b';
-			}
-			if (currentChar == 'P') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 2, 0, A, B);
-				this->playerABoard[i][j] = 'P';
-				this->playerBBoard[i][j] = ' ';
-			}
-			if (currentChar == 'p') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 2, 1, A, B);
-				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'p';
-			}
-			if (currentChar == 'M') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 3, 0, A, B);
-				this->playerABoard[i][j] = 'M';
-				this->playerBBoard[i][j] = ' ';
-			}
-			if (currentChar == 'm') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 3, 1, A, B);
-				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'm';
-			}
-			if (currentChar == 'D') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 4, 0, A, B);
-				this->playerABoard[i][j] = 'D';
-				this->playerBBoard[i][j] = ' ';
-			}
-			if (currentChar == 'd') {
-				setBoardsToPoint(this->matrix[i][j], i, j, 4, 1, A, B);
-				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = 'd';
-			}
-			else {
-				this->playerABoard[i][j] = ' ';
-				this->playerBBoard[i][j] = ' ';
-			}
-
+			addToPlayerBoard(currentChar, i, j, A, B);
 		}
 	}
 
@@ -157,6 +111,56 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 		errorArray[5] = true;
 	}
 
+}
+
+
+void Board::addToPlayerBoard(char currentChar, int row, int col, Player* A, Player* B) {
+	//checking the charecter read from the file and putting the boats on the board - checking there is no boat near boat, and no boat is bigger then it's size and there is no unfamiliar chareter
+
+	if (currentChar == 'B') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 1, 0, A, B);
+		this->playerABoard[row][col] = 'B';
+		this->playerBBoard[row][col] = ' ';
+	}
+	if (currentChar == 'b') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 1, 1, A, B);
+		this->playerABoard[row][col] = ' ';
+		this->playerBBoard[row][col] = 'b';
+	}
+	if (currentChar == 'P') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 2, 0, A, B);
+		this->playerABoard[row][col] = 'P';
+		this->playerBBoard[row][col] = ' ';
+	}
+	if (currentChar == 'p') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 2, 1, A, B);
+		this->playerABoard[row][col] = ' ';
+		this->playerBBoard[row][col] = 'p';
+	}
+	if (currentChar == 'M') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 3, 0, A, B);
+		this->playerABoard[row][col] = 'M';
+		this->playerBBoard[row][col] = ' ';
+	}
+	if (currentChar == 'm') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 3, 1, A, B);
+		this->playerABoard[row][col] = ' ';
+		this->playerBBoard[row][col] = 'm';
+	}
+	if (currentChar == 'D') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 4, 0, A, B);
+		this->playerABoard[row][col] = 'D';
+		this->playerBBoard[row][col] = ' ';
+	}
+	if (currentChar == 'd') {
+		setBoardsToPoint(this->matrix[row][col], row, col, 4, 1, A, B);
+		this->playerABoard[row][col] = ' ';
+		this->playerBBoard[row][col] = 'd';
+	}
+	else {
+		this->playerABoard[row][col] = ' ';
+		this->playerBBoard[row][col] = ' ';
+	}
 }
 
 // attack function - get pair and attack at the <x,y> point in the "matrix" variable.

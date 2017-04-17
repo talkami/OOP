@@ -16,6 +16,7 @@ class Board {
 	char** playerBBoard;
 
 	void setBoardsToPoint(Point* point, int i, int j, int size, int player, Player* A, Player* B);
+	void addToPlayerBoard(char currentChar, int row, int col, Player* A, Player* B);
 public:
 
 	void loadBoard(const std::string& boardFile, Player* A, Player* B);
