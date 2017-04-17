@@ -4,15 +4,15 @@
 bool Game::initGame(const std::string& path) {
 	bool result;
 	result = this->getInitFiles(path);
-	std::cout << "got files, result="<< result << std::endl;
 	if (result) {
-		this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], &this->A, &this->B);
-		std::cout << "board loaded sucessfully" << std::endl;
-		this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
-		this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
-		this->turn = 0;
-		this->A.setBoard(const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
-		this->B.setBoard(const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
+		result = this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], &this->A, &this->B);
+		if (result) {
+			this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
+			this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
+			this->turn = 0;
+			this->A.setBoard(const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
+			this->B.setBoard(const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
+		}
 	}
 	return result;
 }
@@ -51,7 +51,6 @@ bool Game::playGame() {
 }
 
 bool Game::getInitFiles(const std::string& path) {
-	std::cout << "in game function 'getInitFiles'" << std::endl;
 	bool result = true;
 
 	this->boardFileLister = SeaBattleBoardLister(path);
@@ -59,19 +58,16 @@ bool Game::getInitFiles(const std::string& path) {
 		std::cout << "Missing board file (*.sboard) looking in path: " << path << std::endl;
 		result = false;
 	}
-	std::cout << "created boardFileLister" << std::endl;
 	this->playerAFileLister = AttackAFileLister(path);
 	if (this->playerAFileLister.getFilesList().size() == 0) {
 		std::cout << "Missing attack file for player A (*.attack-a) looking in path: " << path << std::endl;
 		result = false;
 	}
-	std::cout << "created playerAFileLister" << std::endl;
 	this->playerBFileLister = AttackBFileLister(path);
 	if (this->playerBFileLister.getFilesList().size() == 0) {
 		std::cout << "Missing attack file for player B (*.attack-b) looking in path: " << path << std::endl;
 		result = false;
 	}
-	std::cout << "created playerBFileLister" << std::endl;
 	return result;
 }
 

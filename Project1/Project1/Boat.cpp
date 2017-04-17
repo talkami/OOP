@@ -1,6 +1,6 @@
 #include "Boat.h"
 #include "Point.h"
-#include <iostream>
+
 
 //constructor
 Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint) {
@@ -13,11 +13,13 @@ Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* fi
 	this->owner = PlayerPointer;
 	this->rival = rival;
 	this->value = setValue(size);
+	this->valid = true;
+	this->pointsArray[0] = firstPoint;
 	notifyPlayerCreated();
 }
 
 Boat::Boat() {
-	std::cout << "in Boat constructor, about to create a new boat." << std::endl;
+	std::cout << "in Boat empty constructor, about to create a new boat." << std::endl;
 }
 
 Boat::~Boat() {
@@ -96,5 +98,9 @@ int Boat::setValue(int size) {
 	}
 	if (size == 4) {
 		return 8;
+	}
+	else {
+		std::cout << "illegal boat!" << std::endl;
+		return -1;
 	}
 }

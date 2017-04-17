@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "IBattleShipGameAlgo.h"
+#include <iostream>
 
 class Point;
 
@@ -14,12 +15,13 @@ class Boat {
 	Player* owner;
 	int value;
 	Player* rival;
-	Point** pointsArray;
+	Point* pointsArray[10];
 	bool valid;
 
 	void notifyPlayerSunk();
 	void notifyPlayerCreated();
 	int setValue(int size);
+
 
 public:
 	Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint);
@@ -39,5 +41,11 @@ public:
 	bool isValid();
 	void setValid(bool valid);
 
+	Boat(const Boat&) {
+		std::cout << "copy c'tor" << std::endl;
+	}
+	Boat& operator=(const Boat&) {
+		std::cout << "operator=" << std::endl;
+	}
 
 };

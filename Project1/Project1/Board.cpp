@@ -39,14 +39,15 @@ Board::~Board() {
 
 
 //load board function
-void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
+bool Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
+	bool result = true;
 
 	/// there is so much shit need to be chekced here!!
 	std::string board[10];
 	std::ifstream fin(boardFile);
 	if (!fin) {
 		//error
-		return;
+		return false;
 	}
 	for (int i = 0; i < 10; i++) {
 		if (!std::getline(fin, board[i])) {
@@ -63,97 +64,75 @@ void Board::loadBoard(const std::string& boardFile, Player* A, Player* B) {
 			char currentChar = board[i].at(j);
 
 			if (i>0) {
-				this->matrix[i][j]->setLeft(this->matrix[i - 1][j]);
-				this->matrix[i - 1][j]->setRight(this->matrix[i][j]);
+				this->matrix[i][j]->setUp(this->matrix[i - 1][j]);
+				this->matrix[i - 1][j]->setDown(this->matrix[i][j]);
 				if (this->matrix[i - 1][j]->getBoat() != nullptr) {
 					this->matrix[i][j]->setNear(true);
 				}
 			}
 			if (j>0) {
-				this->matrix[i][j]->setDown(this->matrix[i][j - 1]);
-				this->matrix[i][j - 1]->setUp(this->matrix[i][j]);
+				this->matrix[i][j]->setLeft(this->matrix[i][j - 1]);
+				this->matrix[i][j - 1]->setRight(this->matrix[i][j]);
 				if (this->matrix[i][j - 1]->getBoat() != nullptr) {
 					this->matrix[i][j]->setNear(true);
 				}
 			}
-
 			addToPlayerBoard(currentChar, i, j, A, B);
 		}
 	}
+	checkBoatValidity();
 
-	//checking there is no boat smaller then it's size and no unValid boats
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
-			Boat* boat = this->matrix[i][j]->getBoat();
-			if (boat != nullptr) {
-				if (boat->getBoatSize() > boat->getAcctualSize()) { // and no unvalid boats
-					errorArray[boat->getPlayer()] = true;
-					boat->getOwner()->removeBoat();
-					//boat->deleteBoat
-					//maybe destroy the boat..
-				}
-			}
-		}
+	result = checkBoard();
+	
+	result = (checkNumOfPlayersBoats(A,B) && result);
+
+	if (this->errorArray[8]) {
+		result = false;
+		std::cout << "Adjacent Ships on Board" << std::endl;
 	}
-	//checking each player have the right amount of boats
-	int numOfBoatsA = A->getNumOfBoats();
-	if (numOfBoatsA < 5) {
-		errorArray[3] = true;
-	}
-	if (numOfBoatsA > 5) {
-		errorArray[2] = true;
-	}
-	int numOfBoatsB = B->getNumOfBoats();
-	if (numOfBoatsB < 5) {
-		errorArray[4] = true;
-	}
-	if (numOfBoatsB > 5) {
-		errorArray[5] = true;
+	return result;
 	}
 
-}
-
-
+//checking the charecter read from the file and putting the boats on the board
 void Board::addToPlayerBoard(char currentChar, int row, int col, Player* A, Player* B) {
-	//checking the charecter read from the file and putting the boats on the board - checking there is no boat near boat, and no boat is bigger then it's size and there is no unfamiliar chareter
-
+	
 	if (currentChar == 'B') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 1, 0, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 1, 0, A, B);
 		this->playerABoard[row][col] = 'B';
 		this->playerBBoard[row][col] = ' ';
 	}
 	if (currentChar == 'b') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 1, 1, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 1, 1, B, A);
 		this->playerABoard[row][col] = ' ';
 		this->playerBBoard[row][col] = 'b';
 	}
 	if (currentChar == 'P') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 2, 0, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 2, 0, A, B);
 		this->playerABoard[row][col] = 'P';
 		this->playerBBoard[row][col] = ' ';
 	}
 	if (currentChar == 'p') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 2, 1, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 2, 1, B, A);
 		this->playerABoard[row][col] = ' ';
 		this->playerBBoard[row][col] = 'p';
 	}
 	if (currentChar == 'M') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 3, 0, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 3, 0, A, B);
 		this->playerABoard[row][col] = 'M';
 		this->playerBBoard[row][col] = ' ';
 	}
 	if (currentChar == 'm') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 3, 1, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 3, 1, B, A);
 		this->playerABoard[row][col] = ' ';
 		this->playerBBoard[row][col] = 'm';
 	}
 	if (currentChar == 'D') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 4, 0, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 4, 0, A, B);
 		this->playerABoard[row][col] = 'D';
 		this->playerBBoard[row][col] = ' ';
 	}
 	if (currentChar == 'd') {
-		setBoardsToPoint(this->matrix[row][col], row, col, 4, 1, A, B);
+		addBoatToBoard(this->matrix[row][col], row, col, 4, 1, B, A);
 		this->playerABoard[row][col] = ' ';
 		this->playerBBoard[row][col] = 'd';
 	}
@@ -161,6 +140,84 @@ void Board::addToPlayerBoard(char currentChar, int row, int col, Player* A, Play
 		this->playerABoard[row][col] = ' ';
 		this->playerBBoard[row][col] = ' ';
 	}
+}
+
+//checking that all boats are of correct size and shape
+void Board::checkBoatValidity() {	
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			Boat* boat = this->matrix[i][j]->getBoat();
+			if (boat != nullptr) {
+				if (boat->getBoatSize() != boat->getAcctualSize() || !boat->isValid()) { 
+					int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
+					errorArray[errorNum] = true;
+					boat->getOwner()->removeBoat();
+				}
+			}
+		}
+	}
+}
+
+bool Board::checkBoard() {
+	bool result = true;
+
+	if (errorArray[0]){
+		std::cout << "Wrong size or shape for ship B for player A" << std::endl;
+		result = false;
+	}
+	if (errorArray[1]) {
+		std::cout << "Wrong size or shape for ship P for player A" << std::endl;
+		result = false;
+	}
+	if (errorArray[2]) {
+		std::cout << "Wrong size or shape for ship M for player A" << std::endl;
+		result = false;
+	}
+	if (errorArray[3]) {
+		std::cout << "Wrong size or shape for ship D for player A" << std::endl;
+		result = false;
+	}
+	if (errorArray[4]) {
+		std::cout << "Wrong size or shape for ship b for player B" << std::endl;
+		result = false;
+	}
+	if (errorArray[5]) {
+		std::cout << "Wrong size or shape for ship p for player B" << std::endl;
+		result = false;
+	}
+	if (errorArray[6]) {
+		std::cout << "Wrong size or shape for ship m for player B" << std::endl;
+		result = false;
+	}
+	if (errorArray[7]) {
+		std::cout << "Wrong size or shape for ship d for player B" << std::endl;
+		result = false;
+	}
+	return result;
+}
+
+//checking each player have the right amount of boats
+bool Board::checkNumOfPlayersBoats(Player* A, Player* B) {
+	bool result = true;
+	int numOfBoatsA = A->getNumOfBoats();
+	if (numOfBoatsA < 5) {
+		result = false;
+		std::cout << "Too few ships for player A" << std::endl;
+	}
+	if (numOfBoatsA > 5) {
+		result = false;
+		std::cout << "Too many ships for player A" << std::endl;
+	}
+	int numOfBoatsB = B->getNumOfBoats();
+	if (numOfBoatsB < 5) {
+		result = false;
+		std::cout << "Too few ships for player B" << std::endl;
+	}
+	if (numOfBoatsB > 5) {
+		result = false;
+		std::cout << "Too many ships for player B" << std::endl;
+	}
+	return result;
 }
 
 // attack function - get pair and attack at the <x,y> point in the "matrix" variable.
@@ -181,120 +238,105 @@ char** Board::getPlayerBBoard() {
 }
 
 //inner function helping the loadBoard. pretty much useless outside.
-void Board::setBoardsToPoint(Point* point, int i, int j, int size, int player, Player* A, Player* B) {
+void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Player* owner, Player* rival) {
 	//if no boat near the current point
 	if (!point->getNear()) {
-		if (player == 0) {
-			Boat boat = Boat(size, player, A, B, point);
-			point->setBoat(&boat);
-		}
-		else {
-			Boat boat = Boat(size, player, B, A, point);
-			point->setBoat(&boat);
-		}
+		Boat* boat =new Boat(size, player, owner, rival, point);
+		point->setBoat(boat);
+
 		if (i > 0) {
-			point->getLeft()->setNear(true);
+			point->getUp()->setNear(true);
 		}
 		if (j > 0) {
-			point->getUp()->setNear(true);
+			point->getLeft()->setNear(true);
 		}
 	}
 	//if there is boat near the current point
 	else {
 		if (i > 0) {
-			Boat* boat = point->getLeft()->getBoat();
+			Boat* boat = point->getUp()->getBoat();
 			if (boat != nullptr) {
 				//if there is a boat left to the current point
 				if (boat->getBoatSize() == size && boat->getHorizontal() < 2 && boat->getAcctualSize() < size && boat->getPlayer() == player) {
 					//if the left boat match to the current boat variables (size, player, horizontal and it is no bigger then its max size)
 					boat->addPoint(point);
 					boat->setHorizontal(1);
+					point->setBoat(boat);
+					point->getUp()->setNear(true);
 					if (j > 0) {
-						point->getUp()->setNear(true);
+						point->getLeft()->setNear(true);
 					}
 				}
 				else {
 					//if boat is next to another boat - create new boat. do not set the boats unvalid- will be count at the total boat count
 					if (boat->getBoatSize() != size || boat->getPlayer() != player) {
-
-						if (player == 0) {
-							Boat newBoat = Boat(size, player, A, B, point);
-							point->setBoat(&newBoat);
-						}
-						else {
-							Boat newBoat = Boat(size, player, B, A, point);
-							point->setBoat(&newBoat);
-						}
-
+						Boat newBoat = Boat(size, player, owner, rival, point);
+						point->setBoat(&newBoat);
 						point->getLeft()->setNear(true);
-
 						if (j > 0) {
-							point->getUp()->setNear(true);
+							point->getLeft()->setNear(true);
 						}
-						this->errorArray[6] = true;
+						this->errorArray[8] = true;
 					}
 					//if the boat is at wrong shape or too big set the boat unvalid- won't be count at the total boat count
 					else {
 						boat->setValid(false);
+						boat->addPoint(point);
 						point->setBoat(boat);
-						if (i > 0) {
-							point->getLeft()->setNear(1);
-						}
+						point->getUp()->setNear(true);
 						if (j > 0) {
-							point->getUp()->setNear(1);
+							point->getLeft()->setNear(true);
 						}
-						this->errorArray[player] = true;
 					}
 				}
 			}
 		}
 		if (j > 0) {
-			Boat* boat = point->getUp()->getBoat();
+			Boat* boat = point->getLeft()->getBoat();
+
 			if (boat != nullptr) {
-				//if there is a boat above  the current point
+				//if there is a boat next to the current point
 				if (boat->getBoatSize() == size && boat->getHorizontal() != 1 && boat->getAcctualSize() < size && boat->getPlayer() == player) {
 					//if the  boat above match to the current boat variables (size, player, horizontal and it is no bigger then its max size)
 					boat->addPoint(point);
 					boat->setHorizontal(2);
+					if (point->getBoat() != nullptr) {
+						owner->removeBoat();
+						delete point->getBoat();
+					}
+					point->setBoat(boat);
 					if (i > 0) {
-						point->getLeft()->setNear(1);
+						point->getUp()->setNear(true);
 					}
 				}
 				else {
 					if (boat->getBoatSize() != size || boat->getPlayer() != player) {
 						//if boat is next to another boat - create new boat. do not set the boats unvalid- will be count at the total boat count
 						if (point->getBoat() != nullptr) {
-							this->errorArray[6] = true;
+							this->errorArray[8] = true;
 							return;
 						}
-						if (player == 0) {
-							Boat newBoat = Boat(size, player, A, B, point);
-							point->setBoat(&newBoat);
-						}
-						else {
-							Boat newBoat = Boat(size, player, B, A, point);
-							point->setBoat(&newBoat);
-						}
+						Boat newBoat = Boat(size, player, owner, rival, point);
+						point->setBoat(&newBoat);
 
-						point->getLeft()->setNear(1);
+						point->getLeft()->setNear(true);
 
-						if (j > 0) {
-							point->getUp()->setNear(1);
+						if (i > 0) {
+							point->getUp()->setNear(true);
 						}
-						this->errorArray[6] = true;
+						this->errorArray[8] = true;
 						return;
 					}
 					else {
-						//if the boat is at wrong shape or too big set the boat unvalid- won't be count at the total boat count
+						//if the boat is at wrong shape or too big set the boat invalid- won't be count at the total boat count
 						boat->setValid(false);
 						point->setBoat(boat);
 						if (i > 0) {
-							point->getLeft()->setNear(true);
-						}
-						if (j > 0) {
 							point->getUp()->setNear(true);
 						}
-						this->errorArray[player] = true;
+						
+						point->getLeft()->setNear(true);
+
 						return;
 					}
 				}
