@@ -4,7 +4,7 @@
 
 //constructor
 Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint) {
-	std::cout << "in Boat constructor, about to create a new boat." << std::endl;
+	std::cout << "in Boat constructor, about to create a new boat. at (" << firstPoint->getX() << "," << firstPoint->getY() << ")"<< std::endl;
 	this->boatSize = size;
 	this->player = player;
 	this->acctualSize = 1;
@@ -24,6 +24,9 @@ Boat::Boat() {
 
 Boat::~Boat() {
 	std::cout << "in Boat destructor, about to delete a boat." << std::endl;
+	for (int i = 0; i < this->acctualSize; i++) {
+		this->pointsArray[i]->setBoat(nullptr);
+	}
 }
 
 //getters
@@ -68,6 +71,7 @@ void Boat::setHit(int hitPoints) {
 	//update the player
 }
 void Boat::addPoint(Point* point) {
+	std::cout << "adding point to boat at i=" << point->getX() << ", j=" << point->getY() << std::endl;
 	this->pointsArray[this->acctualSize] = point;
 	this->acctualSize = acctualSize + 1;
 }

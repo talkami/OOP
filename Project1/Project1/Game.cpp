@@ -1,5 +1,4 @@
 #include "Game.h"
-#include <utility>
 
 bool Game::initGame(const std::string& path) {
 	bool result;

@@ -148,10 +148,14 @@ void Board::checkBoatValidity() {
 		for (int j = 0; j < 10; j++) {
 			Boat* boat = this->matrix[i][j]->getBoat();
 			if (boat != nullptr) {
-				if (boat->getBoatSize() != boat->getAcctualSize() || !boat->isValid()) { 
+				if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
+					std::cout << "invalid" << std::endl;
+					std::cout << "boat size = " << boat->getBoatSize() << ", actual size = " << boat->getAcctualSize() << std::endl;
 					int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
+					std::cout << errorNum << std::endl;
 					errorArray[errorNum] = true;
 					boat->getOwner()->removeBoat();
+					delete boat;
 				}
 			}
 		}
@@ -259,6 +263,7 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 				//if there is a boat left to the current point
 				if (boat->getBoatSize() == size && boat->getHorizontal() < 2 && boat->getAcctualSize() < size && boat->getPlayer() == player) {
 					//if the left boat match to the current boat variables (size, player, horizontal and it is no bigger then its max size)
+
 					boat->addPoint(point);
 					boat->setHorizontal(1);
 					point->setBoat(boat);
@@ -270,8 +275,8 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 				else {
 					//if boat is next to another boat - create new boat. do not set the boats unvalid- will be count at the total boat count
 					if (boat->getBoatSize() != size || boat->getPlayer() != player) {
-						Boat newBoat = Boat(size, player, owner, rival, point);
-						point->setBoat(&newBoat);
+						Boat* newBoat = new Boat(size, player, owner, rival, point);
+						point->setBoat(newBoat);
 						point->getLeft()->setNear(true);
 						if (j > 0) {
 							point->getLeft()->setNear(true);
@@ -280,8 +285,10 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					}
 					//if the boat is at wrong shape or too big set the boat unvalid- won't be count at the total boat count
 					else {
-						boat->setValid(false);
 						boat->addPoint(point);
+						boat->setValid(false);
+						std::cout << "invalid boat at i= " <<i<< " j= "<<j<< std::endl;
+						
 						point->setBoat(boat);
 						point->getUp()->setNear(true);
 						if (j > 0) {
@@ -301,8 +308,14 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					boat->addPoint(point);
 					boat->setHorizontal(2);
 					if (point->getBoat() != nullptr) {
+						if (!point->getBoat()->isValid()) {
+							boat->setValid(false);
+						}
+						else {
+							delete point->getBoat();
+						}
 						owner->removeBoat();
-						delete point->getBoat();
+						
 					}
 					point->setBoat(boat);
 					if (i > 0) {
@@ -313,11 +326,13 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					if (boat->getBoatSize() != size || boat->getPlayer() != player) {
 						//if boat is next to another boat - create new boat. do not set the boats unvalid- will be count at the total boat count
 						if (point->getBoat() != nullptr) {
+							std::cout << "near wrong boat" << std::endl;
 							this->errorArray[8] = true;
 							return;
 						}
-						Boat newBoat = Boat(size, player, owner, rival, point);
-						point->setBoat(&newBoat);
+						std::cout << "near wrong boat. i= " <<i<<" j= " <<j << std::endl;
+						Boat* newBoat = new Boat(size, player, owner, rival, point);
+						point->setBoat(newBoat);
 
 						point->getLeft()->setNear(true);
 
@@ -330,6 +345,8 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					else {
 						//if the boat is at wrong shape or too big set the boat invalid- won't be count at the total boat count
 						boat->setValid(false);
+						std::cout << "invalid boat in (j>0)  at i= " << i << " j= " << j << std::endl;
+
 						point->setBoat(boat);
 						if (i > 0) {
 							point->getUp()->setNear(true);

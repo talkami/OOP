@@ -97,6 +97,7 @@ void Player::removeBoat() {
 	if (this->numOfBoats == 0) {
 		std::cout << "Error: Player has no more boats to remove." << std::endl;
 	}
+	std::cout << "removing a boat from player" << std::endl;
 	this->numOfBoats -= 1;
 }
 

@@ -3,6 +3,7 @@
 #include <string>
 
 int main(int argc, char* argv[]){
+	char x;
 	std::string path;
 	DIR * dir;
 	bool initializedSuccessfully, successfulPlay;
@@ -15,20 +16,23 @@ int main(int argc, char* argv[]){
 	}
 	if ((dir = opendir(path.c_str())) == NULL) {
 		std::cout << "Wrong path: " << path << std::endl;
+		std::cin >> x;
 		return -1;
 	}
 	closedir(dir);
 	Game* newGame = new Game();
 	initializedSuccessfully = newGame->initGame(path);
 	if (!initializedSuccessfully) {
+		std::cin >> x;
 		return -1;
 	}
 	successfulPlay = newGame->playGame();
 	if (!successfulPlay) {
+		std::cin >> x;
 		return -1;
 	}
 
-	Sleep(20000);
-	
+	std::cin >> x;
+
 	return 0;
 }
