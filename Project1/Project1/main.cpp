@@ -12,10 +12,10 @@ int main(int argc, char* argv[]){
 		path = argv[1];
 	}
 	else {
-		path = "";
+		path = ".";
 	}
 	if ((dir = opendir(path.c_str())) == NULL) {
-		std::cout << "Wrong path: " << path << std::endl;
+		std::cout << "Main: Wrong path: " << path << std::endl;
 		std::cin >> x;
 		return -1;
 	}
