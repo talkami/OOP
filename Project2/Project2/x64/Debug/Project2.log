@@ -1,11 +1,64 @@
-﻿  Board.cpp
-  Generating Code...
-  Compiling...
-  Point.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
+﻿  Point.cpp
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2039: 'string': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(609): note: see declaration of 'std'
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2143: syntax error: missing ',' before '&'
+c:\users\tal\oop\project2\project2\player.h(20): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
+  Player.cpp
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2039: 'string': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(609): note: see declaration of 'std'
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2143: syntax error: missing ',' before '&'
+c:\users\tal\oop\project2\project2\player.h(20): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
+c:\users\tal\oop\project2\project2\player.cpp(33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   main.cpp
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2039: 'string': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(609): note: see declaration of 'std'
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2143: syntax error: missing ',' before '&'
+c:\users\tal\oop\project2\project2\player.h(20): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
+c:\users\tal\oop\project2\project2\game.h(12): error C2259: 'Player': cannot instantiate abstract class
+  c:\users\tal\oop\project2\project2\game.h(12): note: due to following members:
+  c:\users\tal\oop\project2\project2\game.h(12): note: 'void IBattleshipGameAlgo::setBoard(int,const char **,int,int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(13): note: see declaration of 'IBattleshipGameAlgo::setBoard'
+  c:\users\tal\oop\project2\project2\game.h(12): note: 'bool IBattleshipGameAlgo::init(const int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): note: see declaration of 'IBattleshipGameAlgo::init'
+c:\users\tal\oop\project2\project2\game.h(13): error C2259: 'Player': cannot instantiate abstract class
+  c:\users\tal\oop\project2\project2\game.h(13): note: due to following members:
+  c:\users\tal\oop\project2\project2\game.h(13): note: 'void IBattleshipGameAlgo::setBoard(int,const char **,int,int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(13): note: see declaration of 'IBattleshipGameAlgo::setBoard'
+  c:\users\tal\oop\project2\project2\game.h(13): note: 'bool IBattleshipGameAlgo::init(const int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): note: see declaration of 'IBattleshipGameAlgo::init'
   Game.cpp
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2039: 'string': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(609): note: see declaration of 'std'
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2143: syntax error: missing ',' before '&'
+c:\users\tal\oop\project2\project2\player.h(20): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
+c:\users\tal\oop\project2\project2\game.h(12): error C2259: 'Player': cannot instantiate abstract class
+  c:\users\tal\oop\project2\project2\game.h(12): note: due to following members:
+  c:\users\tal\oop\project2\project2\game.h(12): note: 'void IBattleshipGameAlgo::setBoard(int,const char **,int,int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(13): note: see declaration of 'IBattleshipGameAlgo::setBoard'
+  c:\users\tal\oop\project2\project2\game.h(12): note: 'bool IBattleshipGameAlgo::init(const int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): note: see declaration of 'IBattleshipGameAlgo::init'
+c:\users\tal\oop\project2\project2\game.h(13): error C2259: 'Player': cannot instantiate abstract class
+  c:\users\tal\oop\project2\project2\game.h(13): note: due to following members:
+  c:\users\tal\oop\project2\project2\game.h(13): note: 'void IBattleshipGameAlgo::setBoard(int,const char **,int,int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(13): note: see declaration of 'IBattleshipGameAlgo::setBoard'
+  c:\users\tal\oop\project2\project2\game.h(13): note: 'bool IBattleshipGameAlgo::init(const int)': is abstract
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): note: see declaration of 'IBattleshipGameAlgo::init'
+  FilesListerWithSuffix.cpp
+  FilesLister.cpp
   Boat.cpp
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.pdb (Partial PDB)
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2039: 'string': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(609): note: see declaration of 'std'
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2143: syntax error: missing ',' before '&'
+c:\users\tal\oop\project2\project2\player.h(20): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
+  Board.cpp
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2039: 'string': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(609): note: see declaration of 'std'
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(14): error C2143: syntax error: missing ',' before '&'
+c:\users\tal\oop\project2\project2\player.h(20): error C3668: 'Player::setBoard': method with override specifier 'override' did not override any base class methods
+  Generating Code...

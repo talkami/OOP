@@ -1,7 +1,6 @@
 #pragma once
 
 #include <utility> // for std::pair
-#include <string> //Not adding the 'include' createed a probled in the init function. We were allowed to add it in forum question: http://moodle.tau.ac.il/mod/forum/discuss.php?d=50474
 
 enum class AttackResult {
 	Miss, Hit, Sink

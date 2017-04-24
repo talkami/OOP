@@ -115,7 +115,6 @@
     <ClCompile Include="FilesLister.cpp" />
     <ClCompile Include="FilesListerWithSuffix.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="IBattleshipGameAlgo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point.cpp" />

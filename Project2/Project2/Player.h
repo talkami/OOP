@@ -11,16 +11,15 @@ class Player: public IBattleshipGameAlgo {
 	int wins;
 	std::vector<std::pair<int, int>> attackMoves;
 	int attackNumber;
-	size_t maxMoves;
+	int maxMoves;
 	int numOfBoats;
 
 public:
 	Player();
 	~Player();
-	virtual void setBoard(int player, const char** board, int numRows, int numCols);
-	virtual bool init(const std::string& path);
-	virtual std::pair<int, int> attack();						
-	virtual void notifyOnAttackResult(int player, int row, int col, AttackResult result);
+	virtual void setBoard(const char** board, int numRows, int numCols) override; // called once to notify player on his board
+	virtual std::pair<int, int> attack() override; // ask player for his move
+	virtual void notifyOnAttackResult(int player, int row, int col, AttackResult result) override; // notify on last move result
 	void getMoves(const std::string& attackFile);
 	void processLine(const std::string& line);
 	static std::vector<std::string> split(const std::string &s, char delim);
