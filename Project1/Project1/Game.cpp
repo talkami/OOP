@@ -30,14 +30,15 @@ bool Game::playGame() {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
 			return false;
 		}if (nextMove.first == -1 || nextMove.second == -1) {
-			if (!(this->setNextTurn(AttackResult::Miss))) {
+			if (!(this->setNextTurn(AttackResult::Miss, false))) {
 				return false;
 			}
 		}
-		res = this->gameBoard.play_attack(nextMove);
+		bool selfHit = false;
+		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
 		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
 		this->B.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
-		if (!(this->setNextTurn(res))) {
+		if (!(this->setNextTurn(res, selfHit))) {
 			return false;
 		}
 	}
@@ -51,26 +52,33 @@ bool Game::playGame() {
 
 bool Game::getInitFiles(const std::string& path) {
 	bool result = true;
+	std::string errorPath;
+	if (path == ".") {
+		errorPath = "Working Directory";
+	}
+	else {
+		errorPath = path; 
+	}
 
 	this->boardFileLister = SeaBattleBoardLister(path);
 	if (this->boardFileLister.getFilesList().size() == 0) {
-		std::cout << "Missing board file (*.sboard) looking in path: " << path << std::endl;
+		std::cout << "Missing board file (*.sboard) looking in path: " << errorPath << std::endl;
 		result = false;
 	}
 	this->playerAFileLister = AttackAFileLister(path);
 	if (this->playerAFileLister.getFilesList().size() == 0) {
-		std::cout << "Missing attack file for player A (*.attack-a) looking in path: " << path << std::endl;
+		std::cout << "Missing attack file for player A (*.attack-a) looking in path: " << errorPath << std::endl;
 		result = false;
 	}
 	this->playerBFileLister = AttackBFileLister(path);
 	if (this->playerBFileLister.getFilesList().size() == 0) {
-		std::cout << "Missing attack file for player B (*.attack-b) looking in path: " << path << std::endl;
+		std::cout << "Missing attack file for player B (*.attack-b) looking in path: " << errorPath << std::endl;
 		result = false;
 	}
 	return result;
 }
 
-bool Game::setNextTurn(AttackResult res) {
+bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	//check if one or both playes have finished attacking (have no more valid lines in their attack file)
 	if (this->A.hasFinishedAttacking()) {
 		if (this->B.hasFinishedAttacking()) {
@@ -91,8 +99,23 @@ bool Game::setNextTurn(AttackResult res) {
 	}
 	else {
 		//both players still have moves to make, determine next move based on last attack result
-		if (res == AttackResult::Miss) {
-			//player missed - switch turns
+		if ((res == AttackResult::Miss) || selfHit) {
+			//player sunk a boat - need to check for victory
+			if (this->A.hasNoMoreBoats()) {
+				//player A is out of boats - player B wins
+				this->winner = 'B';
+				this->B.addWin();
+				this->turn = -1;
+				return true;
+			}
+			else if (this->B.hasNoMoreBoats()) {
+				//player B is out of boats - player A wins
+				this->winner = 'A';
+				this->A.addWin();
+				this->turn = -1;
+				return true;
+			}
+			//player missed - switch turns or attacked itself
 			this->turn = (this->turn + 1) % 2;
 			return true;
 		}

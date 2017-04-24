@@ -1,6 +1,4 @@
 #include "Game.h"
-#include <iostream>
-#include <string>
 
 int main(int argc, char* argv[]){
 	char x;
@@ -15,7 +13,13 @@ int main(int argc, char* argv[]){
 		path = ".";
 	}
 	if ((dir = opendir(path.c_str())) == NULL) {
-		std::cout << "Main: Wrong path: " << path << std::endl;
+		std::cout << "Wrong path: ";
+		if (path == ".") {
+			std::cout << "Working Directory" << std::endl;
+		}
+		else {
+			std::cout << path << std::endl;
+		}
 		std::cin >> x;
 		return -1;
 	}

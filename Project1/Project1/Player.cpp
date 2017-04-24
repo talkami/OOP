@@ -5,10 +5,8 @@
 #include <cstring>
 
 Player::Player() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {
-	std::cout << "In Player constructor, about to create a new player." << std::endl;
 }
 Player::~Player() {
-	std::cout << "In Game destructor, about to delete game." << std::endl;
 	delete[] & player_board;
 }
 
@@ -97,7 +95,6 @@ void Player::removeBoat() {
 	if (this->numOfBoats == 0) {
 		std::cout << "Error: Player has no more boats to remove." << std::endl;
 	}
-	std::cout << "removing a boat from player" << std::endl;
 	this->numOfBoats -= 1;
 }
 

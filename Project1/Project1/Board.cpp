@@ -1,11 +1,11 @@
 #include "Board.h"
-#include <iostream>
 #include <string>
 #include <fstream>
+#include <iostream>
+
 
 //empty constructor
 Board::Board() {
-	std::cout << "in Board constructor, about to create a new board." << std::endl;
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
 			this->matrix[i][j] = new Point;
@@ -22,7 +22,6 @@ Board::Board() {
 }
 
 Board::~Board() {
-	std::cout << "in Board destructor, about to delete a board." << std::endl;
 	for (int i = 0; i<10; i++) {
 		delete[]this->playerABoard[i];
 		delete[]this->playerBBoard[i];
@@ -149,10 +148,7 @@ void Board::checkBoatValidity() {
 			Boat* boat = this->matrix[i][j]->getBoat();
 			if (boat != nullptr) {
 				if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
-					std::cout << "invalid" << std::endl;
-					std::cout << "boat size = " << boat->getBoatSize() << ", actual size = " << boat->getAcctualSize() << std::endl;
 					int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
-					std::cout << errorNum << std::endl;
 					errorArray[errorNum] = true;
 					boat->getOwner()->removeBoat();
 					delete boat;
@@ -226,10 +222,10 @@ bool Board::checkNumOfPlayersBoats(Player* A, Player* B) {
 
 // attack function - get pair and attack at the <x,y> point in the "matrix" variable.
 // maybe will print out the attack- ask Tal- remember remember!!!!!!!!!!!!!!!
-AttackResult Board::play_attack(std::pair<int, int> attack) {
+AttackResult Board::play_attack(std::pair<int, int> attack, int attacker, bool* selfHit) {
 	int x = attack.first;
 	int y = attack.second;
-	AttackResult result = matrix[x][y]->attack();
+	AttackResult result = matrix[x][y]->attack(attacker, selfHit);
 	return result;
 	// print the attack result?
 }
@@ -277,7 +273,6 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					if (boat->getBoatSize() != size || boat->getPlayer() != player) {
 						Boat* newBoat = new Boat(size, player, owner, rival, point);
 						point->setBoat(newBoat);
-						point->getLeft()->setNear(true);
 						if (j > 0) {
 							point->getLeft()->setNear(true);
 						}
@@ -287,7 +282,6 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					else {
 						boat->addPoint(point);
 						boat->setValid(false);
-						std::cout << "invalid boat at i= " <<i<< " j= "<<j<< std::endl;
 						
 						point->setBoat(boat);
 						point->getUp()->setNear(true);
@@ -326,11 +320,9 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					if (boat->getBoatSize() != size || boat->getPlayer() != player) {
 						//if boat is next to another boat - create new boat. do not set the boats unvalid- will be count at the total boat count
 						if (point->getBoat() != nullptr) {
-							std::cout << "near wrong boat" << std::endl;
 							this->errorArray[8] = true;
 							return;
 						}
-						std::cout << "near wrong boat. i= " <<i<<" j= " <<j << std::endl;
 						Boat* newBoat = new Boat(size, player, owner, rival, point);
 						point->setBoat(newBoat);
 
@@ -344,8 +336,12 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					}
 					else {
 						//if the boat is at wrong shape or too big set the boat invalid- won't be count at the total boat count
+						if ((point->getBoat() != nullptr) && (point->getBoat() != boat)) {
+							delete point->getBoat();
+							owner->removeBoat();
+						}
 						boat->setValid(false);
-						std::cout << "invalid boat in (j>0)  at i= " << i << " j= " << j << std::endl;
+						boat->addPoint(point);
 
 						point->setBoat(boat);
 						if (i > 0) {

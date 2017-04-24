@@ -31,4 +31,8 @@ public:
 	int getGameScore();
 	void addWin();
 	void increaseScore(int amount);
+
+	Player(const Player&) {}
+	Player& operator=(const Player&) {}
+
 };

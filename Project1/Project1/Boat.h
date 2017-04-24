@@ -2,7 +2,6 @@
 
 #include "Player.h"
 #include "IBattleShipGameAlgo.h"
-#include <iostream>
 
 class Point;
 
@@ -41,11 +40,7 @@ public:
 	bool isValid();
 	void setValid(bool valid);
 
-	Boat(const Boat&) {
-		std::cout << "copy c'tor" << std::endl;
-	}
-	Boat& operator=(const Boat&) {
-		std::cout << "operator=" << std::endl;
-	}
+	Boat(const Boat&) {}
+	Boat& operator=(const Boat&) {}
 
 };

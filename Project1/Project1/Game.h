@@ -19,13 +19,15 @@ class Game {
 	char winner;
 
 	bool getInitFiles(const std::string& path);
-	bool setNextTurn(AttackResult res);
+	bool setNextTurn(AttackResult res, bool selfHit);
 
 public:
-	Game() { std::cout << "In Game constructor, about to create a new game." << std::endl; }
-	~Game() { std::cout << "In Game destructor, about to delete game." << std::endl; }
+	Game() {}
+	~Game() {}
 	bool initGame(const std::string& path);
 	bool playGame();
 	bool endGame();
 
+	Game(const Game&) {}
+	Game& operator=(const Game&) {}
 };

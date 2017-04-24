@@ -19,7 +19,7 @@ public:
 	Point();
 	//never used constructor
 	//Point(int x, int y, Boat boat = NULL, int near = 0, Point* up= NULL, Point* down= NULL, Point* left = NULL, Point* right= NULL);
-	AttackResult attack();
+	AttackResult attack(int attacker, bool* selfHit);
 	~Point();
 
 	bool getNear();
@@ -38,4 +38,8 @@ public:
 	void setX(int x);
 	int getY();
 	void setY(int y);
+
+	Point(const Point&) {}
+	Point& operator=(const Point&) {}
+
 };
