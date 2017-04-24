@@ -13,6 +13,7 @@ FixedPlayer::~FixedPlayer() {
 
 void FixedPlayer::setBoard(int player, const char** board, int numRows, int numCols) {
 	memcpy(this->player_board, board, sizeof(char) * numRows * numCols);
+	this->playerNum = player;
 	}
 
 bool FixedPlayer::init(const std::string & path){

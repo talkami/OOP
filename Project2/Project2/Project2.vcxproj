@@ -114,10 +114,13 @@
     <ClCompile Include="Boat.cpp" />
     <ClCompile Include="FilesLister.cpp" />
     <ClCompile Include="FilesListerWithSuffix.cpp" />
+    <ClCompile Include="FixedPlayer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NaivePlayer.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="SmartPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackAFileLister.h" />
@@ -127,11 +130,14 @@
     <ClInclude Include="dirent.h" />
     <ClInclude Include="FilesLister.h" />
     <ClInclude Include="FilesListerWithSuffix.h" />
+    <ClInclude Include="FixedPlayer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IBattleshipGameAlgo.h" />
+    <ClInclude Include="NaivePlayer.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="SeaBattleBoardLister.h" />
+    <ClInclude Include="SmartPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

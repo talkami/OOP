@@ -12,6 +12,7 @@ class FixedPlayer: public IBattleshipGameAlgo {
 	int attackNumber;
 	size_t maxMoves;
 	int numOfBoats;
+	int playerNum;
 
 public:
 	FixedPlayer();
