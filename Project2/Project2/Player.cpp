@@ -10,9 +10,16 @@ Player::~Player() {
 	delete[] & player_board;
 }
 
-void Player::setBoard(const char** board, int numRows, int numCols) {
+void Player::setBoard(int player, const char** board, int numRows, int numCols) {
 	memcpy(this->player_board, board, sizeof(char) * numRows * numCols);
 	}
+
+bool Player::init(const std::string & path){
+
+	//CREATE FUNCTION!!!!!
+
+	return false;
+}
 
 std::pair<int, int> Player::attack() {
 	if (this->attackNumber >= this->maxMoves) {

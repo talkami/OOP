@@ -1,6 +1,7 @@
 #pragma once
 
 #include <utility> // for std::pair
+#include <string> //needed to make init function work. Adding this include was allowed in forum question: http://moodle.tau.ac.il/mod/forum/discuss.php?d=50474
 
 enum class AttackResult {
 	Miss, Hit, Sink
