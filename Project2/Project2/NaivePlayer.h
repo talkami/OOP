@@ -8,11 +8,13 @@ class NaivePlayer : public IBattleshipGameAlgo {
 	int gameScore;
 	int totalScore;
 	int wins;
-	std::vector<std::pair<int, int>> attackMoves;
-	int attackNumber;
-	size_t maxMoves;
 	int numOfBoats;
 	int playerNum;
+	int attackRow;
+	int attackCol;
+	bool finishedAttacking;
+	int colNum;
+	int rowNum;
 
 public:
 	NaivePlayer();

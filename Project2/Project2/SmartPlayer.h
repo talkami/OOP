@@ -21,9 +21,6 @@ public:
 	virtual bool init(const std::string& path) override;
 	virtual std::pair<int, int> attack() override;
 	virtual void notifyOnAttackResult(int player, int row, int col, AttackResult result) override;
-	void getMoves(const std::string& attackFile);
-	void processLine(const std::string& line);
-	static std::vector<std::string> split(const std::string &s, char delim);
 	bool hasFinishedAttacking();
 	bool hasNoMoreBoats();
 	void addBoat();

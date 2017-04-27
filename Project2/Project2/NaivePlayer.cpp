@@ -1,12 +1,16 @@
 
 #include "NaivePlayer.h"
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <cstring>
 
-NaivePlayer::NaivePlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {
-}
+NaivePlayer::NaivePlayer() : 
+	gameScore(0), 
+	totalScore(0), 
+	wins(0), 
+	numOfBoats(0), 
+	attackRow(0), 
+	attackCol(0), 
+	finishedAttacking(false){}
+
 NaivePlayer::~NaivePlayer() {
 	delete[] & player_board;
 }
@@ -14,6 +18,8 @@ NaivePlayer::~NaivePlayer() {
 void NaivePlayer::setBoard(int player, const char** board, int numRows, int numCols) {
 	memcpy(this->player_board, board, sizeof(char) * numRows * numCols);
 	this->playerNum = player;
+	this->rowNum = numRows;
+	this->colNum = numCols;
 }
 
 bool NaivePlayer::init(const std::string & path) {
@@ -25,23 +31,48 @@ bool NaivePlayer::init(const std::string & path) {
 
 std::pair<int, int> NaivePlayer::attack() {
 	//CREATE FUNCTION!!!
+	//i think we should invalidate squares in the player_board and then do the following loop:
 
-	return std::pair<int, int>(-1, -1);
+	while (player_board[this->attackRow][this->attackCol] != ' ') {
+		if (this->attackCol < colNum-1) {
+			this->attackCol++;
+		}
+		else {
+			if (this->attackRow < rowNum-1) {
+				this->attackCol = 0;
+				this->attackRow++;
+			}
+			else {
+				this->finishedAttacking = true;
+				return std::pair<int, int>(-1, -1);
+			}
+		}
+	}
 
+	std::pair<int, int> res(this->attackRow, this->attackCol);
+
+	if (this->attackCol < colNum - 1) {
+		this->attackCol++;
+	}
+	else {
+		if (this->attackRow < rowNum - 1) {
+			this->attackCol = 0;
+			this->attackRow++;
+		}
+		else {
+			this->finishedAttacking = true;
+		}
+	}
+	return res;
+}
+
+void NaivePlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {
+	//here we invalidate squares in the player_board
 }
 
 bool NaivePlayer::hasFinishedAttacking() {
-
-	//FUNCTION MAY NEED CORRECTING
-	if (this->attackNumber >= this->maxMoves) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return this->finishedAttacking;
 }
-
-void NaivePlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {}
 
 bool NaivePlayer::hasNoMoreBoats() {
 	if (numOfBoats == 0) {

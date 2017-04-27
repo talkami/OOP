@@ -1,9 +1,6 @@
 
 #include "SmartPlayer.h"
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <cstring>
 
 SmartPlayer::SmartPlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {
 }
