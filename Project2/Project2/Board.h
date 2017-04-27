@@ -23,8 +23,10 @@ public:
 	AttackResult play_attack(std::pair <int, int> attack, int attacker, bool* selfHit);
 	char** getPlayerABoard();
 	char** getPlayerBBoard();
+	void setInvalidAttack(int row, int col);
+	bool isValidAttack(int row, int col);
 
-	Board(const Board&) {}
-	Board& operator=(const Board&) {}
+	Board(const Board&) = delete;
+	Board& operator=(const Board&) = delete;
 
 };

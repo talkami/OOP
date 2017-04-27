@@ -4,19 +4,6 @@
 #include <sstream>
 #include <cstring>
 
-CommonPlayer::CommonPlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {
-}
-CommonPlayer::~CommonPlayer() {}
-
-bool CommonPlayer::hasFinishedAttacking() {
-	if (this->attackNumber >= this->maxMoves) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
 bool CommonPlayer::hasNoMoreBoats(){
 	if (numOfBoats == 0) {
 		return true;
@@ -32,7 +19,9 @@ void CommonPlayer::addBoat() {
 
 void CommonPlayer::removeBoat() {
 	if (this->numOfBoats == 0) {
-		std::cout << "Error: CommonPlayer has no more boats to remove." << std::endl;
+		std::cout << "Error: player ";
+		this->playerNum == 1 ? std::cout << "A" : std::cout << "B";
+		std::cout << " has no more boats to remove." << std::endl;
 	}
 	this->numOfBoats -= 1;
 }

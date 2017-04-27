@@ -60,7 +60,7 @@ void FixedPlayer::processLine(const std::string& line) {
 		return;
 	}
 
-	std::pair<int, int> aPair(num1-1, num2-1);	
+	std::pair<int, int> aPair(num1, num2);	
 	this->attackMoves.push_back(aPair);
 	return;	
 }

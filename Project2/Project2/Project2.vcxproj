@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Boat.cpp" />
+    <ClCompile Include="CommonPlayer.cpp" />
     <ClCompile Include="FilesLister.cpp" />
     <ClCompile Include="FilesListerWithSuffix.cpp" />
     <ClCompile Include="FixedPlayer.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="AttackBFileLister.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Boat.h" />
+    <ClInclude Include="CommonPlayer.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="FilesLister.h" />
     <ClInclude Include="FilesListerWithSuffix.h" />

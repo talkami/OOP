@@ -1,20 +1,15 @@
 #pragma once
 #include "IBattleshipGameAlgo.h"
+#include "CommonPlayer.h"
+#include "Board.h"
 #include <vector>
 #include <utility> 
 
-class NaivePlayer : public IBattleshipGameAlgo {
-	char player_board[10][10];
-	int gameScore;
-	int totalScore;
-	int wins;
-	int numOfBoats;
-	int playerNum;
+class NaivePlayer : public IBattleshipGameAlgo, public CommonPlayer{
+	Board player_board;
 	int attackRow;
 	int attackCol;
 	bool finishedAttacking;
-	int colNum;
-	int rowNum;
 
 public:
 	NaivePlayer();
@@ -23,16 +18,9 @@ public:
 	virtual bool init(const std::string& path) override;
 	virtual std::pair<int, int> attack() override;
 	virtual void notifyOnAttackResult(int player, int row, int col, AttackResult result) override;
-	bool hasFinishedAttacking();
-	bool hasNoMoreBoats();
-	void addBoat();
-	void removeBoat();
-	int getNumOfBoats();
-	int getGameScore();
-	void addWin();
-	void increaseScore(int amount);
+	virtual bool hasFinishedAttacking() override;
 
-	NaivePlayer(const NaivePlayer&) {}
-	NaivePlayer& operator=(const NaivePlayer&) {}
+	NaivePlayer(const NaivePlayer&) = delete;
+	NaivePlayer& operator=(const NaivePlayer&) = delete;
 
 };

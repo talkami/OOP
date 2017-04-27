@@ -5,17 +5,11 @@
 #include <utility> 
 
 class CommonPlayer {
-	int gameScore;
-	int totalScore;
-	int wins;
-	int attackNumber;
-	int maxMoves;
-	int numOfBoats;
 
 public:
-	CommonPlayer();
-	~CommonPlayer();
-	bool hasFinishedAttacking();
+	CommonPlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {}
+	virtual ~CommonPlayer() {};
+	virtual bool hasFinishedAttacking() = 0;
 	bool hasNoMoreBoats();
 	void addBoat();
 	void removeBoat();
@@ -26,5 +20,16 @@ public:
 
 	CommonPlayer(const CommonPlayer&) = delete;
 	CommonPlayer& operator=(const CommonPlayer&) = delete;
+
+protected:
+	int gameScore;
+	int totalScore;
+	int wins;
+	int maxMoves;
+	int numOfBoats;	
+	int numOfRows = 0;
+	int numOfCols = 0;
+	int playerNum = -1;
+
 
 };
