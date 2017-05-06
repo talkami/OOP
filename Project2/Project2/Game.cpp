@@ -29,17 +29,20 @@ bool Game::playGame() {
 		else {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
 			return false;
-		}if (nextMove.first == -1 || nextMove.second == -1) {
+		}
+		if (nextMove.first == -1 || nextMove.second == -1) {
 			if (!(this->setNextTurn(AttackResult::Miss, false))) {
 				return false;
 			}
 		}
-		bool selfHit = false;
-		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
-		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
-		this->B.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
-		if (!(this->setNextTurn(res, selfHit))) {
-			return false;
+		else {
+			bool selfHit = false;
+			res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
+			this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
+			this->B.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
+			if (!(this->setNextTurn(res, selfHit))) {
+				return false;
+			}
 		}
 	}
 
