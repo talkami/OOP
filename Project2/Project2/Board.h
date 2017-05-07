@@ -17,6 +17,7 @@ class Board {
 	void checkBoatValidity();
 	bool checkBoard();
 	bool checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B);
+	void checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal, int player, CommonPlayer* owner, CommonPlayer* rival);
 public:
 	Board(): matrix(nullptr), playerABoard(nullptr), playerBBoard(nullptr){}
 	~Board();

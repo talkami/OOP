@@ -31,7 +31,6 @@ AttackResult Point::attack(int attacker, bool* selfHit) {
 				return AttackResult::Hit;
 			}
 			else {
-
 				return AttackResult::Sink;
 			}
 		}
@@ -42,7 +41,6 @@ AttackResult Point::attack(int attacker, bool* selfHit) {
 				return AttackResult::Hit;
 			}
 			else {
-
 				return AttackResult::Miss;
 			}
 		}
@@ -81,7 +79,17 @@ bool Point :: isValidToAttack (){
 //setters
 void Point::setBoat(Boat* boat) {
 	this->boat = boat;
+	this->invalidToAttack();
+	if (this->x > 0) {
+		this->getUp()->setNear(true);
+		this->getUp()->invalidToAttack();
+	}
+	if (this->y > 0) {
+		this->getLeft()->setNear(true);
+		this->getLeft()->invalidToAttack();
+	}
 }
+
 void Point::setNear(bool near) {
 	this->near = near;
 }
