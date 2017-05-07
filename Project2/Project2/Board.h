@@ -18,12 +18,12 @@ class Board {
 	bool checkBoard();
 	bool checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B);
 public:
-	Board(){}
+	Board(): matrix(nullptr), playerABoard(nullptr), playerBBoard(nullptr){}
 	~Board();
 	bool updateBoardAfterAttack (Point * point, AttackResult result);
 	bool loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlayer* B, int rows, int cols);
-	bool createBoard (char** board, CommonPlayer* A, CommonPlayer* B, int rows, int cols);
-	void setVars(); 
+	void createBoard (char currentChar, CommonPlayer* A, CommonPlayer* B, int row, int col);
+	void setVars(bool isPlayerBoard);
 	
  	bool playerLoadBoard (char** playerBoard, CommonPlayer* player, int rows, int cols); //brb
 	
