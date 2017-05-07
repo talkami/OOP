@@ -18,8 +18,6 @@ class Point {
 
 public:
 	Point();
-	//never used constructor
-	//Point(int x, int y, Boat boat = NULL, int near = 0, Point* up= NULL, Point* down= NULL, Point* left = NULL, Point* right= NULL);
 	AttackResult attack(int attacker, bool* selfHit);
 	~Point();
 

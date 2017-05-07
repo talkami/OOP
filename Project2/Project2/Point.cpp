@@ -1,4 +1,5 @@
 #include "Point.h"
+#include <iostream>
 
 // never used constructor
 //Point::Point(int x, int y, Boat boat = NULL, int near = 0, Point * up = NULL, Point* down = NULL, Point* left = NULL, Point* right = NULL) :

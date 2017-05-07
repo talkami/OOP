@@ -4,78 +4,89 @@
 #include <iostream>
 
 
-//empty constructor
-Board::Board() {
-
-}
-
 bool Board ::playerLoadBoard (char** playerBoard, CommonPlayer* player, int rows, int cols){
-	setVars (rows,cols);
+	setVars ();
 	createBoard (playerBoard, player, nullptr,  rows,  cols);
+
+	return true;//FIX!
 }
+
 Board::~Board() {
-	for (int i = 0; i<this->rows; i++) {
+	for (int i = 0; i < this->numOfRows; i++) {
+		for (int j = 0; j < this->numOfCols; j++) {
+			delete this->matrix[i][j];
+		}
+	}
+
+	for (int i = 0; i<this->numOfRows; i++) {
+		delete[]this->matrix[i];
 		delete[]this->playerABoard[i];
 		delete[]this->playerBBoard[i];
 	}
-	delete[]playerABoard;
-	delete[]playerBBoard;
+	delete[]this->matrix;
+	delete[]this->playerABoard;
+	delete[]this->playerBBoard;
 }
-
-//unused constructor
-//Board(const string& boardFile){
-//matrix(NULL);
-//getBoard(boardFile);
-//}
-
-void Board ::setVars ( int rows, int cols){
-	this-> rows = rows;
-	this-> cols = cols;
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++) {
-			this->matrix[i][j] = new Point;
-			this->matrix[i][j]->setX(i);
-			this->matrix[i][j]->setY(j);
-		}
-	}
-	this->playerABoard = new char *[rows];
-	this->playerBBoard = new char *[rows];
-	for (int i = 0; i < rows; i++) {
-		this->playerABoard[i] = new char[cols];
-		this->playerBBoard[i] = new char[cols];
-	}
-}
-
-
 
 //load board function
 bool Board::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlayer* B, int rows, int cols) {
 	bool result = true;
+	this->numOfRows = rows;
+	this->numOfCols = cols;
+	setVars();
+	std::cout << "rows = " << this->numOfRows << ",  Cols = " << this->numOfCols << std::endl;
 
 	/// there is so much shit need to be chekced here!!
-	std::string board[rows];
-	std::ifstream fin(boardFile);
+	char** board = new char *[rows];
+	for (int i = 0; i < rows; i++) {
+		board[i] = new char[cols];
+		memset(board[i], ' ', cols);
+	}
+	
+	std::fstream fin(boardFile);
 	if (!fin) {
 		//error
 		return false;
 	}
 	for (int i = 0; i < rows; i++) {
-		if (!std::getline(fin, board[i])) {
-			board[i] = "          ";
-		}
-		while (board[i].length() < cols) {
-			board[i].append(" ");
-		}
+		fin.getline(board[i], cols);
+		std::cout << board[i] << std::endl;
 	}
-	setVars (rows, cols);
 	result = createBoard (board, A, B, rows, cols);
+	
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			std::cout << "'"<< board[i][j] << "'    ";
+		}
+		std::cout << std::endl;
+	}
 	return result;
 }
+
+void Board::setVars() {
+	this->matrix = new Point**[this->numOfRows];
+	this->playerABoard = new char *[this->numOfRows];
+	this->playerBBoard = new char *[this->numOfRows];
+	for (int i = 0; i < this->numOfRows; i++) {
+		this->matrix[i] = new Point*[this->numOfCols];
+		this->playerABoard[i] = new char[this->numOfCols];
+		this->playerBBoard[i] = new char[this->numOfCols];
+	}
+
+	for (int i = 0; i < this->numOfRows; i++) {
+		for (int j = 0; j < this->numOfCols; j++) {
+			this->matrix[i][j] = new Point;
+			this->matrix[i][j]->setX(i);
+			this->matrix[i][j]->setY(j);
+		}
+	}
+}
+
 bool Board::createBoard (char** board, CommonPlayer* A, CommonPlayer* B, int rows, int cols){
 	// putting up the points- checking if the left/ up to the current point have a boat in it, and by that updating the "NEAR" variable
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
-			char currentChar = board[i].at(j);
+			char currentChar = board[i][j];
 
 			if (i>0) {
 				this->matrix[i][j]->setUp(this->matrix[i - 1][j]);
@@ -96,7 +107,7 @@ bool Board::createBoard (char** board, CommonPlayer* A, CommonPlayer* B, int row
 	}
 	checkBoatValidity();
 
-	result = checkBoard();
+	bool result = checkBoard();
 	
 	result = (checkNumOfPlayersBoats(A,B) && result);
 
@@ -182,7 +193,7 @@ void Board::checkBoatValidity() {
 				if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
 					int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
 					errorArray[errorNum] = true;
-					if (boat->getRival != nullptr){
+					if (boat->getRival() != nullptr){
 						boat->getOwner()->removeBoat();
 					}
 					delete boat;
@@ -260,7 +271,9 @@ bool Board::checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B) {
 
 
 bool Board :: updateBoardAfterAttack (Point * point, AttackResult result){
-	if 
+	//COMPLETE FUCTION!!!!
+
+	return true;
 }
 
 
@@ -282,7 +295,7 @@ char** Board::getPlayerBBoard() {
 }
 
 //inner function helping the loadBoard. pretty much useless outside.
-void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Player* owner, Player* rival) {
+void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, CommonPlayer* owner, CommonPlayer* rival) {
 	//if no boat near the current point
 	point->invalidToAttack();
 	if (!point->getNear()) {
@@ -295,7 +308,7 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 		}
 		if (j > 0) {
 			point->getLeft()->setNear(true);
-			point->getLeft->invalidToAttack();
+			point->getLeft()->invalidToAttack();
 		}
 	}
 	//if there is boat near the current point
@@ -314,7 +327,7 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 					point->getUp()->invalidToAttack();
 					if (j > 0) {
 						point->getLeft()->setNear(true);
-						point->getLeft->invalidToAttack();
+						point->getLeft()->invalidToAttack();
 					}
 				}
 				else {
@@ -324,7 +337,7 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 						point->setBoat(newBoat);
 						if (j > 0) {
 							point->getLeft()->setNear(true);
-							point->getLeft->invalidToAttack();
+							point->getLeft()->invalidToAttack();
 
 						}
 						this->errorArray[8] = true;
@@ -339,7 +352,7 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 						point->getUp()->invalidToAttack();
 						if (j > 0) {
 							point->getLeft()->setNear(true);
-							point->getLeft->invalidToAttack();
+							point->getLeft()->invalidToAttack();
 						}
 					}
 				}
@@ -412,20 +425,10 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 	}
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void Board ::setInvalidAttack(int row, int col){
 	this->matrix [row-1][col-1]->invalidToAttack();
 }
 
 bool Board ::isValidAttack(int row, int col){
-	return this->matrix [row-1][col-1]->isValidToAttack;
+	return this->matrix [row-1][col-1]->isValidToAttack();
 }
-=======
-void Board::setInvalidAttack(int row, int col){}
-bool Board::isValidAttack(int row, int col) { return true; }
->>>>>>> ba35bea20d9402263fb44c6a59b25fba43547f3c
-=======
-void Board::setInvalidAttack(int row, int col){}
-bool Board::isValidAttack(int row, int col) { return true; }
->>>>>>> 91c4124d446a129d6e9f73b02033eb672ce4dff6

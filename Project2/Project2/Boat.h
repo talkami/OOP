@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Player.h"
+#include "CommonPlayer.h"
 #include "IBattleShipGameAlgo.h"
 
 class Point;
