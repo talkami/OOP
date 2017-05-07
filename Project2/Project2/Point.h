@@ -14,7 +14,7 @@ class Point {
 	Point* left;
 	Point* right;
 	bool hit;
-	bool validToAttack
+	bool validToAttack;
 
 public:
 	Point();
@@ -42,7 +42,7 @@ public:
 	bool isValidToAttack ();
 	void invalidToAttack ();
 
-	Point(const Point&) {}
-	Point& operator=(const Point&) {}
+	Point(const Point&) = delete;
+	Point& operator=(const Point&) = delete;
 
 };
