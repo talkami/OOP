@@ -412,5 +412,5 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 	}
 }
 
-void setInvalidAttack(int row, int col){}
-bool isValidAttack(int row, int col) { return true; }
+void Board::setInvalidAttack(int row, int col){}
+bool Board::isValidAttack(int row, int col) { return true; }
