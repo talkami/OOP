@@ -9,7 +9,7 @@ Board::Board() {
 
 }
 
-bool Board ::playerLoadBoard (char** playerBoard, Player* player, int rows, int cols){
+bool Board ::playerLoadBoard (char** playerBoard, CommonPlayer* player, int rows, int cols){
 	setVars (rows,cols);
 	createBoard (playerBoard, player, nullptr,  rows,  cols);
 }
@@ -49,7 +49,7 @@ void Board ::setVars ( int rows, int cols){
 
 
 //load board function
-bool Board::loadBoard(const std::string& boardFile, Player* A, Player* B, int rows, int cols) {
+bool Board::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlayer* B, int rows, int cols) {
 	bool result = true;
 
 	/// there is so much shit need to be chekced here!!
@@ -71,7 +71,7 @@ bool Board::loadBoard(const std::string& boardFile, Player* A, Player* B, int ro
 	result = createBoard (board, A, B, rows, cols);
 	return result;
 }
-bool Board::createBoard (char** board, Player* A, Player* B, int rows, int cols){
+bool Board::createBoard (char** board, CommonPlayer* A, CommonPlayer* B, int rows, int cols){
 	// putting up the points- checking if the left/ up to the current point have a boat in it, and by that updating the "NEAR" variable
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
@@ -108,7 +108,7 @@ bool Board::createBoard (char** board, Player* A, Player* B, int rows, int cols)
 	}
 
 //checking the charecter read from the file and putting the boats on the board
-void Board::addToPlayerBoard(char currentChar, int row, int col, Player* A, Player* B) {
+void Board::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B) {
 	
 	if (currentChar == 'B') {
 		if (A != nullptr){
@@ -231,7 +231,7 @@ bool Board::checkBoard() {
 }
 
 //checking each player have the right amount of boats
-bool Board::checkNumOfPlayersBoats(Player* A, Player* B) {
+bool Board::checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B) {
 	bool result = true;
 	if (A != nullptr){
 		int numOfBoatsA = A->getNumOfBoats();
@@ -412,5 +412,10 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 	}
 }
 
-void setInvalidAttack(int row, int col){}
-bool isValidAttack(int row, int col) { return true; }
+void Board ::setInvalidAttack(int row, int col){
+	this->matrix [row-1][col-1]->invalidToAttack();
+}
+
+bool Board ::isValidAttack(int row, int col){
+	return this->matrix [row-1][col-1]->isValidToAttack;
+}
