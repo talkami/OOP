@@ -14,6 +14,7 @@ class Point {
 	Point* left;
 	Point* right;
 	bool hit;
+	bool validToAttack
 
 public:
 	Point();
@@ -38,6 +39,8 @@ public:
 	void setX(int x);
 	int getY();
 	void setY(int y);
+	bool isValidToAttack ();
+	void invalidToAttack ();
 
 	Point(const Point&) {}
 	Point& operator=(const Point&) {}
