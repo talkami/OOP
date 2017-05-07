@@ -1,4 +1,3 @@
-﻿  NaivePlayer.cpp
-NaivePlayer.obj : error LNK2019: unresolved external symbol "public: void __cdecl Board::setInvalidAttack(int,int)" (?setInvalidAttack@Board@@QEAAXHH@Z) referenced in function "public: virtual struct std::pair<int,int> __cdecl NaivePlayer::attack(void)" (?attack@NaivePlayer@@UEAA?AU?$pair@HH@std@@XZ)
-NaivePlayer.obj : error LNK2019: unresolved external symbol "public: bool __cdecl Board::isValidAttack(int,int)" (?isValidAttack@Board@@QEAA_NHH@Z) referenced in function "public: virtual struct std::pair<int,int> __cdecl NaivePlayer::attack(void)" (?attack@NaivePlayer@@UEAA?AU?$pair@HH@std@@XZ)
-C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe : fatal error LNK1120: 2 unresolved externals
+﻿  Board.cpp
+  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe
+  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.pdb (Partial PDB)
