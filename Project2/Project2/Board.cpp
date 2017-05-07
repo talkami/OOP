@@ -4,13 +4,6 @@
 #include <iostream>
 
 
-bool Board ::playerLoadBoard (char** playerBoard, CommonPlayer* player, int rows, int cols){
-	setVars ();
-	createBoard (playerBoard, player, nullptr,  rows,  cols);
-
-	return true;//FIX!
-}
-
 Board::~Board() {
 	for (int i = 0; i < this->numOfRows; i++) {
 		for (int j = 0; j < this->numOfCols; j++) {
@@ -33,89 +26,95 @@ bool Board::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlaye
 	bool result = true;
 	this->numOfRows = rows;
 	this->numOfCols = cols;
-	setVars();
+	setVars(false);
 
-	/// there is so much shit need to be chekced here!!
-	char** board = new char *[rows];
-	for (int i = 0; i < rows; i++) {
-		board[i] = new char[cols];
-		memset(board[i], ' ', cols);
-	}
-
-	std::string buffer;
 	std::ifstream fin(boardFile);
 	if (!fin) {
-		//error
+		std::cout << "Error reading from file: " << boardFile << std::endl;
 		return false;
 	}
-
+	
 	for (int i = 0; i < rows; i++) {
+		std::string buffer;
 		std::getline(fin, buffer);
 		for (int j = 0; j < cols; j++) {
-			board[i][j] = buffer.at(j);
-		}
-	}
-	result = createBoard (board, A, B, rows, cols);
-	
-	return result;
-}
-
-void Board::setVars() {
-	this->matrix = new Point**[this->numOfRows];
-	this->playerABoard = new char *[this->numOfRows];
-	this->playerBBoard = new char *[this->numOfRows];
-	for (int i = 0; i < this->numOfRows; i++) {
-		this->matrix[i] = new Point*[this->numOfCols];
-		this->playerABoard[i] = new char[this->numOfCols];
-		this->playerBBoard[i] = new char[this->numOfCols];
-	}
-
-	for (int i = 0; i < this->numOfRows; i++) {
-		for (int j = 0; j < this->numOfCols; j++) {
-			this->matrix[i][j] = new Point;
-			this->matrix[i][j]->setX(i);
-			this->matrix[i][j]->setY(j);
-		}
-	}
-}
-
-bool Board::createBoard (char** board, CommonPlayer* A, CommonPlayer* B, int rows, int cols){
-	// putting up the points- checking if the left/ up to the current point have a boat in it, and by that updating the "NEAR" variable
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++) {
-			char currentChar = board[i][j];
-
-			if (i>0) {
-				this->matrix[i][j]->setUp(this->matrix[i - 1][j]);
-				this->matrix[i - 1][j]->setDown(this->matrix[i][j]);
-				if (this->matrix[i - 1][j]->getBoat() != nullptr) {
-					this->matrix[i][j]->setNear(true);
-				}
+			char currChar = ' ';
+			if (j < buffer.length()) {
+				currChar = buffer.at(j);
 			}
-			if (j>0) {
-				this->matrix[i][j]->setLeft(this->matrix[i][j - 1]);
-				this->matrix[i][j - 1]->setRight(this->matrix[i][j]);
-				if (this->matrix[i][j - 1]->getBoat() != nullptr) {
-					this->matrix[i][j]->setNear(true);
-				}
-			}
-			addToPlayerBoard(currentChar, i, j, A, B);
+			createBoard (currChar, A, B, i, j);
 		}
 	}
+
 	checkBoatValidity();
-
-	bool result = checkBoard();
-	
-	result = (checkNumOfPlayersBoats(A,B) && result);
+	result = checkBoard();
+	result = (checkNumOfPlayersBoats(A, B) && result);
 
 	if (this->errorArray[8]) {
 		result = false;
 		std::cout << "Adjacent Ships on Board" << std::endl;
 	}
 	return result;
+}
+
+bool Board::playerLoadBoard(char** playerBoard, CommonPlayer* player, int rows, int cols) {
+	bool result = true;
+	this->numOfRows = rows;
+	this->numOfCols = cols;
+	setVars(true);
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			createBoard(playerBoard[i][j], player, nullptr, rows, cols);
+		}
 	}
 
-//checking the charecter read from the file and putting the boats on the board
+	return result;
+}
+
+void Board::setVars(bool isPlayerBoard) {
+	this->matrix = new Point**[this->numOfRows];
+	if (!isPlayerBoard) {
+		this->playerABoard = new char *[this->numOfRows];
+		this->playerBBoard = new char *[this->numOfRows];
+	}
+
+	for (int i = 0; i < this->numOfRows; i++) {
+		this->matrix[i] = new Point*[this->numOfCols];
+		if (!isPlayerBoard) {
+			this->playerABoard[i] = new char[this->numOfCols];
+			this->playerBBoard[i] = new char[this->numOfCols];
+		}
+	}
+
+	for (int i = 0; i < this->numOfRows; i++) {
+		for (int j = 0; j < this->numOfCols; j++) {
+			this->matrix[i][j] = new Point();
+			this->matrix[i][j]->setX(i);
+			this->matrix[i][j]->setY(j);
+		}
+	}
+}
+
+void Board::createBoard (char currentChar, CommonPlayer* A, CommonPlayer* B, int row, int col){
+	// putting up the points- checking if the left/ up to the current point have a boat in it, and by that updating the "NEAR" variable
+	if (row>0) {
+		this->matrix[row][col]->setUp(this->matrix[row - 1][col]);
+		this->matrix[row - 1][col]->setDown(this->matrix[row][col]);
+		if (this->matrix[row - 1][col]->getBoat() != nullptr) {
+			this->matrix[row][col]->setNear(true);
+		}
+	}
+	if (col>0) {
+		this->matrix[row][col]->setLeft(this->matrix[row][col - 1]);
+		this->matrix[row][col - 1]->setRight(this->matrix[row][col]);
+		if (this->matrix[row][col - 1]->getBoat() != nullptr) {
+			this->matrix[row][col]->setNear(true);
+		}
+	}
+	addToPlayerBoard(currentChar, row, col, A, B);
+}
+
+//checking the char read from the file and putting the boats on the board
 void Board::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B) {
 	
 	if (currentChar == 'B') {
@@ -124,51 +123,50 @@ void Board::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A
 			this->playerABoard[row][col] = 'B';
 			this->playerBBoard[row][col] = ' ';
 		}
-
 	}
-	if (currentChar == 'b') {
+	else if (currentChar == 'b') {
 		if (B != nullptr){
 			addBoatToBoard(this->matrix[row][col], row, col, 1, 1, B, A);
 			this->playerABoard[row][col] = ' ';
 			this->playerBBoard[row][col] = 'b';
 		}
 	}
-	if (currentChar == 'P') {
+	else if (currentChar == 'P') {
 		if (A != nullptr){
 			addBoatToBoard(this->matrix[row][col], row, col, 2, 0, A, B);
 			this->playerABoard[row][col] = 'P';
 			this->playerBBoard[row][col] = ' ';
 		}
 	}
-	if (currentChar == 'p') {
+	else if (currentChar == 'p') {
 		if (B != nullptr){
 			addBoatToBoard(this->matrix[row][col], row, col, 2, 1, B, A);
 			this->playerABoard[row][col] = ' ';
 			this->playerBBoard[row][col] = 'p';
 		}
 	}
-	if (currentChar == 'M') {
+	else if (currentChar == 'M') {
 		if (A != nullptr){
 			addBoatToBoard(this->matrix[row][col], row, col, 3, 0, A, B);
 			this->playerABoard[row][col] = 'M';
 			this->playerBBoard[row][col] = ' ';
 		}
 	}
-	if (currentChar == 'm') {
+	else if (currentChar == 'm') {
 		if (B != nullptr){
 			addBoatToBoard(this->matrix[row][col], row, col, 3, 1, B, A);
 			this->playerABoard[row][col] = ' ';
 			this->playerBBoard[row][col] = 'm';
 		}
 	}
-	if (currentChar == 'D') {
+	else if (currentChar == 'D') {
 		if (A != nullptr){
 			addBoatToBoard(this->matrix[row][col], row, col, 4, 0, A, B);
 			this->playerABoard[row][col] = 'D';
 			this->playerBBoard[row][col] = ' ';
 		}
 	}
-	if (currentChar == 'd') {
+	else if (currentChar == 'd') {
 		if (B != nullptr){
 			addBoatToBoard(this->matrix[row][col], row, col, 4, 1, B, A);
 			this->playerABoard[row][col] = ' ';
@@ -176,15 +174,17 @@ void Board::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A
 		}
 	}
 	else {
-		this->playerABoard[row][col] = ' ';
-		this->playerBBoard[row][col] = ' ';
+		if (A != nullptr && B != nullptr) {
+			this->playerABoard[row][col] = ' ';
+			this->playerBBoard[row][col] = ' ';
+		}
 	}
 }
 
 //checking that all boats are of correct size and shape
 void Board::checkBoatValidity() {	
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
+	for (int i = 0; i < this->numOfRows; i++) {
+		for (int j = 0; j < this->numOfCols; j++) {
 			Boat* boat = this->matrix[i][j]->getBoat();
 			if (boat != nullptr) {
 				if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
@@ -267,7 +267,7 @@ bool Board::checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B) {
 }
 
 
-bool Board :: updateBoardAfterAttack (Point * point, AttackResult result){
+bool Board::updateBoardAfterAttack (Point * point, AttackResult result){
 	//COMPLETE FUCTION!!!!
 
 	return true;
@@ -422,10 +422,10 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Com
 	}
 }
 
-void Board ::setInvalidAttack(int row, int col){
+void Board::setInvalidAttack(int row, int col){
 	this->matrix [row-1][col-1]->invalidToAttack();
 }
 
-bool Board ::isValidAttack(int row, int col){
+bool Board::isValidAttack(int row, int col){
 	return this->matrix [row-1][col-1]->isValidToAttack();
 }
