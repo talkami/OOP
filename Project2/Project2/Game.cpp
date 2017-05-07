@@ -16,6 +16,7 @@ bool Game::initGame(const std::string& path) {
 	return result;
 }
 
+
 bool Game::playGame() {
 	while (this->turn >= 0) {
 		std::pair<int, int> nextMove;
@@ -29,29 +30,27 @@ bool Game::playGame() {
 		else {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
 			return false;
-		}
-		if (nextMove.first == -1 || nextMove.second == -1) {
+		}if (nextMove.first == -1 || nextMove.second == -1) {
 			if (!(this->setNextTurn(AttackResult::Miss, false))) {
 				return false;
 			}
 		}
-		else {
-			bool selfHit = false;
-			res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
-			this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
-			this->B.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
-			if (!(this->setNextTurn(res, selfHit))) {
-				return false;
-			}
+		bool selfHit = false;
+		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
+		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
+		this->B.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
+		if (!(this->setNextTurn(res, selfHit))) {
+			return false;
 		}
 	}
 
 	if (!this->endGame()) {
 		return false;
 	}
-	
+
 	return true;
 }
+
 
 bool Game::getInitFiles(const std::string& path) {
 	bool result = true;
@@ -82,10 +81,26 @@ bool Game::getInitFiles(const std::string& path) {
 }
 
 bool Game::setNextTurn(AttackResult res, bool selfHit) {
-	//check if one or both playes have finished attacking (have no more valid lines in their attack file)
+	//check for victory
+	if (this->A.hasNoMoreBoats()) {
+		//player A is out of boats - player B wins
+		this->winner = 'B';
+		this->B.addWin();
+		this->turn = -1;
+		return true;
+	}
+	else if (this->B.hasNoMoreBoats()) {
+		//player B is out of boats - player A wins
+		this->winner = 'A';
+		this->A.addWin();
+		this->turn = -1;
+		return true;
+	}
+
+	//check if one or both playes have finished attacking
 	if (this->A.hasFinishedAttacking()) {
 		if (this->B.hasFinishedAttacking()) {
-			//both players have finished thoe moves - end the game
+			//both players have finished attacking - end the game
 			this->turn = -2;
 			return true;
 		}
@@ -103,50 +118,14 @@ bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	else {
 		//both players still have moves to make, determine next move based on last attack result
 		if ((res == AttackResult::Miss) || selfHit) {
-			//player sunk a boat - need to check for victory
-			if (this->A.hasNoMoreBoats()) {
-				//player A is out of boats - player B wins
-				this->winner = 'B';
-				this->B.addWin();
-				this->turn = -1;
-				return true;
-			}
-			else if (this->B.hasNoMoreBoats()) {
-				//player B is out of boats - player A wins
-				this->winner = 'A';
-				this->A.addWin();
-				this->turn = -1;
-				return true;
-			}
-			//player missed - switch turns or attacked itself
+			//player missed or attacked itself - switch turns 
 			this->turn = (this->turn + 1) % 2;
 			return true;
 		}
-		else if (res == AttackResult::Hit) {
-			//player hit a boat - gets another turn
+		else if (res == AttackResult::Hit || res == AttackResult::Sink) {
+			//player hit a rival boat - gets another turn
 			return true;
-		}
-		else if (res == AttackResult::Sink) {
-			//player sunk a boat - need to check for victory
-			if (this->A.hasNoMoreBoats()) {
-				//player A is out of boats - player B wins
-				this->winner = 'B';
-				this->B.addWin();
-				this->turn = -1;
-				return true;
-			}
-			else if (this->B.hasNoMoreBoats()) {
-				//player B is out of boats - player A wins
-				this->winner = 'A';
-				this->A.addWin();
-				this->turn = -1;
-				return true;
-			}
-			else {
-				//player sunk a boat but didn't win - gets another turn
-				return true;
-			}
-		}
+		} 
 		else {
 			std::cout << "Error! undefined attack result given" << std::endl;
 			return false;

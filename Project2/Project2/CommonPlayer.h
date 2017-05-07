@@ -1,5 +1,4 @@
 #pragma once
-#include "IBattleshipGameAlgo.h"
 
 #include <vector>
 #include <utility> 
@@ -11,6 +10,7 @@ public:
 	virtual ~CommonPlayer() {};
 	virtual bool hasFinishedAttacking() = 0;
 	bool hasNoMoreBoats();
+	void setProperties(int player, int numRows, int numCols);
 	void addBoat();
 	void removeBoat();
 	int getNumOfBoats();
@@ -25,11 +25,9 @@ protected:
 	int gameScore;
 	int totalScore;
 	int wins;
-	int maxMoves;
 	int numOfBoats;	
 	int numOfRows = 0;
 	int numOfCols = 0;
 	int playerNum = -1;
-
-
+	
 };

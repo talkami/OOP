@@ -5,16 +5,10 @@
 #include <sstream>
 #include <cstring>
 
-FixedPlayer::FixedPlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {
-}
-FixedPlayer::~FixedPlayer() {
-	delete[] & player_board;
-}
 
 void FixedPlayer::setBoard(int player, const char** board, int numRows, int numCols) {
-	memcpy(this->player_board, board, sizeof(char) * numRows * numCols);
-	this->playerNum = player;
-	}
+	setProperties(player, numRows, numCols);
+}
 
 bool FixedPlayer::init(const std::string & path){
 
@@ -86,40 +80,3 @@ bool FixedPlayer::hasFinishedAttacking() {
 	}
 }
 void FixedPlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {}
-
-bool FixedPlayer::hasNoMoreBoats(){
-	if (numOfBoats == 0) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-void FixedPlayer::addBoat() {
-	this->numOfBoats += 1;
-}
-
-void FixedPlayer::removeBoat() {
-	if (this->numOfBoats == 0) {
-		std::cout << "Error: Player has no more boats to remove." << std::endl;
-	}
-	this->numOfBoats -= 1;
-}
-
-int FixedPlayer::getNumOfBoats() {
-	return this->numOfBoats;
-}
-
-int FixedPlayer::getGameScore() {
-	return this->gameScore;
-}
-
-void FixedPlayer::addWin() {
-	this->wins++;
-}
-
-void FixedPlayer::increaseScore(int amount) {
-	this->gameScore += amount;
-	this->totalScore += amount;
-}

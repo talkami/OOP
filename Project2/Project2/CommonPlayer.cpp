@@ -13,6 +13,12 @@ bool CommonPlayer::hasNoMoreBoats(){
 	}
 }
 
+void CommonPlayer::setProperties(int player, int numRows, int numCols){
+	this->playerNum = player;
+	this->numOfRows = numRows;
+	this->numOfCols = numCols;
+}
+
 void CommonPlayer::addBoat() {
 	this->numOfBoats += 1;
 }
@@ -20,7 +26,7 @@ void CommonPlayer::addBoat() {
 void CommonPlayer::removeBoat() {
 	if (this->numOfBoats == 0) {
 		std::cout << "Error: player ";
-		this->playerNum == 1 ? std::cout << "A" : std::cout << "B";
+		this->playerNum == 0 ? std::cout << "A" : std::cout << "B";
 		std::cout << " has no more boats to remove." << std::endl;
 	}
 	this->numOfBoats -= 1;
