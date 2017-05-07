@@ -413,6 +413,7 @@ void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, Pla
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void Board ::setInvalidAttack(int row, int col){
 	this->matrix [row-1][col-1]->invalidToAttack();
 }
@@ -424,3 +425,7 @@ bool Board ::isValidAttack(int row, int col){
 void Board::setInvalidAttack(int row, int col){}
 bool Board::isValidAttack(int row, int col) { return true; }
 >>>>>>> ba35bea20d9402263fb44c6a59b25fba43547f3c
+=======
+void Board::setInvalidAttack(int row, int col){}
+bool Board::isValidAttack(int row, int col) { return true; }
+>>>>>>> 91c4124d446a129d6e9f73b02033eb672ce4dff6

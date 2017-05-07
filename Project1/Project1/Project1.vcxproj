@@ -114,6 +114,7 @@
     <ClInclude Include="AttackBFileLister.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Boat.h" />
+    <ClInclude Include="dirent.h" />
     <ClInclude Include="FilesLister.h" />
     <ClInclude Include="FilesListerWithSuffix.h" />
     <ClInclude Include="Game.h" />
