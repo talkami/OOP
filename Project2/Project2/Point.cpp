@@ -7,7 +7,7 @@
 // empty constructor
 Point::Point() :
 	x(-1), y(-1), boat(nullptr), near(false), up(nullptr), 
-	down(nullptr), left(nullptr), right(nullptr), hit(false) {
+	down(nullptr), left(nullptr), right(nullptr), hit(false), validToAttack(true) {
 }
 
 
@@ -74,6 +74,9 @@ int Point::getX() {
 int Point::getY() {
 	return this->y;
 }
+bool Point :: isValidToAttack (){
+	return this -> validToAttack;
+}
 //setters
 void Point::setBoat(Boat* boat) {
 	this->boat = boat;
@@ -98,4 +101,7 @@ void Point::setX(int x) {
 }
 void Point::setY(int y) {
 	this->y = y;
+}
+void Point:: invalidToAttack (){
+	this-> validToAttack = false;
 }
