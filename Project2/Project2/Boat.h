@@ -11,9 +11,9 @@ class Boat {
 	int acctualSize;
 	int player;
 	int hit;
-	Player* owner;
+	CommonPlayer* owner;
 	int value;
-	Player* rival;
+	CommonPlayer* rival;
 	Point* pointsArray[10];
 	bool valid;
 
@@ -23,7 +23,7 @@ class Boat {
 
 
 public:
-	Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint);
+	Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* rival, Point* firstPoint);
 	Boat();
 
 
@@ -31,8 +31,8 @@ public:
 
 
 	int getHit();
-	Player* getOwner();
-	Player* getRival();
+	CommonPlayer* getOwner();
+	CommonPlayer* getRival();
 	int getHorizontal();
 	int getPlayer();
 	int getAcctualSize();
