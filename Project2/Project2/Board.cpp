@@ -34,7 +34,6 @@ bool Board::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlaye
 	this->numOfRows = rows;
 	this->numOfCols = cols;
 	setVars();
-	std::cout << "rows = " << this->numOfRows << ",  Cols = " << this->numOfCols << std::endl;
 
 	/// there is so much shit need to be chekced here!!
 	char** board = new char *[rows];
@@ -42,24 +41,22 @@ bool Board::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlaye
 		board[i] = new char[cols];
 		memset(board[i], ' ', cols);
 	}
-	
-	std::fstream fin(boardFile);
+
+	std::string buffer;
+	std::ifstream fin(boardFile);
 	if (!fin) {
 		//error
 		return false;
 	}
+
 	for (int i = 0; i < rows; i++) {
-		fin.getline(board[i], cols);
-		std::cout << board[i] << std::endl;
+		std::getline(fin, buffer);
+		for (int j = 0; j < cols; j++) {
+			board[i][j] = buffer.at(j);
+		}
 	}
 	result = createBoard (board, A, B, rows, cols);
 	
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++) {
-			std::cout << "'"<< board[i][j] << "'    ";
-		}
-		std::cout << std::endl;
-	}
 	return result;
 }
 
