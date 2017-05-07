@@ -1,3 +1,11 @@
-﻿  Board.cpp
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.pdb (Partial PDB)
+﻿  Boat.cpp
+  Board.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+  Point.cpp
+  NaivePlayer.cpp
+  Game.cpp
+c:\users\tal\oop\project2\project2\game.cpp(7): error C2664: 'bool Board::loadBoard(const std::string &,Player *,Player *)': cannot convert argument 2 from 'FixedPlayer *' to 'Player *'
+  c:\users\tal\oop\project2\project2\game.cpp(7): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+  Generating Code...
