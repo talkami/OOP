@@ -3,7 +3,7 @@
 #include <iostream>
 
 //constructor
-Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint) {
+Boat::Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* rival, Point* firstPoint) {
 	this->boatSize = size;
 	this->player = player;
 	this->acctualSize = 1;
@@ -47,10 +47,10 @@ int Boat::getBoatSize() {
 int Boat::getHit() {
 	return this->hit;
 }
-Player* Boat::getOwner() {
+CommonPlayer* Boat::getOwner() {
 	return this->owner;
 }
-Player* Boat:: getRival(){
+CommonPlayer* Boat:: getRival(){
 	return this->rival;
 }
 bool Boat::isSunk() {
