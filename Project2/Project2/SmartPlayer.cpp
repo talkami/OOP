@@ -22,7 +22,25 @@ bool SmartPlayer::init(const std::string & path) {
 }
 
 std::pair<int, int> SmartPlayer::attack() {
-	//CREATE FUNCTION!!!
+	
+	while (!player_board.isValidAttack(this->attackRow, this->attackCol)) {
+		if (this->attackCol < numOfCols-2) {
+			this->attackCol= this->attackCol+2;
+		}
+		else {
+			if (this->attackRow < numOfRows - 2) {
+				this->attackCol = attackCol%2;
+				this->attackRow++;
+			}
+			else {
+				this->finishedAttacking = true;
+				return std::pair<int, int>(-1, -1);
+			}
+		}
+	}
+	player_board.setInvalidAttack(attackRow, attackRow);
+	
+	return std::pair<int, int>(this->attackRow + 1, this->attackCol + 1);
 
 	return std::pair<int, int>(-1,-1);
 }
