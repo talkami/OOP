@@ -25,10 +25,14 @@ class Boat {
 public:
 	Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* firstPoint);
 	Boat();
+
+
 	~Boat();
+
 
 	int getHit();
 	Player* getOwner();
+	Player* getRival();
 	int getHorizontal();
 	int getPlayer();
 	int getAcctualSize();
