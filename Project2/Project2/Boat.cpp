@@ -14,11 +14,15 @@ Boat::Boat(int size, int player, Player* PlayerPointer, Player* rival, Point* fi
 	this->value = setValue(size);
 	this->valid = true;
 	this->pointsArray[0] = firstPoint;
-	notifyPlayerCreated();
+	if (rival != nullptr){
+		notifyPlayerCreated();
+	}
 }
 
 Boat::Boat() {
 }
+
+
 
 Boat::~Boat() {
 	for (int i = 0; i < this->acctualSize; i++) {
@@ -45,6 +49,9 @@ int Boat::getHit() {
 }
 Player* Boat::getOwner() {
 	return this->owner;
+}
+Player* Boat:: getRival(){
+	return this->rival;
 }
 bool Boat::isSunk() {
 	if (hit == boatSize) {
