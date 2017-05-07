@@ -14,6 +14,16 @@ class SmartPlayer : public IBattleshipGameAlgo {
 	int numOfBoats;
 	int playerNum;
 
+	//add spaciel fields
+	bool isThereGoodAttack;
+	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 the other direction...
+	point* down;
+	point* up;
+	point* left;
+	point* right;
+
+
+
 public:
 	SmartPlayer();
 	~SmartPlayer();
