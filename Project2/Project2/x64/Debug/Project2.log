@@ -1,3 +1,75 @@
 ﻿  Board.cpp
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.pdb (Partial PDB)
+c:\users\tal\oop\project2\project2\board.cpp(16): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(17): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(20): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(21): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(60): error C2039: 'playerLoadBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(62): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\project2\project2\board.cpp(62): error C2227: left of '->numOfRows' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\project2\board.cpp(63): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\project2\project2\board.cpp(63): error C2227: left of '->numOfCols' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\project2\board.cpp(64): error C3861: 'setVars': identifier not found
+c:\users\tal\oop\project2\project2\board.cpp(68): error C3861: 'addToPlayerBoard': identifier not found
+c:\users\tal\oop\project2\project2\board.cpp(79): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(80): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(86): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(87): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(125): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(126): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(132): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(133): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(139): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(140): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(146): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(147): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(153): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(154): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(160): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(161): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(167): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(168): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(174): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(175): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(180): error C2039: 'playerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(181): error C2039: 'playerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(287): error C2039: 'getPlayerABoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(288): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\project2\project2\board.cpp(288): error C2227: left of '->playerABoard' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\project2\board.cpp(290): error C2039: 'getPlayerBBoard': is not a member of 'Board'
+  c:\users\tal\oop\project2\project2\board.h(7): note: see declaration of 'Board'
+c:\users\tal\oop\project2\project2\board.cpp(291): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\project2\project2\board.cpp(291): error C2227: left of '->playerBBoard' must point to class/struct/union/generic type
+  Generating Code...
+  Compiling...
+  Game.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp

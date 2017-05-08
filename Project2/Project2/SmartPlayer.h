@@ -1,11 +1,11 @@
 #pragma once
 #include "CommonPlayer.h"
-#include "Board.h"
+#include "PlayerBoard.h"
 #include <vector>
 #include <utility> 
 
 class SmartPlayer : public CommonPlayer {
-	Board player_board;
+	PlayerBoard player_board;
 	int attackRow;
 	int attackCol;
 	bool finishedAttacking;

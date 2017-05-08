@@ -93,15 +93,9 @@ void Board::setVars(bool isPlayerBoard) {
 			this->matrix[i][j] = new Point();
 			this->matrix[i][j]->setX(i);
 			this->matrix[i][j]->setY(j);
-		}
-	}
-
-	for (int i = 0; i < this->numOfRows; i++) {
-		for (int j = 0; j < this->numOfCols; j++) {
 			setPoint(i, j);
 		}
 	}
-
 }
 
 void Board::setPoint(int row, int col){
