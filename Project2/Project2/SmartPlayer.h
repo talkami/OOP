@@ -1,7 +1,6 @@
 #pragma once
 #include "CommonPlayer.h"
 #include "Board.h"
-#include "Point.h"
 #include <vector>
 #include <utility> 
 

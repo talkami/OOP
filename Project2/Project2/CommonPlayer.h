@@ -21,7 +21,7 @@ public:
 
 	CommonPlayer(const CommonPlayer&) = delete;
 	CommonPlayer& operator=(const CommonPlayer&) = delete;
-
+int playerNum = -1;
 protected:
 	int gameScore;
 	int totalScore;
@@ -29,6 +29,6 @@ protected:
 	int numOfBoats;	
 	int numOfRows = 0;
 	int numOfCols = 0;
-	int playerNum = -1;
+	
 	
 };

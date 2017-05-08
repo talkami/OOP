@@ -5,7 +5,7 @@ NaivePlayer::NaivePlayer() :
 	CommonPlayer(), 
 	attackRow(0), 
 	attackCol(0), 
-	finishedAttacking(false){}
+	finishedAttacking(false) {}
 
 NaivePlayer::~NaivePlayer() {}
 
@@ -13,7 +13,7 @@ void NaivePlayer::setBoard(int player, const char** board, int numRows, int numC
 	this->playerNum = player;
 	this->numOfRows = numRows;
 	this->numOfCols = numCols;
-	//this->player_board = Board();
+	this->player_board.playerLoadBoard(board, this, numRows, numCols);
 }
 
 bool NaivePlayer::init(const std::string & path) {
@@ -25,25 +25,20 @@ bool NaivePlayer::init(const std::string & path) {
 
 std::pair<int, int> NaivePlayer::attack() {
 
-	while (!player_board.isValidAttack(this->attackRow, this->attackCol)) {
-		if (this->attackCol < numOfCols-1) {
-			this->attackCol++;
-		}
-		else {
-			if (this->attackRow < numOfRows - 1) {
-				this->attackCol = 0;
-				this->attackRow++;
+	while (this->attackRow < this->numOfRows) {
+		while (this->attackCol < this->numOfCols) {
+			if (player_board.isValidAttack(this->attackRow, this->attackCol)) {
+				return std::pair<int, int>(this->attackRow + 1, ++this->attackCol);
 			}
-			else {
-				this->finishedAttacking = true;
-				return std::pair<int, int>(-1, -1);
-			}
+			attackCol++;
 		}
+		this->attackRow++;
+		this->attackCol = 0;
 	}
-	player_board.setInvalidAttack(attackRow, attackRow);
-	
-	return std::pair<int, int>(this->attackRow + 1, this->attackCol + 1);
+	this->finishedAttacking = true;
+	return std::pair<int, int>(-1, -1);
 }
+
 
 void NaivePlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {
 	//COMPLETE FUNCTION
@@ -53,3 +48,5 @@ void NaivePlayer::notifyOnAttackResult(int player, int row, int col, AttackResul
 bool NaivePlayer::hasFinishedAttacking() {
 	return this->finishedAttacking;
 }
+
+

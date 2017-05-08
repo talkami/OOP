@@ -6,8 +6,8 @@ bool Game::initGame(const std::string& path) {
 	if (result) {
 		result = this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], &this->A, &this->B, 10, 10);
 		if (result) {
-			this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
-			this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
+			//this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
+			//this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
 			this->turn = 0;
 			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
 			this->B.setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
@@ -34,6 +34,9 @@ bool Game::playGame() {
 			if (!(this->setNextTurn(AttackResult::Miss, false))) {
 				return false;
 			}
+		}
+		if (turn == 0) {
+		std::cout << "player A is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
 		}
 		bool selfHit = false;
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);

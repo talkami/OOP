@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FixedPlayer.h"
+#include "NaivePlayer.h"
 #include "Board.h"
 #include "SeaBattleBoardLister.h"
 #include "AttackAFileLister.h"
@@ -9,8 +9,8 @@
 
 
 class Game {
-	FixedPlayer A;
-	FixedPlayer B;
+	NaivePlayer A;
+	NaivePlayer B;
 	Board gameBoard;
 	int turn; //0 for player A, 1 for player B, -1 for victory, -2 if game ended without a victory
 	SeaBattleBoardLister boardFileLister;

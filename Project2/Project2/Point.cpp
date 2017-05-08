@@ -80,13 +80,19 @@ bool Point :: isValidToAttack (){
 void Point::setBoat(Boat* boat) {
 	this->boat = boat;
 	this->invalidToAttack();
-	if (this->x > 0) {
+	if (this->getUp()) {
 		this->getUp()->setNear(true);
 		this->getUp()->invalidToAttack();
 	}
-	if (this->y > 0) {
+	if (this->getLeft()) {
 		this->getLeft()->setNear(true);
 		this->getLeft()->invalidToAttack();
+	}
+	if (this->getDown()) {
+		this->getDown()->invalidToAttack();
+	}
+	if (this->getRight()) {
+		this->getRight()->invalidToAttack();
 	}
 }
 

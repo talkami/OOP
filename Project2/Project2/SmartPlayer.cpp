@@ -14,7 +14,8 @@ void SmartPlayer::setBoard(int player, const char** board, int numRows, int numC
 	this->playerNum = player;
 	this->numOfRows = numRows;
 	this->numOfCols = numCols;
-	//this->player_board = Board();
+	this->player_board.playerLoadBoard(board, this, numRows, numCols);
+
 }
 
 bool SmartPlayer::init(const std::string & path) {
