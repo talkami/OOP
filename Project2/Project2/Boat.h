@@ -14,7 +14,7 @@ class Boat {
 	CommonPlayer* owner;
 	int value;
 	CommonPlayer* rival;
-	Point* pointsArray[10];
+	std::vector<Point*> pointsArray;
 	bool valid;
 
 	void notifyPlayerSunk();

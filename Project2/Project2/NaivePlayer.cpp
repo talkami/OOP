@@ -45,7 +45,10 @@ std::pair<int, int> NaivePlayer::attack() {
 	return std::pair<int, int>(this->attackRow + 1, this->attackCol + 1);
 }
 
-void NaivePlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {}
+void NaivePlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {
+	//COMPLETE FUNCTION
+
+}
 
 bool NaivePlayer::hasFinishedAttacking() {
 	return this->finishedAttacking;

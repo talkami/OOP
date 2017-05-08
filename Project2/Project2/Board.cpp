@@ -291,15 +291,14 @@ char** Board::getPlayerBBoard() {
 	return this->playerBBoard;
 }
 
-//inner function helping the loadBoard. pretty much useless outside.
 void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, CommonPlayer* owner, CommonPlayer* rival) {
-	//if no boat near the current point
 	if (!point->getNear()) {
+		//there is no boat near the current point
 		Boat* boat = new Boat(size, player, owner, rival, point);
 		point->setBoat(boat);
 	}
-	//if there is boat near the current point
 	else {
+		//there is boat near the current point
 		if (i > 0) {
 			Boat* boat = point->getUp()->getBoat();
 			if (boat != nullptr) {
@@ -323,7 +322,19 @@ void Board::setInvalidAttack(int row, int col){
 
 
 void Board::checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal, int player, CommonPlayer* owner, CommonPlayer* rival) {
+	/*  Tal's new idea
+	if (boat->getBoatSize() == size && boat->getPlayer() == player) {
+		boat->addPoint(point);
+		if (boat->getHorizontal == 0) {
+			boat->setHorizontal(horizontal);
+		}
+		else if (boat->getHorizontal() != horizontal) {
+			boat->setValid(false);
+		}
+	}*/
 
+
+	//Parts of original
 	if (boat->getBoatSize() == size && (boat->getHorizontal() == horizontal || boat->getHorizontal() == 0) && boat->getAcctualSize() < size && boat->getPlayer() == player) {
 			boat->addPoint(point);
 			boat->setHorizontal(horizontal);
@@ -340,14 +351,11 @@ void Board::checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal
 		}
 		else {
 			if (boat->getBoatSize() != size || boat->getPlayer() != player) {
-				if (point->getBoat() != nullptr) {
-					this->errorArray[8] = true;
-					return;
+				if (point->getBoat() == nullptr) {
+					Boat* newBoat = new Boat(size, player, owner, rival, point);
+					point->setBoat(newBoat);
 				}
-				Boat* newBoat = new Boat(size, player, owner, rival, point);
-				point->setBoat(newBoat);
 				this->errorArray[8] = true;
-				return;
 			}
 			else {
 				if ((point->getBoat() != nullptr) && (point->getBoat() != boat)) {
@@ -357,7 +365,6 @@ void Board::checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal
 				boat->setValid(false);
 				boat->addPoint(point);
 				point->setBoat(boat);
-				return;
 			}
 		}
 }

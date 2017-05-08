@@ -1,10 +1,9 @@
 #pragma once
-#include "IBattleshipGameAlgo.h"
 #include "CommonPlayer.h"
 #include <vector>
 #include <utility> 
 
-class FixedPlayer: public CommonPlayer, public IBattleshipGameAlgo {
+class FixedPlayer: public CommonPlayer {
 	char player_board;
 	std::vector<std::pair<int, int>> attackMoves;
 	int attackNumber;

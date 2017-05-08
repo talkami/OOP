@@ -1,9 +1,10 @@
 #pragma once
 
+#include "IBattleshipGameAlgo.h"
 #include <vector>
 #include <utility> 
 
-class CommonPlayer {
+class CommonPlayer: public IBattleshipGameAlgo {
 
 public:
 	CommonPlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {}

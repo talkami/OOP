@@ -1,11 +1,10 @@
 #pragma once
-#include "IBattleshipGameAlgo.h"
 #include "CommonPlayer.h"
 #include "Board.h"
 #include <vector>
 #include <utility> 
 
-class NaivePlayer : public IBattleshipGameAlgo, public CommonPlayer{
+class NaivePlayer : public CommonPlayer{
 	Board player_board;
 	int attackRow;
 	int attackCol;

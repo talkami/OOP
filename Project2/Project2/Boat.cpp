@@ -3,24 +3,24 @@
 #include <iostream>
 
 //constructor
-Boat::Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* rival, Point* firstPoint) {
-	this->boatSize = size;
-	this->player = player;
-	this->acctualSize = 1;
-	this->horizontal = 0;
-	this->hit = 0;
-	this->owner = PlayerPointer;
-	this->rival = rival;
-	this->value = setValue(size);
-	this->valid = true;
-	this->pointsArray[0] = firstPoint;
-	if (rival != nullptr){
-		notifyPlayerCreated();
+Boat::Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* RivalPointer, Point* firstPoint) : 
+	boatSize(size),
+	player(player),
+	acctualSize(1),
+	horizontal(0),
+	hit(0),
+	owner(PlayerPointer),
+	rival(RivalPointer),
+	valid(true)
+	{	
+		this->pointsArray.push_back(firstPoint);
+		this->value = setValue(size);
+		if (rival != nullptr){
+			notifyPlayerCreated();
 	}
 }
 
-Boat::Boat() {
-}
+Boat::Boat() {}
 
 
 
@@ -75,8 +75,8 @@ void Boat::setHit(int hitPoints) {
 	//update the player
 }
 void Boat::addPoint(Point* point) {
-	this->pointsArray[this->acctualSize] = point;
-	this->acctualSize = acctualSize + 1;
+	this->pointsArray.push_back(point);
+	this->acctualSize++;
 }
 void Boat::setHorizontal(int horizontal) {
 	this->horizontal = horizontal;
