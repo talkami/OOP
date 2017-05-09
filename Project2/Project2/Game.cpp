@@ -2,17 +2,14 @@
 
 bool Game::initGame(const std::string& path) {
 	bool result;
-	result = this->getInitFiles(path);
-	if (result) {
-		result = this->gameBoard.loadBoard(this->boardFileLister.getFilesList()[0], &this->A, &this->B, 10, 10);
+	result = this->gameBoard.initBoard(path, &this->A, &this->B, 10, 10);
 		if (result) {
-			//this->A.getMoves(this->playerAFileLister.getFilesList()[0]);
-			//this->B.getMoves(this->playerBFileLister.getFilesList()[0]);
 			this->turn = 0;
 			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
 			this->B.setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
+			result = this->A.init(path);
+			result = (result & this->B.init(path));
 		}
-	}
 	return result;
 }
 
@@ -35,9 +32,11 @@ bool Game::playGame() {
 				return false;
 			}
 		}
-		if (turn == 0) {
+		/*if (turn == 0) {
 		std::cout << "player A is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
-		}
+		}if (turn == 1) {
+			std::cout << "player A is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
+		}*/
 		bool selfHit = false;
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
 		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
@@ -54,34 +53,6 @@ bool Game::playGame() {
 	return true;
 }
 
-
-bool Game::getInitFiles(const std::string& path) {
-	bool result = true;
-	std::string errorPath;
-	if (path == ".") {
-		errorPath = "Working Directory";
-	}
-	else {
-		errorPath = path; 
-	}
-
-	this->boardFileLister = SeaBattleBoardLister(path);
-	if (this->boardFileLister.getFilesList().size() == 0) {
-		std::cout << "Missing board file (*.sboard) looking in path: " << errorPath << std::endl;
-		result = false;
-	}
-	this->playerAFileLister = AttackAFileLister(path);
-	if (this->playerAFileLister.getFilesList().size() == 0) {
-		std::cout << "Missing attack file for player A (*.attack-a) looking in path: " << errorPath << std::endl;
-		result = false;
-	}
-	this->playerBFileLister = AttackBFileLister(path);
-	if (this->playerBFileLister.getFilesList().size() == 0) {
-		std::cout << "Missing attack file for player B (*.attack-b) looking in path: " << errorPath << std::endl;
-		result = false;
-	}
-	return result;
-}
 
 bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory

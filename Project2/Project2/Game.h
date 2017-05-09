@@ -1,24 +1,16 @@
 #pragma once
 
-#include "NaivePlayer.h"
+#include "FixedPlayer.h"
 #include "GameBoard.h"
-#include "SeaBattleBoardLister.h"
-#include "AttackAFileLister.h"
-#include "AttackBFileLister.h"
-#include "IBattleshipGameAlgo.h"
 
 
 class Game {
-	NaivePlayer A;
-	NaivePlayer B;
+	FixedPlayer A;
+	FixedPlayer B;
 	GameBoard gameBoard;
 	int turn; //0 for player A, 1 for player B, -1 for victory, -2 if game ended without a victory
-	SeaBattleBoardLister boardFileLister;
-	AttackAFileLister playerAFileLister;
-	AttackBFileLister playerBFileLister;
 	char winner;
 
-	bool getInitFiles(const std::string& path);
 	bool setNextTurn(AttackResult res, bool selfHit);
 
 public:
