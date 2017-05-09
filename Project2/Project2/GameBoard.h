@@ -4,16 +4,15 @@
 #include "SeaBattleBoardLister.h"
 
 class GameBoard : public Board{
-	bool errorArray[9] = { false };
+	bool errorArray[8] = { false };
 	char** playerABoard;
 	char** playerBBoard;
 
-	void addBoatToBoard(Point* point, int size, int player, CommonPlayer* owner, CommonPlayer* rival);
+	
 	void addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B);
 	void checkBoatValidity();
 	bool checkBoard();
 	bool checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B);
-	void checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal, int player, CommonPlayer* owner, CommonPlayer* rival);
 
 public:
 	GameBoard() : Board(), playerABoard(nullptr), playerBBoard(nullptr) {}

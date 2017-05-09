@@ -64,7 +64,7 @@ bool GameBoard::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonP
 	result = checkBoard();
 	result = (checkNumOfPlayersBoats(A, B) && result);
 
-	if (this->errorArray[8]) {
+	if (this->adjacentBoats) {
 		result = false;
 		std::cout << "Adjacent Ships on Board" << std::endl;
 	}
@@ -87,7 +87,7 @@ void GameBoard::setVars() {
 }
 
 
-//checking the char read from the file and putting the boats on the GameBoard
+//checking the char read from the file and putting the boat on the board
 void GameBoard::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B) {
 
 	if (currentChar == 'B') {
@@ -124,71 +124,6 @@ void GameBoard::addToPlayerBoard(char currentChar, int row, int col, CommonPlaye
 	}
 }
 
-void GameBoard::addBoatToBoard(Point* point, int size, int player, CommonPlayer* owner, CommonPlayer* rival) {
-	if (!point->getNear()) {
-		//there is no boat adjacent to current point
-		Boat* boat = new Boat(size, player, owner, rival, point);
-		point->setBoat(boat);
-	}
-	else {
-		//there is a boat adjacent to current point
-		if (point->getX() > 0) {
-			Boat* boat = point->getUp()->getBoat();
-			if (boat != nullptr) {
-				//there is a boat above current point 
-				checkAdjacentBoat(boat, point, size, 1, player, owner, rival);
-			}
-		}
-
-		if (point->getY() > 0) {
-			Boat* boat = point->getLeft()->getBoat();
-			if (boat != nullptr) {
-				//there is a boat left of current point
-				checkAdjacentBoat(boat, point, size, 2, player, owner, rival);
-			}
-		}
-	}
-}
-
-void GameBoard::checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal, int player, CommonPlayer* owner, CommonPlayer* rival) {
-
-	if (boat->getBoatSize() == size && (boat->getHorizontal() == horizontal || boat->getHorizontal() == 0) && boat->getAcctualSize() < size && boat->getPlayer() == player) {
-		boat->addPoint(point);
-		boat->setHorizontal(horizontal);
-		if (point->getBoat() != nullptr) {
-			if (!point->getBoat()->isValid()) {
-				boat->setValid(false);
-			}
-			else {
-				delete point->getBoat();
-			}
-			owner->removeBoat();
-		}
-		point->setBoat(boat);
-	}
-	else {
-		if (boat->getBoatSize() != size || boat->getPlayer() != player) {
-			if (point->getBoat() != nullptr) {
-				this->errorArray[8] = true;
-				return;
-			}
-			Boat* newBoat = new Boat(size, player, owner, rival, point);
-			point->setBoat(newBoat);
-			this->errorArray[8] = true;
-			return;
-		}
-		else {
-			if ((point->getBoat() != nullptr) && (point->getBoat() != boat)) {
-				delete point->getBoat();
-				owner->removeBoat();
-			}
-			boat->setValid(false);
-			boat->addPoint(point);
-			point->setBoat(boat);
-			return;
-		}
-	}
-}
 
 //checking that all boats are of correct size and shape
 void GameBoard::checkBoatValidity() {

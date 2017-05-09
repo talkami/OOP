@@ -14,7 +14,7 @@ void SmartPlayer::setBoard(int player, const char** board, int numRows, int numC
 	this->playerNum = player;
 	this->numOfRows = numRows;
 	this->numOfCols = numCols;
-	this->player_board.playerLoadBoard(board, this, numRows, numCols);
+	this->player_board.loadBoard(board, player, this, numRows, numCols);
 
 }
 
