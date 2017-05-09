@@ -9,96 +9,13 @@ Board::~Board() {
 		for (int j = 0; j < this->numOfCols; j++) {
 			delete this->matrix[i][j];
 		}
-	}
-
-	for (int i = 0; i<this->numOfRows; i++) {
 		delete[]this->matrix[i];
-		delete[]this->playerABoard[i];
-		delete[]this->playerBBoard[i];
 	}
+
 	delete[]this->matrix;
-	delete[]this->playerABoard;
-	delete[]this->playerBBoard;
 }
 
-//load board function
-bool Board::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlayer* B, int rows, int cols) {
-	std::cout << "in loadBoard" << std::endl;
-	bool result = true;
-	this->numOfRows = rows;
-	this->numOfCols = cols;
-	setVars(false);
-
-	std::ifstream fin(boardFile);
-	if (!fin) {
-		std::cout << "Error reading from file: " << boardFile << std::endl;
-		return false;
-	}
-
-	for (int i = 0; i < rows; i++) {
-		std::string buffer;
-		std::getline(fin, buffer);
-		for (int j = 0; j < cols; j++) {
-			char currChar = ' ';
-			if (j < buffer.length()) {
-				currChar = buffer.at(j);
-			}
-			createBoard(currChar, A, B, i, j);
-		}
-	}
-
-	checkBoatValidity();
-	result = checkBoard();
-	result = (checkNumOfPlayersBoats(A, B) && result);
-
-	if (this->errorArray[8]) {
-		result = false;
-		std::cout << "Adjacent Ships on Board" << std::endl;
-	}
-	return result;
-}
-
-bool Board::playerLoadBoard(const char** playerBoard, CommonPlayer* player, int rows, int cols) {
-	std::cout << "in playerLoadBoard" << std::endl;
-	bool result = true;
-	this->numOfRows = rows;
-	this->numOfCols = cols;
-	setVars(true);
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++) {
-			createBoard(playerBoard[i][j], player, nullptr, rows, cols);
-		}
-	}
-
-	return result;
-}
-
-void Board::setVars(bool isPlayerBoard) {
-	this->matrix = new Point**[this->numOfRows];
-	if (!isPlayerBoard) {
-		this->playerABoard = new char *[this->numOfRows];
-		this->playerBBoard = new char *[this->numOfRows];
-	}
-
-	for (int i = 0; i < this->numOfRows; i++) {
-		this->matrix[i] = new Point*[this->numOfCols];
-		if (!isPlayerBoard) {
-			this->playerABoard[i] = new char[this->numOfCols];
-			this->playerBBoard[i] = new char[this->numOfCols];
-		}
-	}
-
-	for (int i = 0; i < this->numOfRows; i++) {
-		for (int j = 0; j < this->numOfCols; j++) {
-			this->matrix[i][j] = new Point();
-			this->matrix[i][j]->setX(i);
-			this->matrix[i][j]->setY(j);
-		}
-	}
-}
-
-void Board::createBoard(char currentChar, CommonPlayer* A, CommonPlayer* B, int row, int col) {
-	// putting up the points- checking if the left/ up to the current point have a boat in it, and by that updating the "NEAR" variable
+void Board::setPoint(int row, int col) {
 	if (row>0) {
 		this->matrix[row][col]->setUp(this->matrix[row - 1][col]);
 		this->matrix[row - 1][col]->setDown(this->matrix[row][col]);
@@ -113,76 +30,21 @@ void Board::createBoard(char currentChar, CommonPlayer* A, CommonPlayer* B, int 
 			this->matrix[row][col]->setNear(true);
 		}
 	}
-	addToPlayerBoard(currentChar, row, col, A, B);
 }
 
-//checking the char read from the file and putting the boats on the board
-void Board::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B) {
+void Board::setVars() {
+	this->matrix = new Point**[this->numOfRows];
 
-	if (currentChar == 'B') {
-		if (A != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 1, 0, A, B);
-			this->playerABoard[row][col] = 'B';
-			this->playerBBoard[row][col] = ' ';
-		}
-	}
-	else if (currentChar == 'b') {
-		if (B != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 1, 1, B, A);
-			this->playerABoard[row][col] = ' ';
-			this->playerBBoard[row][col] = 'b';
-		}
-	}
-	else if (currentChar == 'P') {
-		if (A != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 2, 0, A, B);
-			this->playerABoard[row][col] = 'P';
-			this->playerBBoard[row][col] = ' ';
-		}
-	}
-	else if (currentChar == 'p') {
-		if (B != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 2, 1, B, A);
-			this->playerABoard[row][col] = ' ';
-			this->playerBBoard[row][col] = 'p';
-		}
-	}
-	else if (currentChar == 'M') {
-		if (A != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 3, 0, A, B);
-			this->playerABoard[row][col] = 'M';
-			this->playerBBoard[row][col] = ' ';
-		}
-	}
-	else if (currentChar == 'm') {
-		if (B != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 3, 1, B, A);
-			this->playerABoard[row][col] = ' ';
-			this->playerBBoard[row][col] = 'm';
-		}
-	}
-	else if (currentChar == 'D') {
-		if (A != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 4, 0, A, B);
-			this->playerABoard[row][col] = 'D';
-			this->playerBBoard[row][col] = ' ';
-		}
-	}
-	else if (currentChar == 'd') {
-		if (B != nullptr) {
-			addBoatToBoard(this->matrix[row][col], row, col, 4, 1, B, A);
-			this->playerABoard[row][col] = ' ';
-			this->playerBBoard[row][col] = 'd';
-		}
-	}
-	else {
-		if (A != nullptr && B != nullptr) {
-			this->playerABoard[row][col] = ' ';
-			this->playerBBoard[row][col] = ' ';
-		}
+	for (int i = 0; i < this->numOfRows; i++) {
+		this->matrix[i] = new Point*[this->numOfCols];
+		for (int j = 0; j < this->numOfCols; j++) {
+					this->matrix[i][j] = new Point();
+					this->matrix[i][j]->setX(i);
+					this->matrix[i][j]->setY(j);
+				}
 	}
 }
-
+/*
 //checking that all boats are of correct size and shape
 void Board::checkBoatValidity() {
 	for (int i = 0; i < this->numOfRows; i++) {
@@ -284,14 +146,6 @@ AttackResult Board::play_attack(std::pair<int, int> attack, int attacker, bool* 
 	return result;
 }
 
-
-char** Board::getPlayerABoard() {
-	return this->playerABoard;
-}
-char** Board::getPlayerBBoard() {
-	return this->playerBBoard;
-}
-
 //inner function helping the loadBoard. pretty much useless outside.
 void Board::addBoatToBoard(Point* point, int i, int j, int size, int player, CommonPlayer* owner, CommonPlayer* rival) {
 	//if no boat near the current point
@@ -366,3 +220,4 @@ void Board::checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal
 bool Board::isValidAttack(int row, int col) {
 	return this->matrix[row - 1][col - 1]->isValidToAttack();
 }
+*/
