@@ -61,13 +61,17 @@ AttackResult SmartPayer::getFormerAttackResult (){
 
 void SmartPlayer:: handleAttackResult (AttackResult result, pair<int, int> lastAttack){
 //if the boat has sunk no good attack is needed and all the relevant vals go to default
-
+	
 
 //if the attack hit:
 //if there is an good attack then update the horizontal and the point and default the irrelevant points
 // if no good attack - create good attack with horizontal 0 and the relevant points
 
-//if miss
+//if miss:
+//if there is no good attack - cool continue
+//if there is a good attack -
+//if horizontal 0- update the horizontal and the points
+//else update the current point 
 
 }
 
