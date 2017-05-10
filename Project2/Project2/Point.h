@@ -5,14 +5,14 @@
 
 //includes
 class Point {
-	int x;
-	int y;
+	int row;
+	int col;
 	Boat* boat;
-	bool near;
 	Point* up;
 	Point* down;
 	Point* left;
 	Point* right;
+	bool near;
 	bool hit;
 	bool validAttack;
 
@@ -33,10 +33,10 @@ public:
 	void setRight(Point* point);
 	Boat* getBoat();
 	void setBoat(Boat* boat);
-	int getX();
-	void setX(int x);
-	int getY();
-	void setY(int y);
+	int getRow();
+	void setRow(int row);
+	int getCol();
+	void setCol(int col);
 	bool isValidAttack ();
 	void setInvalidAttack ();
 

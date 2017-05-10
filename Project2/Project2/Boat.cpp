@@ -7,11 +7,11 @@ Boat::Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* Riva
 	boatSize(size),
 	player(player),
 	acctualSize(1),
-	horizontal(0),
+	direction(0),
 	hit(0),
 	owner(PlayerPointer),
 	rival(RivalPointer),
-	valid(true)
+	validity(true)
 	{	
 		this->pointsArray.push_back(firstPoint);
 		this->value = setValue(size);
@@ -31,8 +31,8 @@ Boat::~Boat() {
 }
 
 //getters
-int Boat::getHorizontal() {
-	return this->horizontal;
+int Boat::getDirection() {
+	return this->direction;
 }
 
 int Boat::getPlayer() {
@@ -63,26 +63,27 @@ bool Boat::isSunk() {
 }
 
 bool Boat::isValid() {
-	return this->valid;
+	return this->validity;
 }
 //setters
-void Boat::setHit(int hitPoints) {
-	this->hit = hitPoints;
+void Boat::addHit() {
+	this->hit++;
 	if (this->hit >= this->boatSize) {
 		notifyPlayerSunk();
 	}
-	// update the players points
-	//update the player
 }
+
 void Boat::addPoint(Point* point) {
 	this->pointsArray.push_back(point);
 	this->acctualSize++;
 }
-void Boat::setHorizontal(int horizontal) {
-	this->horizontal = horizontal;
+
+void Boat::setDirection(int direction) {
+	this->direction = direction;
 }
-void Boat::setValid(bool valid) {
-	this->valid = valid;
+
+void Boat::setValidity(bool validity) {
+	this->validity = validity;
 }
 
 //private

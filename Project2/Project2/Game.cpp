@@ -2,12 +2,12 @@
 
 bool Game::initGame(const std::string& path) {
 	bool result;
-	result = this->gameBoard.initBoard(path, &this->A, &this->B, 10, 10);
+	result = this->gameBoard.initBoard(path, &this->A, &this->B, 5, 5);
 		if (result) {
 			this->turn = 0;
-			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
-			this->B.setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
-			result = this->A.init(path);
+			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 5, 5);
+			this->B.setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 5, 5);
+			result = (result & this->A.init(path));
 			result = (result & this->B.init(path));
 		}
 	return result;
@@ -32,12 +32,12 @@ bool Game::playGame() {
 				return false;
 			}
 		}
-		/*
+		/**/
 		if (turn == 0) {
 		std::cout << "player A is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
 		}if (turn == 1) {
 			std::cout << "player B is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
-		}*/
+		}
 		bool selfHit = false;
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
 		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);

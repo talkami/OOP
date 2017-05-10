@@ -7,15 +7,15 @@ class Point;
 
 class Boat {
 	int boatSize;
-	int horizontal;
+	int direction; //0 for undecided, 1 for vertical, 2 for horizontal
 	int acctualSize;
 	int player;
 	int hit;
-	CommonPlayer* owner;
 	int value;
+	CommonPlayer* owner;
 	CommonPlayer* rival;
 	std::vector<Point*> pointsArray;
-	bool valid;
+	bool validity;
 
 	void notifyPlayerSunk();
 	void notifyPlayerCreated();
@@ -25,26 +25,23 @@ class Boat {
 public:
 	Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* rival, Point* firstPoint);
 	Boat();
-
-
 	~Boat();
-
 
 	int getHit();
 	CommonPlayer* getOwner();
 	CommonPlayer* getRival();
-	int getHorizontal();
+	int getDirection();
 	int getPlayer();
 	int getAcctualSize();
 	int getBoatSize();
 	bool isSunk();
-	void setHit(int hitPoints);
+	void addHit();
 	void addPoint(Point* point);
-	void setHorizontal(int horizontal);
+	void setDirection(int direction);
 	bool isValid();
-	void setValid(bool valid);
+	void setValidity(bool validity);
 
-	Boat(const Boat&) {}
-	Boat& operator=(const Boat&) {}
+	Boat(const Boat&) = delete;
+	Boat& operator=(const Boat&) = delete;
 
 };

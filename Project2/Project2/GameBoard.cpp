@@ -1,7 +1,5 @@
 #include "GameBoard.h"
-#include <string>
-#include <fstream>
-#include <iostream>
+
 
 
 GameBoard::~GameBoard() {
@@ -86,7 +84,6 @@ void GameBoard::setVars() {
 
 }
 
-
 //checking the char read from the file and putting the boat on the board
 void GameBoard::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B) {
 
@@ -123,7 +120,6 @@ void GameBoard::addToPlayerBoard(char currentChar, int row, int col, CommonPlaye
 		this->playerBBoard[row][col] = 'd';
 	}
 }
-
 
 //checking that all boats are of correct size and shape
 void GameBoard::checkBoatValidity() {
@@ -220,7 +216,6 @@ AttackResult GameBoard::play_attack(std::pair<int, int> attack, int attacker, bo
 	AttackResult result = matrix[x][y]->attack(attacker, selfHit);
 	return result;
 }
-
 
 char** GameBoard::getPlayerABoard() {
 	return this->playerABoard;

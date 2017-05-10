@@ -1,16 +1,10 @@
 #include "Point.h"
 #include <iostream>
 
-// never used constructor
-//Point::Point(int x, int y, Boat boat = NULL, int near = 0, Point * up = NULL, Point* down = NULL, Point* left = NULL, Point* right = NULL) :
-//x(x), y(y), boat(boat), near(near), up(up), down(down), left(left), right(right), hit = 0 {}
-
-// empty constructor
 Point::Point() :
-	x(-1), y(-1), boat(nullptr), near(false), up(nullptr), 
+	row(-1), col(-1), boat(nullptr), near(false), up(nullptr), 
 	down(nullptr), left(nullptr), right(nullptr), hit(false), validAttack(true) {
 }
-
 
 Point::~Point() {
 }
@@ -25,7 +19,7 @@ AttackResult Point::attack(int attacker, bool* selfHit) {
 			*selfHit = true;
 		}
 		if (!hit) {
-			this->boat->setHit(this->boat->getHit() + 1);
+			this->boat->addHit();
 			this->hit = true;
 			if (!boat->isSunk()) {
 				return AttackResult::Hit;
@@ -67,11 +61,11 @@ Point* Point::getLeft() {
 Point* Point::getRight() {
 	return this->right;
 }
-int Point::getX() {
-	return this->x;
+int Point::getRow() {
+	return this->row;
 }
-int Point::getY() {
-	return this->y;
+int Point::getCol() {
+	return this->col;
 }
 bool Point :: isValidAttack (){
 	return this -> validAttack;
@@ -109,11 +103,11 @@ void Point::setLeft(Point* Left) {
 void Point::setRight(Point* Right) {
 	this->right = Right;
 }
-void Point::setX(int x) {
-	this->x = x;
+void Point::setRow(int row) {
+	this->row = row;
 }
-void Point::setY(int y) {
-	this->y = y;
+void Point::setCol(int col) {
+	this->col = col;
 }
 void Point:: setInvalidAttack (){
 	this-> validAttack = false;

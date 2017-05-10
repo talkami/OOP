@@ -3,6 +3,9 @@
 #include "Boat.h"
 #include "Point.h"
 #include <utility>
+#include <string>
+#include <fstream>
+#include <iostream>
 
 class Board {
 protected:
@@ -12,7 +15,7 @@ protected:
 	bool adjacentBoats;
 
 	virtual void addBoatToBoard(Point* point, int size, int player, CommonPlayer* owner, CommonPlayer* rival);
-	virtual void checkAdjacentBoat(Boat* boat, Point* point, int size, int horizontal, int player, CommonPlayer* owner, CommonPlayer* rival);
+	virtual void checkAdjacentBoat(Boat* boat, Point* point, int size, int direction, int player, CommonPlayer* owner, CommonPlayer* rival);
 
 
 public:
