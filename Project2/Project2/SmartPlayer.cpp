@@ -26,27 +26,24 @@ bool SmartPlayer::init(const std::string & path) {
 }
 
 std::pair<int, int> SmartPlayer::attack() {
-	
-	while (!player_board.isValidAttack(this->attackRow, this->attackCol)) {
-		if (this->attackCol < numOfCols-2) {
-			this->attackCol= this->attackCol+2;
-		}
-		else {
-			if (this->attackRow < numOfRows - 2) {
-				this->attackCol = attackCol%2;
-				this->attackRow++;
-			}
-			else {
-				this->finishedAttacking = true;
-				return std::pair<int, int>(-1, -1);
-			}
-		}
+	//first check if there is a good attack
+	if (this-> isThereGoodAttack){
+		return playGoodAttack();
 	}
-	player_board.setInvalidAttack(attackRow, attackRow);
-	
-	return std::pair<int, int>(this->attackRow + 1, this->attackCol + 1);
-
-	return std::pair<int, int>(-1,-1);
+	this->currentAttack = 0;
+	//go on the board in jumps of 2, where each line the starting point switch between 0,1
+	while (this->attackRow < this->numOfRows) {
+		while (this->attackCol < this->numOfCols-1) {
+			if (player_board.isValidAttack(this->attackRow, this->attackCol)) {
+				return std::pair<int, int>(this->attackRow + 1, ++this->attackCol);
+			}
+			attackCol++;
+		}
+		this->attackRow++;
+		this->attackCol = 0+ attackRow%2;
+	}
+	this->finishedAttacking = true;
+	return std::pair<int, int>(-1, -1);
 }
 
 bool SmartPlayer::hasFinishedAttacking() {
@@ -57,4 +54,52 @@ bool SmartPlayer::hasFinishedAttacking() {
 
 void SmartPlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {
 	//COMPLETE FUNCTION!!!
+}
+AttackResult SmartPayer::getFormerAttackResult (){
+
+}
+
+void SmartPlayer:: handleAttackResult (AttackResult result, pair<int, int> lastAttack){
+//if the boat has sunk no good attack is needed and all the relevant vals go to default
+
+
+//if the attack hit:
+//if there is an good attack then update the horizontal and the point and default the irrelevant points
+// if no good attack - create good attack with horizontal 0 and the relevant points
+
+//if miss
+
+}
+
+pair <int,int> SmartPlayer:: playGoodAttack(){
+	if (horizonalGoodAttack== 0){
+		if (up != <-1,-1>){
+			this->currentAttack = 1;
+			return up;
+		}
+		else {
+			this->currentAttack = 2;
+			return down;
+		}
+	}
+	else if (horizonalGoodAttack == 1){
+		if (left != <-1,-1>){
+			this->currentAttack = 3;
+			return left;
+		}
+		else {
+			this->currentAttack = 4;
+			return right;
+		}
+	}
+	else { // horizonalGoodAttack=2
+		if (up != <-1,-1>){
+			this->currentAttack = 1;
+			return up;
+		}
+		else {
+			this->currentAttack = 2;
+			return down;
+		}
+	}
 }
