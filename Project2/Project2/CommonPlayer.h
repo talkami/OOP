@@ -19,6 +19,8 @@ public:
 	void addWin();
 	void increaseScore(int amount);
 
+	void setPlayer(int player);
+
 	CommonPlayer(const CommonPlayer&) = delete;
 	CommonPlayer& operator=(const CommonPlayer&) = delete;
 protected:

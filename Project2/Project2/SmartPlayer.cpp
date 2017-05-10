@@ -55,11 +55,12 @@ bool SmartPlayer::hasFinishedAttacking() {
 void SmartPlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {
 	//COMPLETE FUNCTION!!!
 }
-AttackResult SmartPayer::getFormerAttackResult (){
-
+AttackResult SmartPlayer::getFormerAttackResult (){
+	
+	return AttackResult::Miss;
 }
 
-void SmartPlayer:: handleAttackResult (AttackResult result, pair<int, int> lastAttack){
+void SmartPlayer::handleAttackResult (AttackResult result, std::pair<int, int> lastAttack){
 //if the boat has sunk no good attack is needed and all the relevant vals go to default
 	
 
@@ -75,9 +76,9 @@ void SmartPlayer:: handleAttackResult (AttackResult result, pair<int, int> lastA
 
 }
 
-pair <int,int> SmartPlayer:: playGoodAttack(){
+std::pair <int,int> SmartPlayer::playGoodAttack(){
 	if (horizonalGoodAttack== 0){
-		if (up != <-1,-1>){
+		if (up.first != -1 && up.second != -1){
 			this->currentAttack = 1;
 			return up;
 		}
@@ -87,7 +88,7 @@ pair <int,int> SmartPlayer:: playGoodAttack(){
 		}
 	}
 	else if (horizonalGoodAttack == 1){
-		if (left != <-1,-1>){
+		if (left.first != -1 && left.second != -1){
 			this->currentAttack = 3;
 			return left;
 		}
@@ -97,7 +98,7 @@ pair <int,int> SmartPlayer:: playGoodAttack(){
 		}
 	}
 	else { // horizonalGoodAttack=2
-		if (up != <-1,-1>){
+		if (left.first != -1 && left.second != -1){
 			this->currentAttack = 1;
 			return up;
 		}

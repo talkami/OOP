@@ -1,12 +1,12 @@
 #pragma once
 
-#include "NaivePlayer.h"
+#include "FixedPlayer.h"
 #include "GameBoard.h"
 
 
 class Game {
-	NaivePlayer A;
-	NaivePlayer B;
+	FixedPlayer A;
+	FixedPlayer B;
 	GameBoard gameBoard;
 	int turn; //0 for player A, 1 for player B, -1 for victory, -2 if game ended without a victory
 	char winner;

@@ -2,11 +2,13 @@
 
 bool Game::initGame(const std::string& path) {
 	bool result;
-	result = this->gameBoard.initBoard(path, &this->A, &this->B, 5, 5);
+	this->A.setPlayer(0);
+	this->B.setPlayer(1);
+	result = this->gameBoard.initBoard(path, &this->A, &this->B, 10, 10);
 		if (result) {
 			this->turn = 0;
-			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 5, 5);
-			this->B.setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 5, 5);
+			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
+			this->B.setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
 			result = (result & this->A.init(path));
 			result = (result & this->B.init(path));
 		}

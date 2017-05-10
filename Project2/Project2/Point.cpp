@@ -2,7 +2,7 @@
 #include <iostream>
 
 Point::Point() :
-	row(-1), col(-1), boat(nullptr), near(false), up(nullptr), 
+	row(-1), col(-1), boat(nullptr), adjacent(false), up(nullptr),
 	down(nullptr), left(nullptr), right(nullptr), hit(false), validAttack(true) {
 }
 
@@ -47,7 +47,7 @@ Boat* Point::getBoat() {
 	return this->boat;
 }
 bool Point::getNear() {
-	return this->near;
+	return this->adjacent;
 }
 Point* Point::getUp() {
 	return this->up;
@@ -89,7 +89,7 @@ void Point::setBoat(Boat* boat) {
 }
 
 void Point::setNear(bool near) {
-	this->near = near;
+	this->adjacent = near;
 }
 void Point::setUp(Point* Up) {
 	this->up = Up;

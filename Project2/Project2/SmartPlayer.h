@@ -9,15 +9,13 @@ class SmartPlayer : public CommonPlayer {
 	int attackRow;
 	int attackCol;
 	bool finishedAttacking;
-	int horizonalGoodAttack;
-	//add spaciel fields
 	bool isThereGoodAttack;
 	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 the other direction...
 	int currentAttack; // 1 up 2 down 3 left 4 right, 0 irrelevant
-	pair <int,int> down;
-	pair <int,int> up;
-	pair <int, int>left;
-	pair <int, int> right;
+	std::pair<int,int> down;
+	std::pair<int,int> up;
+	std::pair<int, int>left;
+	std::pair<int, int> right;
 
 
 
@@ -35,7 +33,7 @@ public:
 
 //unique func
 	AttackResult getFormerAttackResult ();
-	void handleAttackResult (AttackResult result);
-	pair <int,int> playGoodAttack();
+	void handleAttackResult (AttackResult result, std::pair<int, int> lastAttack);
+	std::pair <int,int> playGoodAttack();
 
 };

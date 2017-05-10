@@ -69,7 +69,7 @@ void Board::addBoatToBoard(Point* point, int size, int player, CommonPlayer* own
 
 void Board::checkAdjacentBoat(Boat* boat, Point* point, int size, int direction, int player, CommonPlayer* owner, CommonPlayer* rival) {
 
-	if (boat->getBoatSize() == size && (boat->getDirection() == direction || boat->getDirection() == 0) && boat->getAcctualSize() < size && boat->getPlayer() == player) {
+	if (boat->getBoatSize() == size && (boat->getDirection() == direction || boat->getDirection() == 0) && boat->getPlayer() == player) {
 		boat->addPoint(point);
 		boat->setDirection(direction);
 		if (point->getBoat() != nullptr) {

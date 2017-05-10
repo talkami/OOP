@@ -12,7 +12,7 @@ class Point {
 	Point* down;
 	Point* left;
 	Point* right;
-	bool near;
+	bool adjacent;
 	bool hit;
 	bool validAttack;
 
@@ -22,7 +22,7 @@ public:
 	~Point();
 
 	bool getNear();
-	void setNear(bool near);
+	void setNear(bool adjacent);
 	Point* getUp();
 	void setUp(Point* point);
 	Point* getDown();
