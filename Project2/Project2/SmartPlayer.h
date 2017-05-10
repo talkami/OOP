@@ -9,14 +9,15 @@ class SmartPlayer : public CommonPlayer {
 	int attackRow;
 	int attackCol;
 	bool finishedAttacking;
-
+	int horizonalGoodAttack;
 	//add spaciel fields
 	bool isThereGoodAttack;
 	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 the other direction...
-	Point* down;
-	Point* up;
-	Point* left;
-	Point* right;
+	int currentAttack; // 1 up 2 down 3 left 4 right, 0 irrelevant
+	pair <int,int> down;
+	pair <int,int> up;
+	pair <int, int>left;
+	pair <int, int> right;
 
 
 
@@ -31,5 +32,10 @@ public:
 
 	SmartPlayer(const SmartPlayer&) = delete;
 	SmartPlayer& operator=(const SmartPlayer&) = delete;
+
+//unique func
+	AttackResult getFormerAttackResult ();
+	void handleAttackResult (AttackResult result);
+	pair <int,int> playGoodAttack();
 
 };
