@@ -1,25 +1,26 @@
 #pragma once
 
-#include "Boat.h"
 #include "Point.h"
-#include <utility>
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <utility>
+
 
 class Board {
 protected:
 	Point* **matrix;
 	int numOfRows;
 	int numOfCols;
-	bool adjacentBoats;
+	bool hasAdjacentBoats;
 
 	virtual void addBoatToBoard(Point* point, int size, int player, CommonPlayer* owner, CommonPlayer* rival);
 	virtual void checkAdjacentBoat(Boat* boat, Point* point, int size, int direction, int player, CommonPlayer* owner, CommonPlayer* rival);
+	void mergeBoats(Boat* boat1, Boat* boat2, int direction);
 
 
 public:
-	Board() : matrix(nullptr), adjacentBoats(false) {}
+	Board() : matrix(nullptr), hasAdjacentBoats(false) {}
 	virtual ~Board();
 	virtual void setPoint(int row, int col);
 	virtual void setVars();

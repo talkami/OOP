@@ -57,12 +57,11 @@ bool GameBoard::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonP
 			addToPlayerBoard(currChar, i, j, A, B);
 		}
 	}
-
 	checkBoatValidity();
 	result = checkBoard();
 	result = (checkNumOfPlayersBoats(A, B) && result);
 
-	if (this->adjacentBoats) {
+	if (this->hasAdjacentBoats) {
 		result = false;
 		std::cout << "Adjacent Ships on Board" << std::endl;
 	}

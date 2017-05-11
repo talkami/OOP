@@ -1,3 +1,13 @@
-﻿  Board.cpp
+﻿  Boat.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  SmartPlayer.cpp
+  Point.cpp
+  PlayerBoard.cpp
+  NaivePlayer.cpp
+  GameBoard.cpp
+  Game.cpp
+  Board.cpp
   Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe
   Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.pdb (Partial PDB)

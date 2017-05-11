@@ -4,7 +4,7 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>C:\Users\tal\Documents\Uni\Y3S2\OOP\ex1\ex1_Tests_v2\boards</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>C:\Users\tal\Documents\Uni\Y3S2\OOP\ex1\ex1_Tests_v2\T9_TieGame</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

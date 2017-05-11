@@ -2,7 +2,7 @@
 
 #include "IBattleshipGameAlgo.h"
 #include <vector>
-#include <utility> 
+#include <utility>
 
 class CommonPlayer: public IBattleshipGameAlgo {
 

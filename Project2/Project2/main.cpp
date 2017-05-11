@@ -35,7 +35,6 @@ int main(int argc, char* argv[]){
 		std::cin >> x;
 		return -1;
 	}
-
 	std::cin >> x;
 
 	return 0;

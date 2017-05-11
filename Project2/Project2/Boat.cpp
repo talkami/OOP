@@ -5,10 +5,10 @@
 //constructor
 Boat::Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* RivalPointer, Point* firstPoint) : 
 	boatSize(size),
-	player(player),
-	acctualSize(1),
 	direction(0),
-	hit(0),
+	acctualSize(1),
+	hits(0),
+	player(player),
 	owner(PlayerPointer),
 	rival(RivalPointer),
 	validity(true)
@@ -20,32 +20,27 @@ Boat::Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* Riva
 	}
 }
 
-Boat::Boat() {}
-
-
-
 Boat::~Boat() {
-	for (int i = 0; i < this->acctualSize; i++) {
+	for (int i = 0; i < pointsArray.size(); i++) {
 		this->pointsArray[i]->setBoat(nullptr);
 	}
 }
 
 //getters
+int Boat::getNumOftHits() {
+	return this->hits;
+}
 int Boat::getDirection() {
 	return this->direction;
 }
-
 int Boat::getPlayer() {
 	return this->player;
-}
-int Boat::getAcctualSize() {
-	return this->acctualSize;
 }
 int Boat::getBoatSize() {
 	return this->boatSize;
 }
-int Boat::getHit() {
-	return this->hit;
+int Boat::getAcctualSize() {
+	return this->acctualSize;
 }
 CommonPlayer* Boat::getOwner() {
 	return this->owner;
@@ -54,21 +49,21 @@ CommonPlayer* Boat:: getRival(){
 	return this->rival;
 }
 bool Boat::isSunk() {
-	if (hit == boatSize) {
+	if (hits == boatSize) {
 		return true;
 	}
 	else {
 		return false;
 	}
 }
-
 bool Boat::isValid() {
 	return this->validity;
 }
+
 //setters
 void Boat::addHit() {
-	this->hit++;
-	if (this->hit >= this->boatSize) {
+	this->hits++;
+	if (this->hits >= this->boatSize) {
 		notifyPlayerSunk();
 	}
 }
@@ -84,6 +79,18 @@ void Boat::setDirection(int direction) {
 
 void Boat::setValidity(bool validity) {
 	this->validity = validity;
+	/*std::cout << "changing boat validity to " << validity << std::endl;
+	this->printBoat();*/
+}
+void Boat::mergeBoats(Boat* boat) {
+	std::vector<Point*> otherPoints = boat->pointsArray;
+	this->acctualSize += boat->acctualSize;
+	delete boat;
+	for (int i = 0; i < otherPoints.size(); i++) {
+		otherPoints[i]->setBoat(this);
+		this->pointsArray.push_back(otherPoints[i]);
+	}
+	owner->removeBoat();
 }
 
 //private
@@ -112,3 +119,4 @@ int Boat::setValue(int size) {
 		return -1;
 	}
 }
+

@@ -6,7 +6,14 @@ Point::Point() :
 	down(nullptr), left(nullptr), right(nullptr), hit(false), validAttack(true) {
 }
 
+Point::Point(int r, int c) :
+	row(r), col(c), boat(nullptr), adjacent(false), up(nullptr),
+	down(nullptr), left(nullptr), right(nullptr), hit(false), validAttack(true) {
+}
+
+
 Point::~Point() {
+	delete this->boat;
 }
 
 // do the attack on this point

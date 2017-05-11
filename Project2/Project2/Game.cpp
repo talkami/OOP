@@ -34,12 +34,12 @@ bool Game::playGame() {
 				return false;
 			}
 		}
-		/**/
+		/*
 		if (turn == 0) {
 		std::cout << "player A is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
 		}if (turn == 1) {
 			std::cout << "player B is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
-		}
+		}*/
 		bool selfHit = false;
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
 		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);

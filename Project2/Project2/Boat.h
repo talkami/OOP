@@ -10,7 +10,7 @@ class Boat {
 	int direction; //0 for undecided, 1 for vertical, 2 for horizontal
 	int acctualSize;
 	int player;
-	int hit;
+	int hits;
 	int value;
 	CommonPlayer* owner;
 	CommonPlayer* rival;
@@ -23,23 +23,24 @@ class Boat {
 
 
 public:
-	Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* rival, Point* firstPoint);
-	Boat();
+	Boat() {}
+	Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* RivalPointer, Point* firstPoint);
 	~Boat();
 
-	int getHit();
-	CommonPlayer* getOwner();
-	CommonPlayer* getRival();
+	int getNumOftHits();
 	int getDirection();
 	int getPlayer();
-	int getAcctualSize();
 	int getBoatSize();
-	bool isSunk();
+	int getAcctualSize();	
+	CommonPlayer* getOwner();
+	CommonPlayer* getRival();
+	bool isSunk();	
+	bool isValid();
 	void addHit();
 	void addPoint(Point* point);
 	void setDirection(int direction);
-	bool isValid();
 	void setValidity(bool validity);
+	void mergeBoats(Boat* boat);
 
 	Boat(const Boat&) = delete;
 	Boat& operator=(const Boat&) = delete;

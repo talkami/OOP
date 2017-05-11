@@ -18,8 +18,10 @@ class Point {
 
 public:
 	Point();
+	Point(int r, int c);
+	~Point();	
 	AttackResult attack(int attacker, bool* selfHit);
-	~Point();
+
 
 	bool getNear();
 	void setNear(bool adjacent);
