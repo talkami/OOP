@@ -33,7 +33,7 @@ public:
 
 //unique func
 	AttackResult getFormerAttackResult ();
-	void handleAttackResult (AttackResult result, std::pair<int, int> lastAttack);
+	void handleAttackResult (AttackResult result);
 	std::pair <int,int> playGoodAttack();
 
 };
