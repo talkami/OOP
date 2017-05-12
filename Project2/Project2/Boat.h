@@ -41,6 +41,7 @@ public:
 	void setDirection(int direction);
 	void setValidity(bool validity);
 	void mergeBoats(Boat* boat);
+	std::vector<std::pair<int, int>> getPoints();
 
 	Boat(const Boat&) = delete;
 	Boat& operator=(const Boat&) = delete;

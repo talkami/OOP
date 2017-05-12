@@ -79,9 +79,8 @@ void Boat::setDirection(int direction) {
 
 void Boat::setValidity(bool validity) {
 	this->validity = validity;
-	/*std::cout << "changing boat validity to " << validity << std::endl;
-	this->printBoat();*/
 }
+
 void Boat::mergeBoats(Boat* boat) {
 	std::vector<Point*> otherPoints = boat->pointsArray;
 	this->acctualSize += boat->acctualSize;
@@ -120,3 +119,13 @@ int Boat::setValue(int size) {
 	}
 }
 
+std::vector<std::pair<int, int>> Boat::getPoints() {
+	int size = this->acctualSize;
+	std::vector<std::pair<int, int>> arr;
+	for (int i = size; i > 0; i--) {
+		std::pair<int, int> point(this->pointsArray[i-1]->getRow(), this->pointsArray[i-1]->getCol());
+		arr.push_back(point);
+	}		
+	std::cout << std::endl;
+	return arr;
+}

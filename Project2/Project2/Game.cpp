@@ -29,7 +29,7 @@ bool Game::initGame(int argc, char* argv[]) {
 
 bool Game::setupGame(const std::string& path) {
 	bool result;
-	result = this->gameBoard.initBoard(path, &this->A, &this->B, 10, 10);
+	result = this->gameBoard.initBoard(path, &this->A, &this->B, 10, 10, this->displayGame);
 		if (result) {
 			this->turn = 0;
 			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
@@ -41,6 +41,7 @@ bool Game::setupGame(const std::string& path) {
 }
 
 bool Game::playGame() {
+	Sleep(this->delay);
 	while (this->turn >= 0) {
 		std::pair<int, int> nextMove;
 		AttackResult res;
@@ -68,6 +69,9 @@ bool Game::playGame() {
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
 		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
 		this->B.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
+		if (this->displayGame && nextMove.first != -1 && nextMove.second != -1) {
+			this->gameBoard.displayAttack(res, nextMove.first, nextMove.second, this->delay);
+		}
 		if (!(this->setNextTurn(res, selfHit))) {
 			return false;
 		}
@@ -134,7 +138,9 @@ bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	}
 }
 
-bool Game::endGame() {
+bool Game::endGame() {	
+	GameBoard::setTextColor(15);
+	system("cls");
 	switch (this->turn) {
 		case -1:
 			std::cout << "Player " << this->winner << " won" << std::endl;

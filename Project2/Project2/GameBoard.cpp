@@ -11,10 +11,11 @@ GameBoard::~GameBoard() {
 	delete[]this->playerBBoard;
 }
 
-bool GameBoard::initBoard(const std::string& path, CommonPlayer* A, CommonPlayer* B, int rows, int cols) {
+bool GameBoard::initBoard(const std::string& path, CommonPlayer* A, CommonPlayer* B, int rows, int cols, bool display) {
 	bool result = true;
 	this->numOfRows = rows;
 	this->numOfCols = cols;
+	this->display = display;
 	std::string errorPath;
 	if (path == ".") {
 		errorPath = "Working Directory";
@@ -57,6 +58,7 @@ bool GameBoard::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonP
 			addToPlayerBoard(currChar, i, j, A, B);
 		}
 	}
+
 	checkBoatValidity();
 	result = checkBoard();
 	result = (checkNumOfPlayersBoats(A, B) && result);
@@ -64,6 +66,10 @@ bool GameBoard::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonP
 	if (this->hasAdjacentBoats) {
 		result = false;
 		std::cout << "Adjacent Ships on Board" << std::endl;
+	}
+
+	if (result && this->display) {
+		displayBoard();
 	}
 	return result;
 }
@@ -93,6 +99,7 @@ void GameBoard::addToPlayerBoard(char currentChar, int row, int col, CommonPlaye
 	else if (currentChar == 'b') {
 		addBoatToBoard(this->matrix[row][col], 1, 1, B, A);
 		this->playerBBoard[row][col] = 'b';
+		
 	}
 	else if (currentChar == 'P') {
 		addBoatToBoard(this->matrix[row][col], 2, 0, A, B);
@@ -210,9 +217,9 @@ AttackResult GameBoard::play_attack(std::pair<int, int> attack, int attacker, bo
 	if (attack.first == -1 || attack.second == -1) {
 		return AttackResult::Miss;
 	}
-	int x = attack.first - 1;
-	int y = attack.second - 1;
-	AttackResult result = matrix[x][y]->attack(attacker, selfHit);
+	int row = attack.first - 1;
+	int col = attack.second - 1;
+	AttackResult result = matrix[row][col]->attack(attacker, selfHit);
 	return result;
 }
 
@@ -221,4 +228,75 @@ char** GameBoard::getPlayerABoard() {
 }
 char** GameBoard::getPlayerBBoard() {
 	return this->playerBBoard;
+}
+
+void GameBoard::gotoxy(int x, int y) {
+	COORD coord;
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+
+}
+
+void GameBoard::setTextColor(int color) {
+	HANDLE  hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	
+	SetConsoleTextAttribute(hConsole, color);
+}
+
+void GameBoard::hideCursor() {
+	HANDLE  hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	CONSOLE_CURSOR_INFO ConCurInf;
+
+	ConCurInf.dwSize = 10;
+	ConCurInf.bVisible = FALSE;
+
+	SetConsoleCursorInfo(hConsole, &ConCurInf);
+}
+
+void GameBoard::addToDisplay(int x, int y, int color, char c) {
+	setTextColor(color);
+	gotoxy(x, y);
+	std::cout << c;
+}
+
+void GameBoard::displayBoard() {
+	system("cls");
+	hideCursor();
+	for (int i = 0; i < this->numOfRows; i++) {
+		for (int j = 0; j < this->numOfCols; j++) {
+			Boat* boat = this->matrix[i][j]->getBoat();
+			if (boat != nullptr) {
+				addToDisplay(j, i, this->colors[boat->getPlayer()], ' ');
+			}
+		}
+	}
+}
+
+void GameBoard::displayAttack(AttackResult result, int row, int col, int delay) {
+	Boat* boat = this->matrix[row-1][col-1]->getBoat();
+	if (result != AttackResult::Miss) {
+		addToDisplay(col-1, row-1, this->colors[boat->getPlayer()], 'X');
+		if (result == AttackResult::Sink){
+			sinkBoatAnimation(boat, this->colors[boat->getPlayer()], delay);
+			return;
+		}		
+		Sleep(delay);
+	}
+}
+
+void GameBoard::sinkBoatAnimation(Boat* boat, int color, int delay) {
+	std::vector<std::pair<int,int>> points = boat->getPoints();
+	Sleep(delay / 2);
+	for (int i = 0; i < points.size(); i++) {
+		addToDisplay(points[i].second, points[i].first, color, '@');
+		Sleep(delay/2);
+	}
+	for (int i = 0; i < points.size(); i++) {
+		addToDisplay(points[i].second, points[i].first, 0, ' ');
+	}
+	Sleep(delay);
 }

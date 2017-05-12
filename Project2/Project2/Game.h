@@ -18,7 +18,7 @@ class Game {
 	bool setupGame(const std::string& path);
 
 public:
-	Game() : displayGame(true) , delay(100){}
+	Game() : displayGame(true) , delay(900){}
 	~Game() {}
 	bool initGame(int argc, char* argv[]);
 	bool playGame();
