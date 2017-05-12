@@ -20,19 +20,19 @@ void PlayerBoard::setBoard(const char** board, int player, CommonPlayer* owner) 
 	for (int i = 0; i < this->numOfRows; i++) {
 		for (int j = 0; j < this->numOfCols; j++) {
 			char c = board[i][j];
-            if (c == 'B' + 32 * player) {
+            if (c == 'B' || c=='b') {
                 addBoatToBoard(this->matrix[i][j], 1, player, owner, nullptr);
                 setInvalidArea(this->matrix[i][j]);
             }
-            else if (c == 'P' + 32 * player) {
+            else if (c == 'P' || c == 'p') {
                 addBoatToBoard(this->matrix[i][j], 2, player, owner, nullptr);
                 setInvalidArea(this->matrix[i][j]);
             }
-            else if (c == 'M' + 32 * player) {
+            else if (c == 'M' || c == 'm') {
                 addBoatToBoard(this->matrix[i][j], 3, player, owner, nullptr);
                 setInvalidArea(this->matrix[i][j]);
             }
-            else if (c == 'D' + 32 * player) {
+            else if (c == 'D' || c == 'd') {
                 addBoatToBoard(this->matrix[i][j], 4, player, owner, nullptr);
                 setInvalidArea(this->matrix[i][j]);
             }

@@ -49,8 +49,3 @@ void CommonPlayer::increaseScore(int amount) {
 	this->gameScore += amount;
 	this->totalScore += amount;
 }
-
-
-void CommonPlayer::setPlayer(int player) {
-	this->playerNum = player;
-}

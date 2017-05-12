@@ -1,9 +1,34 @@
 #include "Game.h"
 
-bool Game::initGame(const std::string& path) {
+bool Game::initGame(int argc, char* argv[]) {
+	bool result = true;
+	std::string path = ".";
+	DIR * dir;
+
+	for (int i = 1; i < argc; i++) {
+		if (strcmp(argv[i],"-quiet") == 0) {
+			this->displayGame = false;
+		}
+		else if (strcmp(argv[i-1],"-delay") == 0) {
+			this->delay = atoi(argv[i]);
+		}
+		else if (i==1){
+			path = argv[i];
+		}
+	}
+	if ((dir = opendir(path.c_str())) == NULL) {
+		std::cout << "Wrong path: " << (path == "." ? "Working Directory" : path) << std::endl;
+		result = false;
+	}
+	closedir(dir);
+	if (result) {
+		result = setupGame(path);
+	}
+	return result;
+}
+
+bool Game::setupGame(const std::string& path) {
 	bool result;
-	this->A.setPlayer(0);
-	this->B.setPlayer(1);
 	result = this->gameBoard.initBoard(path, &this->A, &this->B, 10, 10);
 		if (result) {
 			this->turn = 0;
@@ -14,7 +39,6 @@ bool Game::initGame(const std::string& path) {
 		}
 	return result;
 }
-
 
 bool Game::playGame() {
 	while (this->turn >= 0) {

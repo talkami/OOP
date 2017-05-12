@@ -15,7 +15,6 @@ void SmartPlayer::setBoard(int player, const char** board, int numRows, int numC
 	this->numOfRows = numRows;
 	this->numOfCols = numCols;
 	this->player_board.loadBoard(board, player, this, numRows, numCols);
-
 }
 
 bool SmartPlayer::init(const std::string & path) {
@@ -160,8 +159,8 @@ void SmartPlayer::handleAttackResult (AttackResult result){
 
 	else if (result == AttackResult::Miss){
 		if (this->isThereGoodAttack){
-			if (this->horizonalGoodAttack==0){
-				if (this->currentAttack ==1 || this->currentAttack ==2){
+			if (this->horizonalGoodAttack == 0){
+				if (this->currentAttack == 1 || this->currentAttack == 2){
 					this-> horizonalGoodAttack = 1;
 					this ->left = std::pair<int, int>(-1, -1);
 					this ->right = std::pair<int, int>(-1, -1);

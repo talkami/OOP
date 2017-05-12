@@ -5,18 +5,22 @@
 
 
 class Game {
+	bool displayGame;
+	int delay;
 	FixedPlayer A;
 	FixedPlayer B;
 	GameBoard gameBoard;
 	int turn; //0 for player A, 1 for player B, -1 for victory, -2 if game ended without a victory
 	char winner;
+	std::string path;
 
 	bool setNextTurn(AttackResult res, bool selfHit);
+	bool setupGame(const std::string& path);
 
 public:
-	Game() {}
+	Game() : displayGame(true) , delay(100){}
 	~Game() {}
-	bool initGame(const std::string& path);
+	bool initGame(int argc, char* argv[]);
 	bool playGame();
 	bool endGame();
 
