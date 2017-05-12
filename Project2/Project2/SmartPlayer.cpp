@@ -62,62 +62,60 @@ AttackResult SmartPlayer::getFormerAttackResult (){
 
 void SmartPlayer::handleAttackResult (AttackResult result){
 //if the boat has sunk no good attack is needed and all the relevant vals go to default
-	if (result == sunk){
+	if (result == AttackResult::Sink){
 		this->isThereGoodAttack = false;
-		this ->up = <-1,-1>;
-		this ->down = <-1,-1>;
-		this ->left = <-1,-1>;
-		this ->right = <-1,-1>;
-		this->horizonalGoodAttack =0;
+		this->up = std::pair<int, int>(-1, -1);
+		this->down = std::pair<int, int>(-1, -1);
+		this->left = std::pair<int, int>(-1, -1);
+		this->right = std::pair<int, int>(-1, -1);
+		this->horizonalGoodAttack = 0;
 		this->currentAttack = 0;
 	}
-
-
 
 //if the attack hit:
 //if there is an good attack then update the horizontal and the point and default the irrelevant points
 // if no good attack - create good attack with horizontal 0 and the relevant points
-	if (result == hit){
+	if (result == AttackResult::Hit){
 		if (this->isThereGoodAttack){
-			if (this-> currentAttack ==1 ||this-> currentAttack ==2 ){
+			if (this-> currentAttack == 1 || this-> currentAttack == 2 ){
 				this->horizonalGoodAttack = 2;
-				this ->left = <-1,-1>;
-				this ->right = <-1,-1>;
+				this->left = std::pair<int, int>(-1, -1);
+				this->right = std::pair<int, int>(-1, -1);
 				if (this-> currentAttack ==1){
 					if (this->attackRow > 0){
-						this->up = <this->attackRow-1, this->attackCol>;
+						this->up = std::pair<int, int>(this->attackRow-1, this->attackCol);
 					}
 					else{
-						this ->up = <-1,-1>;
+						this->up = std::pair<int, int>(-1,-1);
 					}
 				}
 				else{
-					if (this->attackRow < numRows){
-						this->down = <this->attackRow+1, this->attackCol>;
+					if (this->attackRow < this->numOfRows){
+						this->down = std::pair<int, int>(this->attackRow+1, this->attackCol);
 					}
 					else{
-						this ->down = <-1,-1>;
+						this ->down = std::pair<int, int>(-1, -1);
 					}
 				}
 			}
 			else {
 				this->horizonalGoodAttack = 1;
-				this ->up = <-1,-1>;
-				this ->down = <-1,-1>;
+				this ->up = std::pair<int, int>(-1, -1);
+				this ->down = std::pair<int, int>(-1, -1);
 				if (this-> currentAttack ==3){
 					if (this->attackCol > 0){
-						this->left = <this->attackRow, this->attackCol-1>;
+						this->left = std::pair<int, int>(this->attackRow, this->attackCol-1);
 					}
 					else{
-						this ->left = <-1,-1>;
+						this ->left = std::pair<int, int>(-1, -1);
 					}
 				}
 				else{
-					if (this->attackCol < numRows){
-						this->right = <this->attackRow, this->attackCol+1>;
+					if (this->attackCol < this->numOfRows){
+						this->right = std::pair<int, int>(this->attackRow, this->attackCol+1);
 					}
 					else{
-						this ->right = <-1,-1>;
+						this ->right = std::pair<int, int>(-1, -1);
 					}
 				}
 			}
@@ -127,29 +125,29 @@ void SmartPlayer::handleAttackResult (AttackResult result){
 			this->isThereGoodAttack = true;
 			this->horizonalGoodAttack = 0;	
 			if (this->attackRow > 0){
-				this->up = <this->attackRow-1, this->attackCol>;
+				this->up = std::pair<int, int>(this->attackRow-1, this->attackCol);
 			}
 			else{
-				this ->up = <-1,-1>;
+				this ->up = std::pair<int, int>(-1, -1);
 			}
-			if (this->attackRow < numRows){
-				this->down = <this->attackRow+1, this->attackCol>;
+			if (this->attackRow < this->numOfRows){
+				this->down = std::pair<int, int>(this->attackRow+1, this->attackCol);
 			}
 			else{
-				this ->down = <-1,-1>;
+				this ->down = std::pair<int, int>(-1, -1);
 			}
 
-			if (this->attackCol < numRows){
-				this->right = <this->attackRow, this->attackCol+1>;
+			if (this->attackCol < this->numOfRows){
+				this->right = std::pair<int, int>(this->attackRow, this->attackCol+1);
 			}
 			else{
-				this ->right = <-1,-1>;
+				this->right = std::pair<int, int>(-1, -1);
 			}
 			if (this->attackCol > 0){
-				this->left = <this->attackRow, this->attackCol-1>;
+				this->left = std::pair<int, int>(this->attackRow, this->attackCol-1);
 			}
 			else{
-				this ->left = <-1,-1>;
+				this ->left = std::pair<int, int>(-1, -1);
 			}
 		}
 	}
@@ -160,18 +158,18 @@ void SmartPlayer::handleAttackResult (AttackResult result){
 //if horizontal 0- update the horizontal and the points
 //else update the current point 
 
-	else if (result == miss){
+	else if (result == AttackResult::Miss){
 		if (this->isThereGoodAttack){
 			if (this->horizonalGoodAttack==0){
 				if (this->currentAttack ==1 || this->currentAttack ==2){
 					this-> horizonalGoodAttack = 1;
-					this ->left = <-1,-1>;
-					this ->right = <-1,-1>;
+					this ->left = std::pair<int, int>(-1, -1);
+					this ->right = std::pair<int, int>(-1, -1);
 				}
 				else{
 					this-> horizonalGoodAttack = 2;
-					this ->up = <-1,-1>;
-					this ->down = <-1,-1>;
+					this ->up = std::pair<int, int>(-1, -1);
+					this ->down = std::pair<int, int>(-1, -1);
 				}
 			}
 		}
@@ -179,7 +177,7 @@ void SmartPlayer::handleAttackResult (AttackResult result){
 }
 
 std::pair <int,int> SmartPlayer::playGoodAttack(){
-	if (horizonalGoodAttack== 0){
+	if (horizonalGoodAttack == 0){
 		if (up.first != -1 && up.second != -1){
 			this->currentAttack = 1;
 			return up;
