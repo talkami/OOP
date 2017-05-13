@@ -18,14 +18,6 @@ void NaivePlayer::setBoard(int player, const char** board, int numRows, int numC
 
 bool NaivePlayer::init(const std::string & path) {
 
-	this->player_board = NULL;
-	this->attackRow = 0;
-	this->attackCol = 0;
-	this->finishedAttacking = false;
-	this->playerNum = -1;
-	this->numOfRows = -1;
-	this->numOfCols = -1;
-
 	return true;
 }
 
@@ -56,8 +48,7 @@ bool NaivePlayer::hasFinishedAttacking() {
 }
 
 
-IBattleshipGameAlgo* GetAlgorithm()
-{
+IBattleshipGameAlgo* GetAlgorithm(){
 	_instancesVec.push_back(new NaivePlayer());					// Create new instance and keep it in vector
 	return _instancesVec[_instancesVec.size() - 1];			// Return last instance
 }

@@ -108,8 +108,7 @@ bool FixedPlayer::hasFinishedAttacking() {
 void FixedPlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {}
 
 
-IBattleshipGameAlgo* GetAlgorithm()
-{
+IBattleshipGameAlgo* GetAlgorithm(){
 	_instancesVec.push_back(new FixedPlayer());					// Create new instance and keep it in vector
 	return _instancesVec[_instancesVec.size() - 1];			// Return last instance
 }

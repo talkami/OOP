@@ -17,11 +17,6 @@ class SmartPlayer : public CommonPlayer {
 	std::pair<int, int>left;
 	std::pair<int, int> right;
 	AttackResult result;
-	//add fields
-	int playerNum;
-	int numOfRows;
-	int numOfCols;
-
 
 public:
 	SmartPlayer();
@@ -36,7 +31,7 @@ public:
 	SmartPlayer& operator=(const SmartPlayer&) = delete;
 
 //unique func
-	void handleAttackResult (AttackResult result);
+	void handleAttackResult ();
 	std::pair <int,int> playGoodAttack();
 
 };

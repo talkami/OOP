@@ -26,31 +26,31 @@ int main(int argc, char* argv[]){
 	HANDLE dir;
 	
 	WIN32_FIND_DATAA fileData; //data struct for file
-	vector<HINSTANCE>::iterator itr;
+	std::vector<HINSTANCE>::iterator itr;
 
 	// vector of shape objects we create
-	vector<IBattleshipGameAlgo *> battleship_vec;  
-	vector<IBattleshipGameAlgo *>::iterator sitr;
+	std::vector<IBattleshipGameAlgo *> battleship_vec;  
+	std::vector<IBattleshipGameAlgo *>::iterator sitr;
 	
 	// define function of the type we expect
 	typedef IBattleshipGameAlgo *(*GetAlgorithmFuncType)(); 
 	GetAlgorithmFuncType getAlgorithmFunc;
 
-	vector<tuple<string, HINSTANCE, GetAlgorithmFuncType>> dll_vec; // vector of <Shape Name, dll handle, GetShape function ptr>
-	vector<tuple<string, HINSTANCE, GetAlgorithmFuncType>>::iterator vitr;
+	std::vector<std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType>> dll_vec; // vector of <Shape Name, dll handle, GetShape function ptr>
+	std::vector<std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType>>::iterator vitr;
 
    // iterate over *.dll files in path
-	string path("path"); //Here you should take actual folder
-	string s = "\\*.dll"; // only .dll endings
+	std::string path("path"); //Here you should take actual folder
+	std::string s = "\\*.dll"; // only .dll endings
 	dir = FindFirstFileA((path + s).c_str(), &fileData); // Notice: Unicode compatible version of FindFirstFile
 	if(dir != INVALID_HANDLE_VALUE) //check if the dir opened successfully
 	{
 		// test each file suffix and set variables as needed
 		do
 		{
-			string fileName = fileData.cFileName;
-			string fullFileName = path + "\\" + fileName;
-			string algoName = fileName.substr(0, fileName.find("."));
+			std::string fileName = fileData.cFileName;
+			std::string fullFileName = path + "\\" + fileName;
+			std::string algoName = fileName.substr(0, fileName.find("."));
 			
 			// Load dynamic library
 			HINSTANCE hDll = LoadLibraryA(fullFileName.c_str()); // Notice: Unicode compatible version of LoadLibrary
@@ -80,16 +80,16 @@ int main(int argc, char* argv[]){
 		i = 1;
 		for(vitr = dll_vec.begin(); vitr != dll_vec.end(); ++vitr)
 		{
-			cout << i << " - Create " << get<0>(*vitr) << endl; 
+			std::cout << i << " - Create " << get<0>(*vitr) << std::endl;
 			i++;
 		}
 
-		cout << i << " - Draw created shapes\n"; 
+		std::cout << i << " - Draw created shapes\n";
 		i++; 
-		cout << i << " - Exit\n"; 
-		cout << "> "; 
+		std::cout << i << " - Exit\n"; 
+		std::cout << "> "; 
 
-		cin >> choice;
+		std::cin >> choice;
 		if(choice == i)
 		{
 			// close all the dynamic libs we opened
