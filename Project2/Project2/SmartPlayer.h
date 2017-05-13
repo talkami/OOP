@@ -17,6 +17,10 @@ class SmartPlayer : public CommonPlayer {
 	std::pair<int, int>left;
 	std::pair<int, int> right;
 	AttackResult result;
+	//add fields
+	int playerNum;
+	int numOfRows;
+	int numOfCols;
 
 
 public:
