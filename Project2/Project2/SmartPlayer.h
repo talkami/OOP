@@ -16,7 +16,7 @@ class SmartPlayer : public CommonPlayer {
 	std::pair<int,int> up;
 	std::pair<int, int>left;
 	std::pair<int, int> right;
-
+	AttackResult result;
 
 
 public:
@@ -32,7 +32,6 @@ public:
 	SmartPlayer& operator=(const SmartPlayer&) = delete;
 
 //unique func
-	AttackResult getFormerAttackResult ();
 	void handleAttackResult (AttackResult result);
 	std::pair <int,int> playGoodAttack();
 
