@@ -10,9 +10,7 @@ NaivePlayer::NaivePlayer() :
 NaivePlayer::~NaivePlayer() {}
 
 void NaivePlayer::setBoard(int player, const char** board, int numRows, int numCols) {
-	this->playerNum = player;
-	this->numOfRows = numRows;
-	this->numOfCols = numCols;
+	setProperties(player, numRows, numCols);
 	this->player_board.loadBoard(board, player, this, numRows, numCols);
 }
 

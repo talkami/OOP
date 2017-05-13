@@ -1,6 +1,6 @@
 /**/#include "Game.h"
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]) {
 	char x;
 	bool initializedSuccessfully, successfulPlay;
 	Game* newGame;
@@ -19,8 +19,9 @@ int main(int argc, char* argv[]){
 	std::cin >> x;
 
 	return 0;
+}
 
-
+	/*
 	//dll file handler
 
 	HANDLE dir;
@@ -114,9 +115,9 @@ int main(int argc, char* argv[]){
 			battleship_vec.push_back(get<2>(dll_vec[choice -1])());
 		}
 	}
-
+	
 }
-
+*/
 /*
 #include<stdio.h>
 #include <iostream>

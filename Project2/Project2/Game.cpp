@@ -1,5 +1,9 @@
 #include "Game.h"
 
+Game::~Game() {
+	delete this->A;
+	delete this->B;
+}
 bool Game::initGame(int argc, char* argv[]) {
 	bool result = true;
 	std::string path = ".";
@@ -29,13 +33,15 @@ bool Game::initGame(int argc, char* argv[]) {
 
 bool Game::setupGame(const std::string& path) {
 	bool result;
-	result = this->gameBoard.initBoard(path, &this->A, &this->B, 10, 10, this->displayGame);
+	this->A = new FixedPlayer();
+	this->B = new FixedPlayer();
+	result = this->gameBoard.initBoard(path, this->A, this->B, 10, 10, this->displayGame);
 		if (result) {
 			this->turn = 0;
-			this->A.setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
-			this->B.setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
-			result = (result & this->A.init(path));
-			result = (result & this->B.init(path));
+			this->A->setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
+			this->B->setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
+			result = (result & this->A->init(path));
+			result = (result & this->B->init(path));
 		}
 	return result;
 }
@@ -46,10 +52,10 @@ bool Game::playGame() {
 		std::pair<int, int> nextMove;
 		AttackResult res;
 		if (this->turn == 0) {
-			nextMove = this->A.attack();
+			nextMove = this->A->attack();
 		}
 		else if (this->turn == 1) {
-			nextMove = this->B.attack();
+			nextMove = this->B->attack();
 		}
 		else {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
@@ -67,8 +73,8 @@ bool Game::playGame() {
 		}*/
 		bool selfHit = false;
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
-		this->A.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
-		this->B.notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
+		this->A->notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
+		this->B->notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
 		if (this->displayGame && nextMove.first != -1 && nextMove.second != -1) {
 			this->gameBoard.displayAttack(res, nextMove.first, nextMove.second, this->delay);
 		}
@@ -87,24 +93,24 @@ bool Game::playGame() {
 
 bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory
-	if (this->A.hasNoMoreBoats()) {
+	if (this->A->hasNoMoreBoats()) {
 		//player A is out of boats - player B wins
 		this->winner = 'B';
-		this->B.addWin();
+		this->B->addWin();
 		this->turn = -1;
 		return true;
 	}
-	else if (this->B.hasNoMoreBoats()) {
+	else if (this->B->hasNoMoreBoats()) {
 		//player B is out of boats - player A wins
 		this->winner = 'A';
-		this->A.addWin();
+		this->A->addWin();
 		this->turn = -1;
 		return true;
 	}
 
 	//check if one or both playes have finished attacking
-	if (this->A.hasFinishedAttacking()) {
-		if (this->B.hasFinishedAttacking()) {
+	if (this->A->hasFinishedAttacking()) {
+		if (this->B->hasFinishedAttacking()) {
 			//both players have finished attacking - end the game
 			this->turn = -2;
 			return true;
@@ -115,7 +121,7 @@ bool Game::setNextTurn(AttackResult res, bool selfHit) {
 			return true;
 		}
 	}
-	else if (this->B.hasFinishedAttacking()) {
+	else if (this->B->hasFinishedAttacking()) {
 		//player B has finished attacking, player A still has moves
 		this->turn = 0;
 		return true;
@@ -146,8 +152,8 @@ bool Game::endGame() {
 			std::cout << "Player " << this->winner << " won" << std::endl;
 		case -2:
 			std::cout << "Points:" << std::endl;
-			std::cout << "Player A: " << this->A.getGameScore() << std::endl;
-			std::cout << "Player B: " << this->B.getGameScore() << std::endl;
+			std::cout << "Player A: " << this->A->getGameScore() << std::endl;
+			std::cout << "Player B: " << this->B->getGameScore() << std::endl;
 			return true;
 		default:
 			std::cout << "Error! reached 'endGame' function with invalid 'turn'" << std::endl;

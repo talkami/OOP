@@ -1,57 +1,21 @@
-﻿  main.cpp
-c:\users\tal\oop\project2\project2\main.cpp(64): error C2146: syntax error: missing ';' before identifier 'GetProcAddress'
-c:\users\tal\oop\project2\project2\main.cpp(71): error C3861: 'make_tuple': identifier not found
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2065: 'get': undeclared identifier
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const char *)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(692): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,char)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(739): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(777): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(824): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const _Elem *)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(864): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(911): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const signed char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(950): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,signed char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(957): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const unsigned char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(964): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,unsigned char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(971): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &&,const _Ty &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &&' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(981): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::error_code &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\ostream(1019): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2784: 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>'
-  c:\program files (x86)\microsoft visual studio 14.0\vc\include\string(167): note: see declaration of 'std::operator <<'
-c:\users\tal\oop\project2\project2\main.cpp(83): error C2676: binary '<<': 'std::tuple<std::string,HINSTANCE,GetAlgorithmFuncType>' does not define this operator or a conversion to a type acceptable to the predefined operator
-c:\users\tal\oop\project2\project2\main.cpp(98): error C2065: 'get': undeclared identifier
-c:\users\tal\oop\project2\project2\main.cpp(108): error C2039: 'draw': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\project2\main.cpp(114): error C2065: 'get': undeclared identifier
-c:\users\tal\oop\project2\project2\main.cpp(114): error C2064: term does not evaluate to a function taking 0 arguments
-  SmartPlayer.cpp
-c:\users\tal\oop\project2\project2\smartplayer.cpp(206): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+﻿  SmartPlayer.cpp
+c:\users\tal\oop\project2\project2\smartplayer.cpp(204): warning C4273: 'GetAlgorithm': inconsistent dll linkage
   c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
-c:\users\tal\oop\project2\project2\smartplayer.cpp(207): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\smartplayer.cpp(207): error C2228: left of '.push_back' must have class/struct/union
-  c:\users\tal\oop\project2\project2\smartplayer.cpp(207): note: type is 'unknown-type'
-c:\users\tal\oop\project2\project2\smartplayer.cpp(208): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\smartplayer.cpp(208): error C2228: left of '.size' must have class/struct/union
-  c:\users\tal\oop\project2\project2\smartplayer.cpp(208): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project2\smartplayer.cpp(205): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\smartplayer.cpp(205): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\project2\project2\smartplayer.cpp(205): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project2\smartplayer.cpp(206): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\smartplayer.cpp(206): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\project2\project2\smartplayer.cpp(206): note: type is 'unknown-type'
   NaivePlayer.cpp
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(51): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(49): warning C4273: 'GetAlgorithm': inconsistent dll linkage
   c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(52): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(52): error C2228: left of '.push_back' must have class/struct/union
-  c:\users\tal\oop\project2\project2\naiveplayer.cpp(52): note: type is 'unknown-type'
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(53): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(53): error C2228: left of '.size' must have class/struct/union
-  c:\users\tal\oop\project2\project2\naiveplayer.cpp(53): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(51): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(51): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\project2\project2\naiveplayer.cpp(51): note: type is 'unknown-type'
   FixedPlayer.cpp
 c:\users\tal\oop\project2\project2\fixedplayer.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
   c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
