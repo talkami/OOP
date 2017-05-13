@@ -9,6 +9,10 @@ class NaivePlayer : public CommonPlayer{
 	int attackRow;
 	int attackCol;
 	bool finishedAttacking;
+	//added fields
+	int playerNum;
+	int numOfRows;
+	int numOfCols;
 
 public:
 	NaivePlayer();
