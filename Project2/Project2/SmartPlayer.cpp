@@ -31,6 +31,9 @@ bool SmartPlayer::init(const std::string & path) {
 	this->up= <-1,-1>;
 	this->left = <-1,-1>;
 	this->right = <-1,-1>;
+	this->playerNum = -1;
+	this->numOfRows = -1;
+	this->numOfCols = -1;
 	result= NULL;
 
 	return true;
@@ -213,4 +216,10 @@ void SmartPlayer::handleAttackResult (){
 			}
 		}
 	}
+}
+
+IBattleshipGameAlgo* GetAlgorithm()
+{
+	_instancesVec.push_back(new SmartPlayer());					// Create new instance and keep it in vector
+	return _instancesVec[_instancesVec.size() - 1];			// Return last instance
 }
