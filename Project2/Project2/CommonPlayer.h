@@ -1,10 +1,11 @@
 #pragma once
-
+#include <vector>
 #include "IBattleshipGameAlgo.h"
 #include <vector>
 #include <utility>
 
 class CommonPlayer: public IBattleshipGameAlgo {
+static std::vector<CommonPlayer *> _instancesVec; //Our CommonPlayer collection
 
 public:
 	CommonPlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {}
