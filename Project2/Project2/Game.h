@@ -7,8 +7,8 @@
 class Game {
 	bool displayGame;
 	int delay;
-	CommonPlayer* A;
-	CommonPlayer* B;
+	IBattleshipGameAlgo* A;
+	IBattleshipGameAlgo* B;
 	GameBoard gameBoard;
 	int turn; //0 for player A, 1 for player B, -1 for victory, -2 if game ended without a victory
 	char winner;
@@ -20,7 +20,7 @@ class Game {
 public:
 	Game() : displayGame(true) , delay(900){}
 	~Game();
-	bool initGame(int argc, char* argv[]);
+	bool initGame(int argc, char* argv[], IBattleshipGameAlgo* playerA,IBattleshipGameAlgo* playerB);
 	bool playGame();
 	bool endGame();
 
