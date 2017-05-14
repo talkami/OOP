@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-	/*
+
 	//dll file handler
 
 	HANDLE dir;
@@ -41,14 +41,24 @@ int main(int argc, char* argv[]) {
 	std::vector<std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType>>::iterator vitr;
 
    // iterate over *.dll files in path
-	std::string path("path"); //Here you should take actual folder
+   if (argc <2){
+		std::string path("");
+   }
+   else {
+	char * pathVar = argv[1];
+	std::string path(pathVar); //Here you should take actual folder
+   }
+   
 	std::string s = "\\*.dll"; // only .dll endings
 	dir = FindFirstFileA((path + s).c_str(), &fileData); // Notice: Unicode compatible version of FindFirstFile
 	if(dir != INVALID_HANDLE_VALUE) //check if the dir opened successfully
 	{
-		// test each file suffix and set variables as needed
-		do
+		for (int i = 0; i<2 ;i++)
 		{
+			if (!FindNextFileA(dir, &fileData)){
+				std::cout << "less then 2 dll files" << std::endl;
+				return EXIT_FAILURE;
+			}
 			std::string fileName = fileData.cFileName;
 			std::string fullFileName = path + "\\" + fileName;
 			std::string algoName = fileName.substr(0, fileName.find("."));
@@ -71,7 +81,7 @@ int main(int argc, char* argv[]) {
 
 			dll_vec.push_back(make_tuple(algoName, hDll, getAlgorithmFunc));
 
-		} while(FindNextFileA(dir, &fileData)); // Notice: Unicode compatible version of FindNextFile
+		} 
 	}
    
 	int choice, i; 
@@ -117,7 +127,7 @@ int main(int argc, char* argv[]) {
 	}
 	
 }
-*/
+
 /*
 #include<stdio.h>
 #include <iostream>
