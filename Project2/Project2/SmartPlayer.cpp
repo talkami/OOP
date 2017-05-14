@@ -24,17 +24,18 @@ bool SmartPlayer::init(const std::string & path) {
 
 std::pair<int, int> SmartPlayer::attack() {
 	//first check if there is a good attack
-	if (this-> isThereGoodAttack){
+	if (this->goodShots.size() > 0){
 		return playGoodAttack();
 	}
 	this->currentAttack = 0;
-	while (this->attackRow < this->numOfRows) {
-		while (this->attackCol < this->numOfCols-1) {
+	while (this->attackRow < this->numOfRows) {		
+		while (this->attackCol < this->numOfCols) {
 			if (player_board.isValidAttack(this->attackRow, this->attackCol)) {
 				return std::pair<int, int>(this->attackRow + 1, ++this->attackCol);
 			}
 			attackCol++;
 		}
+		this->attackCol = 0;
 		this->attackRow++;
 	}
 	this->finishedAttacking = true;
@@ -47,41 +48,74 @@ bool SmartPlayer::hasFinishedAttacking() {
 }
 
 void SmartPlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {
-	player_board.setInvalidAttack(row, col);
+	int i = row - 1;
+	int j = col - 1;
+	player_board.setInvalidAttack(i, j);
 	if (result == AttackResult::Sink) {
-		this->player_board.setInvalidArea(row, col);
+		this->player_board.setInvalidArea(i, j);
+		if (player == this->playerNum) {
+			if (currentAttack == 1) {
+				this->player_board.setInvalidHorizontal(i - 1, j);
+			}
+			this->currentAttack = 0;
+		}
 	}
 	else if (result == AttackResult::Hit) {
-
-	}else{
-
+		if (player == this->playerNum) {
+			if (this->currentAttack == 0) {
+				this->currentAttack = 1;
+				setGoodShot(i + 1, j);
+				setGoodShot(i, j + 1);
+			}
+			else if (currentAttack == 1) {
+				this->player_board.setInvalidHorizontal(i - 1, j);
+				this->player_board.setInvalidHorizontal(i, j);
+				setGoodShot(i + 1, j);
+				setGoodShot(i - 1, j);
+			}
+			else if (this->currentAttack == 2) {
+				this->player_board.setInvalidVertical(i, j);
+				setGoodShot(i, j + 1);
+				setGoodShot(i, j - 1);
+			}
+		}
+		else {
+			setGoodShot(i + 1, j);			
+			setGoodShot(i - 1, j);
+			setGoodShot(i, j + 1);
+			setGoodShot(i, j - 1);
+		}
+	}else if(result == AttackResult::Miss){
+		if (player == this->playerNum) {
+			if (this->currentAttack == 1) {
+				this->currentAttack = 2;
+			}
+			else if (currentAttack == 2) {
+				this->currentAttack = 0;
+			}
+		}
 	}
-	this-> result = result;
-	handleAttackResult();
+}
+
+void SmartPlayer::setGoodShot(int row, int col) {
+	if (row < this->numOfRows && row >= 0 && col < this->numOfCols && col >= 0) {
+		if (this->player_board.isValidAttack(row, col)) {
+			this->goodShots.emplace_back(row, col);
+		}
+	}
 }
 
 std::pair<int,int> SmartPlayer::playGoodAttack(){
-	if (horizonalGoodAttack == 1){
-		if (left.first != -1 && left.second != -1){
-			this->currentAttack = 3;
-			return left;
-		}
-		else {
-			this->currentAttack = 4;
-			return right;
-		}
-	}
-	else { 
-		if (left.first != -1 && left.second != -1){
-			this->currentAttack = 1;
-			return up;
-		}
-		else {
-			this->currentAttack = 2;
-			return down;
+	std::pair<int, int> attack;
+	while (this->goodShots.size() > 0) {
+		attack = goodShots.front();
+		goodShots.pop_front();
+		if (player_board.isValidAttack(attack.first, attack.second)) {
+			return std::make_pair(attack.first+1, attack.second+1);
 		}
 	}
 }
+
 void SmartPlayer::handleAttackResult (){
 //if the boat has sunk no good attack is needed and all the relevant vals go to default
 	

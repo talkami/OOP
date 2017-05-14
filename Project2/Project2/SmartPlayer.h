@@ -3,6 +3,7 @@
 #include "PlayerBoard.h"
 #include <vector>
 #include <utility> 
+#include <list>
 
 class SmartPlayer : public CommonPlayer {
 	PlayerBoard player_board;
@@ -11,12 +12,15 @@ class SmartPlayer : public CommonPlayer {
 	bool finishedAttacking;
 	bool isThereGoodAttack;
 	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 vertical
-	int currentAttack; // 1 up 2 down 3 left 4 right, 0 irrelevant
+	int currentAttack; // 0 undecided, 1 vertical, 2 horizontal
+	std::list<std::pair<int, int>> goodShots;
 	std::pair<int,int> down;
 	std::pair<int,int> up;
 	std::pair<int, int>left;
 	std::pair<int, int> right;
 	AttackResult result;
+
+	void setGoodShot(int row, int col);
 
 public:
 	SmartPlayer();
