@@ -5,7 +5,6 @@
 #include <utility>
 
 class CommonPlayer: public IBattleshipGameAlgo {
-static std::vector<CommonPlayer *> _instancesVec; //Our CommonPlayer collection
 
 public:
 	CommonPlayer() : gameScore(0), totalScore(0), wins(0), numOfBoats(0) {}
@@ -30,5 +29,6 @@ protected:
 	int numOfRows = 0;
 	int numOfCols = 0;
 	int playerNum = -1;
+	static std::vector<IBattleshipGameAlgo*> _instancesVec; //Our CommonPlayer collection
 
 };

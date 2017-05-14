@@ -35,8 +35,8 @@ bool Game::initGame(int argc, char* argv[], IBattleshipGameAlgo* playerA,IBattle
 
 bool Game::setupGame(const std::string& path) {
 	bool result;
-	//this->A = new FixedPlayer();
-	//this->B = new FixedPlayer();
+	//this->A = new SmartPlayer();
+	//this->B = new SmartPlayer();
 	result = this->gameBoard.initBoard(path, this->A, this->B, 10, 10, this->displayGame);
 		if (result) {
 			this->turn = 0;

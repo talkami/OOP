@@ -45,8 +45,7 @@ bool NaivePlayer::hasFinishedAttacking() {
 	return this->finishedAttacking;
 }
 
-/*
 IBattleshipGameAlgo* GetAlgorithm(){
 	_instancesVec.push_back(new NaivePlayer());					// Create new instance and keep it in vector
 	return _instancesVec[_instancesVec.size() - 1];			// Return last instance
-}*/
+}

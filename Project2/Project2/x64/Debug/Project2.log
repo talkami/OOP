@@ -1,4 +1,60 @@
-﻿  SmartPlayer.cpp
-c:\users\tal\oop\project2\project2\smartplayer.cpp(117): warning C4715: 'SmartPlayer::playGoodAttack': not all control paths return a value
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe
-  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.pdb (Partial PDB)
+﻿cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+  FixedPlayer.cpp
+c:\users\tal\oop\project2\project2\fixedplayer.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+c:\users\tal\oop\project2\project2\fixedplayer.cpp(112): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\fixedplayer.cpp(112): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\project2\project2\fixedplayer.cpp(112): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project2\fixedplayer.cpp(113): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\fixedplayer.cpp(113): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\project2\project2\fixedplayer.cpp(113): note: type is 'unknown-type'
+  Game.cpp
+c:\users\tal\oop\project2\project2\game.cpp(40): error C2664: 'bool GameBoard::initBoard(const std::string &,CommonPlayer *,CommonPlayer *,int,int,bool)': cannot convert argument 2 from 'IBattleshipGameAlgo *' to 'CommonPlayer *'
+  c:\users\tal\oop\project2\project2\game.cpp(40): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\tal\oop\project2\project2\game.cpp(107): error C2039: 'hasNoMoreBoats': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(110): error C2039: 'addWin': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(114): error C2039: 'hasNoMoreBoats': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(117): error C2039: 'addWin': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(123): error C2039: 'hasFinishedAttacking': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(124): error C2039: 'hasFinishedAttacking': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(136): error C2039: 'hasFinishedAttacking': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(168): error C2039: 'getGameScore': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\project2\game.cpp(169): error C2039: 'getGameScore': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+  NaivePlayer.cpp
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(48): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(49): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(49): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\project2\project2\naiveplayer.cpp(49): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): note: type is 'unknown-type'
+  SmartPlayer.cpp
+c:\users\tal\oop\project2\project2\smartplayer.cpp(124): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+c:\users\tal\oop\project2\project2\smartplayer.cpp(125): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\smartplayer.cpp(125): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\project2\project2\smartplayer.cpp(125): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project2\smartplayer.cpp(126): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project2\smartplayer.cpp(126): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\project2\project2\smartplayer.cpp(126): note: type is 'unknown-type'
+  main.cpp
+c:\users\tal\oop\project2\project2\main.cpp(43): error C2065: 'path': undeclared identifier
+c:\users\tal\oop\project2\project2\main.cpp(43): error C2228: left of '.c_str' must have class/struct/union
+c:\users\tal\oop\project2\project2\main.cpp(53): error C2065: 'path': undeclared identifier
+c:\users\tal\oop\project2\project2\main.cpp(65): error C2146: syntax error: missing ';' before identifier 'GetProcAddress'
+c:\users\tal\oop\project2\project2\main.cpp(76): error C2065: 'get': undeclared identifier
+c:\users\tal\oop\project2\project2\main.cpp(76): error C2064: term does not evaluate to a function taking 0 arguments
+c:\users\tal\oop\project2\project2\main.cpp(77): error C2065: 'get': undeclared identifier
+c:\users\tal\oop\project2\project2\main.cpp(77): error C2064: term does not evaluate to a function taking 0 arguments
+c:\users\tal\oop\project2\project2\main.cpp(98): error C2065: 'get': undeclared identifier
+  Generating Code...

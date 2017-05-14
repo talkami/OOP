@@ -1,12 +1,12 @@
-/**/#include "Game.h"
+#include "Game.h"
 #include <iostream> 
 #include <map> 
 #include <vector>
 #include <string> 
 #include <stdio.h> 
 #include <stdlib.h>
-#include "shape.h"
 #include <windows.h>
+
 int main(int argc, char* argv[]) {
 	char x;
 	bool initializedSuccessfully, successfulPlay;
