@@ -1,28 +1,3 @@
-﻿  SmartPlayer.cpp
-c:\users\tal\oop\project2\project2\smartplayer.cpp(204): warning C4273: 'GetAlgorithm': inconsistent dll linkage
-  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
-c:\users\tal\oop\project2\project2\smartplayer.cpp(205): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\smartplayer.cpp(205): error C2228: left of '.push_back' must have class/struct/union
-  c:\users\tal\oop\project2\project2\smartplayer.cpp(205): note: type is 'unknown-type'
-c:\users\tal\oop\project2\project2\smartplayer.cpp(206): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\smartplayer.cpp(206): error C2228: left of '.size' must have class/struct/union
-  c:\users\tal\oop\project2\project2\smartplayer.cpp(206): note: type is 'unknown-type'
-  NaivePlayer.cpp
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(49): warning C4273: 'GetAlgorithm': inconsistent dll linkage
-  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): error C2228: left of '.push_back' must have class/struct/union
-  c:\users\tal\oop\project2\project2\naiveplayer.cpp(50): note: type is 'unknown-type'
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(51): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\naiveplayer.cpp(51): error C2228: left of '.size' must have class/struct/union
-  c:\users\tal\oop\project2\project2\naiveplayer.cpp(51): note: type is 'unknown-type'
-  FixedPlayer.cpp
-c:\users\tal\oop\project2\project2\fixedplayer.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
-  c:\users\tal\oop\project2\project2\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
-c:\users\tal\oop\project2\project2\fixedplayer.cpp(112): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\fixedplayer.cpp(112): error C2228: left of '.push_back' must have class/struct/union
-  c:\users\tal\oop\project2\project2\fixedplayer.cpp(112): note: type is 'unknown-type'
-c:\users\tal\oop\project2\project2\fixedplayer.cpp(113): error C2065: '_instancesVec': undeclared identifier
-c:\users\tal\oop\project2\project2\fixedplayer.cpp(113): error C2228: left of '.size' must have class/struct/union
-  c:\users\tal\oop\project2\project2\fixedplayer.cpp(113): note: type is 'unknown-type'
-  Generating Code...
+﻿  PlayerBoard.cpp
+  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.exe
+  Project2.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Project2.pdb (Partial PDB)

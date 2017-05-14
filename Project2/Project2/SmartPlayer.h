@@ -10,7 +10,7 @@ class SmartPlayer : public CommonPlayer {
 	int attackCol;
 	bool finishedAttacking;
 	bool isThereGoodAttack;
-	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 the other direction...
+	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 vertical
 	int currentAttack; // 1 up 2 down 3 left 4 right, 0 irrelevant
 	std::pair<int,int> down;
 	std::pair<int,int> up;

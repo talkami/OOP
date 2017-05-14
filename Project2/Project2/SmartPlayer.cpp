@@ -28,7 +28,6 @@ std::pair<int, int> SmartPlayer::attack() {
 		return playGoodAttack();
 	}
 	this->currentAttack = 0;
-	//go on the board in jumps of 2, where each line the starting point switch between 0,1
 	while (this->attackRow < this->numOfRows) {
 		while (this->attackCol < this->numOfCols-1) {
 			if (player_board.isValidAttack(this->attackRow, this->attackCol)) {
@@ -37,7 +36,6 @@ std::pair<int, int> SmartPlayer::attack() {
 			attackCol++;
 		}
 		this->attackRow++;
-		this->attackCol = 0+ attackRow%2;
 	}
 	this->finishedAttacking = true;
 	return std::pair<int, int>(-1, -1);
@@ -49,22 +47,21 @@ bool SmartPlayer::hasFinishedAttacking() {
 }
 
 void SmartPlayer::notifyOnAttackResult(int player, int row, int col, AttackResult result) {
+	player_board.setInvalidAttack(row, col);
+	if (result == AttackResult::Sink) {
+		this->player_board.setInvalidArea(row, col);
+	}
+	else if (result == AttackResult::Hit) {
+
+	}else{
+
+	}
 	this-> result = result;
 	handleAttackResult();
 }
 
-std::pair <int,int> SmartPlayer::playGoodAttack(){
-	if (horizonalGoodAttack== 0){
-		if (up.first != -1 && up.second != -1){
-			this->currentAttack = 1;
-			return up;
-		}
-		else {
-			this->currentAttack = 2;
-			return down;
-		}
-	}
-	else if (horizonalGoodAttack == 1){
+std::pair<int,int> SmartPlayer::playGoodAttack(){
+	if (horizonalGoodAttack == 1){
 		if (left.first != -1 && left.second != -1){
 			this->currentAttack = 3;
 			return left;
@@ -74,7 +71,7 @@ std::pair <int,int> SmartPlayer::playGoodAttack(){
 			return right;
 		}
 	}
-	else { // horizonalGoodAttack=2
+	else { 
 		if (left.first != -1 && left.second != -1){
 			this->currentAttack = 1;
 			return up;
@@ -188,20 +185,20 @@ void SmartPlayer::handleAttackResult (){
 			if (this->horizonalGoodAttack==0){
 				if (this->currentAttack ==1 || this->currentAttack ==2){
 					this-> horizonalGoodAttack = 1;
-					this ->left = std::pair<int, int>(-1, -1);
-					this ->right = std::pair<int, int>(-1, -1);
+					this->left = std::pair<int, int>(-1, -1);
+					this->right = std::pair<int, int>(-1, -1);
 				}
 				else{
 					this-> horizonalGoodAttack = 2;
-					this ->up = std::pair<int, int>(-1, -1);
-					this ->down = std::pair<int, int>(-1, -1);
+					this->up = std::pair<int, int>(-1, -1);
+					this->down = std::pair<int, int>(-1, -1);
 				}
 			}
 		}
 	}
 }
 
-IBattleshipGameAlgo* GetAlgorithm(){
+/*IBattleshipGameAlgo* GetAlgorithm(){
 	_instancesVec.push_back(new SmartPlayer());					// Create new instance and keep it in vector
 	return _instancesVec[_instancesVec.size() - 1];			// Return last instance
-}
+}*/
