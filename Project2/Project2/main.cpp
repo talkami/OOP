@@ -1,26 +1,16 @@
 /**/#include "Game.h"
-
+#include <iostream> 
+#include <map> 
+#include <vector>
+#include <string> 
+#include <stdio.h> 
+#include <stdlib.h>
+#include "shape.h"
+#include <windows.h>
 int main(int argc, char* argv[]) {
 	char x;
 	bool initializedSuccessfully, successfulPlay;
 	Game* newGame;
-
-	newGame = new Game();
-	initializedSuccessfully = newGame->initGame(argc, argv);
-	if (!initializedSuccessfully) {
-		std::cin >> x;
-		return -1;
-	}
-	successfulPlay = newGame->playGame();
-	if (!successfulPlay) {
-		std::cin >> x;
-		return -1;
-	}
-	std::cin >> x;
-
-	return 0;
-}
-
 
 	//dll file handler
 
@@ -83,49 +73,31 @@ int main(int argc, char* argv[]) {
 
 		} 
 	}
-   
-	int choice, i; 
-	// create a menu of possible shapes to create and let the user make some 
-	while(true)
-	{
-		i = 1;
-		for(vitr = dll_vec.begin(); vitr != dll_vec.end(); ++vitr)
-		{
-			std::cout << i << " - Create " << get<0>(*vitr) << std::endl;
-			i++;
-		}
+	IBattleshipGameAlgo* playerA = (*get<2>(dll_vec[0])());
+	IBattleshipGameAlgo* playerB = (*get<2>(dll_vec[1])());
+   	
 
-		std::cout << i << " - Draw created shapes\n";
-		i++; 
-		std::cout << i << " - Exit\n"; 
-		std::cout << "> "; 
 
-		std::cin >> choice;
-		if(choice == i)
-		{
-			// close all the dynamic libs we opened
-			for(vitr = dll_vec.begin(); vitr != dll_vec.end(); ++vitr)
-			{
-				FreeLibrary(get<1>(*vitr));
-			}
 
-			return 1;
-		}
-		if(choice == i - 1)
-		{
-			// draw the shapes
-			for(sitr=battleship_vec.begin(); sitr!= battleship_vec.end();++sitr)
-			{
-				(*sitr)->draw();
-			}
-		}
-		if(choice > 0 && choice < i - 1)
-		{
-			// add the appropriate shape to the shape list
-			battleship_vec.push_back(get<2>(dll_vec[choice -1])());
-		}
+
+	newGame = new Game();
+	initializedSuccessfully = newGame->initGame(argc, argv, playerA, playerB);
+	if (!initializedSuccessfully) {
+		std::cin >> x;
+		return -1;
 	}
-	
+	successfulPlay = newGame->playGame();
+	if (!successfulPlay) {
+		std::cin >> x;
+		return -1;
+	}
+	std::cin >> x;
+	// close all the dynamic libs we opened
+	for(vitr = dll_vec.begin(); vitr != dll_vec.end(); ++vitr)
+	{
+		FreeLibrary(get<1>(*vitr));
+	}
+	return 0;
 }
 
 /*
