@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FixedPlayer.h"
+#include "SmartPlayer.h"
 #include "GameBoard.h"
 
 

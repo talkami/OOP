@@ -67,14 +67,23 @@ bool Game::playGame() {
 				return false;
 			}
 		}
-		/*
+		/**/
 		if (turn == 0) {
 		std::cout << "player A is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
 		}if (turn == 1) {
 			std::cout << "player B is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
-		}*/
+		}
 		bool selfHit = false;
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
+		std::cout << "attack result is: ";
+		if (res == AttackResult::Hit) {
+			std::cout << "hit" << std::endl;
+		}else if (res == AttackResult::Miss) {
+			std::cout << "miss" << std::endl;
+		}else if (res == AttackResult::Sink) {
+			std::cout << "sink" << std::endl;
+		}
+
 		this->A->notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
 		this->B->notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
 		if (this->displayGame && nextMove.first != -1 && nextMove.second != -1) {
@@ -119,12 +128,14 @@ bool Game::setNextTurn(AttackResult res, bool selfHit) {
 		}
 		else {
 			//player A has finished attacking, player B still has moves
+
 			this->turn = 1;
 			return true;
 		}
 	}
 	else if (this->B->hasFinishedAttacking()) {
 		//player B has finished attacking, player A still has moves
+
 		this->turn = 0;
 		return true;
 	}
@@ -148,7 +159,7 @@ bool Game::setNextTurn(AttackResult res, bool selfHit) {
 
 bool Game::endGame() {	
 	GameBoard::setTextColor(15);
-	system("cls");
+	//system("cls");
 	switch (this->turn) {
 		case -1:
 			std::cout << "Player " << this->winner << " won" << std::endl;
