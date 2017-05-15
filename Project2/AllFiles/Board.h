@@ -12,8 +12,6 @@ protected:
 	int numOfRows;
 	int numOfCols;
 	bool hasAdjacentBoats;
-
-	//new fields
 	int PlayerANumOfBoats;
 	int PlayerBNumOfBoats;
 
