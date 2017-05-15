@@ -1,2 +1,124 @@
-﻿  Game.cpp
-c:\users\tal\oop\project2\allfiles\game.cpp(37): error C3861: 'setupPlayers': identifier not found
+﻿  main.cpp
+c:\users\tal\oop\project2\allfiles\gameboard.h(23): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\gameboard.h(24): error C2061: syntax error: identifier 'CommonPlayer'
+  GameBoard.cpp
+c:\users\tal\oop\project2\allfiles\gameboard.h(23): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\gameboard.h(24): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(14): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(16): error C2065: 'rows': undeclared identifier
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(17): error C2065: 'cols': undeclared identifier
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(33): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(33): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(39): error C2511: 'bool GameBoard::loadBoard(const std::string &,IBattleshipGameAlgo *,IBattleshipGameAlgo *)': overloaded member function not found in 'GameBoard'
+  c:\users\tal\oop\project2\allfiles\gameboard.h(7): note: see declaration of 'GameBoard'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(41): error C2352: 'GameBoard::setVars': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\gameboard.h(26): note: see declaration of 'GameBoard::setVars'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(49): error C2671: 'GameBoard::loadBoard': static member functions do not have 'this' pointers
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(49): error C2227: left of '->numOfRows' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(52): error C2671: 'GameBoard::loadBoard': static member functions do not have 'this' pointers
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(52): error C2227: left of '->numOfCols' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(57): error C2352: 'Board::setPoint': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\board.h(24): note: see declaration of 'Board::setPoint'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(58): error C2352: 'GameBoard::addToPlayerBoard': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\gameboard.h(14): note: see declaration of 'GameBoard::addToPlayerBoard'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(62): error C2352: 'GameBoard::checkBoatValidity': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\gameboard.h(15): note: see declaration of 'GameBoard::checkBoatValidity'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(63): error C2352: 'GameBoard::checkBoard': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\gameboard.h(16): note: see declaration of 'GameBoard::checkBoard'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(64): error C2352: 'GameBoard::checkNumOfPlayersBoats': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\gameboard.h(17): note: see declaration of 'GameBoard::checkNumOfPlayersBoats'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(66): error C2671: 'GameBoard::loadBoard': static member functions do not have 'this' pointers
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(66): error C2227: left of '->hasAdjacentBoats' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(71): error C2671: 'GameBoard::loadBoard': static member functions do not have 'this' pointers
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(71): error C2227: left of '->display' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(72): error C2352: 'GameBoard::displayBoard': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\gameboard.h(38): note: see declaration of 'GameBoard::displayBoard'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(140): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(191): error C2039: 'getNumOfBoats': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(202): error C2039: 'getNumOfBoats': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+  Game.cpp
+c:\users\tal\oop\project2\allfiles\gameboard.h(23): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\gameboard.h(24): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\game.cpp(41): error C2660: 'GameBoard::initBoard': function does not take 6 arguments
+c:\users\tal\oop\project2\allfiles\game.cpp(161): error C2039: 'hasNoMoreBoats': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(164): error C2039: 'addWin': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(168): error C2039: 'hasNoMoreBoats': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(171): error C2039: 'addWin': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(177): error C2039: 'hasFinishedAttacking': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(178): error C2039: 'hasFinishedAttacking': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(190): error C2039: 'hasFinishedAttacking': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(222): error C2039: 'getGameScore': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\game.cpp(223): error C2039: 'getGameScore': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+  Boat.cpp
+c:\users\tal\oop\project2\allfiles\boat.cpp(6): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\boat.cpp(6): error C2511: 'Boat::Boat(int,int)': overloaded member function not found in 'Boat'
+  c:\users\tal\oop\project2\allfiles\boat.h(8): note: see declaration of 'Boat'
+c:\users\tal\oop\project2\allfiles\boat.cpp(12): error C2065: 'PlayerPointer': undeclared identifier
+c:\users\tal\oop\project2\allfiles\boat.cpp(13): error C2065: 'RivalPointer': undeclared identifier
+c:\users\tal\oop\project2\allfiles\boat.cpp(15): error C2550: 'Boat::{ctor}': constructor initializer lists are only allowed on constructor definitions
+c:\users\tal\oop\project2\allfiles\boat.cpp(16): error C2671: 'Boat::{ctor}': static member functions do not have 'this' pointers
+c:\users\tal\oop\project2\allfiles\boat.cpp(16): error C2227: left of '->pointsArray' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\allfiles\boat.cpp(16): error C2228: left of '.push_back' must have class/struct/union
+c:\users\tal\oop\project2\allfiles\boat.cpp(16): error C2065: 'firstPoint': undeclared identifier
+c:\users\tal\oop\project2\allfiles\boat.cpp(17): error C2671: 'Boat::{ctor}': static member functions do not have 'this' pointers
+c:\users\tal\oop\project2\allfiles\boat.cpp(17): error C2227: left of '->value' must point to class/struct/union/generic type
+c:\users\tal\oop\project2\allfiles\boat.cpp(17): error C2352: 'Boat::setValue': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\boat.h(22): note: see declaration of 'Boat::setValue'
+c:\users\tal\oop\project2\allfiles\boat.cpp(18): error C2597: illegal reference to non-static member 'Boat::rival'
+c:\users\tal\oop\project2\allfiles\boat.cpp(18): error C3867: 'Boat::rival': non-standard syntax; use '&' to create a pointer to member
+c:\users\tal\oop\project2\allfiles\boat.cpp(19): error C2352: 'Boat::notifyPlayerCreated': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\boat.h(21): note: see declaration of 'Boat::notifyPlayerCreated'
+c:\users\tal\oop\project2\allfiles\boat.cpp(45): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project2\allfiles\boat.cpp(45): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\allfiles\boat.cpp(45): error C2761: 'IBattleshipGameAlgo *Boat::getOwner(void)': member function redeclaration not allowed
+c:\users\tal\oop\project2\allfiles\boat.cpp(45): error C2059: syntax error: '{'
+c:\users\tal\oop\project2\allfiles\boat.cpp(45): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\project2\allfiles\boat.cpp(45): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\project2\allfiles\boat.cpp(48): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\project2\allfiles\boat.cpp(48): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\project2\allfiles\boat.cpp(48): error C2086: 'int CommonPlayer': redefinition
+  c:\users\tal\oop\project2\allfiles\boat.cpp(45): note: see declaration of 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\boat.cpp(48): error C2761: 'IBattleshipGameAlgo *Boat::getRival(void)': member function redeclaration not allowed
+c:\users\tal\oop\project2\allfiles\boat.cpp(48): error C2059: syntax error: '{'
+c:\users\tal\oop\project2\allfiles\boat.cpp(48): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\project2\allfiles\boat.cpp(48): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\project2\allfiles\boat.cpp(92): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(97): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(98): error C2039: 'increaseScore': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(101): error C2039: 'addBoat': is not a member of 'IBattleshipGameAlgo'
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+  Board.cpp
+c:\users\tal\oop\project2\allfiles\board.cpp(41): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\board.cpp(41): error C2511: 'void Board::addBoatToBoard(Point *,int,int)': overloaded member function not found in 'Board'
+  c:\users\tal\oop\project2\allfiles\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\project2\allfiles\board.cpp(44): error C2065: 'owner': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(44): error C2065: 'rival': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(53): error C2065: 'owner': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(53): error C2065: 'rival': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(61): error C2065: 'owner': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(61): error C2065: 'rival': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(67): error C2061: syntax error: identifier 'CommonPlayer'
+c:\users\tal\oop\project2\allfiles\board.cpp(67): error C2511: 'void Board::checkAdjacentBoat(Boat *,Point *,int,int,int)': overloaded member function not found in 'Board'
+  c:\users\tal\oop\project2\allfiles\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\project2\allfiles\board.cpp(76): error C2352: 'Board::mergeBoats': illegal call of non-static member function
+  c:\users\tal\oop\project2\allfiles\board.h(18): note: see declaration of 'Board::mergeBoats'
+c:\users\tal\oop\project2\allfiles\board.cpp(91): error C2065: 'owner': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(91): error C2065: 'rival': undeclared identifier
+c:\users\tal\oop\project2\allfiles\board.cpp(94): error C2671: 'Board::checkAdjacentBoat': static member functions do not have 'this' pointers
+c:\users\tal\oop\project2\allfiles\board.cpp(94): error C2227: left of '->hasAdjacentBoats' must point to class/struct/union/generic type
+  Generating Code...
