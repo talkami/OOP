@@ -15,9 +15,7 @@ Boat::Boat(int size, int player, IBattleshipGameAlgo* PlayerPointer, IBattleship
 {
 	this->pointsArray.push_back(firstPoint);
 	this->value = setValue(size);
-	if (rival != nullptr) {
-		notifyPlayerCreated();
-	}
+
 }
 
 Boat::~Boat() {
@@ -67,9 +65,6 @@ bool Boat::isValid() {
 //setters
 void Boat::addHit() {
 	this->hits++;
-	if (this->hits >= this->boatSize) {
-		notifyPlayerSunk();
-	}
 }
 
 void Boat::addPoint(Point* point) {
@@ -93,17 +88,11 @@ void Boat::mergeBoats(Boat* boat) {
 		otherPoints[i]->setBoat(this);
 		this->pointsArray.push_back(otherPoints[i]);
 	}
-	owner->removeBoat();
+	
 }
 
 //private
-void Boat::notifyPlayerSunk() {
-	owner->removeBoat();
-	rival->increaseScore(this->value);
-}
-void Boat::notifyPlayerCreated() {
-	owner->addBoat();
-}
+
 int Boat::setValue(int size) {
 	if (size == 1) {
 		return 2;
