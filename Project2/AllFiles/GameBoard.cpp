@@ -324,15 +324,6 @@ bool GameBoard :: hasNoMoreBoats(int player){
 }
 
 
-void GameBoard :: addBoat(int player){
-	if (player==0){
-		this->PlayerANumOfBoats++;
-	}
-	else if (player==1){
-		this->PlayerBNumOfBoats++;
-	}
-}
-
 void GameBoard :: removeBoat(int player){
 	if (player==0){
 		this->PlayerANumOfBoats--;
