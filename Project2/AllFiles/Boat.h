@@ -43,6 +43,10 @@ public:
 	void mergeBoats(Boat* boat);
 	std::vector<std::pair<int, int>> getPoints();
 
+
+	//new func 
+	int getValue ();
+
 	Boat(const Boat&) = delete;
 	Boat& operator=(const Boat&) = delete;
 
