@@ -19,6 +19,8 @@ public:
 	void addWin();
 	void increaseScore(int amount);
 
+	std::vector<CommonPlayer *> _instancesVec; //Our CommonPlayer collection
+
 	CommonPlayer(const CommonPlayer&) = delete;
 	CommonPlayer& operator=(const CommonPlayer&) = delete;
 protected:
@@ -29,6 +31,4 @@ protected:
 	int numOfRows = 0;
 	int numOfCols = 0;
 	int playerNum = -1;
-	static std::vector<IBattleshipGameAlgo*> _instancesVec; //Our CommonPlayer collection
-
 };

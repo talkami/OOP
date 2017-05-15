@@ -4,7 +4,7 @@ Game::~Game() {
 	delete this->A;
 	delete this->B;
 }
-bool Game::initGame(int argc, char* argv[], IBattleshipGameAlgo* playerA,IBattleshipGameAlgo* playerB) {
+bool Game::initGame(int argc, char* argv[], CommonPlayer* playerA, CommonPlayer* playerB) {
 	bool result = true;
 	std::string path = ".";
 	DIR * dir;

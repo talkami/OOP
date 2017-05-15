@@ -1,0 +1,12 @@
+﻿  SmartPlayer.cpp
+c:\users\tal\oop\project2\allfiles\smartplayer.cpp(125): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+  Point.cpp
+  PlayerBoard.cpp
+  CommonPlayer.cpp
+  Boat.cpp
+  Board.cpp
+  Generating Code...
+     Creating library C:\Users\tal\OOP\Project2\x64\Debug\SmartPlayer.lib and object C:\Users\tal\OOP\Project2\x64\Debug\SmartPlayer.exp
+  SmartPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\SmartPlayer.dll
+  SmartPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\SmartPlayer.pdb (Partial PDB)

@@ -1,0 +1,9 @@
+﻿  NaivePlayer.cpp
+c:\users\tal\oop\ex2\naiveplayer\naiveplayer.cpp(48): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\ex2\naiveplayer\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+c:\users\tal\oop\ex2\naiveplayer\naiveplayer.cpp(49): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\ex2\naiveplayer\naiveplayer.cpp(49): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\ex2\naiveplayer\naiveplayer.cpp(49): note: type is 'unknown-type'
+c:\users\tal\oop\ex2\naiveplayer\naiveplayer.cpp(50): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\ex2\naiveplayer\naiveplayer.cpp(50): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\ex2\naiveplayer\naiveplayer.cpp(50): note: type is 'unknown-type'

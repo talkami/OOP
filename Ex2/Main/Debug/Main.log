@@ -1,0 +1,20 @@
+﻿  GameBoard.cpp
+c:\users\tal\oop\ex2\main\gameboard.cpp(6): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\gameboard.cpp(83): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\gameboard.cpp(132): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\gameboard.cpp(133): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\gameboard.cpp(269): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\gameboard.cpp(270): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  Board.cpp
+c:\users\tal\oop\ex2\main\board.cpp(4): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\board.cpp(5): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\board.cpp(33): warning C4018: '<': signed/unsigned mismatch
+c:\users\tal\oop\ex2\main\board.cpp(35): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  Game.cpp
+  Main.vcxproj -> C:\Users\tal\OOP\Ex2\Debug\Main.exe
+  Main.vcxproj -> C:\Users\tal\OOP\Ex2\Debug\Main.pdb (Partial PDB)

@@ -1,0 +1,9 @@
+﻿  FixedPlayer.cpp
+c:\users\tal\oop\project2\project4\fixedplayer.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\project4\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+c:\users\tal\oop\project2\project4\fixedplayer.cpp(112): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project4\fixedplayer.cpp(112): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\project2\project4\fixedplayer.cpp(112): note: type is 'unknown-type'
+c:\users\tal\oop\project2\project4\fixedplayer.cpp(113): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\project2\project4\fixedplayer.cpp(113): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\project2\project4\fixedplayer.cpp(113): note: type is 'unknown-type'
