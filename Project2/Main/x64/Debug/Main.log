@@ -5,14 +5,21 @@ c:\users\tal\oop\project2\allfiles\gameboard.cpp(196): error C2039: 'getNumOfBoa
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
 c:\users\tal\oop\project2\allfiles\gameboard.cpp(207): error C2039: 'getNumOfBoats': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-  Game.cpp
   Boat.cpp
-c:\users\tal\oop\project2\allfiles\boat.cpp(92): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(96): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(97): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(101): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(98): error C2039: 'increaseScore': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(102): error C2039: 'increaseScore': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(101): error C2039: 'addBoat': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(105): error C2039: 'addBoat': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+  Generating Code...
+  Compiling...
+  Board.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+  Point.cpp
+  Game.cpp
   Generating Code...

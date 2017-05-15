@@ -1,9 +1,20 @@
 ﻿  Boat.cpp
-c:\users\tal\oop\project2\allfiles\boat.cpp(92): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(96): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(97): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(101): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(98): error C2039: 'increaseScore': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(102): error C2039: 'increaseScore': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(101): error C2039: 'addBoat': is not a member of 'IBattleshipGameAlgo'
+c:\users\tal\oop\project2\allfiles\boat.cpp(105): error C2039: 'addBoat': is not a member of 'IBattleshipGameAlgo'
   c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+  Generating Code...
+  Compiling...
+  Board.cpp
+  Generating Code...
+  Compiling...
+  SmartPlayer.cpp
+c:\users\tal\oop\project2\allfiles\smartplayer.cpp(125): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+  Point.cpp
+  PlayerBoard.cpp
+  Generating Code...
