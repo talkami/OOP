@@ -16,12 +16,17 @@ class GameBoard : public Board {
 	bool checkBoard();
 	bool checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAlgo* B);
 
+	//new fields
+	int PlayerAScore;
+	int PlayerBScore;
+	int PlayerANumOfBoats;
+	int PlayerBNumOfBoats;
 public:
 	GameBoard() : Board(), playerABoard(nullptr), playerBBoard(nullptr) {}
 	~GameBoard();
 
-	bool initBoard(const std::string& path, CommonPlayer* A, CommonPlayer* B, int rows, int cols, bool display);
-	bool loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlayer* B);
+	bool initBoard(const std::string& path, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B, int rows, int cols, bool display);
+	bool loadBoard(const std::string& boardFile, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B);
 
 	virtual void setVars() override;
 	AttackResult play_attack(std::pair <int, int> attack, int attacker, bool* selfHit);
@@ -38,4 +43,7 @@ public:
 	void displayBoard();
 	void displayAttack(AttackResult result, int x, int y, int delay);
 	void GameBoard::sinkBoatAnimation(Boat* boat, int color, int delay);
+
+	//new func
+
 };
