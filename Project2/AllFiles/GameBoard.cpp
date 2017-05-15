@@ -224,7 +224,11 @@ AttackResult GameBoard::play_attack(std::pair<int, int> attack, int attacker, bo
 	}
 	int row = attack.first - 1;
 	int col = attack.second - 1;
-	AttackResult result = matrix[row][col]->attack(attacker, selfHit);
+	AttackResult result = this->matrix[row][col]->attack(attacker, selfHit);
+	if (result == AttackResult::Sink){
+		removeBoat (this->matrix[row][col]->getBoat()->getPlayer());
+		increaseScore(this->matrix[row][col]->getBoat()->getValue(),this->matrix[row][col]->getBoat()->getPlayer());		
+	}
 	return result;
 }
 
