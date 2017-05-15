@@ -16,6 +16,11 @@ bool GameBoard::initBoard(const std::string& path, CommonPlayer* A, CommonPlayer
 	this->numOfRows = rows;
 	this->numOfCols = cols;
 	this->display = display;
+	this->PlayerAScore = 0;
+	this-> PlayerBScore = 0;
+	this-> PlayerANumOfBoats = 0;
+	this-> PlayerBNumOfBoats=0;
+	
 	std::string errorPath;
 	if (path == ".") {
 		errorPath = "Working Directory";
@@ -299,4 +304,63 @@ void GameBoard::sinkBoatAnimation(Boat* boat, int color, int delay) {
 		addToDisplay(points[i].second, points[i].first, 0, ' ');
 	}
 	Sleep(delay);
+}
+
+//new funcs
+bool GameBoard :: hasNoMoreBoats(int player){
+	if (this->PlayerANumOfBoats==0 && player==0){
+		return true;
+	}
+	else if (this->PlayerBNumOfBoats==0 && player==1){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+
+void GameBoard :: addBoat(int player){
+	if (player==0){
+		this->PlayerANumOfBoats++;
+	}
+	else if (player==1){
+		this->PlayerBNumOfBoats++;
+	}
+}
+
+void GameBoard :: removeBoat(int player){
+	if (player==0){
+		this->PlayerANumOfBoats--;
+	}
+	else if (player==1){
+		this->PlayerBNumOfBoats--;
+	}
+}
+	
+int GameBoard ::getNumOfBoats(int player){
+	if (player==0){
+		return this->PlayerANumOfBoats;
+	}
+	else if (player==1){
+		return this->PlayerBNumOfBoats;
+	}
+}
+	
+int GameBoard :: getGameScore(int player){
+	if (player==0){
+		return this->PlayerAScore;
+	}
+	else if (player==1){
+		return this->PlayerBScore;
+	}
+}
+	
+void GameBoard:: increaseScore(int amount, int player){
+	if (player==0){
+		this->PlayerAScore= this->PlayerAScore + amount;
+	}
+	else if (player==1){
+		this->PlayerBScore= this->PlayerBScore + amount;
+	}
 }
