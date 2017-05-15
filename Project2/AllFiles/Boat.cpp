@@ -3,7 +3,7 @@
 #include <iostream>
 
 //constructor
-Boat::Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* RivalPointer, Point* firstPoint) :
+Boat::Boat(int size, int player, IBattleshipGameAlgo* PlayerPointer, IBattleshipGameAlgo* RivalPointer, Point* firstPoint) :
 	boatSize(size),
 	direction(0),
 	acctualSize(1),
@@ -42,10 +42,10 @@ int Boat::getBoatSize() {
 int Boat::getAcctualSize() {
 	return this->acctualSize;
 }
-CommonPlayer* Boat::getOwner() {
+IBattleshipGameAlgo* Boat::getOwner() {
 	return this->owner;
 }
-CommonPlayer* Boat::getRival() {
+IBattleshipGameAlgo* Boat::getRival() {
 	return this->rival;
 }
 bool Boat::isSunk() {

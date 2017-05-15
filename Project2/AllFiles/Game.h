@@ -36,7 +36,7 @@ class Game {
 
 
 public:
-	Game() : displayGame(true), delay(900) {}
+	Game() : turn(0), displayGame(true), delay(900) {}
 	~Game();
 	bool initGame(int argc, char* argv[]);
 	bool playGame();

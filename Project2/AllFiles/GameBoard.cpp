@@ -11,7 +11,7 @@ GameBoard::~GameBoard() {
 	delete[]this->playerBBoard;
 }
 
-bool GameBoard::initBoard(const std::string& path, CommonPlayer* A, CommonPlayer* B, int rows, int cols, bool display) {
+bool GameBoard::initBoard(const std::string& path, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B, int rows, int cols, bool display) {
 	bool result = true;
 	this->numOfRows = rows;
 	this->numOfCols = cols;

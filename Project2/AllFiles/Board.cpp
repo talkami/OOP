@@ -38,7 +38,7 @@ void Board::setVars() {
 	}
 }
 
-void Board::addBoatToBoard(Point* point, int size, int player, CommonPlayer* owner, CommonPlayer* rival) {
+void Board::addBoatToBoard(Point* point, int size, int player, IBattleshipGameAlgo* owner, IBattleshipGameAlgo* rival) {
 	if (!point->getNear()) {
 		//there is no boat adjacent to current point
 		Boat* boat = new Boat(size, player, owner, rival, point);
@@ -64,7 +64,7 @@ void Board::addBoatToBoard(Point* point, int size, int player, CommonPlayer* own
 	}
 }
 
-void Board::checkAdjacentBoat(Boat* boat, Point* point, int size, int direction, int player, CommonPlayer* owner, CommonPlayer* rival) {
+void Board::checkAdjacentBoat(Boat* boat, Point* point, int size, int direction, int player, IBattleshipGameAlgo* owner, IBattleshipGameAlgo* rival) {
 	if (boat->getBoatSize() == size && boat->getPlayer() == player) {
 		if (boat->getDirection() == 0) {
 			boat->setDirection(direction);

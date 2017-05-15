@@ -8,6 +8,7 @@ Game::~Game() {
 	delete this->A;
 	delete this->B;
 }
+
 bool Game::initGame(int argc, char* argv[]) {
 	bool result = true;
 	std::string path = ".";
@@ -39,9 +40,8 @@ bool Game::initGame(int argc, char* argv[]) {
 bool Game::setupGame(const std::string& path) {
 	bool result;
 	result = this->gameBoard.initBoard(path, this->A, this->B, 10, 10, this->displayGame);
-	result = setupPlayers(path);
+	result = (result & setupPlayers(path));
 	if (result) {
-		this->turn = 0;
 		this->A->setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
 		this->B->setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
 		result = (result & this->A->init(path));
@@ -51,23 +51,27 @@ bool Game::setupGame(const std::string& path) {
 }
 
 bool Game::setupPlayers(const std::string& path) {
+	std::string errorPath;
+	if (path == ".") {
+		errorPath = "Working Directory";
+	}
+	else {
+		errorPath = path;
+	}
 
 	//dll file handler
 
 	HANDLE dir;
-
 	WIN32_FIND_DATAA fileData; //data struct for file
 
 	// define function of the type we expect
 
 	std::string s = "\\*.dll"; // only .dll endings
 	dir = FindFirstFileA((path + s).c_str(), &fileData); // Notice: Unicode compatible version of FindFirstFile
-	if (dir != INVALID_HANDLE_VALUE) //check if the dir opened successfully
-	{
-		for (int i = 0; i<2; i++)
-		{
+	if (dir != INVALID_HANDLE_VALUE) {//check if the dir opened successfully
+		for (int i = 0; i < 2; i++) {
 			if (!FindNextFileA(dir, &fileData)) {
-				std::cout << "less then 2 dll files" << std::endl;
+				std::cout << "Missing an algorithm (dll) file looking in path:" << errorPath << std::endl;
 				return false;
 			}
 			std::string fileName = fileData.cFileName;
@@ -76,22 +80,18 @@ bool Game::setupPlayers(const std::string& path) {
 
 			// Load dynamic library
 			HINSTANCE hDll = LoadLibraryA(fullFileName.c_str()); // Notice: Unicode compatible version of LoadLibrary
-			if (!hDll)
-			{
+			if (!hDll){
 				std::cout << "could not load the dynamic library" << std::endl;
 				return false;
 			}
 
 			// Get function pointer
 			getAlgorithmFunc = (GetAlgorithmFuncType)GetProcAddress(hDll, "GetAlgorithm");
-			if (!getAlgorithmFunc)
-			{
+			if (!getAlgorithmFunc){
 				std::cout << "could not load function GetAlgorithm()" << std::endl;
 				return false;
 			}
-
 			this->dll_vec.push_back(make_tuple(algoName, hDll, getAlgorithmFunc));
-
 		}
 	}
 	IBattleshipGameAlgo* playerA = (*std::get<2>(this->dll_vec[0]))();
