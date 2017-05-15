@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Board.h"
+#include "CommonPlayer.h"
 
 class PlayerBoard : public Board {
 
