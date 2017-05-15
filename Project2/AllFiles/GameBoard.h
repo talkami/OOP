@@ -12,8 +12,7 @@ class GameBoard : public Board {
 	int colors[2] = { 207,159 };
 	int PlayerAScore;
 	int PlayerBScore;
-	int PlayerANumOfBoats;
-	int PlayerBNumOfBoats;
+
 
 
 	void addToPlayerBoard(char currentChar, int row, int col, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B);
@@ -46,7 +45,6 @@ public:
 
 	//new func
 	bool hasNoMoreBoats(int player);
-	void addBoat(int player);
 	void removeBoat(int player);
 	int getNumOfBoats(int player);
 	int getGameScore(int player);

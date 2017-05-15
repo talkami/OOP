@@ -43,6 +43,12 @@ void Board::addBoatToBoard(Point* point, int size, int player, IBattleshipGameAl
 		//there is no boat adjacent to current point
 		Boat* boat = new Boat(size, player, owner, rival, point);
 		point->setBoat(boat);
+		if (player == 0){
+			this->PlayerANumOfBoats++;
+		}
+		else{
+			this->PlayerBNumOfBoats++;
+		}
 	}
 	else {
 		//there is a boat adjacent to current point
