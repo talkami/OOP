@@ -56,6 +56,10 @@ bool Boat::isSunk() {
 		return false;
 	}
 }
+int Boat :: getValue (){
+	return this->value;
+}
+
 bool Boat::isValid() {
 	return this->validity;
 }
