@@ -2,7 +2,7 @@
 
 #include "Board.h"
 #include "SeaBattleBoardLister.h"
-#include<windows.h>
+#include <windows.h>
 
 class GameBoard : public Board {
 	bool errorArray[8] = { false };
@@ -11,10 +11,10 @@ class GameBoard : public Board {
 	bool display;
 	int colors[2] = { 207,159 };
 
-	void addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B);
+	void addToPlayerBoard(char currentChar, int row, int col, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B);
 	void checkBoatValidity();
 	bool checkBoard();
-	bool checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B);
+	bool checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAlgo* B);
 
 public:
 	GameBoard() : Board(), playerABoard(nullptr), playerBBoard(nullptr) {}

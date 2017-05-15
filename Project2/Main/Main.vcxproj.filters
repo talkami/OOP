@@ -21,9 +21,6 @@
     <ClCompile Include="..\AllFiles\Boat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\AllFiles\CommonPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\AllFiles\FilesLister.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\AllFiles\Boat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\AllFiles\CommonPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\AllFiles\dirent.h">

@@ -39,6 +39,9 @@
     <ClInclude Include="..\AllFiles\IBattleshipGameAlgo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\AllFiles\AttackFileLister.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AllFiles\CommonPlayer.cpp">

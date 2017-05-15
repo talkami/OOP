@@ -36,7 +36,7 @@ bool GameBoard::initBoard(const std::string& path, CommonPlayer* A, CommonPlayer
 }
 
 //load GameBoard function
-bool GameBoard::loadBoard(const std::string& boardFile, CommonPlayer* A, CommonPlayer* B) {
+bool GameBoard::loadBoard(const std::string& boardFile, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B) {
 	bool result = true;
 	setVars();
 
@@ -90,7 +90,7 @@ void GameBoard::setVars() {
 }
 
 //checking the char read from the file and putting the boat on the board
-void GameBoard::addToPlayerBoard(char currentChar, int row, int col, CommonPlayer* A, CommonPlayer* B) {
+void GameBoard::addToPlayerBoard(char currentChar, int row, int col, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B) {
 
 	if (currentChar == 'B') {
 		addBoatToBoard(this->matrix[row][col], 1, 0, A, B);
@@ -185,7 +185,7 @@ bool GameBoard::checkBoard() {
 }
 
 //checking each player have the right amount of boats
-bool GameBoard::checkNumOfPlayersBoats(CommonPlayer* A, CommonPlayer* B) {
+bool GameBoard::checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAlgo* B) {
 	bool result = true;
 	if (A != nullptr) {
 		int numOfBoatsA = A->getNumOfBoats();

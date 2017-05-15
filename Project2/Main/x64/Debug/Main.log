@@ -1,12 +1,2 @@
-﻿  Point.cpp
-  main.cpp
-  GameBoard.cpp
-  Game.cpp
-  FilesListerWithSuffix.cpp
-  FilesLister.cpp
-  CommonPlayer.cpp
-  Boat.cpp
-  Board.cpp
-  Generating Code...
-  Main.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Main.exe
-  Main.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Main.pdb (Partial PDB)
+﻿  Game.cpp
+c:\users\tal\oop\project2\allfiles\game.cpp(37): error C3861: 'setupPlayers': identifier not found

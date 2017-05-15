@@ -4,7 +4,7 @@ Game::~Game() {
 	delete this->A;
 	delete this->B;
 }
-bool Game::initGame(int argc, char* argv[], CommonPlayer* playerA, CommonPlayer* playerB) {
+bool Game::initGame(int argc, char* argv[]) {
 	bool result = true;
 	std::string path = ".";
 	DIR * dir;
@@ -25,19 +25,17 @@ bool Game::initGame(int argc, char* argv[], CommonPlayer* playerA, CommonPlayer*
 		result = false;
 	}
 	closedir(dir);
+
 	if (result) {
 		result = setupGame(path);
 	}
-	this->A = playerA;
-	this->B = playerB;
 	return result;
 }
 
 bool Game::setupGame(const std::string& path) {
 	bool result;
-	//this->A = new SmartPlayer();
-	//this->B = new SmartPlayer();
 	result = this->gameBoard.initBoard(path, this->A, this->B, 10, 10, this->displayGame);
+	result = setupPlayers(path);
 	if (result) {
 		this->turn = 0;
 		this->A->setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);

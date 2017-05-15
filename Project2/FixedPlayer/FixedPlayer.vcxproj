@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClInclude Include="..\AllFiles\AttackAFileLister.h" />
     <ClInclude Include="..\AllFiles\AttackBFileLister.h" />
+    <ClInclude Include="..\AllFiles\AttackFileLister.h" />
     <ClInclude Include="..\AllFiles\CommonPlayer.h" />
     <ClInclude Include="..\AllFiles\dirent.h" />
     <ClInclude Include="..\AllFiles\FilesLister.h" />

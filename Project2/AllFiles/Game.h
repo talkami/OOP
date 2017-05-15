@@ -1,14 +1,14 @@
 #pragma once
 
-#include "CommonPlayer.h"
+#include "IBattleshipGameAlgo.h
 #include "GameBoard.h"
 
 
 class Game {
 	bool displayGame;
 	int delay;
-	CommonPlayer* A;
-	CommonPlayer* B;
+	IBattleshipGameAlgo* A;
+	IBattleshipGameAlgo* B;
 	GameBoard gameBoard;
 	int turn; //0 for player A, 1 for player B, -1 for victory, -2 if game ended without a victory
 	char winner;
@@ -16,11 +16,12 @@ class Game {
 
 	bool setNextTurn(AttackResult res, bool selfHit);
 	bool setupGame(const std::string& path);
+	bool setupPlayers(const std::string& path);
 
 public:
 	Game() : displayGame(true), delay(900) {}
 	~Game();
-	bool initGame(int argc, char* argv[], CommonPlayer* playerA, CommonPlayer* playerB);
+	bool initGame(int argc, char* argv[]);
 	bool playGame();
 	bool endGame();
 

@@ -6,7 +6,6 @@
 #include <utility> 
 
 class FixedPlayer : public CommonPlayer {
-	char player_board;
 	std::vector<std::pair<int, int>> attackMoves;
 	int attackNumber;
 	size_t maxMoves;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "CommonPlayer.h"
 #include "IBattleShipGameAlgo.h"
+#include <vector>
 
 class Point;
 
@@ -12,8 +12,8 @@ class Boat {
 	int player;
 	int hits;
 	int value;
-	CommonPlayer* owner;
-	CommonPlayer* rival;
+	IBattleshipGameAlgo* owner;
+	IBattleshipGameAlgo* rival;
 	std::vector<Point*> pointsArray;
 	bool validity;
 
@@ -24,7 +24,7 @@ class Boat {
 
 public:
 	Boat() {}
-	Boat(int size, int player, CommonPlayer* PlayerPointer, CommonPlayer* RivalPointer, Point* firstPoint);
+	Boat(int size, int player, IBattleshipGameAlgo* PlayerPointer, IBattleshipGameAlgo* RivalPointer, Point* firstPoint);
 	~Boat();
 
 	int getNumOftHits();
@@ -32,8 +32,8 @@ public:
 	int getPlayer();
 	int getBoatSize();
 	int getAcctualSize();
-	CommonPlayer* getOwner();
-	CommonPlayer* getRival();
+	IBattleshipGameAlgo* getOwner();
+	IBattleshipGameAlgo* getRival();
 	bool isSunk();
 	bool isValid();
 	void addHit();
