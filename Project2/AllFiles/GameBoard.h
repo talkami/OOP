@@ -45,5 +45,11 @@ public:
 	void GameBoard::sinkBoatAnimation(Boat* boat, int color, int delay);
 
 	//new func
+	bool hasNoMoreBoats(int player);
+	void addBoat(int player);
+	void removeBoat(int player);
+	int getNumOfBoats(int player);
+	int getGameScore(int player);
+	void increaseScore(int amount, int player);
 
 };
