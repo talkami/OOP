@@ -16,6 +16,8 @@ class Game {
 	GetAlgorithmFuncType getAlgorithmFunc;
 
 	bool displayGame;
+	bool AFinishedAttacking;
+	bool BFinishedAttacking;
 	int delay;
 	IBattleshipGameAlgo* A;
 	IBattleshipGameAlgo* B;
@@ -28,15 +30,9 @@ class Game {
 	bool setNextTurn(AttackResult res, bool selfHit);
 	bool setupGame(const std::string& path);
 	bool setupPlayers(const std::string& path);
-	// added fields
-	bool HasPlayerAFinishedAttacking;
-	bool HasPlayerBFinishedAttacking;
-	bool DoesPlayerAOutOfBoats;
-	bool DoesPlayerBOutOfBoats;
-
 
 public:
-	Game() : turn(0), displayGame(true), delay(900) {}
+	Game() : AFinishedAttacking(false), BFinishedAttacking(false), turn(0), displayGame(true), delay(900) {}
 	~Game();
 	bool initGame(int argc, char* argv[]);
 	bool playGame();

@@ -10,17 +10,17 @@ class GameBoard : public Board {
 	char** playerBBoard;
 	bool display;
 	int colors[2] = { 207,159 };
+	int PlayerAScore;
+	int PlayerBScore;
+	int PlayerANumOfBoats;
+	int PlayerBNumOfBoats;
+
 
 	void addToPlayerBoard(char currentChar, int row, int col, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B);
 	void checkBoatValidity();
 	bool checkBoard();
 	bool checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAlgo* B);
 
-	//new fields
-	int PlayerAScore;
-	int PlayerBScore;
-	int PlayerANumOfBoats;
-	int PlayerBNumOfBoats;
 public:
 	GameBoard() : Board(), playerABoard(nullptr), playerBBoard(nullptr) {}
 	~GameBoard();

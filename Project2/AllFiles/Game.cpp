@@ -115,6 +115,12 @@ bool Game::playGame() {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
 			return false;
 		}if (nextMove.first == -1 || nextMove.second == -1) {
+			if (turn == 0) {
+				this->AFinishedAttacking = true;
+			}
+			else if (turn == 1){
+				this->BFinishedAttacking;
+			}
 			if (!(this->setNextTurn(AttackResult::Miss, false))) {
 				return false;
 			}
@@ -158,24 +164,22 @@ bool Game::playGame() {
 
 bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory
-	if (this->A->hasNoMoreBoats()) {
+	if (this->gameBoard.hasNoMoreBoats(0)) {
 		//player A is out of boats - player B wins
 		this->winner = 'B';
-		this->B->addWin();
 		this->turn = -1;
 		return true;
 	}
-	else if (this->B->hasNoMoreBoats()) {
+	else if (this->gameBoard.hasNoMoreBoats(1)) {
 		//player B is out of boats - player A wins
 		this->winner = 'A';
-		this->A->addWin();
 		this->turn = -1;
 		return true;
 	}
 
 	//check if one or both playes have finished attacking
-	if (this->A->hasFinishedAttacking()) {
-		if (this->B->hasFinishedAttacking()) {
+	if (this->AFinishedAttacking) {
+		if (this->BFinishedAttacking) {
 			//both players have finished attacking - end the game
 			this->turn = -2;
 			return true;
@@ -187,7 +191,7 @@ bool Game::setNextTurn(AttackResult res, bool selfHit) {
 			return true;
 		}
 	}
-	else if (this->B->hasFinishedAttacking()) {
+	else if (this->BFinishedAttacking) {
 		//player B has finished attacking, player A still has moves
 
 		this->turn = 0;
@@ -219,8 +223,8 @@ bool Game::endGame() {
 		std::cout << "Player " << this->winner << " won" << std::endl;
 	case -2:
 		std::cout << "Points:" << std::endl;
-		std::cout << "Player A: " << this->A->getGameScore() << std::endl;
-		std::cout << "Player B: " << this->B->getGameScore() << std::endl;
+		std::cout << "Player A: " << this->gameBoard.getGameScore(0) << std::endl;
+		std::cout << "Player B: " << this->gameBoard.getGameScore(1) << std::endl;
 		return true;
 	default:
 		std::cout << "Error! reached 'endGame' function with invalid 'turn'" << std::endl;
