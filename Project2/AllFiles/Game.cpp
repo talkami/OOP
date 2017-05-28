@@ -13,7 +13,6 @@ bool Game::initGame(int argc, char* argv[]) {
 	bool result = true;
 	std::string path = ".";
 	DIR * dir;
-
 	for (int i = 1; i < argc; i++) {
 		if (strcmp(argv[i], "-quiet") == 0) {
 			this->displayGame = false;
@@ -47,55 +46,51 @@ bool Game::setupGame(const std::string& path) {
 		result = (result & this->A->init(path));
 		result = (result & this->B->init(path));
 	}
+	if (result && this->displayGame) {
+		this->gameBoard.displayBoard();
+	}
+
 	return result;
 }
 
 bool Game::setupPlayers(const std::string& path) {
-	std::string errorPath;
-	if (path == ".") {
-		errorPath = "Working Directory";
-	}
-	else {
-		errorPath = path;
-	}
-
-	//dll file handler
-
 	HANDLE dir;
 	WIN32_FIND_DATAA fileData; //data struct for file
-
-	// define function of the type we expect
-
 	std::string s = "\\*.dll"; // only .dll endings
 	dir = FindFirstFileA((path + s).c_str(), &fileData); // Notice: Unicode compatible version of FindFirstFile
 	if (dir != INVALID_HANDLE_VALUE) {//check if the dir opened successfully
 		for (int i = 0; i < 2; i++) {
-			if (!FindNextFileA(dir, &fileData)) {
-				std::cout << "Missing an algorithm (dll) file looking in path:" << errorPath << std::endl;
-				return false;
-			}
 			std::string fileName = fileData.cFileName;
 			std::string fullFileName = path + "\\" + fileName;
 			std::string algoName = fileName.substr(0, fileName.find("."));
-
 			// Load dynamic library
 			HINSTANCE hDll = LoadLibraryA(fullFileName.c_str()); // Notice: Unicode compatible version of LoadLibrary
 			if (!hDll){
-				std::cout << "could not load the dynamic library" << std::endl;
+				std::cout << "Cannot load dll: " << fullFileName << std::endl;
 				return false;
 			}
 
 			// Get function pointer
 			getAlgorithmFunc = (GetAlgorithmFuncType)GetProcAddress(hDll, "GetAlgorithm");
 			if (!getAlgorithmFunc){
-				std::cout << "could not load function GetAlgorithm()" << std::endl;
+				std::cout << "Cannot load dll: " << fullFileName << std::endl;
 				return false;
 			}
 			this->dll_vec.push_back(make_tuple(algoName, hDll, getAlgorithmFunc));
+			if (!FindNextFileA(dir, &fileData) && i==0) {
+				std::cout << "Missing an algorithm (dll) file looking in path: ";
+				std::cout << (path == "." ? "Working Directory" : path) << std::endl;
+				return false;
+			}
 		}
 	}
-	IBattleshipGameAlgo* playerA = (*std::get<2>(this->dll_vec[0]))();
-	IBattleshipGameAlgo* playerB =  (*std::get<2>(this->dll_vec[1]))();
+	else {
+		std::cout << "Missing an algorithm (dll) file looking in path: ";
+		std::cout << (path == "." ? "Working Directory" : path) << std::endl;
+		return false;
+	}
+	this->A = (*std::get<2>(this->dll_vec[0]))();
+	this->B = (*std::get<2>(this->dll_vec[1]))();
 
 	return true;
 }
@@ -125,24 +120,8 @@ bool Game::playGame() {
 				return false;
 			}
 		}
-		/**/
-		if (turn == 0) {
-			std::cout << "player A is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
-		}if (turn == 1) {
-			std::cout << "player B is about to attack at: " << nextMove.first << " , " << nextMove.second << std::endl;
-		}
 		bool selfHit = false;
 		res = this->gameBoard.play_attack(nextMove, this->turn, &selfHit);
-		std::cout << "attack result is: ";
-		if (res == AttackResult::Hit) {
-			std::cout << "hit" << std::endl;
-		}
-		else if (res == AttackResult::Miss) {
-			std::cout << "miss" << std::endl;
-		}
-		else if (res == AttackResult::Sink) {
-			std::cout << "sink" << std::endl;
-		}
 
 		this->A->notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
 		this->B->notifyOnAttackResult(turn, nextMove.first, nextMove.second, res);
@@ -160,7 +139,6 @@ bool Game::playGame() {
 
 	return true;
 }
-
 
 bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory

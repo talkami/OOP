@@ -1,0 +1,15 @@
+﻿  Board.cpp
+  Boat.cpp
+  CommonPlayer.cpp
+  NaivePlayer.cpp
+..\AllFiles\NaivePlayer.cpp(48): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\allfiles\IBattleshipGameAlgo.h(26): note: see previous definition of 'GetAlgorithm'
+  PlayerBoard.cpp
+  Point.cpp
+  Running Code Analysis for C/C++...
+     Creating library C:\Users\tal\OOP\Project2\x64\Release\NaivePlayer.lib and object C:\Users\tal\OOP\Project2\x64\Release\NaivePlayer.exp
+  Generating code
+  All 239 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  NaivePlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Release\NaivePlayer.dll
+  NaivePlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Release\NaivePlayer.pdb (Full PDB)

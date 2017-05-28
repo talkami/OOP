@@ -1,5 +1,7 @@
 ﻿  FixedPlayer.cpp
-c:\users\tal\oop\project2\allfiles\fixedplayer.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(26): note: see previous definition of 'GetAlgorithm'
+  FilesListerWithSuffix.cpp
+  FilesLister.cpp
+  CommonPlayer.cpp
+  Generating Code...
   FixedPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\FixedPlayer.dll
   FixedPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\FixedPlayer.pdb (Partial PDB)

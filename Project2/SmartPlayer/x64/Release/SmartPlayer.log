@@ -1,0 +1,15 @@
+﻿  Board.cpp
+  Boat.cpp
+  CommonPlayer.cpp
+  PlayerBoard.cpp
+  Point.cpp
+  SmartPlayer.cpp
+..\AllFiles\SmartPlayer.cpp(125): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\allfiles\IBattleshipGameAlgo.h(26): note: see previous definition of 'GetAlgorithm'
+  Running Code Analysis for C/C++...
+     Creating library C:\Users\tal\OOP\Project2\x64\Release\SmartPlayer.lib and object C:\Users\tal\OOP\Project2\x64\Release\SmartPlayer.exp
+  Generating code
+  All 328 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  SmartPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Release\SmartPlayer.dll
+  SmartPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Release\SmartPlayer.pdb (Full PDB)

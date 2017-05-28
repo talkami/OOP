@@ -1,18 +1,5 @@
 ﻿  GameBoard.cpp
-c:\users\tal\oop\project2\allfiles\gameboard.cpp(145): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\gameboard.cpp(196): error C2039: 'getNumOfBoats': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\gameboard.cpp(207): error C2039: 'getNumOfBoats': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-  Boat.cpp
-c:\users\tal\oop\project2\allfiles\boat.cpp(96): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(101): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(102): error C2039: 'increaseScore': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(105): error C2039: 'addBoat': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-  Board.cpp
-  Generating Code...
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(337): warning C4715: 'GameBoard::getNumOfBoats': not all control paths return a value
+c:\users\tal\oop\project2\allfiles\gameboard.cpp(346): warning C4715: 'GameBoard::getGameScore': not all control paths return a value
+  Main.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Main.exe
+  Main.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\Main.pdb (Partial PDB)

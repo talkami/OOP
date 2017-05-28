@@ -1,7 +1,6 @@
 #pragma once
 #include "CommonPlayer.h"
-#include "AttackAFileLister.h"
-#include "AttackBFileLister.h"
+#include "AttackFileLister.h"
 #include <vector>
 #include <utility> 
 

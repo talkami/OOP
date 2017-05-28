@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\AllFiles\AttackAFileLister.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\AllFiles\AttackBFileLister.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\AllFiles\CommonPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>

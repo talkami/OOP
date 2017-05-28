@@ -1,4 +1,3 @@
-
 #include "FixedPlayer.h"
 #include <iostream>
 #include <fstream>
@@ -11,8 +10,6 @@ void FixedPlayer::setBoard(int player, const char** board, int numRows, int numC
 }
 
 bool FixedPlayer::init(const std::string & path) {
-
-	bool result = true;
 	std::string errorPath;
 	if (path == ".") {
 		errorPath = "Working Directory";
@@ -20,27 +17,18 @@ bool FixedPlayer::init(const std::string & path) {
 	else {
 		errorPath = path;
 	}
-	if (this->playerNum == 0) {
-		AttackAFileLister playerAFileLister = AttackAFileLister(path);
-		if (playerAFileLister.getFilesList().size() == 0) {
-			std::cout << "Missing attack file for player A (*.attack-a) looking in path: " << errorPath << std::endl;
-			result = false;
-		}
-		if (result) {
-			getMoves(playerAFileLister.getFilesList()[0]);
-		}
-
+	AttackFileLister playerFileLister = AttackFileLister(path);
+	if (playerFileLister.getFilesList().size() == 0) {
+		return false;
+	}
+	else if (playerFileLister.getFilesList().size() == 1) {
+		getMoves(playerFileLister.getFilesList()[0]);
 	}
 	else {
-		AttackBFileLister playerBFileLister = AttackBFileLister(path);
-		if (playerBFileLister.getFilesList().size() == 0) {
-			std::cout << "Missing attack file for player B (*.attack-b) looking in path: " << errorPath << std::endl;
-			result = false;
-		}if (result) {
-			getMoves(playerBFileLister.getFilesList()[0]);
-		}
+		getMoves(playerFileLister.getFilesList()[this->playerNum]);
 	}
-	return result;
+
+	return true;
 }
 
 std::pair<int, int> FixedPlayer::attack() {

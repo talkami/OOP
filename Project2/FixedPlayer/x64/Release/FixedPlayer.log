@@ -1,0 +1,13 @@
+﻿  CommonPlayer.cpp
+  FilesLister.cpp
+  FilesListerWithSuffix.cpp
+  FixedPlayer.cpp
+..\AllFiles\FixedPlayer.cpp(99): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\project2\allfiles\IBattleshipGameAlgo.h(26): note: see previous definition of 'GetAlgorithm'
+  Running Code Analysis for C/C++...
+     Creating library C:\Users\tal\OOP\Project2\x64\Release\FixedPlayer.lib and object C:\Users\tal\OOP\Project2\x64\Release\FixedPlayer.exp
+  Generating code
+  All 589 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  FixedPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Release\FixedPlayer.dll
+  FixedPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Release\FixedPlayer.pdb (Full PDB)

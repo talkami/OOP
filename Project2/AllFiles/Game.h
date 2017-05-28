@@ -2,14 +2,12 @@
 
 #include "IBattleshipGameAlgo.h"
 #include "GameBoard.h"
-#include <iostream> 
 #include <map> 
 #include <vector>
 #include <string> 
 #include <stdio.h> 
 #include <stdlib.h>
 #include <windows.h>
-
 
 class Game {
 	typedef IBattleshipGameAlgo *(*GetAlgorithmFuncType)();

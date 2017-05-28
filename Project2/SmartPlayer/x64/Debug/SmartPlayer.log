@@ -1,11 +1,9 @@
-﻿  Boat.cpp
-c:\users\tal\oop\project2\allfiles\boat.cpp(96): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(101): error C2039: 'removeBoat': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(102): error C2039: 'increaseScore': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
-c:\users\tal\oop\project2\allfiles\boat.cpp(105): error C2039: 'addBoat': is not a member of 'IBattleshipGameAlgo'
-  c:\users\tal\oop\project2\allfiles\ibattleshipgamealgo.h(11): note: see declaration of 'IBattleshipGameAlgo'
+﻿  SmartPlayer.cpp
+  Point.cpp
+  PlayerBoard.cpp
+  CommonPlayer.cpp
+  Boat.cpp
   Board.cpp
   Generating Code...
+  SmartPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\SmartPlayer.dll
+  SmartPlayer.vcxproj -> C:\Users\tal\OOP\Project2\x64\Debug\SmartPlayer.pdb (Partial PDB)

@@ -125,7 +125,7 @@ void Board::mergeBoats(Boat* boat1, Boat* boat2, int direction) {
 	if (boat1->getPlayer() == 0) {
 		PlayerANumOfBoats--;
 	}
-	else {
+	else if (boat1->getPlayer() == 1) {
 		PlayerBNumOfBoats--;
 	}
 }

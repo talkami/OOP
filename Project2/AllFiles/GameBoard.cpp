@@ -73,9 +73,6 @@ bool GameBoard::loadBoard(const std::string& boardFile, IBattleshipGameAlgo* A, 
 		std::cout << "Adjacent Ships on Board" << std::endl;
 	}
 
-	if (result && this->display) {
-		displayBoard();
-	}
 	return result;
 }
 
@@ -141,8 +138,11 @@ void GameBoard::checkBoatValidity() {
 				if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
 					int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
 					errorArray[errorNum] = true;
-					if (boat->getRival() != nullptr) {
-						boat->getOwner()->removeBoat();
+					if (boat->getPlayer() == 0) {
+						this->PlayerANumOfBoats--;
+					}
+					else if (boat->getPlayer() == 1) {
+						this->PlayerBNumOfBoats--;
 					}
 					delete boat;
 				}
@@ -192,27 +192,21 @@ bool GameBoard::checkBoard() {
 //checking each player have the right amount of boats
 bool GameBoard::checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAlgo* B) {
 	bool result = true;
-	if (A != nullptr) {
-		int numOfBoatsA = A->getNumOfBoats();
-		if (numOfBoatsA < 5) {
-			result = false;
-			std::cout << "Too few ships for player A" << std::endl;
-		}
-		if (numOfBoatsA > 5) {
-			result = false;
-			std::cout << "Too many ships for player A" << std::endl;
-		}
+	if (this->PlayerANumOfBoats < 5) {
+		result = false;
+		std::cout << "Too few ships for player A" << std::endl;
 	}
-	if (B != nullptr) {
-		int numOfBoatsB = B->getNumOfBoats();
-		if (numOfBoatsB < 5) {
-			result = false;
-			std::cout << "Too few ships for player B" << std::endl;
-		}
-		if (numOfBoatsB > 5) {
-			result = false;
-			std::cout << "Too many ships for player B" << std::endl;
-		}
+	if (this->PlayerANumOfBoats > 5) {
+		result = false;
+		std::cout << "Too many ships for player A" << std::endl;
+	}
+	if (this->PlayerBNumOfBoats < 5) {
+		result = false;
+		std::cout << "Too few ships for player B" << std::endl;
+	}
+	if (this->PlayerBNumOfBoats > 5) {
+		result = false;
+		std::cout << "Too many ships for player B" << std::endl;
 	}
 	return result;
 }
@@ -352,10 +346,10 @@ int GameBoard :: getGameScore(int player){
 }
 	
 void GameBoard:: increaseScore(int amount, int player){
-	if (player==0){
+	if (player==1){
 		this->PlayerAScore= this->PlayerAScore + amount;
 	}
-	else if (player==1){
+	else if (player==0){
 		this->PlayerBScore= this->PlayerBScore + amount;
 	}
 }
