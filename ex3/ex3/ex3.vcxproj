@@ -19,11 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeneralGameManager.h" />
+    <ClInclude Include="dirent.h" />
+    <ClInclude Include="FilesLister.h" />
+    <ClInclude Include="FilesListerWithSuffix.h" />
+    <ClInclude Include="GameBoard.h" />
     <ClInclude Include="IBattleshipGameAlgo.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBoard.h" />
     <ClInclude Include="SingleGame.h" />
+    <ClInclude Include="TournamentManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FilesLister.cpp" />
+    <ClCompile Include="FilesListerWithSuffix.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TournamentManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{86236961-73AE-4C19-9E16-4DE5FFB41A34}</ProjectGuid>

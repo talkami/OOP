@@ -2,7 +2,7 @@
 #include "IBattleshipGameAlgo.h"
 
 class Player : IBattleshipGameAlgo{
-	int player;
+	int playerNum;
 	BoardData* board;
 
 	Coordinate findNextAttack();
