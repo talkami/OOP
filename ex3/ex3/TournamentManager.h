@@ -15,13 +15,13 @@ class TournamentManager {
 	int numOfThreads = 0;
 	FilesListerWithSuffix boardFileLister;
 	std::vector<GameBoard*> gameBoards;
-	std::vector<std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType>> dll_vec;
+	std::vector<std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType>> players_vec;
 	std::vector<std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType>>::iterator vitr;
 
 	bool getBoards(const std::string& path);
 	bool getDLLs(const std::string& path);
 
 public:
-	bool initGame(int argc, char* argv[]);
+	bool initGame(std::string path, int threads);
 	bool playGame();
 };
