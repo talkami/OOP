@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Board.h"
-#include "CommonPlayer.h"
 
 class PlayerBoard : public Board {
 
@@ -9,6 +8,8 @@ class PlayerBoard : public Board {
 	void setInvalidArea(Point* point);
 	void setInvalidHorizontal(Point* point);
 	void setInvalidVertical(Point* point);
+
+	
 
 public:
 	PlayerBoard() : Board() {}

@@ -5,6 +5,7 @@ class PlayerBoard : BoardData{
 	int _rows = 0;
 	int _cols = 0;
 	int _depth = 0; 
+	vector<vector<vector <char> > > board;
 	 
 
 	void invalidatePoint(Coordinate c);
