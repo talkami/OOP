@@ -13,15 +13,12 @@ bool TournamentManager::initGame(std::string path, int threads) {
 	closedir(dir);
 	
 	setUpLogger(path);
-	this->logger.logMessage("test message1");
-	Sleep(1000);
-	this->logger.logMessage("test message2");
-	/*result = getBoards(path) && getDLLs(path);
+result = getBoards(path) && getDLLs(path);
 	std::cout << "Number of legal players: " << this->players_vec.size() << std::endl;
 	std::cout << "Number of legal boards: " << this->gameBoards.size() << std::endl;
 
 	createPlayerData();
-	createGameCombinations();*/
+	createGameCombinations();
 	return result;
 }
 
@@ -47,6 +44,7 @@ bool TournamentManager::getBoards(const std::string & path){
 		return false;
 	}
 
+	
 	return true;
 }
 

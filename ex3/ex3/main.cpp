@@ -20,10 +20,10 @@ int main(int argc, char* argv[]) {
 	if (!initializedSuccessfully) {
 		return -1;
 	}
-	/*successfulPlay = game->playGame();
+	successfulPlay = game->playGame();
 	if (!successfulPlay) {
 	return -1;
-	}*/
+	}
 
 	return 0;
 }

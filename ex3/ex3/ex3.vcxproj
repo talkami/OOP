@@ -35,6 +35,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="TournamentManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
