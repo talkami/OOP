@@ -268,21 +268,30 @@ void Board::checkAdjacentBoat(Boat* boat, int row, int col, int depth, int size,
 
 //checking that all boats are of correct size and shape
 void GameBoard::checkBoatValidity() {
-	for (int i = 0; i < this->numOfRows; i++) {
-		for (int j = 0; j < this->numOfCols; j++) {
-			Boat* boat = this->matrix[i][j]->getBoat();
-			if (boat != nullptr) {
-				if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
-					int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
-					errorArray[errorNum] = true;
-					if (boat->getPlayer() == 0) {
-						this->PlayerANumOfBoats--;
-					}
-					else if (boat->getPlayer() == 1) {
-						this->PlayerBNumOfBoats--;
-					}
-					delete boat;
+	for(int dep =0 ; dep< this->depth; dep++ ){
+		for (int i = 0; i < this->row; i++) {
+			for (int j = 0; j < this->col; j++) {
+				
+				Boat* boat = nullptr;
+				if (this->playerABoard->getBoatAt(row, col, depth) != nullptr){
+					boat = this->playerABoard->getBoatAt(row, col, depth) != nullptr;
 				}
+				else if (this->playerBBoard->getBoatAt(row, col, depth) != nullptr){
+					boat = this->playerBBoard->getBoatAt(row, col, depth) != nullptr;
+				}
+
+				if (boat != nullptr) {
+					if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
+						int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
+						errorArray[errorNum] = true;
+						if (boat->getPlayer() == 0) {
+							this->playerABoard->removeBoat(boat);
+						}
+						else if (boat->getPlayer() == 1) {
+							this->playerBBoard->removeBoat(boat);
+						}
+						delete boat;
+					}
 			}
 		}
 	}
@@ -356,6 +365,9 @@ bool GameBoard::checkBoard() {
 	return result;
 }
 
+
+//delete??
+
 //checking each player have the right amount of boats
 bool GameBoard::checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAlgo* B) {
 	bool result = true;
@@ -378,6 +390,8 @@ bool GameBoard::checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAl
 	return result;
 }
 
+//delete??
+
 // attack function - get pair and attack at the <x,y> point in the "matrix" variable.
 AttackResult GameBoard::play_attack(std::pair<int, int> attack, int attacker, bool* selfHit) {
 	if (attack.first == -1 || attack.second == -1) {
@@ -393,12 +407,14 @@ AttackResult GameBoard::play_attack(std::pair<int, int> attack, int attacker, bo
 	return result;
 }
 
-char** GameBoard::getPlayerABoard() {
+vector<vector<vector <char> > > Board::getPlayerABoard() {
 	return this->playerABoard;
 }
-char** GameBoard::getPlayerBBoard() {
+vector<vector<vector <char> > > Board::getPlayerBBoard() {
 	return this->playerBBoard;
 }
+
+//delete??
 
 void GameBoard::gotoxy(int x, int y) {
 	COORD coord;
