@@ -289,7 +289,7 @@ void GameBoard::checkBoatValidity() {
 }
 
 
-void Board::mergeBoats(Boat* boat1, Boat* boat2, int direction) {
+void Board::mergeBoats(Boat* boat1, Boat* boat2, int direction, ownerBoard) {
 
 	//make sure boat1 is bigger (we will later 'copy' boat2 onto boat1, this makes the process 'easier') 
 	if (boat2->getAcctualSize() > boat1->getAcctualSize()) {
@@ -307,15 +307,15 @@ void Board::mergeBoats(Boat* boat1, Boat* boat2, int direction) {
 	else if (boat1->getDirection() != boat2->getDirection()) {
 		boat1->setValidity(false);
 	}
-
+	//need to decide where this number is kept
 	//merge the boats
 	boat1->mergeBoats(boat2);
-	if (boat1->getPlayer() == 0) {
-		PlayerANumOfBoats--;
-	}
-	else if (boat1->getPlayer() == 1) {
-		PlayerBNumOfBoats--;
-	}
+//	if (boat1->getPlayer() == 0) {
+	//	PlayerANumOfBoats--;
+	//}
+	//else if (boat1->getPlayer() == 1) {
+		//PlayerBNumOfBoats--;
+	//}
 }
 
 bool GameBoard::checkBoard() {
