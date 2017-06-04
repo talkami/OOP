@@ -88,7 +88,14 @@ bool GameBoard::loadBoard(const std::string& boardFile) {
 		buffer.erase(0, position + delimiter.length());
 		parameter ++;
 	}
-	
+	//init boards fields
+	 vector<vector<vector<char>>> board(this->col, vector<char>(this->row), vector<vector<char>>(this->depth));
+	 this-> board = board;
+	 vector<vector<vector<char>>> A(this->col, vector<char>(this->row), vector<vector<char>>(this->depth));
+	 this->playerABoard = A;
+	 vector<vector<vector<char>>> B(this->col, vector<char>(this->row), vector<vector<char>>(this->depth));
+	 this->playerBBoard = B;
+
 	// for depth of the Board
 	for(int dep =0 ; dep< this->depth; dep++ ){
 	// ignore 1 space line
@@ -124,58 +131,107 @@ bool GameBoard::loadBoard(const std::string& boardFile) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //maybe dont need it
-void GameBoard::setVars() {
-	Board::setVars();
-
-	this->playerABoard = new char *[this->numOfRows];
-	this->playerBBoard = new char *[this->numOfRows];
-
-	for (int i = 0; i < this->numOfRows; i++) {
-		this->playerABoard[i] = new char[this->numOfCols];
-		this->playerBBoard[i] = new char[this->numOfCols];
-		memset(playerABoard[i], ' ', numOfCols);
-		memset(playerBBoard[i], ' ', numOfCols);
-	}
-
-}
 
 //checking the char read from the file and putting the boat on the board
-void GameBoard::addToPlayerBoard(char currentChar, int row, int col, IBattleshipGameAlgo* A, IBattleshipGameAlgo* B) {
+void GameBoard::addToPlayerBoard(char currentChar, int row, int col, int depth) {
 
 	if (currentChar == 'B') {
-		addBoatToBoard(this->matrix[row][col], 1, 0, A, B);
-		this->playerABoard[row][col] = 'B';
+		addBoatToBoard(row, col, depth 1, 0);
+		this->playerABoard.at(depth).at(row).at(col) = 'B';
+		this->board.at(depth).at(row).at(col) = 'B';
 	}
 	else if (currentChar == 'b') {
 		addBoatToBoard(this->matrix[row][col], 1, 1, B, A);
-		this->playerBBoard[row][col] = 'b';
+		this->playerBBoard.at(depth).at(row).at(col) = 'b';
+		this->board.at(depth).at(row).at(col) = 'b';
 
 	}
 	else if (currentChar == 'P') {
 		addBoatToBoard(this->matrix[row][col], 2, 0, A, B);
-		this->playerABoard[row][col] = 'P';
+		this->playerABoard.at(depth).at(row).at(col) = 'P';
+		this->board.at(depth).at(row).at(col) = 'P';
 	}
 	else if (currentChar == 'p') {
 		addBoatToBoard(this->matrix[row][col], 2, 1, B, A);
-		this->playerBBoard[row][col] = 'p';
+		this->playerBBoard.at(depth).at(row).at(col) = 'p';
+		this->board.at(depth).at(row).at(col) = 'p';
 	}
 	else if (currentChar == 'M') {
 		addBoatToBoard(this->matrix[row][col], 3, 0, A, B);
-		this->playerABoard[row][col] = 'M';
+		this->playerABoard.at(depth).at(row).at(col) = 'M';
+		this->board.at(depth).at(row).at(col) = 'M';
 	}
 	else if (currentChar == 'm') {
 		addBoatToBoard(this->matrix[row][col], 3, 1, B, A);
-		this->playerBBoard[row][col] = 'm';
+		this->playerBBoard.at(depth).at(row).at(col) = 'm';
+		this->board.at(depth).at(row).at(col) = 'm';
 	}
 	else if (currentChar == 'D') {
 		addBoatToBoard(this->matrix[row][col], 4, 0, A, B);
-		this->playerABoard[row][col] = 'D';
+		this->playerABoard.at(depth).at(row).at(col) = 'D';
+		this->board.at(depth).at(row).at(col) = 'D';
 	}
 	else if (currentChar == 'd') {
 		addBoatToBoard(this->matrix[row][col], 4, 1, B, A);
-		this->playerBBoard[row][col] = 'd';
+		this->playerBBoard.at(depth).at(row).at(col) = 'd';
+		this->board.at(depth).at(row).at(col) = 'd';
 	}
 }
+
+void Board::addBoatToBoard(int row, int col, int depth, int size, int player, IBattleshipGameAlgo* owner, IBattleshipGameAlgo* rival) {
+	if (thereIsBoatNearby(row, col, depth)) {
+		//there is no boat adjacent to current 
+		Coordinate* firstPoint = new Coordinate (row , col, depth);
+		Boat* boat = new Boat(size, player, ownerBoard, rivelBoard, firstPoint);
+		ownerBoard->addBoat(boat);
+	}
+	else {
+		//there is a boat adjacent to current point
+		if (row > 0) {
+			char upCoordinateChar = this->board.at(depth).at(row-1).at(col);
+			if (upCoordinateChar != ' ') {
+				//there is a boat above current point 
+				checkAdjacentBoat(upCoordinateChar, row , col, depth, size, 1, player, ownerBoard, rivelBoard);
+			}
+		}
+
+		if (col > 0) {
+			char leftCoordinateChar = this->board.at(depth).at(row).at(col-1);
+			if (leftCoordinateChar != ' ') {
+				//there is a boat left of current point
+				checkAdjacentBoat(leftCoordinateChar, row , col, depth, size, 2, player, ownerBoard, rivelBoard);
+			}
+		}
+
+		if (depth > 0) {
+			char behindCoordinateChar = this->board.at(depth-1).at(row).at(col);
+			if (behindCoordinateChar != ' ') {
+				//there is a boat left of current point
+				checkAdjacentBoat(behindCoordinateChar, row , col, depth, size, 3, player, ownerBoard, rivelBoard);
+			}
+		}
+	}
+}
+bool Board:: thereIsBoatNearby(int row, int col, int depth){
+	bool boatNearby = false;
+	if (depth > 0){
+		if (this->board.at(depth-1).at(row).at(col) != ' '){
+			boatNearby = true;
+		}
+	}
+	if (row > 0){
+		if (this->board.at(depth).at(row-1).at(col) != ' '){
+			boatNearby = true;
+		}
+	}
+	if (col > 0){
+		if (this->board.at(depth).at(row).at(col-1) != ' '){
+			boatNearby = true;
+		}
+	}
+	return boatNearby;
+}
+
 
 //checking that all boats are of correct size and shape
 void GameBoard::checkBoatValidity() {
@@ -198,6 +254,8 @@ void GameBoard::checkBoatValidity() {
 		}
 	}
 }
+
+
 
 bool GameBoard::checkBoard() {
 	bool result = true;

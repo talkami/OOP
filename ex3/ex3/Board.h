@@ -2,8 +2,8 @@
 class Board{
 	vector<vector<vector <char> > > board;
     int row, col, depth;
-	PlayerBoard playerABoard;
-	PlayerBoard playerBBoard;
+	vector<vector<vector <char> > > playerABoard;
+	vector<vector<vector <char> > > playerBBoard;
 
 public:
     Board ();
