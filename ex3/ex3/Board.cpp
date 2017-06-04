@@ -188,22 +188,50 @@ void Board::addBoatToBoard(int row, int col, int depth, int size, int player, IB
 	else {
 		//there is a boat adjacent to current point
 		if (row > 0) {
-			char upCoordinateChar = this->board.at(depth-1).at(row).at(col);
-			if (boat != nullptr) {
+			char upCoordinateChar = this->board.at(depth).at(row-1).at(col);
+			if (upCoordinateChar != ' ') {
 				//there is a boat above current point 
-				checkAdjacentBoat(boat, point, size, 1, player, owner, rival);
+				checkAdjacentBoat(upCoordinateChar, row , col, depth, size, 1, player, ownerBoard, rivelBoard);
 			}
 		}
 
-		if (point->getCol() > 0) {
-			Boat* boat = point->getLeft()->getBoat();
-			if (boat != nullptr) {
+		if (col > 0) {
+			char leftCoordinateChar = this->board.at(depth).at(row).at(col-1);
+			if (leftCoordinateChar != ' ') {
 				//there is a boat left of current point
-				checkAdjacentBoat(boat, point, size, 2, player, owner, rival);
+				checkAdjacentBoat(leftCoordinateChar, row , col, depth, size, 2, player, ownerBoard, rivelBoard);
+			}
+		}
+
+		if (depth > 0) {
+			char behindCoordinateChar = this->board.at(depth-1).at(row).at(col);
+			if (behindCoordinateChar != ' ') {
+				//there is a boat left of current point
+				checkAdjacentBoat(behindCoordinateChar, row , col, depth, size, 3, player, ownerBoard, rivelBoard);
 			}
 		}
 	}
 }
+bool Board:: thereIsBoatNearby(int row, int col, int depth){
+	bool boatNearby = false;
+	if (depth > 0){
+		if (this->board.at(depth-1).at(row).at(col) != ' '){
+			boatNearby = true;
+		}
+	}
+	if (row > 0){
+		if (this->board.at(depth).at(row-1).at(col) != ' '){
+			boatNearby = true;
+		}
+	}
+	if (col > 0){
+		if (this->board.at(depth).at(row).at(col-1) != ' '){
+			boatNearby = true;
+		}
+	}
+	return boatNearby;
+}
+
 
 //checking that all boats are of correct size and shape
 void GameBoard::checkBoatValidity() {
@@ -227,25 +255,7 @@ void GameBoard::checkBoatValidity() {
 	}
 }
 
-bool Board:: thereIsBoatNearby(int row, int col, int depth){
-	bool boatNearby = false;
-	if (depth > 0){
-		if (this->board.at(depth-1).at(row).at(col) != ' '){
-			boatNearby = true;
-		}
-	}
-	if (row > 0){
-		if (this->board.at(depth).at(row-1).at(col) != ' '){
-			boatNearby = true;
-		}
-	}
-	if (col > 0){
-		if (this->board.at(depth).at(row).at(col-1) != ' '){
-			boatNearby = true;
-		}
-	}
-	return boatNearby;
-}
+
 
 bool GameBoard::checkBoard() {
 	bool result = true;
