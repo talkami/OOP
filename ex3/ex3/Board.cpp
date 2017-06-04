@@ -190,16 +190,18 @@ void Board::addBoatToBoard(int row, int col, int depth, int size, int player, IB
 		if (row > 0) {
 			char upCoordinateChar = this->board.at(depth).at(row-1).at(col);
 			if (upCoordinateChar != ' ') {
+				Boat* boat = ownerBoard->getBoatAt (row-1, col, depth);
 				//there is a boat above current point 
-				checkAdjacentBoat(upCoordinateChar, row , col, depth, size, 1, player, ownerBoard, rivelBoard);
+				checkAdjacentBoat(boat, row , col, depth, size, 1, player, ownerBoard, rivelBoard);
 			}
 		}
 
 		if (col > 0) {
 			char leftCoordinateChar = this->board.at(depth).at(row).at(col-1);
 			if (leftCoordinateChar != ' ') {
+				Boat* boat = ownerBoard->getBoatAt (row, col-1, depth);
 				//there is a boat left of current point
-				checkAdjacentBoat(leftCoordinateChar, row , col, depth, size, 2, player, ownerBoard, rivelBoard);
+				checkAdjacentBoat(boat, row , col, depth, size, 2, player, ownerBoard, rivelBoard);
 			}
 		}
 
@@ -207,7 +209,8 @@ void Board::addBoatToBoard(int row, int col, int depth, int size, int player, IB
 			char behindCoordinateChar = this->board.at(depth-1).at(row).at(col);
 			if (behindCoordinateChar != ' ') {
 				//there is a boat left of current point
-				checkAdjacentBoat(behindCoordinateChar, row , col, depth, size, 3, player, ownerBoard, rivelBoard);
+				Boat* boat = ownerBoard->getBoatAt (row, col, depth-1);
+				checkAdjacentBoat(boat, row , col, depth, size, 3, player, ownerBoard, rivelBoard);
 			}
 		}
 	}
@@ -233,29 +236,96 @@ bool Board:: thereIsBoatNearby(int row, int col, int depth){
 }
 
 
+void Board::checkAdjacentBoat(Boat* boat, int row, int col, int depth, int size, int direction, int player, IBattleshipGameAlgo* owner, IBattleshipGameAlgo* rival) {
+	if (boat->getBoatSize() == size && boat->getPlayer() == player) {
+		if (boat->getDirection() == 0) {
+			boat->setDirection(direction);
+		}
+		//same boat, merge needed
+		if (ownerBoard->getBoatAt(row , col, depth) != nullptr) {
+			//there is already a boat at point
+			if (ownerBoard->getBoatAt(row , col, depth) != boat) {
+				mergeBoats(boat, ownerBoard->getBoatAt(row , col, depth), direction);
+			}
+		}
+		else {
+			//the is no boat at point
+			if (direction != boat->getDirection()) {
+				boat->setValidity(false);
+			}
+			boat->addPoint(row , col, depth);
+		}
+	}
+	else {
+		//different boat
+		if (ownerBoard->getBoatAt(row , col, depth) == nullptr) {
+			Coordinate* firstPoint = new Coordinate (row , col, depth);
+			Boat* newBoat = new Boat(size, player, ownerBoard, rivelBoard, firstPoint);
+		}
+		this->hasAdjacentBoats = true;
+	}
+}
+
 //checking that all boats are of correct size and shape
 void GameBoard::checkBoatValidity() {
-	for (int i = 0; i < this->numOfRows; i++) {
-		for (int j = 0; j < this->numOfCols; j++) {
-			Boat* boat = this->matrix[i][j]->getBoat();
-			if (boat != nullptr) {
-				if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
-					int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
-					errorArray[errorNum] = true;
-					if (boat->getPlayer() == 0) {
-						this->PlayerANumOfBoats--;
-					}
-					else if (boat->getPlayer() == 1) {
-						this->PlayerBNumOfBoats--;
-					}
-					delete boat;
+	for(int dep =0 ; dep< this->depth; dep++ ){
+		for (int i = 0; i < this->row; i++) {
+			for (int j = 0; j < this->col; j++) {
+				
+				Boat* boat = nullptr;
+				if (this->playerABoard->getBoatAt(row, col, depth) != nullptr){
+					boat = this->playerABoard->getBoatAt(row, col, depth) != nullptr;
 				}
+				else if (this->playerBBoard->getBoatAt(row, col, depth) != nullptr){
+					boat = this->playerBBoard->getBoatAt(row, col, depth) != nullptr;
+				}
+
+				if (boat != nullptr) {
+					if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
+						int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
+						errorArray[errorNum] = true;
+						if (boat->getPlayer() == 0) {
+							this->playerABoard->removeBoat(boat);
+						}
+						else if (boat->getPlayer() == 1) {
+							this->playerBBoard->removeBoat(boat);
+						}
+						delete boat;
+					}
 			}
 		}
 	}
 }
 
 
+void Board::mergeBoats(Boat* boat1, Boat* boat2, int direction, ownerBoard) {
+
+	//make sure boat1 is bigger (we will later 'copy' boat2 onto boat1, this makes the process 'easier') 
+	if (boat2->getAcctualSize() > boat1->getAcctualSize()) {
+		Boat *tmp = boat2;
+		boat2 = boat1;
+		boat1 = tmp;
+	}
+
+	//check if merge will result in an invalid boat
+	if (boat2->getDirection() == 0) {
+		if (boat1->getDirection() != direction) {
+			boat1->setValidity(false);
+		}
+	}
+	else if (boat1->getDirection() != boat2->getDirection()) {
+		boat1->setValidity(false);
+	}
+	//need to decide where this number is kept
+	//merge the boats
+	boat1->mergeBoats(boat2);
+//	if (boat1->getPlayer() == 0) {
+	//	PlayerANumOfBoats--;
+	//}
+	//else if (boat1->getPlayer() == 1) {
+		//PlayerBNumOfBoats--;
+	//}
+}
 
 bool GameBoard::checkBoard() {
 	bool result = true;
@@ -295,6 +365,9 @@ bool GameBoard::checkBoard() {
 	return result;
 }
 
+
+//delete??
+
 //checking each player have the right amount of boats
 bool GameBoard::checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAlgo* B) {
 	bool result = true;
@@ -317,6 +390,8 @@ bool GameBoard::checkNumOfPlayersBoats(IBattleshipGameAlgo* A, IBattleshipGameAl
 	return result;
 }
 
+//delete??
+
 // attack function - get pair and attack at the <x,y> point in the "matrix" variable.
 AttackResult GameBoard::play_attack(std::pair<int, int> attack, int attacker, bool* selfHit) {
 	if (attack.first == -1 || attack.second == -1) {
@@ -332,12 +407,14 @@ AttackResult GameBoard::play_attack(std::pair<int, int> attack, int attacker, bo
 	return result;
 }
 
-char** GameBoard::getPlayerABoard() {
+vector<vector<vector <char> > > Board::getPlayerABoard() {
 	return this->playerABoard;
 }
-char** GameBoard::getPlayerBBoard() {
+vector<vector<vector <char> > > Board::getPlayerBBoard() {
 	return this->playerBBoard;
 }
+
+//delete??
 
 void GameBoard::gotoxy(int x, int y) {
 	COORD coord;
