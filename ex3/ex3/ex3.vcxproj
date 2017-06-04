@@ -22,16 +22,17 @@
     <ClInclude Include="dirent.h" />
     <ClInclude Include="FilesLister.h" />
     <ClInclude Include="FilesListerWithSuffix.h" />
-    <ClInclude Include="GameBoard.h" />
     <ClInclude Include="IBattleshipGameAlgo.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerBoard.h" />
+    <ClInclude Include="PlayerData.h" />
     <ClInclude Include="SingleGame.h" />
     <ClInclude Include="TournamentManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FilesLister.cpp" />
     <ClCompile Include="FilesListerWithSuffix.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TournamentManager.cpp" />
