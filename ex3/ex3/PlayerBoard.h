@@ -25,7 +25,6 @@ public:
 	Boat* getBoatAt (int row, int col, int depth);
 	void removeBoat(Boat* boat);
 	bool isThereMoreBoats ();
-
-
+	void editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint);
 
 };
