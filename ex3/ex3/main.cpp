@@ -16,11 +16,11 @@ int main(int argc, char* argv[]) {
 
 	game = new TournamentManager();
 
-	initializedSuccessfully = game->initGame(path, threads);
+	initializedSuccessfully = game->initTournament(path, threads);
 	if (!initializedSuccessfully) {
 		return -1;
 	}
-	successfulPlay = game->playGame();
+	successfulPlay = game->playTournament();
 	if (!successfulPlay) {
 	return -1;
 	}
