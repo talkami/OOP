@@ -1,7 +1,9 @@
 #pragma once
+#include "IBattleshipGameAlgo.h"
 #include <vector>
 #include <map>
 #include <mutex>
+
 
 class PlayerData {
 	std::mutex m;
@@ -15,4 +17,6 @@ public:
 	PlayerData(int id) : playerID(id), gamesPlayed(0){}
 	void addData(int gameResult, int playerPoints, int rivalPoins);
 	std::tuple<int, int, int> gotRoundData(int round);
+	std::unique_ptr<IBattleshipGameAlgo> getDLLAlgo();
+
 };

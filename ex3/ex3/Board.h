@@ -1,17 +1,23 @@
 #pragma once
-class Board{
-	vector<vector<vector <char> > > board;
+#include <string>
+#include <vector>
+#include "Logger.h"
+#include "IBattleshipGameAlgo.h"
+#include "PlayerBoard.h"
+
+class Board {
+	std::vector<std::vector<std::vector <char> > > board;
     int row, col, depth;
-	PlayerBoard* playerABoard;
-	PlayerBoard* playerBBoard;
+	BoardData* playerABoard;
+	BoardData* playerBBoard;
 	Logger* logger;
-	bool [9] errorArray = {false};
+	bool errorArray[9] = {false};
 public:
-    Board ();
+
+	Board() : row(0), col(0), depth(0){}
     ~Board ();
 
-    bool initBoard(const std::string& path, Logger* logger);
-	bool loadBoard(const std::string& boardFile);
+	bool loadBoard(const std::string& boardFile, Logger* logger);
 
 	void addToPlayerBoard(char currentChar, int row, int col, int depth);
 	void addBoatToBoard(int row, int col, int depth, int size, int player, PlayerBoard* ownerBoard, PlayerBoard* rivalBoard);

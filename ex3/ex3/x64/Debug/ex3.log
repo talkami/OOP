@@ -1,3 +1,237 @@
-﻿  TournamentManager.cpp
-  ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.exe
-  ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.pdb (Partial PDB)
+﻿  main.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C2143: syntax error: missing ';' before '<'
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2059: syntax error: '>'
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(24): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2061: syntax error: identifier 'vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2535: 'PlayerBoard::PlayerBoard(int,int,int)': member function already defined or declared
+  c:\users\tal\oop\ex3\ex3\playerboard.h(19): note: see declaration of 'PlayerBoard::PlayerBoard'
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\playerboard.h(27): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\playerboard.h(31): warning C4624: 'PlayerBoard': destructor was implicitly defined as deleted
+c:\users\tal\oop\ex3\ex3\playerboard.h(31): error C2282: 'PlayerBoard::~PlayerBoard' cannot override 'BoardData::~BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(31): note: 'BoardData::~BoardData' is not deleted
+c:\users\tal\oop\ex3\ex3\playerboard.h(19): error C2512: 'std::vector': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2065: 'board': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2065: 'player': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2512: 'std::vector': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2614: 'PlayerBoard': illegal member initialization: '_board' is not a base or member
+c:\users\tal\oop\ex3\ex3\board.h(26): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\board.h(28): error C2061: syntax error: identifier 'Boat'
+  TournamentManager.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C2143: syntax error: missing ';' before '<'
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2059: syntax error: '>'
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(24): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2061: syntax error: identifier 'vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2535: 'PlayerBoard::PlayerBoard(int,int,int)': member function already defined or declared
+  c:\users\tal\oop\ex3\ex3\playerboard.h(19): note: see declaration of 'PlayerBoard::PlayerBoard'
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\playerboard.h(27): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\playerboard.h(31): warning C4624: 'PlayerBoard': destructor was implicitly defined as deleted
+c:\users\tal\oop\ex3\ex3\playerboard.h(31): error C2282: 'PlayerBoard::~PlayerBoard' cannot override 'BoardData::~BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(31): note: 'BoardData::~BoardData' is not deleted
+c:\users\tal\oop\ex3\ex3\playerboard.h(19): error C2512: 'std::vector': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2065: 'board': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2065: 'player': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2512: 'std::vector': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2614: 'PlayerBoard': illegal member initialization: '_board' is not a base or member
+c:\users\tal\oop\ex3\ex3\board.h(26): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\board.h(28): error C2061: syntax error: identifier 'Boat'
+  PlayerBoard.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2065: 'Coordinate': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2146: syntax error: missing ')' before identifier 'c'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2182: 'addBoat': illegal use of type 'void'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2448: 'addBoat': function-style initializer appears to be a function definition
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2059: syntax error: '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(26): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(26): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(26): error C2182: 'removeBoat': illegal use of type 'void'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(26): error C2448: 'removeBoat': function-style initializer appears to be a function definition
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(31): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(32): error C2065: 'numOfPlayerBoats': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(39): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(40): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(40): error C2227: left of '->_board' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(40): error C2228: left of '.at' must have class/struct/union
+  Boat.cpp
+c:\users\tal\oop\ex3\ex3\boat.h(15): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\boat.h(15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\boat.h(15): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\boat.h(16): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\boat.h(16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\boat.h(16): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\boat.h(27): error C2061: syntax error: identifier 'PlayerBoard'
+c:\users\tal\oop\ex3\ex3\boat.h(35): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\boat.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\boat.h(35): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\boat.h(36): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\boat.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\boat.h(36): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\boat.h(44): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\boat.h(44): error C3203: 'pair': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+c:\users\tal\oop\ex3\ex3\boat.cpp(2): fatal error C1083: Cannot open include file: 'Point.h': No such file or directory
+  Board.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C2143: syntax error: missing ';' before '<'
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.h(10): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2059: syntax error: '>'
+c:\users\tal\oop\ex3\ex3\playerboard.h(11): error C2976: 'std::vector': too few template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(24): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2061: syntax error: identifier 'vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2535: 'PlayerBoard::PlayerBoard(int,int,int)': member function already defined or declared
+  c:\users\tal\oop\ex3\ex3\playerboard.h(19): note: see declaration of 'PlayerBoard::PlayerBoard'
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.h(26): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\playerboard.h(27): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\playerboard.h(31): warning C4624: 'PlayerBoard': destructor was implicitly defined as deleted
+c:\users\tal\oop\ex3\ex3\playerboard.h(31): error C2282: 'PlayerBoard::~PlayerBoard' cannot override 'BoardData::~BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(31): note: 'BoardData::~BoardData' is not deleted
+c:\users\tal\oop\ex3\ex3\playerboard.h(19): error C2512: 'std::vector': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2065: 'board': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2065: 'player': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2512: 'std::vector': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\playerboard.h(25): error C2614: 'PlayerBoard': illegal member initialization: '_board' is not a base or member
+c:\users\tal\oop\ex3\ex3\board.h(26): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\board.h(28): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\board.cpp(29): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' to 'const char *'
+  c:\users\tal\oop\ex3\ex3\board.cpp(29): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\tal\oop\ex3\ex3\board.cpp(31): error C2059: syntax error: ')'
+c:\users\tal\oop\ex3\ex3\board.cpp(34): error C2143: syntax error: missing ';' before '}'
+c:\users\tal\oop\ex3\ex3\board.cpp(39): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' to 'const char *'
+  c:\users\tal\oop\ex3\ex3\board.cpp(39): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\tal\oop\ex3\ex3\board.cpp(41): error C2059: syntax error: ')'
+c:\users\tal\oop\ex3\ex3\board.cpp(44): error C2143: syntax error: missing ';' before '}'
+c:\users\tal\oop\ex3\ex3\board.cpp(49): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' to 'const char *'
+  c:\users\tal\oop\ex3\ex3\board.cpp(49): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\tal\oop\ex3\ex3\board.cpp(51): error C2059: syntax error: ')'
+c:\users\tal\oop\ex3\ex3\board.cpp(54): error C2143: syntax error: missing ';' before '}'
+c:\users\tal\oop\ex3\ex3\board.cpp(56): error C2065: 'delimiter': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(56): error C2228: left of '.length' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\board.cpp(56): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\board.cpp(60): error C2065: 'vector': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(60): error C2062: type 'char' unexpected
+c:\users\tal\oop\ex3\ex3\board.cpp(64): error C2661: 'PlayerBoard::PlayerBoard': no overloaded function takes 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(65): error C2661: 'PlayerBoard::PlayerBoard': no overloaded function takes 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(81): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(81): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(88): error C2039: 'hasAdjacentBoats': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(90): error C2039: 'cout': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\algorithm(14): note: see declaration of 'std'
+c:\users\tal\oop\ex3\ex3\board.cpp(90): error C2065: 'cout': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(104): error C2059: syntax error: 'constant'
+c:\users\tal\oop\ex3\ex3\board.cpp(105): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(110): error C2059: syntax error: 'this'
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(116): error C2059: syntax error: 'this'
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(121): error C2059: syntax error: 'this'
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(126): error C2039: 'playerABoardthis': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(126): error C2227: left of '->editBoardAtPoint' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(131): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(136): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(8): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(141): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(150): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(150): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(150): error C2061: syntax error: identifier 'Boat'
+c:\users\tal\oop\ex3\ex3\board.cpp(151): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(158): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(158): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(158): error C2039: 'getBoatAt': is not a member of 'PlayerBoard'
+  c:\users\tal\oop\ex3\ex3\playerboard.h(4): note: see declaration of 'PlayerBoard'
+c:\users\tal\oop\ex3\ex3\board.cpp(160): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(160): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(167): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(167): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(167): error C2039: 'getBoatAt': is not a member of 'PlayerBoard'
+  c:\users\tal\oop\ex3\ex3\playerboard.h(4): note: see declaration of 'PlayerBoard'
+c:\users\tal\oop\ex3\ex3\board.cpp(169): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(169): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(177): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(177): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(177): error C2039: 'getBoatAt': is not a member of 'PlayerBoard'
+  c:\users\tal\oop\ex3\ex3\playerboard.h(4): note: see declaration of 'PlayerBoard'
+c:\users\tal\oop\ex3\ex3\board.cpp(178): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(178): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(204): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(204): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(204): error C2062: type 'int' unexpected
+c:\users\tal\oop\ex3\ex3\board.cpp(204): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\board.cpp(204): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\board.cpp(204): fatal error C1003: error count exceeds 100; stopping compilation
+  Generating Code...
+  Compiling...
+  PlayerData.cpp
+  Generating Code...

@@ -1,63 +1,31 @@
 #include "Board.h"
-#include <boost/algorithm/string.hpp>    
-//check out if the lib is ok
+#include<algorithm>
+#include<string> 
 
-
-Board::Board (){
-    this->depth = 0;
-    this->rows =0;
-    this->col = 0;
-
-} 
-
-~Board::Board(){
-
+Board::~Board() {
 }
-
-bool Board::initBoard(const std::string& path) {
-	
-	std::string errorPath;
-	if (path == ".") {
-		errorPath = "Working Directory";
-	}
-	else {
-		errorPath = path;
-	}
-
-	SeaBattleBoardLister boardFileLister = SeaBattleBoardLister(path);
-	if (boardFileLister.getFilesList().size() == 0) {
-		std::cout << "Missing board file (*.sboard) looking in path: " << errorPath << std::endl;
-		result = false;
-	}
-	if (result) {
-		result = loadBoard(boardFileLister.getFilesList()[0]);
-	}
-	return result;
-}
-
 
 //load GameBoard function
-bool Board::loadBoard(const std::string& boardFile) {
+bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 	bool result = true;
-	setVars();
+	this->logger = logger;
 
 	std::ifstream fin(boardFile);
 	if (!fin) {
-		std::cout << "Error reading from file: " << boardFile << std::endl;
+		this->logger->logMessage("Error reading from file: " + boardFile);
 		return false;
 	}
 	//first line holds the number of cos,rows and depth.
 	std::string buffer;
 	std::getline(fin, buffer);
 	//to lower
-	boost::algorithm::to_lower(str);
+	std::transform(buffer.begin(), buffer.end(), buffer.begin(), ::tolower);
 	//get the parameters from the first line
 	size_t position = 0;
 	int parameter =0;
-	while ((position = buffer.find(delimiter)) != std::string::npos) {
+	while ((position = buffer.find('x')) != std::string::npos) {
 		if (parameter == 0){
-			try
-			{
+			try{
 				this->col = atoi(buffer.substr(0, position));
 			}
 			catch(std::invalid_argument&))

@@ -1,5 +1,7 @@
 #pragma once
 #include "IBattleshipGameAlgo.h"
+#include "Board.h"
+#include "PlayerData.h"
 
 class SingleGame {
 	IBattleshipGameAlgo* PlayerA;
@@ -8,6 +10,7 @@ class SingleGame {
 	int scoreB;
 
 public:
-	SingleGame();
+	//optional argument for c'tor - maybe change to something better
+	SingleGame(std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> gameStats);
 
 };
