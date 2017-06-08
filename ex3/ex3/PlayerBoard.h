@@ -8,10 +8,11 @@ class PlayerBoard : BoardData{
 
 	//new fields
 	vector<vector<vector <char> > > _board;
-	Boat** boats;
+	std::vector<Boat*> boats;
 	int _player; 
 	int numOfPlayerBoats;
 
+	//what is it?
 	void invalidatePoint(Coordinate c);
 public:
 
