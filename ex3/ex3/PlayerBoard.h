@@ -1,5 +1,6 @@
 #pragma once
 #include "IBattleshipGameAlgo.h"
+#include "Boat.h"
 
 class PlayerBoard : BoardData{
 	int _rows = 0;
@@ -7,7 +8,7 @@ class PlayerBoard : BoardData{
 	int _depth = 0; 
 
 	//new fields
-	vector<vector<vector <char> > > _board;
+	std::vector<std::vector<std::vector<char>>> _board;
 	std::vector<Boat*> boats;
 	int _player; 
 	int numOfPlayerBoats;
@@ -17,12 +18,11 @@ class PlayerBoard : BoardData{
 public:
 
 	PlayerBoard(int rows, int cols, int depth) : _rows(rows), _cols(cols), _depth(depth) {}
+	PlayerBoard(int rows, int cols, int depth, std::vector<std::vector<std::vector<char>>> board, int player) :
+		_rows(rows), _cols(cols), _depth(depth), _board(board), _player(player) {}
+
 	virtual char charAt(Coordinate c) const;
-
-	//new funcs
-
 	void addBoat(Boat * boat);
-	PlayerBoard (int rows, int cols, int depth, vector<vector<vector <char> > > board, int player): _rows(rows), _cols(cols), _depth(depth), _board(board), _player (player){}
 	Boat* getBoatAt (int row, int col, int depth);
 	void removeBoat(Boat* boat);
 	bool isThereMoreBoats ();

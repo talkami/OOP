@@ -4,6 +4,7 @@
 #include "Logger.h"
 #include "IBattleshipGameAlgo.h"
 #include "PlayerBoard.h"
+#include "Boat.h"
 
 class Board {
 	std::vector<std::vector<std::vector <char> > > board;
