@@ -351,7 +351,7 @@ int Board::getGameScore(int player){
 		return this->playerBScore;
 	}
 	else{
-		return nullptr;
+		return -1;
 	}
 
 }

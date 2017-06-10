@@ -72,7 +72,7 @@ bool Game::playGame() {
 		bool selfHit = false;
 
 		//create this function at board.h
-		res = this->board.play_attack(nextMove, this->turn, &selfHit);
+		res = this->board->play_attack(nextMove, this->turn, &selfHit);
 		//check the sig of notifyOnAttackResult
 		this->A->notifyOnAttackResult(turn, nextMove.first, nextMove.second,nextMove.third, res);
 		this->B->notifyOnAttackResult(turn, nextMove.first, nextMove.second,nextMove.third, res);
@@ -95,13 +95,13 @@ bool Game::playGame() {
 
 bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory
-	if (this->gameBoard.hasNoMoreBoats(0)) {
+	if (this->board.hasNoMoreBoats(0)) {
 		//player A is out of boats - player B wins
 		this->winner = 'B';
 		this->turn = -1;
 		return true;
 	}
-	else if (this->gameBoard.hasNoMoreBoats(1)) {
+	else if (this->board.hasNoMoreBoats(1)) {
 		//player B is out of boats - player A wins
 		this->winner = 'A';
 		this->turn = -1;

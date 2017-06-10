@@ -13,6 +13,11 @@ class Board {
 	BoardData* playerBBoard;
 	Logger* logger;
 	bool errorArray[9] = {false};
+	//new parameters
+	int playerAScore;
+	int playerBScore;
+	Boat** PlayerABoats;
+	Boat** PlayerBBoats;
 public:
 
 	Board() : row(0), col(0), depth(0){}
@@ -28,4 +33,9 @@ public:
 	void checkBoatValidity();
 	void mergeBoats(Boat* boat1, Boat* boat2, int direction, PlayerBoard* ownerBoard);
 	bool checkBoard();
+	int getGameScore(int player); 
+	
+	
+	bool hasNoMoreBoats (int player);
+	AttackResult play_attack(std::pair <int, int,int> attack, int attacker, bool* selfHit);
 };
