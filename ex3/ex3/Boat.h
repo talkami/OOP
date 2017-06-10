@@ -43,6 +43,8 @@ public:
 	void mergeBoats(Boat* boat);
 	std::vector<std::pair<int, int,int>> getPoints();
 
+	// do 
+	getCoordinatesArray
 
 	//new func 
 	int getValue ();
