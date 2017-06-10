@@ -3,7 +3,7 @@
 #include "IBattleShipGameAlgo.h"
 #include <vector>
 
-class Point;
+class PlayerBoard;
 
 class Boat {
 	int boatSize;
@@ -41,7 +41,7 @@ public:
 	void setDirection(int direction);
 	void setValidity(bool validity);
 	void mergeBoats(Boat* boat);
-	std::vector<std::pair<int, int,int>> getPoints();
+	std::vector<std::tuple<int, int,int>> getPoints();
 
 
 	//new func 
