@@ -44,7 +44,7 @@ public:
 	std::vector<std::tuple<int, int,int>> getPoints();
 
 	// do 
-	getCoordinatesArray
+	//getCoordinatesArray
 
 	//new func 
 	int getValue ();

@@ -9,15 +9,22 @@
 #include <map>
 #include <memory>
 #include <deque>
+#include <thread>
+#include <atomic>
 
 class TournamentManager {
 	Logger logger;
-	int numOfThreads = 0;
+	int numOfThreads;
+	int roundCounter = 0;
+	int runningThreads = 0;
 	FilesListerWithSuffix boardFileLister;
 	std::vector<std::shared_ptr<Board>> gameBoards;
 	std::vector<std::shared_ptr<PlayerData>> players;
 	std::deque<std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>>> games;
-	bool play = true;
+	std::vector<std::thread> threads_vec;
+	std::vector<int> playedRounds;
+	std::mutex m;
+	std::condition_variable cv;
 
 	void setUpLogger(const std::string& path);
 	bool setUpBoards(const std::string& path);
@@ -26,8 +33,12 @@ class TournamentManager {
 	void logTournamentStatistics();
 	void startSingleGame();
 	std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> getNextGame();
+	void increaseRoundCount(int roundA, int roundB);
+	void intermediateResults(int round);
 
 public:
-	bool initTournament(std::string path, int threads);
+	TournamentManager(int threads) :numOfThreads(threads), threads_vec(threads) {}
+	~TournamentManager() {}
+	bool initTournament(std::string path);
 	bool playTournament();
 };

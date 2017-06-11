@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <ctime>
 
-bool TournamentManager::initTournament(std::string path, int threads) {
+bool TournamentManager::initTournament(std::string path) {
 	DIR * dir;
 	bool result = true;
 	if ((dir = opendir(path.c_str())) == NULL) {
@@ -20,8 +20,12 @@ bool TournamentManager::initTournament(std::string path, int threads) {
 	std::cout << "Number of legal players: " << this->players.size() << std::endl;
 	std::cout << "Number of legal boards: " << this->gameBoards.size() << std::endl;
 
-	createGameCombinations();
-	logTournamentStatistics();
+	if (result) {
+		createGameCombinations();
+		logTournamentStatistics();
+		size_t numOfRounds = (this->players.size() - 1) * 2 * this->gameBoards.size();
+		this->playedRounds.resize(numOfRounds, 0);
+	}
 	return result;
 }
 
@@ -56,11 +60,11 @@ bool TournamentManager::setUpBoards(const std::string & path) {
 }
 
 bool TournamentManager::setUpPlayers(const std::string & path) {
-	int i = 0;
 	HANDLE dir;
 	WIN32_FIND_DATAA fileData; //data struct for file
 	GetAlgorithmFuncType getAlgorithmFunc;
 
+	int i = 0;
 	// iterate over *.dll files in path
 	std::string s = "\\*.dll"; // only .dll endings
 	dir = FindFirstFileA((path + s).c_str(), &fileData); // Notice: Unicode compatible version of FindFirstFile
@@ -127,16 +131,59 @@ void TournamentManager::logTournamentStatistics() {
 
 bool TournamentManager::playTournament() {
 
+	for (auto & t : this->threads_vec) {
+		t = std::thread(&TournamentManager::startSingleGame, this);
+	}
+	
+	while (runningThreads > 0) {
+		std::unique_lock<std::mutex> lk(this->m);
+		this->cv.wait(lk, [this] {
+			return this->playedRounds[this->roundCounter] == this->players.size(); });//this->players.size()-1?
+		intermediateResults(this->roundCounter++);
+		lk.unlock();
+	}
+
+	for (auto & t : this->threads_vec) {
+		t.join();
+	}
+	while(this->roundCounter < this->playedRounds.size()) {
+		intermediateResults(this->roundCounter++);
+	}
+
 	// TODO: Complete function!
 	return true;
 }
 
 void TournamentManager::startSingleGame() {
+	this->runningThreads++;
 	std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> gameStats;
 	while ((gameStats = getNextGame()) != std::make_tuple(nullptr, nullptr, nullptr)) {
 		std::unique_ptr<SingleGame> game = std::make_unique<SingleGame>(gameStats);
+		std::pair<int, int> playedRounds;// = play game 
+		increaseRoundCount(playedRounds.first, playedRounds.second);
+
 	}
+	this->runningThreads--;
 }
+
+//move to singleGame
+void TournamentManager::increaseRoundCount(int roundA, int roundB) {
+	static std::mutex roundMutex;
+	std::lock_guard<std::mutex> l(roundMutex);
+	this->playedRounds[roundA] += 1;
+	if (this->playedRounds[roundA] == this->players.size()) {
+		this->cv.notify_one();
+	}
+	this->playedRounds[roundB] += 1;
+	if (this->playedRounds[roundB] == this->players.size()) {
+		this->cv.notify_one();
+	}
+
+}
+void TournamentManager::intermediateResults(int round) {
+
+}
+
 
 std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>,
 	std::shared_ptr<Board>> TournamentManager::getNextGame() {

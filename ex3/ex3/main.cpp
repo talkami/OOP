@@ -2,7 +2,6 @@
 
 int main(int argc, char* argv[]) {
 	bool initializedSuccessfully, successfulPlay;
-	TournamentManager* game;
 	std::string path = ".";
 	int threads = 4;
 	for (int i = 1; i < argc; i++) {
@@ -14,9 +13,9 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
-	game = new TournamentManager();
+	TournamentManager* game = new TournamentManager(threads);
 
-	initializedSuccessfully = game->initTournament(path, threads);
+	initializedSuccessfully = game->initTournament(path);
 	if (!initializedSuccessfully) {
 		return -1;
 	}

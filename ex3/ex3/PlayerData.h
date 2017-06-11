@@ -13,15 +13,17 @@ class PlayerData {
 	int gamesPlayed;
 	std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType> player_dll;
 	std::vector<int> wins;
+	std::vector<int> loses;
 	std::vector<int> pointsFor;
 	std::vector<int> pointsAgainst;
 	std::mutex m;
 public:
 	PlayerData(int id, std::tuple<std::string, HINSTANCE, GetAlgorithmFuncType> dll) :
-		playerID(id), gamesPlayed(0), player_dll(dll){}
+		gamesPlayed(0), player_dll(dll){}
 	~PlayerData();
-	void addData(int gameResult, int playerPoints, int rivalPoins);
-	std::tuple<int, int, int> gotRoundData(int round);
+	int addData(int win, int lose, int pointsFor, int poinsAgainst);
+	//gotRoundData returns: num of wins, num of loses, pts for, pts against, dll name
+	std::tuple<int, int, int, int, std::string> gotRoundData(int round);
 	IBattleshipGameAlgo* getDLLAlgo();
 
 };
