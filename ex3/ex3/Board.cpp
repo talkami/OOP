@@ -343,3 +343,15 @@ PlayerBoard* Board:: getPlayerBoard (int player){
 	}
 }
 
+int Board::getGameScore(int player){
+		if(player == 0){
+		return this->playerAScore;
+	}
+	else if (player==1){
+		return this->playerBScore;
+	}
+	else{
+		return -1;
+	}
+
+}
