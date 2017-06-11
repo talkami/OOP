@@ -113,6 +113,8 @@ int Boat::setValue(int size) {
 	}
 }
 
+
+//what is this func?
 std::vector<std::pair<int, int, int>> Boat::getPoints() {
 	int size = this->acctualSize;
 	std::vector<std::pair<int, int, int>> arr;
@@ -123,3 +125,29 @@ std::vector<std::pair<int, int, int>> Boat::getPoints() {
 	std::cout << std::endl;
 	return arr;
 }
+
+
+// new funcs 
+	Coordinate** Boat::getCoordinatesArray(){
+		return this->coordinatesArray;
+	}
+
+	//new func 
+	int Boat::getValue (){
+		return this->value;
+	}
+	//remove coor from boat, return value if sunk. we assume the coor is inside the boat coordinatesArray
+	int addHit(Coordinate* coor){
+		for(std::vector<T>::iterator point = this->coordinatesArray.begin(); point != coordinatesArray.end(); ++point){
+			if (point->getRow == coor->getRow && point->getCol == coor->getCol && point->getDepth == coor->getDepth){
+				this->coordinatesArray.erase(std::remove(coordinatesArray.begin(), coordinatesArray.end(), point), coordinatesArray.end()); 
+			}
+		}
+		this->hits = this->hits +1;
+		if (this->isSunk()){
+			return this->value;
+		}
+		else{
+			return 0;
+		}
+	}

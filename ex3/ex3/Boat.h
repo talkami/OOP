@@ -36,18 +36,14 @@ public:
 	PlayerBoard* getRivalBoard();
 	bool isSunk();
 	bool isValid();
-	void addHit();
 	void addPoint(Coordinate* point);
 	void setDirection(int direction);
 	void setValidity(bool validity);
 	void mergeBoats(Boat* boat);
 	std::vector<std::tuple<int, int,int>> getPoints();
-
-	// do 
-	//getCoordinatesArray
-
-	//new func 
+	Coordinate* getCoordinatesArray();
 	int getValue ();
+	int addHit(Coordinate coor);
 
 	Boat(const Boat&) = delete;
 	Boat& operator=(const Boat&) = delete;

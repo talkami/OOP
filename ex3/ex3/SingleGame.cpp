@@ -56,14 +56,14 @@ bool Game::playGame() {
 		else {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
 			return false;
-		}if (nextMove.first == -1 || nextMove.second == -1 ||nextMove.third == -1) {
+		}if (nextMove->getRow == -1 || nextMove->getCol == -1 ||nextMove->getDepth == -1) {
 			if (turn == 0) {
 			// how do we define finished attacking?
 				this->AFinishedAttacking = true;
 			}
 			else if (turn == 1){
 			// how do we define finished attacking?
-				this->BFinishedAttacking;
+				this->BFinishedAttacking = true;
 			}
 			if (!(this->setNextTurn(AttackResult::Miss, false))) {
 				return false;
@@ -78,7 +78,7 @@ bool Game::playGame() {
 		this->B->notifyOnAttackResult(turn, nextMove.first, nextMove.second,nextMove.third, res);
 		
 		//delete? ask tal!!!!!!!!!!!!!!!
-		if (this->displayGame && nextMove.first != -1 && nextMove.second != -1) {
+		if (this->displayGame && nextMove->getRow != -1 && nextMove->getCol != -1) {
 			this->gameBoard.displayAttack(res, nextMove.first, nextMove.second, this->delay);
 		}
 		if (!(this->setNextTurn(res, selfHit))) {
@@ -95,13 +95,13 @@ bool Game::playGame() {
 
 bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory
-	if (this->board.hasNoMoreBoats(0)) {
+	if (this->board->hasNoMoreBoats(0)) {
 		//player A is out of boats - player B wins
 		this->winner = 'B';
 		this->turn = -1;
 		return true;
 	}
-	else if (this->board.hasNoMoreBoats(1)) {
+	else if (this->board->hasNoMoreBoats(1)) {
 		//player B is out of boats - player A wins
 		this->winner = 'A';
 		this->turn = -1;
