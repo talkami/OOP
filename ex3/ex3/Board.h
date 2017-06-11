@@ -26,11 +26,19 @@ class Board {
 	bool checkBoard();
 	bool thereIsBoatNearby(int row, int col, int depth);
 
+	//new
+	void handleSunkBoat (int owner, int value);
+
 public:
 
 	Board() : row(0), col(0), depth(0){}
     ~Board ();
 
 	bool loadBoard(const std::string& boardFile, Logger* logger);
-	BoardData& getPlayerBoard(int player);
+	PlayerBoard getPlayerBoard (int player);
+
+	// new
+	AttackResult attack (Coordinate coor, int attacker, bool* selfHit);
+	bool hasNoMoreBoats (int player);
+
 };

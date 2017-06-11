@@ -27,5 +27,9 @@ public:
 	void removeBoat(Boat* boat);
 	bool isThereMoreBoats ();
 	void editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint);
+	
+	/// to do!!!!!!!!!!!!!!!!!!!!
+	bool loadBoard (BoardData board);
+	std::pair<AttackResult,int> attack (Coordinate coor);
 
 };
