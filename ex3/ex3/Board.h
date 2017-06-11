@@ -32,5 +32,5 @@ public:
     ~Board ();
 
 	bool loadBoard(const std::string& boardFile, Logger* logger);
-	PlayerBoard getPlayerBoard (int player);
+	BoardData& getPlayerBoard(int player);
 };

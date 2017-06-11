@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <ctime>
+#include <iomanip>
 
 bool TournamentManager::initTournament(std::string path) {
 	DIR * dir;
@@ -87,9 +88,11 @@ bool TournamentManager::setUpPlayers(const std::string & path) {
 				this->logger.logMessage("Cannot load dll: " + fullFileName);
 			}
 			else {
-
 				std::shared_ptr<PlayerData> player = std::make_shared<PlayerData>(i++, make_tuple(algoName, hDll, getAlgorithmFunc));
 				this->players.push_back(player);
+				if (algoName.length() > this->nameBuffer) {
+					this->nameBuffer = algoName.length(); //used later to print organized results
+				}
 			}
 		} while (FindNextFileA(dir, &fileData)); // Notice: Unicode compatible version of FindNextFile
 	}
@@ -100,6 +103,7 @@ bool TournamentManager::setUpPlayers(const std::string & path) {
 		this->logger.logMessage(err_msg);
 		return false;
 	}
+	this->nameBuffer += 5;
 	return true;
 }
 
@@ -166,22 +170,36 @@ void TournamentManager::startSingleGame() {
 	this->runningThreads--;
 }
 
-//move to singleGame
 void TournamentManager::increaseRoundCount(int roundA, int roundB) {
 	static std::mutex roundMutex;
 	std::lock_guard<std::mutex> l(roundMutex);
 	this->playedRounds[roundA] += 1;
-	if (this->playedRounds[roundA] == this->players.size()) {
-		this->cv.notify_one();
-	}
 	this->playedRounds[roundB] += 1;
-	if (this->playedRounds[roundB] == this->players.size()) {
+	if (this->playedRounds[roundA] == this->players.size() || this->playedRounds[roundB] == this->players.size()) {
 		this->cv.notify_one();
 	}
-
 }
-void TournamentManager::intermediateResults(int round) {
 
+void TournamentManager::intermediateResults(int round) {
+	system("cls");
+	std::vector<std::tuple<int, int, int, int, std::string>> playerResults;
+	for (std::shared_ptr<PlayerData> player : this->players) {
+		playerResults.push_back(player->gotRoundData(round));
+	}
+	std::sort(playerResults.begin(), playerResults.end());
+	std::cout << std::left << std::setw(8) << "#" << std::setw(this->nameBuffer) << "Team Name";
+	std::cout << std::setw(8) << "Wins" << std::setw(8) << "Losses" << std::setw(8) << "%";
+	std::cout << std::setw(8) << "Pts For" << std::setw(8) << "Pts Against" << std::endl;
+	//gotRoundData returns: num of wins(0), pts for(1), num of loses(2), pts against(3), dll name(4)
+	for (int i = 0; i < playerResults.size(); i++) {
+		std::cout << std::setw(8) << std::to_string(i + 1) + '.';
+		std::cout << std::setw(this->nameBuffer) << std::get<4>(playerResults.at(i));
+		std::cout << std::setw(8) << std::get<0>(playerResults.at(i));
+		std::cout << std::setw(8) << std::get<2>(playerResults.at(i));
+		std::cout << std::setw(8) << std::setprecision(2) << (double)std::get<0>(playerResults.at(i)) / round;
+		std::cout << std::setw(8) << std::get<1>(playerResults.at(i));
+		std::cout << std::setw(8) << std::get<3>(playerResults.at(i)) << std::endl;
+		}
 }
 
 

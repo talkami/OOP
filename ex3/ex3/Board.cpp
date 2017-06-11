@@ -331,7 +331,7 @@ bool Board::checkBoard() {
 }
 
 
-PlayerBoard* Board:: getPlayerBoard (int player){
+BoardData& Board::getPlayerBoard (int player){
 	if(player == 0){
 		return this->PlayerABoard;
 	}

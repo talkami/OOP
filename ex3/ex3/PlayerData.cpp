@@ -26,8 +26,8 @@ std::tuple<int, int, int, int, std::string> PlayerData::gotRoundData(int round) 
 		return std::make_tuple(-1, -1, -1, -1, "");
 	}
 
-	return std::make_tuple(this->wins[round], this->loses[round],
-		this->pointsFor[round], this->pointsAgainst[round], std::get<0>(this->player_dll));
+	return std::make_tuple(this->wins[round], this->pointsFor[round], 
+		this->loses[round], this->pointsAgainst[round], std::get<0>(this->player_dll));
 }
 
 IBattleshipGameAlgo* PlayerData::getDLLAlgo() {

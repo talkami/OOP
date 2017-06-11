@@ -1,48 +1,32 @@
 #include "SingleGame.h"
 
-
-
 	//single game constructor
-SingleGame::SingleGame(std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> gameStats){
-	IBattleshipGameAlgo* PlayerA;
-	IBattleshipGameAlgo* PlayerB;
-	this->scoreA =0;
-	this->scoreB =0;
+SingleGame::SingleGame(std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>,
+	std::shared_ptr<Board>> gameStats) : scoreA(0), scoreB(0), dataA(std::get<0>(gameStats)), 
+	dataB(std::get<1>(gameStats)), gameBoard(std::get<2>(gameStats)) {
+	this->PlayerA = this->dataA->getDLLAlgo();
+	this->PlayerB = this->dataB->getDLLAlgo();
+	this->PlayerA->setPlayer(0);
+	this->PlayerB->setPlayer(1);
+	this->PlayerA->setBoard(this->gameBoard->getPlayerBoard(0));
+	this->PlayerB->setBoard(this->gameBoard->getPlayerBoard(1));
 }
 
-// init players ask tal
-bool Game::setupPlayers(std::shared_ptr<PlayerData> playerA, std::shared_ptr<PlayerData> playerB) {
-
-	this->A = (*std::get<2>(this->dll_vec[0]))();
-	this->B = (*std::get<2>(this->dll_vec[1]))();
-
-	//give the players their boards
-	this->A->setBoard (this->board->getPlayerBoard(0));
-	this->B->setBoard (this->board->getPlayerBoard(1));
-	return true;
+//single game destructor
+SingleGame::~SingleGame() {
+	//TBD
 }
-
 
 //init board ask tal
-bool Game::setupBoard(std::shared_ptr<Board> board) {
+bool SingleGame::setupBoard(std::shared_ptr<Board> board) {
 
 	this->board = board;
 	return true;
 }
 
-//single game destructor
-Game::~Game() {
-	//do we need to close all the dynamic libs we opened?
-	for (vitr = this->dll_vec.begin(); vitr != dll_vec.end(); ++vitr){
-		FreeLibrary(std::get<1>(*vitr));
-	}
-	delete this->A;
-	delete this->B;
-}
 
 
-
-bool Game::playGame() {
+bool SingleGame::playSingleGame() {
 	//Sleep(this->delay);
 	while (this->turn >= 0) {
 		std::pair<int, int, int> nextMove;
@@ -93,7 +77,7 @@ bool Game::playGame() {
 	return true;
 }
 
-bool Game::setNextTurn(AttackResult res, bool selfHit) {
+bool SingleGame::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory
 	if (this->board.hasNoMoreBoats(0)) {
 		//player A is out of boats - player B wins
@@ -146,7 +130,7 @@ bool Game::setNextTurn(AttackResult res, bool selfHit) {
 	}
 }
 
-bool Game::endGame() {
+bool SingleGame::endGame() {
 	GameBoard::setTextColor(15);
 	//system("cls");
 
@@ -171,7 +155,7 @@ bool Game::endGame() {
 
 
 //delete? ask tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-bool Game::initGame(int argc, char* argv[]) {
+bool SingleGame::initGame(int argc, char* argv[]) {
 	bool result = true;
 	std::string path = ".";
 	DIR * dir;

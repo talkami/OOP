@@ -24,9 +24,7 @@
     <ClInclude Include="FilesListerWithSuffix.h" />
     <ClInclude Include="IBattleshipGameAlgo.h" />
     <ClInclude Include="Logger.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerData.h" />
-    <ClInclude Include="SingleGame.h" />
     <ClInclude Include="TournamentManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -34,7 +32,6 @@
     <ClCompile Include="FilesListerWithSuffix.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="TournamentManager.cpp" />
   </ItemGroup>

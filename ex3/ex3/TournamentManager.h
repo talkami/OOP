@@ -14,6 +14,7 @@
 
 class TournamentManager {
 	Logger logger;
+	size_t nameBuffer = 0;
 	int numOfThreads;
 	int roundCounter = 0;
 	int runningThreads = 0;
