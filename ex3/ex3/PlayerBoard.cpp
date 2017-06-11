@@ -21,6 +21,8 @@
 				}
 			}
 		}
+		return nullptr;
+
 
 	}
 	void PlayerBoard::removeBoat(Boat* boat){
@@ -38,4 +40,29 @@
 	}
 	void PlayerBoard::editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint){
 		this->_board.at(depth).at(rows).at(cols) = characterAtPoint;
+	}
+
+
+
+	///new  funcs
+
+	bool PlayerBoard::loadBoard (BoardData board){
+	
+	}
+
+	std::pair<AttackResult,int> PlayerBoard::attack (Coordinate coor){
+		Boat* tmpBoat = nullptr;
+		tmpBoat = this->getBoatAt (coor);
+		if (tmpBoat == nullptr){
+			return <Miss,0>;
+		}
+		else{
+			int val = tmpBoat->addHit (coor);
+			if (val == 0){
+				return <Hit,0>;
+			}
+			else{
+				return <Sink, val>;
+			}
+		}
 	}
