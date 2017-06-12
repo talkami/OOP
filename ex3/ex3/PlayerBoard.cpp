@@ -72,3 +72,20 @@
 			}
 		}
 	}
+
+
+	bool PlayerBoard::isValidAttack (Coordinate coor){
+	
+	}
+
+	void PlayerBoard::setInvalidAttack (Coordinate coor){
+	
+	}
+
+	void PlayerBoard::setInvalidArea (Coordinate coor){
+	
+	}
+
+	void PlayerBoard::setInvalidHorizontal (){
+	
+	}
