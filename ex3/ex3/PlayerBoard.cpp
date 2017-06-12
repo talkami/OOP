@@ -46,8 +46,14 @@
 
 	///new  funcs
 
-	bool PlayerBoard::loadBoard (BoardData board){
-	
+	void PlayerBoard::loadBoard (BoardData* board){
+		for (int col =0; col<board->cols(); col++){
+			for (int row =0; row<board->rows(); row++){
+				for (int depth =0; depth<board->depth(); depth++){
+						this-> editBoardAtPoint(row,col,depth, board->charAt(Coordinate(row,col,depth)));
+				}
+			}
+		}
 	}
 
 	std::pair<AttackResult,int> PlayerBoard::attack (Coordinate coor){

@@ -24,7 +24,8 @@ void Player::setPlayer(int player) {
 }
 void Player::setBoard(const BoardData& board) {
 	setProperties(player, numRows, numCols);
-	this->player_board.loadBoard(board, player, this, numRows, numCols);
+
+	this->player_board->loadBoard(board);
 }
 Coordinate Player::attack() {
 	// TODO: Complete function!
