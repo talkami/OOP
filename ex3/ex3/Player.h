@@ -22,7 +22,7 @@ class Player : IBattleshipGameAlgo{
 
 	
 	void handleAttackResult();
-	std::pair <int, int> playGoodAttack();
+	Coordinate playGoodAttack();
 
 	//whats this?
 	Coordinate findNextAttack();

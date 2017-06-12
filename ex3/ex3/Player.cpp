@@ -126,17 +126,17 @@ void Player::setGoodShot(int row, int col, int depth) {
 	}
 }
 
-std::pair<int, int> Player::playGoodAttack() {
-	std::pair<int, int> attack;
+Coordinate Player::playGoodAttack() {
+	Coordinate attack;
 	while (this->goodShots.size() > 0) {
 		attack = goodShots.front();
 		goodShots.pop_front();
-		if (player_board.isValidAttack(attack.first++, attack.second++)) {
+		if (player_board.isValidAttack(Coordinate (attack.row++, attack.col++, attack.depth))) {
 			return attack;
 			//return std::make_pair(attack.first+1, attack.second+1);
 		}
 	}
-	return std::make_pair(-1, -1);
+	return Coordinate(-1, -1, -1);
 }
 
 bool Player::hasFinishedAttacking() {
