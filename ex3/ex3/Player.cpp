@@ -23,8 +23,6 @@ void Player::setPlayer(int player) {
 	this->playerNum = player;
 }
 void Player::setBoard(const BoardData& board) {
-	setProperties(player, numRows, numCols);
-
 	this->player_board->loadBoard(board);
 }
 Coordinate Player::attack() {
@@ -52,7 +50,6 @@ Coordinate Player::attack() {
 }
 
 bool Player::hasFinishedAttacking() {
-
 	return this->finishedAttacking;
 }
 
