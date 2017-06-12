@@ -30,6 +30,9 @@ public:
 	
 	bool isValidAttack (Coordinate coor);
 	void setInvalidAttack (Coordinate coor);
+	void setInvalidArea (Coordinate coor);
+	//ask tal
+	void setInvalidHorizontal ();
 	bool loadBoard (BoardData board);
 	std::pair<AttackResult,int> attack (Coordinate coor);
 
