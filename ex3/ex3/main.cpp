@@ -9,13 +9,11 @@ int main(int argc, char* argv[]) {
 	int threads = 4;
 	if (argc > 1) {
 		if (strcmp(argv[1], "-threads") == 0 && argc > 2) {
-			std::cout << "argv[2]=" << argv[2] << std::endl;
 			threads = atoi(argv[2]) > 0 ? atoi(argv[2]) : threads;
 		}
 		else {
 			path = argv[1];
 			if (strcmp(argv[2], "-threads") == 0 && argc > 3) {
-				std::cout << "argv[3]=" << argv[3] << std::endl;
 				threads = atoi(argv[3]) > 0 ? atoi(argv[3]) : threads;
 			}
 		}

@@ -163,6 +163,7 @@ bool TournamentManager::playTournament() {
 	while(this->roundCounter < this->playedRounds.size()) {
 		intermediateResults(this->roundCounter++);
 	}
+	this->logger.logMessage("The tournament has ended");
 	return true;
 }
 

@@ -31,7 +31,7 @@ void Logger::logMessage(const std::string& msg) {
 
 void Logger::logResults(std::vector<std::tuple<int, int, int, int, std::string>>& results, size_t nameBuffer, int round) {
 	if (this->logFile.is_open()) {
-		this->logFile << std::left << "Results for round " << round << "are: ";
+		logMessage("Results for round " + std::to_string(round) + "are: ");
 		this->logFile << std::setw(8) << "#" << std::setw(nameBuffer) << "Team Name";
 		this->logFile << std::setw(8) << "Wins" << std::setw(8) << "Losses" << std::setw(8) << "%";
 		this->logFile << std::setw(8) << "Pts For" << std::setw(8) << "Pts Against" << std::endl;

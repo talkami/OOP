@@ -1,6 +1,430 @@
-﻿  TournamentManager.cpp
-TournamentManager.obj : error LNK2019: unresolved external symbol "public: __cdecl Board::~Board(void)" (??1Board@@QEAA@XZ) referenced in function "public: void * __cdecl Board::`scalar deleting destructor'(unsigned int)" (??_GBoard@@QEAAPEAXI@Z)
-TournamentManager.obj : error LNK2019: unresolved external symbol "public: bool __cdecl Board::loadBoard(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class Logger *)" (?loadBoard@Board@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAVLogger@@@Z) referenced in function "private: bool __cdecl TournamentManager::setUpBoards(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?setUpBoards@TournamentManager@@AEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
-TournamentManager.obj : error LNK2019: unresolved external symbol "public: __cdecl SingleGame::SingleGame(class std::tuple<class std::shared_ptr<class PlayerData>,class std::shared_ptr<class PlayerData>,class std::shared_ptr<class Board> >)" (??0SingleGame@@QEAA@V?$tuple@V?$shared_ptr@VPlayerData@@@std@@V12@V?$shared_ptr@VBoard@@@2@@std@@@Z) referenced in function "class std::unique_ptr<class SingleGame,struct std::default_delete<class SingleGame> > __cdecl std::make_unique<class SingleGame,class std::tuple<class std::shared_ptr<class PlayerData>,class std::shared_ptr<class PlayerData>,class std::shared_ptr<class Board> > &>(class std::tuple<class std::shared_ptr<class PlayerData>,class std::shared_ptr<class PlayerData>,class std::shared_ptr<class Board> > &)" (??$make_unique@VSingleGame@@AEAV?$tuple@V?$shared_ptr@VPlayerData@@@std@@V12@V?$shared_ptr@VBoard@@@2@@std@@@std@@YA?AV?$unique_ptr@VSingleGame@@U?$default_delete@VSingleGame@@@std@@@0@AEAV?$tuple@V?$shared_ptr@VPlayerData@@@std@@V12@V?$shared_ptr@VBoard@@@2@@0@@Z)
-TournamentManager.obj : error LNK2019: unresolved external symbol "public: __cdecl SingleGame::~SingleGame(void)" (??1SingleGame@@QEAA@XZ) referenced in function "public: void * __cdecl SingleGame::`scalar deleting destructor'(unsigned int)" (??_GSingleGame@@QEAAPEAXI@Z)
-C:\Users\tal\OOP\ex3\x64\Debug\ex3.exe : fatal error LNK1120: 4 unresolved externals
+﻿  SingleGame.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.h(33): error C2259: 'BoardData': cannot instantiate abstract class
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: due to following members:
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: 'char BoardData::charAt(Coordinate) const': is abstract
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(32): note: see declaration of 'BoardData::charAt'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(11): error C2243: 'type cast': conversion from 'PlayerBoard *' to 'const BoardData &' exists, but is inaccessible
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(12): error C2243: 'type cast': conversion from 'PlayerBoard *' to 'const BoardData &' exists, but is inaccessible
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(21): error C2039: 'setupBoard': is not a member of 'SingleGame'
+  c:\users\tal\oop\ex3\ex3\singlegame.h(6): note: see declaration of 'SingleGame'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(23): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(23): error C2227: left of '->board' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(29): error C2039: 'playSingleGame': is not a member of 'SingleGame'
+  c:\users\tal\oop\ex3\ex3\singlegame.h(6): note: see declaration of 'SingleGame'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(31): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(31): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(32): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(32): error C2133: 'nextMove': unknown size
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(32): error C2512: 'std::pair': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(34): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(34): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(35): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(35): error C2227: left of '->A' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(35): error C2227: left of '->attack' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(37): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(37): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(38): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(38): error C2227: left of '->B' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(38): error C2227: left of '->attack' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(41): error C2039: 'cout': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\mutex(23): note: see declaration of 'std'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(41): error C2065: 'cout': undeclared identifier
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(43): error C2819: type 'std::pair' does not have an overloaded member 'operator ->'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+  c:\users\tal\oop\ex3\ex3\singlegame.cpp(43): note: did you intend to use '.' instead?
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(43): error C2039: 'getRow': is not a member of 'std::pair'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(43): error C2039: 'getCol': is not a member of 'std::pair'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(43): error C2039: 'getDepth': is not a member of 'std::pair'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(44): error C2065: 'turn': undeclared identifier
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(46): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(46): error C2227: left of '->AFinishedAttacking' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(48): error C2065: 'turn': undeclared identifier
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(50): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(50): error C2227: left of '->BFinishedAttacking' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(52): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(52): error C2227: left of '->setNextTurn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(59): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(59): error C2227: left of '->board' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(59): error C2227: left of '->play_attack' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(59): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(61): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(61): error C2227: left of '->A' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(61): error C2227: left of '->notifyOnAttackResult' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(61): error C2065: 'turn': undeclared identifier
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(61): error C2039: 'third': is not a member of 'std::pair'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(62): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(62): error C2227: left of '->B' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(62): error C2227: left of '->notifyOnAttackResult' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(62): error C2065: 'turn': undeclared identifier
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(62): error C2039: 'third': is not a member of 'std::pair'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): error C2227: left of '->displayGame' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): error C2819: type 'std::pair' does not have an overloaded member 'operator ->'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+  c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): note: did you intend to use '.' instead?
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): error C2039: 'getRow': is not a member of 'std::pair'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): error C2039: 'getCol': is not a member of 'std::pair'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(66): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(66): error C2227: left of '->gameBoard' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(66): error C2228: left of '.displayAttack' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(66): error C2227: left of '->delay' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(68): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(68): error C2227: left of '->setNextTurn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(73): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(73): error C2227: left of '->endGame' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(80): error C2039: 'setNextTurn': is not a member of 'SingleGame'
+  c:\users\tal\oop\ex3\ex3\singlegame.h(6): note: see declaration of 'SingleGame'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(82): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(82): error C2227: left of '->board' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(82): error C2227: left of '->hasNoMoreBoats' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(84): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(84): error C2227: left of '->winner' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(85): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(85): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(88): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(88): error C2227: left of '->board' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(88): error C2227: left of '->hasNoMoreBoats' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(90): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(90): error C2227: left of '->winner' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(91): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(91): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(96): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(96): error C2227: left of '->AFinishedAttacking' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(97): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(97): error C2227: left of '->BFinishedAttacking' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(99): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(99): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(105): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(105): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(109): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(109): error C2227: left of '->BFinishedAttacking' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(112): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(112): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(119): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(119): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(127): error C2039: 'cout': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\mutex(23): note: see declaration of 'std'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(127): error C2065: 'cout': undeclared identifier
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(133): error C2039: 'endGame': is not a member of 'SingleGame'
+  c:\users\tal\oop\ex3\ex3\singlegame.h(6): note: see declaration of 'SingleGame'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(134): error C2653: 'GameBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(134): error C3861: 'setTextColor': identifier not found
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(138): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(138): error C2227: left of '->turn' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(140): error C2039: 'cout': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\mutex(23): note: see declaration of 'std'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(140): error C2065: 'cout': undeclared identifier
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(140): fatal error C1003: error count exceeds 100; stopping compilation
+  PlayerBoard.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2065: 'Coordinate': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2146: syntax error: missing ')' before identifier 'c'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(4): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2065: 'Boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2182: 'addBoat': illegal use of type 'void'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(10): error C2448: 'addBoat': function-style initializer appears to be a function definition
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2059: syntax error: '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(15): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(28): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(28): error C2065: 'boat': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(28): error C2182: 'removeBoat': illegal use of type 'void'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(28): error C2448: 'removeBoat': function-style initializer appears to be a function definition
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(33): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(34): error C2065: 'numOfPlayerBoats': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(41): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(42): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(42): error C2227: left of '->_board' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(42): error C2228: left of '.at' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(49): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(49): error C2065: 'BoardData': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(49): error C2065: 'board': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(49): error C2182: 'loadBoard': illegal use of type 'void'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(49): error C2448: 'loadBoard': function-style initializer appears to be a function definition
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(59): error C2039: 'pair': is not a member of 'std'
+  c:\users\tal\oop\ex3\ex3\predefined c++ types (compiler internal)(209): note: see declaration of 'std'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(59): error C2143: syntax error: missing ';' before '<'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(59): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(59): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(59): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(59): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(77): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(77): error C2065: 'Coordinate': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(77): error C2146: syntax error: missing ')' before identifier 'coor'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(77): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(77): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(81): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(81): error C2065: 'Coordinate': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(81): error C2146: syntax error: missing ')' before identifier 'coor'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(81): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(81): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(85): error C2653: 'PlayerBoard': is not a class or namespace name
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(85): error C2065: 'Coordinate': undeclared identifier
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(85): error C2146: syntax error: missing ')' before identifier 'coor'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(85): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(85): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\playerboard.cpp(89): error C2653: 'PlayerBoard': is not a class or namespace name
+  Player.cpp
+c:\users\tal\oop\ex3\ex3\player.h(6): error C3646: 'PlayerBoard': unknown override specifier
+c:\users\tal\oop\ex3\ex3\player.h(6): error C2143: syntax error: missing ';' before '*'
+c:\users\tal\oop\ex3\ex3\player.h(6): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\player.h(13): error C2039: 'list': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\string(17): note: see declaration of 'std'
+c:\users\tal\oop\ex3\ex3\player.h(13): error C2143: syntax error: missing ';' before '<'
+c:\users\tal\oop\ex3\ex3\player.h(13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\tal\oop\ex3\ex3\player.h(13): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\player.h(13): error C2238: unexpected token(s) preceding ';'
+c:\users\tal\oop\ex3\ex3\player.h(14): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\player.h(15): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\player.h(16): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\player.h(17): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\player.cpp(10): error C2512: 'std::pair': no appropriate default constructor available
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\player.cpp(28): error C2039: 'player_board': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(28): error C2227: left of '->loadBoard' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\player.cpp(34): error C2039: 'goodShots': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(34): error C2228: left of '.size' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(41): error C2039: 'numOfRows': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(42): error C2039: 'numOfCols': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(44): error C2065: 'player_board': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(44): error C2228: left of '.isValidAttack' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\player.cpp(44): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\player.cpp(46): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\player.cpp(46): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\tal\oop\ex3\ex3\player.cpp(69): error C2065: 'player_board': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(69): error C2228: left of '.setInvalidAttack' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\player.cpp(69): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\player.cpp(71): error C2039: 'player_board': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(71): error C2228: left of '.setInvalidArea' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(75): error C2039: 'player_board': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(75): error C2228: left of '.setInvalidHorizontal' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(75): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(75): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(84): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(84): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(84): error C2660: 'Player::setGoodShot': function does not take 2 arguments
+c:\users\tal\oop\ex3\ex3\player.cpp(85): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(85): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(88): error C2039: 'player_board': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(88): error C2228: left of '.setInvalidHorizontal' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(88): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(88): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(89): error C2039: 'player_board': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(89): error C2228: left of '.setInvalidHorizontal' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(89): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(89): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(90): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(90): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(90): error C2660: 'Player::setGoodShot': function does not take 2 arguments
+c:\users\tal\oop\ex3\ex3\player.cpp(91): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(91): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(91): error C2660: 'Player::setGoodShot': function does not take 2 arguments
+c:\users\tal\oop\ex3\ex3\player.cpp(94): error C2039: 'player_board': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(94): error C2228: left of '.setInvalidVertical' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(94): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(94): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(95): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(95): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(96): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(96): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(100): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(100): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(100): error C2660: 'Player::setGoodShot': function does not take 2 arguments
+c:\users\tal\oop\ex3\ex3\player.cpp(101): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(101): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(101): error C2660: 'Player::setGoodShot': function does not take 2 arguments
+c:\users\tal\oop\ex3\ex3\player.cpp(102): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(102): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(103): error C2065: 'i': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(103): error C2065: 'j': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(122): error C2039: 'numOfRows': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(122): error C2039: 'numOfCols': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(123): error C2039: 'player_board': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(123): error C2228: left of '.isValidAttack' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(124): error C2039: 'goodShots': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(124): error C2228: left of '.emplace_back' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\player.cpp(124): error C2059: syntax error: ';'
+c:\users\tal\oop\ex3\ex3\player.cpp(127): error C2059: syntax error: '}'
+c:\users\tal\oop\ex3\ex3\player.cpp(127): error C2143: syntax error: missing ';' before '}'
+c:\users\tal\oop\ex3\ex3\player.cpp(129): error C2143: syntax error: missing ';' before '{'
+c:\users\tal\oop\ex3\ex3\player.cpp(129): error C2447: '{': missing function header (old-style formal list?)
+c:\users\tal\oop\ex3\ex3\player.cpp(142): error C2039: 'hasFinishedAttacking': is not a member of 'Player'
+  c:\users\tal\oop\ex3\ex3\player.h(4): note: see declaration of 'Player'
+c:\users\tal\oop\ex3\ex3\player.cpp(143): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\player.cpp(143): error C2227: left of '->finishedAttacking' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\player.cpp(149): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(65): note: see previous definition of 'GetAlgorithm'
+c:\users\tal\oop\ex3\ex3\player.cpp(150): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(150): error C2228: left of '.push_back' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\player.cpp(150): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\player.cpp(151): error C2065: '_instancesVec': undeclared identifier
+c:\users\tal\oop\ex3\ex3\player.cpp(151): error C2228: left of '.size' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\player.cpp(151): note: type is 'unknown-type'
+  Logger.cpp
+c:\users\tal\oop\ex3\ex3\logger.cpp : fatal error C1041: cannot open program database 'C:\Users\tal\OOP\ex3\ex3\x64\Debug\vc140.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS
+  Boat.cpp
+c:\users\tal\oop\ex3\ex3\boat.cpp(2): fatal error C1083: Cannot open include file: 'Point.h': No such file or directory
+  Board.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.h(33): error C2259: 'BoardData': cannot instantiate abstract class
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: due to following members:
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: 'char BoardData::charAt(Coordinate) const': is abstract
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(32): note: see declaration of 'BoardData::charAt'
+c:\users\tal\oop\ex3\ex3\board.cpp(29): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' to 'const char *'
+  c:\users\tal\oop\ex3\ex3\board.cpp(29): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\tal\oop\ex3\ex3\board.cpp(31): error C2059: syntax error: ')'
+c:\users\tal\oop\ex3\ex3\board.cpp(34): error C2143: syntax error: missing ';' before '}'
+c:\users\tal\oop\ex3\ex3\board.cpp(39): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' to 'const char *'
+  c:\users\tal\oop\ex3\ex3\board.cpp(39): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\tal\oop\ex3\ex3\board.cpp(41): error C2059: syntax error: ')'
+c:\users\tal\oop\ex3\ex3\board.cpp(44): error C2143: syntax error: missing ';' before '}'
+c:\users\tal\oop\ex3\ex3\board.cpp(49): error C2664: 'int atoi(const char *)': cannot convert argument 1 from 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' to 'const char *'
+  c:\users\tal\oop\ex3\ex3\board.cpp(49): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\tal\oop\ex3\ex3\board.cpp(51): error C2059: syntax error: ')'
+c:\users\tal\oop\ex3\ex3\board.cpp(54): error C2143: syntax error: missing ';' before '}'
+c:\users\tal\oop\ex3\ex3\board.cpp(56): error C2065: 'delimiter': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(56): error C2228: left of '.length' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\board.cpp(56): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\board.cpp(60): error C2065: 'vector': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(60): error C2062: type 'char' unexpected
+c:\users\tal\oop\ex3\ex3\board.cpp(64): error C2243: 'type cast': conversion from 'PlayerBoard *' to 'BoardData *' exists, but is inaccessible
+c:\users\tal\oop\ex3\ex3\board.cpp(65): error C2243: 'type cast': conversion from 'PlayerBoard *' to 'BoardData *' exists, but is inaccessible
+c:\users\tal\oop\ex3\ex3\board.cpp(81): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(81): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(88): error C2039: 'hasAdjacentBoats': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(90): error C2039: 'cout': is not a member of 'std'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\algorithm(14): note: see declaration of 'std'
+c:\users\tal\oop\ex3\ex3\board.cpp(90): error C2065: 'cout': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(104): error C2059: syntax error: 'constant'
+c:\users\tal\oop\ex3\ex3\board.cpp(105): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(109): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(110): error C2059: syntax error: 'this'
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(115): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(116): error C2059: syntax error: 'this'
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(120): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(121): error C2059: syntax error: 'this'
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(125): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(126): error C2039: 'playerABoardthis': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(126): error C2227: left of '->editBoardAtPoint' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(130): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(131): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(135): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(136): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2039: 'matrix': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2065: 'B': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2065: 'A': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(140): error C2660: 'Board::addBoatToBoard': function does not take 5 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(141): error C2039: 'editBoardAtPoint': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(150): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(160): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(169): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(178): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(213): error C2660: 'Board::mergeBoats': function does not take 3 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(221): error C2660: 'Boat::addPoint': function does not take 3 arguments
+c:\users\tal\oop\ex3\ex3\board.cpp(228): error C2065: 'rivelBoard': undeclared identifier
+c:\users\tal\oop\ex3\ex3\board.cpp(230): error C2039: 'hasAdjacentBoats': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(241): error C2039: 'getBoatAt': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(242): error C2039: 'getBoatAt': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(244): error C2039: 'getBoatAt': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(245): error C2039: 'getBoatAt': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(253): error C2039: 'removeBoat': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(256): error C2039: 'removeBoat': is not a member of 'BoardData'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(29): note: see declaration of 'BoardData'
+c:\users\tal\oop\ex3\ex3\board.cpp(266): error C2601: 'Board::mergeBoats': local function definitions are illegal
+  c:\users\tal\oop\ex3\ex3\board.cpp(235): note: this line contains a '{' which has not yet been matched
+c:\users\tal\oop\ex3\ex3\board.cpp(295): error C2601: 'Board::checkBoard': local function definitions are illegal
+  c:\users\tal\oop\ex3\ex3\board.cpp(235): note: this line contains a '{' which has not yet been matched
+c:\users\tal\oop\ex3\ex3\board.cpp(334): error C2556: 'BoardData &Board::getPlayerBoard(int)': overloaded function differs only by return type from 'PlayerBoard Board::getPlayerBoard(int)'
+  c:\users\tal\oop\ex3\ex3\board.h(38): note: see declaration of 'Board::getPlayerBoard'
+c:\users\tal\oop\ex3\ex3\board.cpp(334): error C2373: 'Board::getPlayerBoard': redefinition; different type modifiers
+  c:\users\tal\oop\ex3\ex3\board.h(38): note: see declaration of 'Board::getPlayerBoard'
+c:\users\tal\oop\ex3\ex3\board.cpp(334): error C2333: 'Board::getPlayerBoard': error in function declaration; skipping function body
+c:\users\tal\oop\ex3\ex3\board.cpp(346): error C2039: 'getGameScore': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(9): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\board.cpp(346): error C2601: 'getGameScore': local function definitions are illegal
+  c:\users\tal\oop\ex3\ex3\board.cpp(235): note: this line contains a '{' which has not yet been matched
+c:\users\tal\oop\ex3\ex3\board.cpp(235): fatal error C1075: the left brace '{' was unmatched at the end of the file
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.h(33): error C2259: 'BoardData': cannot instantiate abstract class
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: due to following members:
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: 'char BoardData::charAt(Coordinate) const': is abstract
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(32): note: see declaration of 'BoardData::charAt'
+  Generating Code...
+  Compiling...
+  TournamentManager.cpp
+c:\users\tal\oop\ex3\ex3\playerboard.h(33): error C2259: 'BoardData': cannot instantiate abstract class
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: due to following members:
+  c:\users\tal\oop\ex3\ex3\playerboard.h(33): note: 'char BoardData::charAt(Coordinate) const': is abstract
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(32): note: see declaration of 'BoardData::charAt'
+  Generating Code...

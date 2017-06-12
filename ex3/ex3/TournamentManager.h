@@ -7,11 +7,12 @@
 
 #include <vector>
 #include <deque>
+#include <atomic>
 
 class TournamentManager {
 	size_t nameBuffer = 0;
 	int roundCounter = 0;
-	int runningThreads = 0;
+	std::atomic_int runningThreads = 0;
 	int numOfThreads;
 	Logger logger;
 	FilesListerWithSuffix boardFileLister;
