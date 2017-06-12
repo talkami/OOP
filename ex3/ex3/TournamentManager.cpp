@@ -1,6 +1,9 @@
 ﻿#include "TournamentManager.h"
 #include "SingleGame.h"
 
+#include <map>
+#include <memory>
+#include <thread>
 #include <algorithm>
 #include <ctime>
 #include <iomanip>
@@ -35,10 +38,12 @@ void TournamentManager::setUpLogger(const std::string& path) {
 	if (path == ".") { //no dir path is given
 		loggerFile = "game.log";
 	}
-	if (path.back() == '/') { //dir path includes '/'
+	else if (path.back() == '/') { //dir path includes '/'
 		loggerFile = path + "game.log";
 	}
-	loggerFile = path + "/" + "game.log";
+	else {
+		loggerFile = path + "/" + "game.log";
+	}
 	this->logger.InitLog(loggerFile);
 	this->logger.logMessage("Started running a game tournament!");
 }
@@ -47,11 +52,16 @@ bool TournamentManager::setUpBoards(const std::string & path) {
 	std::string errorPath = path == "." ? "Working Directory" : path;
 
 	this->boardFileLister = FilesListerWithSuffix(path);
-	if (this->boardFileLister.getFilesList().size() == 0) {
+	if (this->boardFileLister.getFilesList().empty()) {
 		std::cout << "Missing board file (*.sboard) looking in path: " << errorPath << std::endl;
 		return false;
 	}
-	//TODO add load boards!!
+	for (size_t i = 0; i < this->boardFileLister.getFilesList().size(); i++) {
+		std::shared_ptr<Board> nextBoard = std::make_shared<Board>();
+		if (nextBoard->loadBoard(this->boardFileLister.getFilesList().at(i), &this->logger)) {
+			this->gameBoards.push_back(nextBoard);
+		}
+	}
 
 	if (this->gameBoards.empty()) {
 		return false;
@@ -98,7 +108,7 @@ bool TournamentManager::setUpPlayers(const std::string & path) {
 	}
 	if (this->players.size() < 2) {
 		std::string err_msg = "Missing an algorithm (dll) file looking in path: ";
-		err_msg += path == "." ? "Working Directory" : path;
+		err_msg += (path == "." ? "Working Directory" : path);
 		std::cout << err_msg << std::endl;
 		this->logger.logMessage(err_msg);
 		return false;
@@ -132,17 +142,16 @@ void TournamentManager::logTournamentStatistics() {
 	this->logger.logMessage(base + std::to_string(this->games.size()) + " games");
 }
 
-
 bool TournamentManager::playTournament() {
 
 	for (auto & t : this->threads_vec) {
-		t = std::thread(&TournamentManager::startSingleGame, this);
+		t = std::thread(&TournamentManager::threadRunner, this);
 	}
 	
 	while (runningThreads > 0) {
-		std::unique_lock<std::mutex> lk(this->m);
+		std::unique_lock<std::mutex> lk(this->resultsMutex);
 		this->cv.wait(lk, [this] {
-			return this->playedRounds[this->roundCounter] == this->players.size(); });//this->players.size()-1?
+			return this->playedRounds[this->roundCounter] == this->players.size(); });
 		intermediateResults(this->roundCounter++);
 		lk.unlock();
 	}
@@ -150,15 +159,14 @@ bool TournamentManager::playTournament() {
 	for (auto & t : this->threads_vec) {
 		t.join();
 	}
+	this->logger.logMessage("printing residual rounds' results");
 	while(this->roundCounter < this->playedRounds.size()) {
 		intermediateResults(this->roundCounter++);
 	}
-
-	// TODO: Complete function!
 	return true;
 }
 
-void TournamentManager::startSingleGame() {
+void TournamentManager::threadRunner() {
 	this->runningThreads++;
 	std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> gameStats;
 	while ((gameStats = getNextGame()) != std::make_tuple(nullptr, nullptr, nullptr)) {
@@ -182,32 +190,32 @@ void TournamentManager::increaseRoundCount(int roundA, int roundB) {
 
 void TournamentManager::intermediateResults(int round) {
 	system("cls");
-	std::vector<std::tuple<int, int, int, int, std::string>> playerResults;
+	std::vector<std::tuple<int, int, int, int, std::string>> playersResults;
 	for (std::shared_ptr<PlayerData> player : this->players) {
-		playerResults.push_back(player->gotRoundData(round));
+		playersResults.push_back(player->gotRoundData(round));
 	}
-	std::sort(playerResults.begin(), playerResults.end());
+	std::sort(playersResults.begin(), playersResults.end());
 	std::cout << std::left << std::setw(8) << "#" << std::setw(this->nameBuffer) << "Team Name";
 	std::cout << std::setw(8) << "Wins" << std::setw(8) << "Losses" << std::setw(8) << "%";
 	std::cout << std::setw(8) << "Pts For" << std::setw(8) << "Pts Against" << std::endl;
-	//gotRoundData returns: num of wins(0), pts for(1), num of loses(2), pts against(3), dll name(4)
-	for (int i = 0; i < playerResults.size(); i++) {
-		std::cout << std::setw(8) << std::to_string(i + 1) + '.';
-		std::cout << std::setw(this->nameBuffer) << std::get<4>(playerResults.at(i));
-		std::cout << std::setw(8) << std::get<0>(playerResults.at(i));
-		std::cout << std::setw(8) << std::get<2>(playerResults.at(i));
-		std::cout << std::setw(8) << std::setprecision(2) << (double)std::get<0>(playerResults.at(i)) / round;
-		std::cout << std::setw(8) << std::get<1>(playerResults.at(i));
-		std::cout << std::setw(8) << std::get<3>(playerResults.at(i)) << std::endl;
-		}
-}
 
+	for (int i = 0; i < playersResults.size(); i++) {
+		std::cout << std::setw(8) << std::to_string(i + 1) + '.';
+		std::cout << std::setw(this->nameBuffer) << std::get<4>(playersResults.at(i));
+		std::cout << std::setw(8) << std::get<0>(playersResults.at(i));
+		std::cout << std::setw(8) << std::get<2>(playersResults.at(i));
+		std::cout << std::setw(8) << std::setprecision(2) << (double)std::get<0>(playersResults.at(i)) / round;
+		std::cout << std::setw(8) << std::get<1>(playersResults.at(i));
+		std::cout << std::setw(8) << std::get<3>(playersResults.at(i)) << std::endl;
+		}
+	this->logger.logResults(playersResults, this->nameBuffer, round);
+}
 
 std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>,
 	std::shared_ptr<Board>> TournamentManager::getNextGame() {
 	std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> nextGame;
-	static std::mutex m;
-	std::lock_guard<std::mutex> l(m);
+	static std::mutex gameMutex;
+	std::lock_guard<std::mutex> l(gameMutex);
 	if (this->games.empty()) {
 		nextGame = std::make_tuple(nullptr, nullptr, nullptr);
 	}

@@ -6,25 +6,21 @@
 #include "IBattleshipGameAlgo.h"
 
 #include <vector>
-#include <map>
-#include <memory>
 #include <deque>
-#include <thread>
-#include <atomic>
 
 class TournamentManager {
-	Logger logger;
 	size_t nameBuffer = 0;
-	int numOfThreads;
 	int roundCounter = 0;
 	int runningThreads = 0;
+	int numOfThreads;
+	Logger logger;
 	FilesListerWithSuffix boardFileLister;
 	std::vector<std::shared_ptr<Board>> gameBoards;
 	std::vector<std::shared_ptr<PlayerData>> players;
 	std::deque<std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>>> games;
 	std::vector<std::thread> threads_vec;
 	std::vector<int> playedRounds;
-	std::mutex m;
+	std::mutex resultsMutex;
 	std::condition_variable cv;
 
 	void setUpLogger(const std::string& path);
@@ -32,7 +28,7 @@ class TournamentManager {
 	bool setUpPlayers(const std::string& path);
 	void createGameCombinations();
 	void logTournamentStatistics();
-	void startSingleGame();
+	void threadRunner();
 	std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> getNextGame();
 	void increaseRoundCount(int roundA, int roundB);
 	void intermediateResults(int round);

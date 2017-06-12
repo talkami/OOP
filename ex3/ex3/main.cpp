@@ -1,15 +1,23 @@
 #include "TournamentManager.h"
 
+#include <string>
+#include <iostream>
+
 int main(int argc, char* argv[]) {
 	bool initializedSuccessfully, successfulPlay;
 	std::string path = ".";
 	int threads = 4;
-	for (int i = 1; i < argc; i++) {
-		if (strcmp(argv[i - 1], "-threads") == 0) {
-			threads = atoi(argv[i]) > 0 ? atoi(argv[i]) : 0;
+	if (argc > 1) {
+		if (strcmp(argv[1], "-threads") == 0 && argc > 2) {
+			std::cout << "argv[2]=" << argv[2] << std::endl;
+			threads = atoi(argv[2]) > 0 ? atoi(argv[2]) : threads;
 		}
-		else if (i == 1) {
-			path = argv[i];
+		else {
+			path = argv[1];
+			if (strcmp(argv[2], "-threads") == 0 && argc > 3) {
+				std::cout << "argv[3]=" << argv[3] << std::endl;
+				threads = atoi(argv[3]) > 0 ? atoi(argv[3]) : threads;
+			}
 		}
 	}
 
@@ -21,7 +29,7 @@ int main(int argc, char* argv[]) {
 	}
 	successfulPlay = game->playTournament();
 	if (!successfulPlay) {
-	return -1;
+		return -1;
 	}
 
 	return 0;

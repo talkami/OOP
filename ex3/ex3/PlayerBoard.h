@@ -29,7 +29,7 @@ public:
 	void editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint);
 	
 	/// to do!!!!!!!!!!!!!!!!!!!!
-	bool loadBoard (BoardData board);
+	bool loadBoard (BoardData* board);
 	std::pair<AttackResult,int> attack (Coordinate coor);
 
 };
