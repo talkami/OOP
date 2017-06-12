@@ -16,30 +16,24 @@ class Player : IBattleshipGameAlgo{
 	std::pair<int, int, int>left;
 	std::pair<int, int, int> right;
 	AttackResult result;
-
+	int attackDepth ;
+	int numOfDepths;
 	void setGoodShot(int row, int col, int depth);
 
+	
+	void handleAttackResult();
+	std::pair <int, int> playGoodAttack();
 
 	//whats this?
 	Coordinate findNextAttack();
 
 public:
-	virtual void setPlayer(int player);
-	virtual void setBoard(const BoardData& board);	
-	virtual Coordinate attack();
-	virtual void notifyOnAttackResult(int player, Coordinate move, AttackResult result);
+	virtual void setPlayer(int player) override;
+	virtual void setBoard(const BoardData& board)override;	
+	virtual Coordinate attack()override;
+	virtual void notifyOnAttackResult(int player, Coordinate move, AttackResult result)override;
 
 	Player();
 	~Player();
-	virtual bool init(const std::string& path) override;
-	virtual void notifyOnAttackResult(int player, int row, int col, int depth, AttackResult result) override;
-	virtual bool hasFinishedAttacking() override;
-
-	Player(const SmartPlayer&) = delete;
-	Player& operator=(const SmartPlayer&) = delete;
-
 	//unique func
-	void handleAttackResult();
-	std::pair <int, int> playGoodAttack();
-
 };

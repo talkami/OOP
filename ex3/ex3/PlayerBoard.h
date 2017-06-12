@@ -28,7 +28,8 @@ public:
 	bool isThereMoreBoats ();
 	void editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint);
 	
-	/// to do!!!!!!!!!!!!!!!!!!!!
+	bool isValidAttack (Coordinate coor);
+	void setInvalidAttack (Coordinate coor);
 	bool loadBoard (BoardData board);
 	std::pair<AttackResult,int> attack (Coordinate coor);
 
