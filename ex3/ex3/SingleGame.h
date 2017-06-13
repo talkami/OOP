@@ -9,12 +9,16 @@ class SingleGame {
 	std::shared_ptr<Board> gameBoard;
 	IBattleshipGameAlgo* PlayerA;
 	IBattleshipGameAlgo* PlayerB;
+	Board* board;
 	int scoreA;
 	int scoreB;
-	bool AFinishedAttacking;
-	bool BFinishedAttacking;
 	int turn;
 	int winner;
+	bool AFinishedAttacking;
+	bool BFinishedAttacking;
+
+	void setupBoard(std::shared_ptr<Board> board);
+	void setNextTurn(AttackResult res, bool selfHit);
 
 public:
 	//optional argument for c'tor - maybe change to something better
