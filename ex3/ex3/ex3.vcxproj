@@ -45,6 +45,9 @@
     <ClInclude Include="SingleGame.h" />
     <ClInclude Include="TournamentManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{86236961-73AE-4C19-9E16-4DE5FFB41A34}</ProjectGuid>
     <RootNamespace>ex3</RootNamespace>

@@ -1,6 +1,6 @@
 #include "SingleGame.h"
 
-	//single game constructor
+//single game constructor
 SingleGame::SingleGame(std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>,
 	std::shared_ptr<Board>> gameStats) : scoreA(0), scoreB(0), dataA(std::get<0>(gameStats)), 
 	dataB(std::get<1>(gameStats)), gameBoard(std::get<2>(gameStats)) {

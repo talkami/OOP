@@ -1,8 +1,12 @@
 #pragma once
 #include "IBattleshipGameAlgo.h"
+#include "PlayerBoard.h"
 
-class Player : IBattleshipGameAlgo{
-	int playerNum
+#include<list>
+#include<map>
+
+class Player : public IBattleshipGameAlgo{
+	int playerNum;
 	PlayerBoard* player_board;
 	int attackRow;
 	int attackCol;
@@ -37,3 +41,5 @@ public:
 	~Player();
 	//unique func
 };
+
+static std::vector<Player*> _instancesVec; //Our Player collection

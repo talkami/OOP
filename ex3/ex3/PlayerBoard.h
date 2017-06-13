@@ -2,7 +2,7 @@
 #include "IBattleshipGameAlgo.h"
 #include "Boat.h"
 
-class PlayerBoard : BoardData{
+class PlayerBoard : public BoardData{
 	int _rows = 0;
 	int _cols = 0;
 	int _depth = 0; 
@@ -27,7 +27,7 @@ public:
 	void removeBoat(Boat* boat);
 	bool isThereMoreBoats ();
 	void editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint);
-	bool loadBoard (BoardData* board);
+	bool loadBoard (const BoardData& board);
 	std::pair<AttackResult,int> attack (Coordinate coor);
 
 
