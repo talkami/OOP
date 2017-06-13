@@ -42,10 +42,6 @@
 		this->_board.at(depth).at(rows).at(cols) = characterAtPoint;
 	}
 
-
-
-	///new  funcs
-
 	void PlayerBoard::loadBoard (BoardData* board){
 		for (int col =0; col<board->cols(); col++){
 			for (int row =0; row<board->rows(); row++){

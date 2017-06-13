@@ -130,6 +130,9 @@ bool SingleGame::setNextTurn(AttackResult res, bool selfHit) {
 	}
 }
 
+
+
+//delete?
 bool SingleGame::endGame() {
 	GameBoard::setTextColor(15);
 	//system("cls");
@@ -153,49 +156,3 @@ bool SingleGame::endGame() {
 
 
 
-
-//delete? ask tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-bool SingleGame::initGame(int argc, char* argv[]) {
-	bool result = true;
-	std::string path = ".";
-	DIR * dir;
-	for (int i = 1; i < argc; i++) {
-		if (strcmp(argv[i], "-quiet") == 0) {
-			this->displayGame = false;
-		}
-		else if (strcmp(argv[i - 1], "-delay") == 0) {
-			this->delay = atoi(argv[i]);
-		}
-		else if (i == 1) {
-			path = argv[i];
-		}
-	}
-	if ((dir = opendir(path.c_str())) == NULL) {
-		std::cout << "Wrong path: " << (path == "." ? "Working Directory" : path) << std::endl;
-		result = false;
-	}
-	closedir(dir);
-
-	if (result) {
-		result = setupGame(path);
-	}
-	return result;
-}
-
-//delete? ask tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-bool Game::setupGame(const std::string& path) {
-	bool result;
-	result = this->gameBoard.initBoard(path, this->A, this->B, 10, 10, this->displayGame);
-	result = (result & setupPlayers(path));
-	if (result) {
-		this->A->setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
-		this->B->setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
-		result = (result & this->A->init(path));
-		result = (result & this->B->init(path));
-	}
-	if (result && this->displayGame) {
-		this->gameBoard.displayBoard();
-	}
-
-	return result;
-}
