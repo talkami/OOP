@@ -10,12 +10,13 @@ char PlayerBoard::charAt(Coordinate c) const{
 void PlayerBoard::addBoat(Boat * boat){
 	this->boats.push_back (boat);
 	this-> numOfPlayerBoats = this->numOfPlayerBoats+1;
+	this->boatsCount[boat->getSize()-1] ++;
 }
 
 Boat* PlayerBoard::getBoatAt (int row, int col, int depth){
 //stackoverflow says it works
-	for(std::vector<T>::iterator boat = this->boats.begin(); boat != boats.end(); ++boat) {
-		for(std::vector<T>::iterator coor = boat->getCoordinatesArray().begin(); coor != boats.end(); ++coor){
+		for(std::vector	for(std::vector<T>::iterator boat = this->boats.begin(); boat != boats.end(); ++boat) {
+<T>::iterator coor = boat->getCoordinatesArray().begin(); coor != boats.end(); ++coor){
 			if (coor->getCol()== col && coor->getRow()== row && coor->getDepth()== depth ){
 				return boat;
 			}
@@ -28,6 +29,8 @@ Boat* PlayerBoard::getBoatAt (int row, int col, int depth){
 void PlayerBoard::removeBoat(Boat* boat){
 	this->boats.erase(std::remove(boats.begin(), boats.end(), boat), boats.end()); 
 	this-> numOfPlayerBoats = this->numOfPlayerBoats-1;
+	this->boatsCount[boat->getSize()-1] --;
+
 	//stackoverflow says its works
 }
 bool PlayerBoard::isThereMoreBoats (){
@@ -39,7 +42,9 @@ bool PlayerBoard::isThereMoreBoats (){
 	}
 }
 void PlayerBoard::editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint){
-	this->_board.at(depth).at(rows).at(cols) = characterAtPoint;
+	if (rows>0 && rows< this->_rows && cols>0 && cols< this->_cols && depth >0 && depth < this->_depth){
+		this->_board.at(depth).at(rows).at(cols) = characterAtPoint;
+	}
 }
 
 void PlayerBoard::loadBoard (const BoardData& board){
@@ -84,4 +89,28 @@ void PlayerBoard::setInvalidArea (Coordinate coor){
 
 void PlayerBoard::setInvalidHorizontal (){
 	
+}
+int* PlayerBoard::getBoatsCount(){
+	return this->boatsCount;
+}
+
+bool PlayerBoard::isValidToExplorationAttack(Coordinate coor){
+	if (charAt (coor) == ' '){
+		return true;
+	}
+	else{ 
+		return false;
+	}
+}
+
+void invalidateExplorationAttackArea(int row, int col, int depth, int smallestBoat){
+	editBoardAtPoint(row,col,depth, 'e');
+	for (int i =1 ;i<smallestBoat; i ++){
+		editBoardAtPoint(row+i, col, depth, 'e');
+		editBoardAtPoint(row-i, col, depth, 'e');
+		editBoardAtPoint(row, col+i, depth, 'e');
+		editBoardAtPoint(row, col-i, depth, 'e');
+		editBoardAtPoint(row, col, depth+i, 'e');
+		editBoardAtPoint(row, col, depth-i, 'e');
+	}
 }

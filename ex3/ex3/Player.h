@@ -8,8 +8,6 @@
 class Player : public IBattleshipGameAlgo{
 	int playerNum;
 	PlayerBoard* player_board;
-	int attackRow;
-	int attackCol;
 	bool finishedAttacking;
 	bool isThereGoodAttack;
 	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 vertical
@@ -20,14 +18,14 @@ class Player : public IBattleshipGameAlgo{
 	std::tuple<int, int, int> left;
 	std::tuple<int, int, int> right;
 	AttackResult result;
-	int attackDepth ;
-	int numOfDepths;
-	void setGoodShot(int row, int col, int depth);
-
-	
+	int numOfDepths = 0;
+	int numOfRows = 0;
+	int numOfCols = 0;
+	int smallestBoat;
+	int* boatsCount;
+	void setGoodShot(int row, int col, int depth);	
 	void handleAttackResult();
 	Coordinate playGoodAttack();
-
 	//whats this?
 	Coordinate findNextAttack();
 

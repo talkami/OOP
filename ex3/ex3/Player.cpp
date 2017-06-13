@@ -30,6 +30,16 @@ void Player::setPlayer(int player) {
 //override function
 void Player::setBoard(const BoardData& board) {
 	this->player_board->loadBoard(board);
+	this->boatsCount= this->player_board->getboatsCount;
+	for (int i = 0; i<4;i++){
+		if (boatsCount > 0){
+			this->smallestBoat = i;
+			break;
+		}
+	}
+	this-> numberOfRows= this->player_board->rows();
+	this-> numberOfCols= this->player_board->cols();
+	this-> numberOfDepths= this->player_board->depth();
 }
 //override function
 Coordinate Player::attack() {
@@ -41,25 +51,16 @@ Coordinate Player::attack() {
 			return attack;
 		}
 	}
-	this->currentAttack = 0;
-	while (this->attackRow < this->numOfRows) {
-		while (this->attackCol < this->numOfCols) {
-			while (this->attackDepth < this->numOfDepths){
-				if (player_board.isValidAttack(this->attackRow, this->attackCol, this->attackDepth)) {
-					//ask tal !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					return Coordinate(this->attackRow + 1, ++this->attackCol);
-				}
-				this->attackDepth++;
-			}
-			this->attackDepth = 0;
-			attackCol++;
+	while (true){
+	//starts with 0;
+		int row = rand() % this->numberOfRows;
+		int col = rand() % this->numberOfCols;
+		int depth = rand() % this->numOfDepths;
+		if (isValidToExplorationAttack (Coordinate (row,col,depth))){
+			this->player_board->invalidateExplorationAttackArea(row,col,depth, this->smalestBoat);
+			return Coordinate (row,col,depth);
 		}
-		this->attackDepth = 0;
-		this->attackCol = 0;
-		this->attackRow++;
 	}
-	this->finishedAttacking = true;
-	return Coordinate(-1, -1, -1);
 }
 
 
@@ -79,6 +80,9 @@ void Player::notifyOnAttackResult(int player, Coordinate move, AttackResult resu
 				this->player_board.setInvalidHorizontal(i - 1, j);
 			}
 			this->currentAttack = 0;
+		}
+		else{
+			//think about it...
 		}
 	} 
 	else if (result == AttackResult::Hit) {
@@ -146,7 +150,6 @@ Coordinate Player::playGoodAttack() {
 bool Player::hasFinishedAttacking() {
 	return this->finishedAttacking;
 }
-
 
 
 
