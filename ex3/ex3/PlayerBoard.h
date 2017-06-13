@@ -33,7 +33,7 @@ public:
 	void setInvalidArea (Coordinate coor);
 	//ask tal
 	void setInvalidHorizontal ();
-	bool loadBoard (BoardData board);
+	bool loadBoard (BoardData* board);
 	std::pair<AttackResult,int> attack (Coordinate coor);
 
 };

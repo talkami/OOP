@@ -20,14 +20,14 @@ SingleGame::~SingleGame() {
 //init board ask tal
 bool SingleGame::setupBoard(std::shared_ptr<Board> board) {
 
-	this->board = board;
+	this->board = &board;
 	return true;
 }
 
 
 
-bool SingleGame::playSingleGame() {
-	//Sleep(this->delay);
+std::pair<int,int> SingleGame::playSingleGame() {
+
 	while (this->turn >= 0) {
 		std::pair<int, int, int> nextMove;
 		AttackResult res;
@@ -40,7 +40,7 @@ bool SingleGame::playSingleGame() {
 		else {
 			std::cout << "Error! next turn set to an illegal player" << std::endl;
 			return false;
-		}if (nextMove->getRow == -1 || nextMove->getCol == -1 ||nextMove->getDepth == -1) {
+		}if (nextMove->getRow == -1 || nextMove->getCol == -1 ||nextMove.depth == -1) {
 			if (turn == 0) {
 			// how do we define finished attacking?
 				this->AFinishedAttacking = true;
@@ -70,24 +70,23 @@ bool SingleGame::playSingleGame() {
 		}
 	}
 
-	if (!this->endGame()) {
-		return false;
-	}
+	int AGames = this->dataA->addData(this->winner == 0, this->winner == 1, this->scoreA, this->scoreB);
+	int BGames = this->dataB->addData(this->winner == 1, this->winner == 0, this->scoreB, this->scoreA);
 
-	return true;
+	return std::make_pair(AGames, BGames);
 }
 
 bool SingleGame::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory
 	if (this->board->hasNoMoreBoats(0)) {
 		//player A is out of boats - player B wins
-		this->winner = 'B';
+		this->winner = 1;
 		this->turn = -1;
 		return true;
 	}
 	else if (this->board->hasNoMoreBoats(1)) {
 		//player B is out of boats - player A wins
-		this->winner = 'A';
+		this->winner = 0;
 		this->turn = -1;
 		return true;
 	}
@@ -96,6 +95,7 @@ bool SingleGame::setNextTurn(AttackResult res, bool selfHit) {
 	if (this->AFinishedAttacking) {
 		if (this->BFinishedAttacking) {
 			//both players have finished attacking - end the game
+			this->winner = -1;
 			this->turn = -2;
 			return true;
 		}
@@ -128,74 +128,4 @@ bool SingleGame::setNextTurn(AttackResult res, bool selfHit) {
 			return false;
 		}
 	}
-}
-
-bool SingleGame::endGame() {
-	GameBoard::setTextColor(15);
-	//system("cls");
-
-	//what to do when single game is over?
-	switch (this->turn) {
-	case -1:
-		std::cout << "Player " << this->winner << " won" << std::endl;
-	case -2:
-		std::cout << "Points:" << std::endl;
-		std::cout << "Player A: " << this->board.getGameScore(0) << std::endl;
-		std::cout << "Player B: " << this->board.getGameScore(1) << std::endl;
-		return true;
-	default:
-		std::cout << "Error! reached 'endGame' function with invalid 'turn'" << std::endl;
-		return false;
-	}
-}
-
-
-
-
-
-
-//delete? ask tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-bool SingleGame::initGame(int argc, char* argv[]) {
-	bool result = true;
-	std::string path = ".";
-	DIR * dir;
-	for (int i = 1; i < argc; i++) {
-		if (strcmp(argv[i], "-quiet") == 0) {
-			this->displayGame = false;
-		}
-		else if (strcmp(argv[i - 1], "-delay") == 0) {
-			this->delay = atoi(argv[i]);
-		}
-		else if (i == 1) {
-			path = argv[i];
-		}
-	}
-	if ((dir = opendir(path.c_str())) == NULL) {
-		std::cout << "Wrong path: " << (path == "." ? "Working Directory" : path) << std::endl;
-		result = false;
-	}
-	closedir(dir);
-
-	if (result) {
-		result = setupGame(path);
-	}
-	return result;
-}
-
-//delete? ask tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-bool Game::setupGame(const std::string& path) {
-	bool result;
-	result = this->gameBoard.initBoard(path, this->A, this->B, 10, 10, this->displayGame);
-	result = (result & setupPlayers(path));
-	if (result) {
-		this->A->setBoard(0, const_cast<const char**>(this->gameBoard.getPlayerABoard()), 10, 10);
-		this->B->setBoard(1, const_cast<const char**>(this->gameBoard.getPlayerBBoard()), 10, 10);
-		result = (result & this->A->init(path));
-		result = (result & this->B->init(path));
-	}
-	if (result && this->displayGame) {
-		this->gameBoard.displayBoard();
-	}
-
-	return result;
 }

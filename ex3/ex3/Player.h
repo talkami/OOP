@@ -10,11 +10,11 @@ class Player : IBattleshipGameAlgo{
 	bool isThereGoodAttack;
 	int horizonalGoodAttack; //0 dont know, 1 horizontal, 2 vertical
 	int currentAttack; // 0 undecided, 1 vertical, 2 horizontal
-	std::list<std::pair<int, int, int>> goodShots;
-	std::pair<int, int, int> down;
-	std::pair<int, int, int> up;
-	std::pair<int, int, int>left;
-	std::pair<int, int, int> right;
+	std::list<std::tuple<int, int, int>> goodShots;
+	std::tuple<int, int, int> down;
+	std::tuple<int, int, int> up;
+	std::tuple<int, int, int> left;
+	std::tuple<int, int, int> right;
 	AttackResult result;
 	int attackDepth ;
 	int numOfDepths;

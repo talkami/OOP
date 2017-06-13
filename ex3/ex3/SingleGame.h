@@ -11,14 +11,14 @@ class SingleGame {
 	IBattleshipGameAlgo* PlayerB;
 	int scoreA;
 	int scoreB;
-
-	//new vars
 	bool AFinishedAttacking;
 	bool BFinishedAttacking;
 	int turn;
+	int winner;
 
 public:
 	//optional argument for c'tor - maybe change to something better
 	SingleGame(std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> gameStats);
 	~SingleGame();
+	std::pair<int, int> playSingleGame();
 };

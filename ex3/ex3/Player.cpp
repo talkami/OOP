@@ -2,8 +2,7 @@
 #include <iostream>
 
 
-Player::Player() :
-	
+Player::Player() :	
 	attackRow(0),
 	attackCol(0),
 	finishedAttacking(false),
