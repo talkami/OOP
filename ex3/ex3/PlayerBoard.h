@@ -3,7 +3,7 @@
 #include "Boat.h"
 
 class PlayerBoard : public BoardData{
-	//new fields
+	int boatsCount[4] = {0};
 	std::vector<std::vector<std::vector<char>>> _board;
 	std::vector<Boat*> boats;
 	int _player; 
@@ -27,8 +27,9 @@ public:
 	void editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint);
 	bool loadBoard (const BoardData& board);
 	std::pair<AttackResult,int> attack (Coordinate coor);
-
-
+	int* getBoatsCount();
+	bool isValidToExplorationAttack(Coordinate coor);
+	void invalidateExplorationAttackArea(int row, int col, int depth, int smalestBoat);
 	bool isValidAttack (Coordinate coor);
 	void setInvalidAttack (Coordinate coor);
 	void setInvalidArea (Coordinate coor);
