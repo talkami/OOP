@@ -25,8 +25,7 @@ class Board {
 	void mergeBoats(Boat* boat1, Boat* boat2, int direction, PlayerBoard* ownerBoard);
 	bool checkBoard();
 	bool thereIsBoatNearby(int row, int col, int depth);
-
-	//new
+	//shoud write!!
 	void handleSunkBoat (int owner, int value);
 
 public:
@@ -35,10 +34,10 @@ public:
     ~Board ();
 
 	bool loadBoard(const std::string& boardFile, Logger* logger);
-	PlayerBoard getPlayerBoard (int player);
-
-	// new
 	AttackResult attack (Coordinate coor, int attacker, bool* selfHit);
 	bool hasNoMoreBoats (int player);
+	BoardData& getPlayerBoard (int player);
+	int getGameScore(int player);
+
 
 };

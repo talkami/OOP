@@ -60,7 +60,7 @@ bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 	 vector<vector<vector<char>>> board(this->col, vector<char>(this->row), vector<vector<char>>(this->depth));
 	 this-> board = board;
 
-	 //is it ok?
+	 //is it ok? tal!!!!!!!
 	 this->playerABoard = new PlayerBoard(this->row, this->col, this->depth, board, 0);
 	 this->playerBBoard = new PlayerBoard(this->row, this->col, this->depth, board, 1);
 
@@ -353,5 +353,9 @@ int Board::getGameScore(int player){
 	else{
 		return -1;
 	}
+
+}
+
+void Board ::handleSunkBoat (int owner, int value){
 
 }
