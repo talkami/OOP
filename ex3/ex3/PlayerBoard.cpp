@@ -1,9 +1,37 @@
+#include "PlayerBoard.h"
 
-	
-	
+PlayerBoard::PlayerBoard(int rows, int cols, int depth) {
+	_rows = rows;
+	_cols = cols;
+	_depth = depth;
+}
+
+PlayerBoard::PlayerBoard(int rows, int cols, int depth, std::vector<std::vector<std::vector<char>>> board, int player) :
+	_board(board), _player(player) {
+	PlayerBoard(rows, cols, depth);
+}
+
 char PlayerBoard::charAt(Coordinate c) const{
-	char tmp = this->_board[c.getCol()][c.getRow()][c.getDepth()];
-	return tmp;
+	if (invalidCoordinate(c)) {
+		return ' ';
+	}
+	char currChar = this->_board.at(c.depth-1).at(c.row-1).at(c.col-1);
+	if (currChar == 'I') {//invalid char
+		return ' ';
+	}
+	else {
+		return currChar;
+	}	
+}
+
+bool PlayerBoard::invalidCoordinate(Coordinate c) const {
+	if (c.row <= 0 || c.col <= 0 || c.depth <= 0) {
+		return true;
+	}
+	if (c.row > this->_rows || c.col > this->_cols || c.depth > this->_depth) {
+		return true;
+	}
+	return false;
 }
 
 //new funcs

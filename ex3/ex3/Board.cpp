@@ -1,6 +1,6 @@
 #include "Board.h"
-#include<algorithm>
-#include<string> 
+#include <algorithm>
+#include <string>
 
 Board::~Board() {
 }
@@ -15,58 +15,20 @@ bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 		this->logger->logMessage("Error reading from file: " + boardFile);
 		return false;
 	}
-	//first line holds the number of cos,rows and depth.
+	//first line holds the number of cols, rows and depth.
 	std::string buffer;
 	std::getline(fin, buffer);
-	//to lower
-	std::transform(buffer.begin(), buffer.end(), buffer.begin(), ::tolower);
-	//get the parameters from the first line
-	size_t position = 0;
-	int parameter =0;
-	while ((position = buffer.find('x')) != std::string::npos) {
-		if (parameter == 0){
-			try{
-				this->col = atoi(buffer.substr(0, position));
-			}
-			catch(std::invalid_argument&))
-			{
-				return false
-			}
-		}
-		else if (parameter == 1){
-			try
-			{
-				this->row = atoi(buffer.substr(0, position));
-			}
-			catch(std::invalid_argument&))
-			{
-				return false
-			}
-		}
-		else if (parameter == 2){
-			try
-			{
-				this->depth = atoi(buffer.substr(0, position));
-			}
-			catch(std::invalid_argument&))
-			{
-				return false
-			}
-		}
-		buffer.erase(0, position + delimiter.length());
-		parameter ++;
+	if (!setUpParameters(buffer)) {
+		this->logger->logMessage("Invalid board parameter for: " + boardFile);
+		return false;
 	}
-	//init boards fields
-	 vector<vector<vector<char>>> board(this->col, vector<char>(this->row), vector<vector<char>>(this->depth));
-	 this-> board = board;
 
 	 //is it ok? tal!!!!!!!
-	 this->playerABoard = new PlayerBoard(this->row, this->col, this->depth, board, 0);
-	 this->playerBBoard = new PlayerBoard(this->row, this->col, this->depth, board, 1);
-
+	 this->playerABoard = std::make_shared<PlayerBoard>(this->row, this->col, this->depth, board, 0);
+	 this->playerBBoard = std::make_shared<PlayerBoard>(this->row, this->col, this->depth, board, 1);
 
 	// for depth of the Board
-	for(int dep =0 ; dep< this->depth; dep++ ){
+	 for (int dep = 0; dep < this->depth; dep++) {
 	// ignore 1 space line
 		std::getline(fin, buffer);
 
@@ -87,10 +49,44 @@ bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 	result = checkBoard();
 	if (this->hasAdjacentBoats) {
 		result = false;
-		std::cout << "Adjacent Ships on Board" << std::endl;
+		this->logger->logMessage(boardFile + " :Adjacent Ships on Board" );
 	}
 
+	this->logger->logMessage("Finished checking " + boardFile);
 	return result;
+}
+
+bool Board::setUpParameters(std::string params) {
+	std::transform(params.begin(), params.end(), params.begin(), ::tolower);
+	size_t start = 0;
+	size_t end = params.find("x");
+
+	try {
+		this->col = stoi(params.substr(start, end));
+		start += end + 1;
+
+		end = params.substr(start).find("x");
+		this->row = stoi(params.substr(start, end));
+		start += end + 1;
+
+		end = params.substr(start).find("x");
+		this->depth = stoi(params.substr(start, end));
+	}
+	catch (std::invalid_argument&) {
+		return false;
+	}
+	if (this->col <= 0 || this->row <= 0 || this->depth <= 0) {
+		return false;
+	}
+
+	board.resize(this->depth);
+	for (int i = 0; i < depth; i++) {
+		board.at(i).resize(this->row);
+		for (int j = 0; j < row; j++) {
+			board.at(i).at(j).resize(this->col);
+		}
+	}
+	return true;
 }
 
 

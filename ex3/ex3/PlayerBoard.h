@@ -3,10 +3,6 @@
 #include "Boat.h"
 
 class PlayerBoard : public BoardData{
-	int _rows = 0;
-	int _cols = 0;
-	int _depth = 0; 
-
 	//new fields
 	std::vector<std::vector<std::vector<char>>> _board;
 	std::vector<Boat*> boats;
@@ -15,11 +11,13 @@ class PlayerBoard : public BoardData{
 
 	//what is it?
 	void invalidatePoint(Coordinate c);
+
+	bool invalidCoordinate(Coordinate c) const;
 public:
 
-	PlayerBoard(int rows, int cols, int depth) : _rows(rows), _cols(cols), _depth(depth) {}
-	PlayerBoard(int rows, int cols, int depth, std::vector<std::vector<std::vector<char>>> board, int player) :
-		_rows(rows), _cols(cols), _depth(depth), _board(board), _player(player) {}
+	PlayerBoard(int rows, int cols, int depth);
+	PlayerBoard(int rows, int cols, int depth, std::vector<std::vector<std::vector<char>>> board, int player);
+		
 
 	virtual char charAt(Coordinate c) const override;
 	void addBoat(Boat * boat);

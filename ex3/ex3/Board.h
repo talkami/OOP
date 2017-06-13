@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 #include "Logger.h"
 #include "IBattleshipGameAlgo.h"
 #include "PlayerBoard.h"
@@ -9,14 +10,16 @@
 class Board {
 	std::vector<std::vector<std::vector<char>>> board;
     int row, col, depth;
-	BoardData* playerABoard;
-	BoardData* playerBBoard;
+	std::shared_ptr<BoardData> playerABoard;
+	std::shared_ptr<BoardData> playerBBoard;
 	Logger* logger;
 	bool errorArray[9] = {false};
 	int playerAScore;
 	int playerBScore;
 	Boat** PlayerABoats;
 	Boat** PlayerBBoats;
+
+	bool setUpParameters(std::string params);
 
 	void addToPlayerBoard(char currentChar, int row, int col, int depth);
 	void addBoatToBoard(int row, int col, int depth, int size, int player, PlayerBoard* ownerBoard, PlayerBoard* rivalBoard);
