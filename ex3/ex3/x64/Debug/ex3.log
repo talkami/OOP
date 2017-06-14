@@ -1,20 +1,15 @@
-﻿  main.cpp
-c:\users\tal\oop\ex3\ex3\boat.h(42): error C2061: syntax error: identifier 'shared_ptr'
-  TournamentManager.cpp
-c:\users\tal\oop\ex3\ex3\boat.h(42): error C2061: syntax error: identifier 'shared_ptr'
-  SingleGame.cpp
-c:\users\tal\oop\ex3\ex3\boat.h(42): error C2061: syntax error: identifier 'shared_ptr'
+﻿  SingleGame.cpp
 c:\users\tal\oop\ex3\ex3\singlegame.cpp(24): error C2440: '=': cannot convert from 'std::shared_ptr<Board> *' to 'Board *'
   c:\users\tal\oop\ex3\ex3\singlegame.cpp(24): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
 c:\users\tal\oop\ex3\ex3\singlegame.cpp(50): error C2039: 'play_attack': is not a member of 'Board'
   c:\users\tal\oop\ex3\ex3\board.h(10): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): error C2039: 'hasNoMoreBoats': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(10): note: see declaration of 'Board'
+c:\users\tal\oop\ex3\ex3\singlegame.cpp(71): error C2039: 'hasNoMoreBoats': is not a member of 'Board'
+  c:\users\tal\oop\ex3\ex3\board.h(10): note: see declaration of 'Board'
   PlayerBoard.cpp
-c:\users\tal\oop\ex3\ex3\boat.h(42): error C2061: syntax error: identifier 'shared_ptr'
-c:\users\tal\oop\ex3\ex3\playerboard.cpp(3): error C2614: 'PlayerBoard': illegal member initialization: '_rows' is not a base or member
-c:\users\tal\oop\ex3\ex3\playerboard.cpp(3): error C2614: 'PlayerBoard': illegal member initialization: '_cols' is not a base or member
-c:\users\tal\oop\ex3\ex3\playerboard.cpp(3): error C2614: 'PlayerBoard': illegal member initialization: '_depth' is not a base or member
 c:\users\tal\oop\ex3\ex3\playerboard.cpp(46): error C2039: 'getSize': is not a member of 'Boat'
-  c:\users\tal\oop\ex3\ex3\boat.h(8): note: see declaration of 'Boat'
+  c:\users\tal\oop\ex3\ex3\boat.h(9): note: see declaration of 'Boat'
 c:\users\tal\oop\ex3\ex3\playerboard.cpp(51): error C2059: syntax error: 'empty declaration'
 c:\users\tal\oop\ex3\ex3\playerboard.cpp(51): error C2143: syntax error: missing ';' before 'for'
 c:\users\tal\oop\ex3\ex3\playerboard.cpp(51): error C2065: 'T': undeclared identifier
@@ -80,9 +75,7 @@ c:\users\tal\oop\ex3\ex3\playerboard.cpp(147): error C2660: 'PlayerBoard::editBo
 c:\users\tal\oop\ex3\ex3\playerboard.cpp(156): error C2039: '_board': is not a member of 'PlayerBoard'
   c:\users\tal\oop\ex3\ex3\playerboard.h(6): note: see declaration of 'PlayerBoard'
 c:\users\tal\oop\ex3\ex3\playerboard.cpp(156): error C2228: left of '.at' must have class/struct/union
-c:\users\tal\oop\ex3\ex3\playerboard.cpp(166): error C2660: 'PlayerBoard::editBoardAtPoint': function does not take 4 arguments
   Player.cpp
-c:\users\tal\oop\ex3\ex3\boat.h(42): error C2061: syntax error: identifier 'shared_ptr'
 c:\users\tal\oop\ex3\ex3\player.cpp(9): error C2614: 'Player': illegal member initialization: 'attackRow' is not a base or member
 c:\users\tal\oop\ex3\ex3\player.cpp(9): error C2614: 'Player': illegal member initialization: 'attackCol' is not a base or member
 c:\users\tal\oop\ex3\ex3\player.cpp(31): error C2039: 'getboatsCount': is not a member of 'PlayerBoard'
@@ -167,12 +160,122 @@ c:\users\tal\oop\ex3\ex3\player.cpp(148): error C2227: left of '->finishedAttack
 c:\users\tal\oop\ex3\ex3\player.cpp(151): warning C4273: 'GetAlgorithm': inconsistent dll linkage
   c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(65): note: see previous definition of 'GetAlgorithm'
   Boat.cpp
-c:\users\tal\oop\ex3\ex3\boat.h(42): error C2061: syntax error: identifier 'shared_ptr'
-c:\users\tal\oop\ex3\ex3\boat.cpp(2): fatal error C1083: Cannot open include file: 'Point.h': No such file or directory
+c:\users\tal\oop\ex3\ex3\boat.cpp(41): error C2039: 'owner': is not a member of 'Boat'
+  c:\users\tal\oop\ex3\ex3\boat.h(9): note: see declaration of 'Boat'
+c:\users\tal\oop\ex3\ex3\boat.cpp(44): error C2039: 'rival': is not a member of 'Boat'
+  c:\users\tal\oop\ex3\ex3\boat.h(9): note: see declaration of 'Boat'
+c:\users\tal\oop\ex3\ex3\boat.cpp(63): error C2511: 'void Boat::addHit(void)': overloaded member function not found in 'Boat'
+  c:\users\tal\oop\ex3\ex3\boat.h(9): note: see declaration of 'Boat'
+c:\users\tal\oop\ex3\ex3\boat.cpp(64): error C2671: 'Boat::addHit': static member functions do not have 'this' pointers
+c:\users\tal\oop\ex3\ex3\boat.cpp(64): error C2227: left of '->hits' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(67): error C2511: 'void Boat::addPoint(Coordinate *)': overloaded member function not found in 'Boat'
+  c:\users\tal\oop\ex3\ex3\boat.h(9): note: see declaration of 'Boat'
+c:\users\tal\oop\ex3\ex3\boat.cpp(68): error C2671: 'Boat::addPoint': static member functions do not have 'this' pointers
+c:\users\tal\oop\ex3\ex3\boat.cpp(68): error C2227: left of '->coordinatesArray' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(68): error C2228: left of '.push_back' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\boat.cpp(69): error C2671: 'Boat::addPoint': static member functions do not have 'this' pointers
+c:\users\tal\oop\ex3\ex3\boat.cpp(69): error C2227: left of '->acctualSize' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(80): error C2511: 'void Boat::mergeBoats(Boat *)': overloaded member function not found in 'Boat'
+  c:\users\tal\oop\ex3\ex3\boat.h(9): note: see declaration of 'Boat'
+c:\users\tal\oop\ex3\ex3\boat.cpp(81): error C2440: 'initializing': cannot convert from 'std::vector<Coordinate,std::allocator<_Ty>>' to 'std::vector<Coordinate *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=Coordinate
+          ]
+  c:\users\tal\oop\ex3\ex3\boat.cpp(81): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\tal\oop\ex3\ex3\boat.cpp(82): error C2671: 'Boat::mergeBoats': static member functions do not have 'this' pointers
+c:\users\tal\oop\ex3\ex3\boat.cpp(82): error C2227: left of '->acctualSize' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(85): error C2039: 'setBoat': is not a member of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+c:\users\tal\oop\ex3\ex3\boat.cpp(85): error C2671: 'Boat::mergeBoats': static member functions do not have 'this' pointers
+c:\users\tal\oop\ex3\ex3\boat.cpp(86): error C2671: 'Boat::mergeBoats': static member functions do not have 'this' pointers
+c:\users\tal\oop\ex3\ex3\boat.cpp(86): error C2227: left of '->coordinatesArray' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(86): error C2228: left of '.push_back' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\boat.cpp(114): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\boat.cpp(114): error C3203: 'pair': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+c:\users\tal\oop\ex3\ex3\boat.cpp(114): error C2556: 'std::vector<int,std::allocator<_Ty>> Boat::getPoints(void)': overloaded function differs only by return type from 'std::vector<std::tuple<int,int,int>,std::allocator<_Ty>> Boat::getPoints(void)'
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=std::tuple<int,int,int>
+          ]
+  c:\users\tal\oop\ex3\ex3\boat.h(42): note: see declaration of 'Boat::getPoints'
+c:\users\tal\oop\ex3\ex3\boat.cpp(114): error C2371: 'Boat::getPoints': redefinition; different basic types
+  c:\users\tal\oop\ex3\ex3\boat.h(42): note: see declaration of 'Boat::getPoints'
+c:\users\tal\oop\ex3\ex3\boat.cpp(116): error C2977: 'std::pair': too many template arguments
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(76): note: see declaration of 'std::pair'
+c:\users\tal\oop\ex3\ex3\boat.cpp(116): error C3203: 'pair': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
+c:\users\tal\oop\ex3\ex3\boat.cpp(118): error C2819: type 'Coordinate' does not have an overloaded member 'operator ->'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\boat.cpp(118): note: did you intend to use '.' instead?
+c:\users\tal\oop\ex3\ex3\boat.cpp(118): error C2039: 'getRow': is not a member of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+c:\users\tal\oop\ex3\ex3\boat.cpp(118): error C2039: 'getCol': is not a member of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+c:\users\tal\oop\ex3\ex3\boat.cpp(118): error C2039: 'getDepth': is not a member of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+c:\users\tal\oop\ex3\ex3\boat.cpp(119): error C2664: 'void std::vector<int,std::allocator<_Ty>>::push_back(const int &)': cannot convert argument 1 from 'std::pair<int,int>' to 'int &&'
+          with
+          [
+              _Ty=int
+          ]
+  c:\users\tal\oop\ex3\ex3\boat.cpp(119): note: Reason: cannot convert from 'std::pair<int,int>' to 'int'
+  c:\users\tal\oop\ex3\ex3\boat.cpp(119): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\tal\oop\ex3\ex3\boat.cpp(127): error C2556: 'Coordinate **Boat::getCoordinatesArray(void)': overloaded function differs only by return type from 'std::vector<Coordinate,std::allocator<_Ty>> Boat::getCoordinatesArray(void)'
+          with
+          [
+              _Ty=Coordinate
+          ]
+  c:\users\tal\oop\ex3\ex3\boat.h(43): note: see declaration of 'Boat::getCoordinatesArray'
+c:\users\tal\oop\ex3\ex3\boat.cpp(127): error C2373: 'Boat::getCoordinatesArray': redefinition; different type modifiers
+  c:\users\tal\oop\ex3\ex3\boat.h(43): note: see declaration of 'Boat::getCoordinatesArray'
+c:\users\tal\oop\ex3\ex3\boat.cpp(132): error C2084: function 'int Boat::getValue(void)' already has a body
+  c:\users\tal\oop\ex3\ex3\boat.cpp(54): note: see previous definition of 'getValue'
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2065: 'T': undeclared identifier
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2923: 'std::vector': 'T' is not a valid template type argument for parameter '_Ty'
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C3203: 'allocator': unspecialized class template can't be used as a template argument for template parameter '_Alloc', expected a real type
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2955: 'std::vector': use of class template requires template argument list
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(679): note: see declaration of 'std::vector'
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2227: left of '->coordinatesArray' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2228: left of '.begin' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2065: 'coordinatesArray': undeclared identifier
+c:\users\tal\oop\ex3\ex3\boat.cpp(137): error C2228: left of '.end' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\boat.cpp(137): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\boat.cpp(138): error C2227: left of '->getRow' must point to class/struct/union/generic type
+  c:\users\tal\oop\ex3\ex3\boat.cpp(138): note: type is '_Vector_alloc<std::_Vec_base_types<_Ty,_Alloc_types::_Alloc>>::iterator'
+c:\users\tal\oop\ex3\ex3\boat.cpp(138): error C2039: 'getRow': is not a member of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+c:\users\tal\oop\ex3\ex3\boat.cpp(138): error C2227: left of '->getCol' must point to class/struct/union/generic type
+  c:\users\tal\oop\ex3\ex3\boat.cpp(138): note: type is '_Vector_alloc<std::_Vec_base_types<_Ty,_Alloc_types::_Alloc>>::iterator'
+c:\users\tal\oop\ex3\ex3\boat.cpp(138): error C2039: 'getCol': is not a member of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+c:\users\tal\oop\ex3\ex3\boat.cpp(138): error C2227: left of '->getDepth' must point to class/struct/union/generic type
+  c:\users\tal\oop\ex3\ex3\boat.cpp(138): note: type is '_Vector_alloc<std::_Vec_base_types<_Ty,_Alloc_types::_Alloc>>::iterator'
+c:\users\tal\oop\ex3\ex3\boat.cpp(138): error C2039: 'getDepth': is not a member of 'Coordinate'
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(20): note: see declaration of 'Coordinate'
+c:\users\tal\oop\ex3\ex3\boat.cpp(139): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\boat.cpp(139): error C2227: left of '->coordinatesArray' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(139): error C2228: left of '.erase' must have class/struct/union
+c:\users\tal\oop\ex3\ex3\boat.cpp(139): error C2065: 'coordinatesArray': undeclared identifier
+c:\users\tal\oop\ex3\ex3\boat.cpp(139): error C2228: left of '.begin' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\boat.cpp(139): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\boat.cpp(139): error C2228: left of '.end' must have class/struct/union
+  c:\users\tal\oop\ex3\ex3\boat.cpp(139): note: type is 'unknown-type'
+c:\users\tal\oop\ex3\ex3\boat.cpp(139): error C2660: 'remove': function does not take 2 arguments
+c:\users\tal\oop\ex3\ex3\boat.cpp(142): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\boat.cpp(142): error C2227: left of '->hits' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(143): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\boat.cpp(143): error C2227: left of '->isSunk' must point to class/struct/union/generic type
+c:\users\tal\oop\ex3\ex3\boat.cpp(144): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+c:\users\tal\oop\ex3\ex3\boat.cpp(144): error C2227: left of '->value' must point to class/struct/union/generic type
   Board.cpp
-c:\users\tal\oop\ex3\ex3\boat.h(42): error C2061: syntax error: identifier 'shared_ptr'
-c:\users\tal\oop\ex3\ex3\board.cpp(238): error C2660: 'Boat::mergeBoats': function does not take 1 arguments
-c:\users\tal\oop\ex3\ex3\board.cpp(313): error C2440: 'return': cannot convert from 'std::shared_ptr<PlayerBoard>' to 'BoardData &'
-c:\users\tal\oop\ex3\ex3\board.cpp(316): error C2440: 'return': cannot convert from 'std::shared_ptr<PlayerBoard>' to 'BoardData &'
-c:\users\tal\oop\ex3\ex3\board.cpp(319): error C2440: 'return': cannot convert from 'nullptr' to 'BoardData &'
+  Generating Code...
+  Compiling...
+  main.cpp
+  TournamentManager.cpp
   Generating Code...

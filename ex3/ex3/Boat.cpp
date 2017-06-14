@@ -1,18 +1,14 @@
 #include "Boat.h"
-#include "Point.h"
 #include <iostream>
 
 //constructor
-Boat(int size, int player, PlayerBoard* ownerBoard, PlayerBoard* rivelBoard, Coordinate* firstPoint) :
+Boat::Boat(int size, int player, Coordinate firstPoint) :
 	boatSize(size),
 	direction(0),
 	acctualSize(1),
 	hits(0),
 	player(player),
-	ownerBoard(ownerBoard),
-	rivelBoard(rivelBoard),
 	validity(true)	
-	std::vector<Coordinate*> coordinatesArray;
 {
 	this->coordinatesArray.push_back(firstPoint);
 	this->value = setValue(size);
@@ -150,4 +146,14 @@ std::vector<std::pair<int, int, int>> Boat::getPoints() {
 		else{
 			return 0;
 		}
+	}
+
+
+	bool Boat::containsPoint(Coordinate coor) {
+		for (Coordinate point : this->coordinatesArray) {
+			if (point.col == coor.col && point.row == coor.row && point.depth == coor.depth) {
+				return true;
+			}
+		}
+		return false;
 	}

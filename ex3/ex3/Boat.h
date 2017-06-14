@@ -2,6 +2,7 @@
 
 #include "IBattleShipGameAlgo.h"
 #include <vector>
+#include <memory>
 
 class PlayerBoard;
 
@@ -12,21 +13,19 @@ class Boat {
 	int player;
 	int hits;
 	int value;
-	PlayerBoard* ownerBoard;
-	PlayerBoard* rivelBoard;
 	std::vector<Coordinate> coordinatesArray;
 	bool validity;
 
-	void notifyPlayerSunk();
-	void notifyPlayerCreated();
 	int setValue(int size);
 
 
 public:
 	Boat() {}
-	Boat(int size, int player, PlayerBoard* ownerBoard, PlayerBoard* rivelBoard, Coordinate* firstPoint);
+	Boat(int size, int player, Coordinate firstPoint);
 	~Boat();
-	void notifyBoardSunk();
+
+	bool containsPoint(Coordinate coor);
+
 	int getNumOftHits();
 	int getDirection();
 	int getPlayer();
@@ -39,13 +38,14 @@ public:
 	void addPoint(Coordinate point);
 	void setDirection(int direction);
 	void setValidity(bool validity);
-	void mergeBoats(shared_ptr<Boat> boat);
+	void mergeBoats(std::shared_ptr<Boat> boat);
 	std::vector<std::tuple<int, int,int>> getPoints();
 	std::vector<Coordinate> getCoordinatesArray();
-	int getValue ();
+	int getValue();
 	int addHit(Coordinate coor);
 
 	Boat(const Boat&) = delete;
+	Boat(const Boat&&) = delete;
 	Boat& operator=(const Boat&) = delete;
 
 };

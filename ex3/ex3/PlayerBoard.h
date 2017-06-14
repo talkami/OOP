@@ -14,10 +14,16 @@ class PlayerBoard : public BoardData{
 	void invalidatePoint(Coordinate c);
 
 	bool invalidCoordinate(Coordinate c) const;
-public:
 
-	PlayerBoard(int rows, int cols, int depth, int player);		
-	PlayerBoard(PlayerBoard& board) = delete;
+public:
+	PlayerBoard(){}
+	~PlayerBoard(){}
+	PlayerBoard(const PlayerBoard&) = delete;
+	PlayerBoard(const PlayerBoard&&) = delete;
+	PlayerBoard& operator=(const PlayerBoard& board) = delete;
+
+	void setVars(int rows, int cols, int depth, int player);
+
 	virtual char charAt(Coordinate c) const override;
 	void addBoat(std::shared_ptr<Boat> boat);
 	std::shared_ptr<Boat> getBoatAt (Coordinate coor);

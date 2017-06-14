@@ -1,16 +1,17 @@
 #include "PlayerBoard.h"
 
-PlayerBoard::PlayerBoard(int rows, int cols, int depth, int player) : playerNum(player) {
+void PlayerBoard::setVars(int rows, int cols, int depth, int player) {
 	//you cannot initialize base class members from initializer list directly
 	this->_rows = rows;
 	this->_cols = cols;
 	this->_depth = depth;
+	this->playerNum = player;
 
 	board.resize(this->_depth);
 	for (int i = 0; i < this->_depth; i++) {
 		board.at(i).resize(this->_rows);
 		for (int j = 0; j < this->_rows; j++) {
-			board.at(i).at(j).resize(this->_cols, ' ');
+			board.at(i).at(j).resize(this->_cols);
 		}
 	}
 }
@@ -162,5 +163,5 @@ bool PlayerBoard::isValidAttack (Coordinate coor){
 }
 
 void PlayerBoard::setInvalidAttack (Coordinate coor){
-	editBoardAtPoint(coor.row, coor.col, coor.depth,'i');
+	editBoardAtPoint(coor, 'i');
 }
