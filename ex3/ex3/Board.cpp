@@ -23,24 +23,22 @@ bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 		return false;
 	}
 
-	 //is it ok? tal!!!!!!!
-	 this->playerABoard = std::make_shared<PlayerBoard>(this->row, this->col, this->depth, board, 0);
-	 this->playerBBoard = std::make_shared<PlayerBoard>(this->row, this->col, this->depth, board, 1);
+	 this->playerABoard =  PlayerBoard(this->numOfRows, this->numOfCols, this->depth, 0);
+	 this->playerBBoard = PlayerBoard(this->numOfRows, this->numOfCols, this->depth, 1);
 
 	// for depth of the Board
 	 for (int dep = 0; dep < this->depth; dep++) {
 	// ignore 1 space line
 		std::getline(fin, buffer);
 
-		for (int i = 0; i < this->row; i++) {
+		for (int row = 0; row < this->numOfRows; row++) {
 			std::getline(fin, buffer);
-			for (int j = 0; j < this->col; j++) {
+			for (int col = 0; col < this->numOfCols; col++) {
 				char currChar = ' ';
-				if (j < buffer.length()) {
-					currChar = buffer.at(j);
+				if (col < buffer.length()) {
+					currChar = buffer.at(col);
 				}
-				//setPoint(i, j);
-				addToPlayerBoard(currChar, i, j, A, B);
+				addToPlayerBoard(currChar, Coordinate(row, col, dep));
 			}
 		}
 	}
@@ -49,7 +47,7 @@ bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 	result = checkBoard();
 	if (this->hasAdjacentBoats) {
 		result = false;
-		this->logger->logMessage(boardFile + " :Adjacent Ships on Board" );
+		this->logger->logMessage(boardFile + ": Adjacent Ships on Board" );
 	}
 
 	this->logger->logMessage("Finished checking " + boardFile);
@@ -62,11 +60,11 @@ bool Board::setUpParameters(std::string params) {
 	size_t end = params.find("x");
 
 	try {
-		this->col = stoi(params.substr(start, end));
+		this->numOfCols = stoi(params.substr(start, end));
 		start += end + 1;
 
 		end = params.substr(start).find("x");
-		this->row = stoi(params.substr(start, end));
+		this->numOfRows = stoi(params.substr(start, end));
 		start += end + 1;
 
 		end = params.substr(start).find("x");
@@ -75,138 +73,129 @@ bool Board::setUpParameters(std::string params) {
 	catch (std::invalid_argument&) {
 		return false;
 	}
-	if (this->col <= 0 || this->row <= 0 || this->depth <= 0) {
+	if (this->numOfCols <= 0 || this->numOfRows <= 0 || this->depth <= 0) {
 		return false;
 	}
 
 	board.resize(this->depth);
 	for (int i = 0; i < depth; i++) {
-		board.at(i).resize(this->row);
-		for (int j = 0; j < row; j++) {
-			board.at(i).at(j).resize(this->col);
+		board.at(i).resize(this->numOfRows);
+		for (int j = 0; j < this->numOfRows; j++) {
+			board.at(i).at(j).resize(this->numOfCols, ' ');
 		}
 	}
 	return true;
 }
 
-
-
-
-
 //checking the char read from the file and putting the boat on the board
-void Board::addToPlayerBoard(char currentChar, int row, int col, int depth) {
+void Board::addToPlayerBoard(char currentChar, Coordinate coor) {
 
 	if (currentChar == 'B') {
-		addBoatToBoard(row, col, depth 1, 0);
-		this->playerABoard->editBoardAtPoint(row, col, depth,'B');
-		this->board.at(depth).at(row).at(col) = 'B';
+		addBoatToBoard(coor, 1, 0, this->playerABoard, this->playerBBoard);
+		this->playerABoard->editBoardAtPoint(coor,'B');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'B';
 	}
 	else if (currentChar == 'b') {
-		addBoatToBoard(this->matrix[row][col], 1, 1, B, A);
-		this->playerBBoard.this->editBoardAtPoint(row, col, depth,'b');
-		this->board.at(depth).at(row).at(col) = 'b';
-
+		addBoatToBoard(coor, 1, 1, this->playerBBoard, this->playerABoard);
+		this->playerBBoard->editBoardAtPoint(coor,'b');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'b';
 	}
 	else if (currentChar == 'P') {
-		addBoatToBoard(this->matrix[row][col], 2, 0, A, B);
-		this->playerABoard.this->editBoardAtPoint(row, col, depth, 'P');
-		this->board.at(depth).at(row).at(col) = 'P';
+		addBoatToBoard(coor, 2, 0, this->playerABoard, this->playerBBoard);
+		this->playerABoard->editBoardAtPoint(coor, 'P');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'P';
 	}
 	else if (currentChar == 'p') {
-		addBoatToBoard(this->matrix[row][col], 2, 1, B, A);
-		this->playerBBoard.this->editBoardAtPoint(row, col, depth,'p');
-		this->board.at(depth).at(row).at(col) = 'p';
+		addBoatToBoard(coor, 2, 1, this->playerBBoard, this->playerABoard);
+		this->playerBBoard->editBoardAtPoint(coor,'p');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'p';
 	}
 	else if (currentChar == 'M') {
-		addBoatToBoard(this->matrix[row][col], 3, 0, A, B);
-		this->playerABoardthis->editBoardAtPoint(row, col, depth,'M');
-		this->board.at(depth).at(row).at(col) = 'M';
+		addBoatToBoard(coor, 3, 0, this->playerABoard, this->playerBBoard);
+		this->playerABoard->editBoardAtPoint(coor,'M');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'M';
 	}
 	else if (currentChar == 'm') {
-		addBoatToBoard(this->matrix[row][col], 3, 1, B, A);
-		this->playerBBoard->editBoardAtPoint(row, col, depth,'m');
-		this->board.at(depth).at(row).at(col) = 'm';
+		addBoatToBoard(coor, 3, 1, this->playerBBoard, this->playerABoard);
+		this->playerBBoard->editBoardAtPoint(coor,'m');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'm';
 	}
 	else if (currentChar == 'D') {
-		addBoatToBoard(this->matrix[row][col], 4, 0, A, B);
-		this->playerABoard->editBoardAtPoint(row, col, depth,'D');
-		this->board.at(depth).at(row).at(col) = 'D';
+		addBoatToBoard(coor, 4, 0, this->playerABoard, this->playerBBoard);
+		this->playerABoard->editBoardAtPoint(coor,'D');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'D';
 	}
 	else if (currentChar == 'd') {
-		addBoatToBoard(this->matrix[row][col], 4, 1, B, A);
-		this->playerBBoard->editBoardAtPoint(row, col, depth,'d');
-		this->board.at(depth).at(row).at(col) = 'd';
+		addBoatToBoard(coor, 4, 1, this->playerBBoard, this->playerABoard);
+		this->playerBBoard->editBoardAtPoint(coor,'d');
+		this->board.at(coor.depth).at(coor.row).at(coor.col) = 'd';
 	}
 }
 
-void Board::addBoatToBoard(int row, int col, int depth, int size, int player, PlayerBoard* ownerBoard, PlayerBoard* rivalBoard) {
-	if (thereIsBoatNearby(row, col, depth)) {
+void Board::addBoatToBoard(Coordinate coor, int size, int player, std::shared_ptr<PlayerBoard> ownerBoard, std::shared_ptr<PlayerBoard> rivalBoard) {
+	if (!thereIsABoatNearby(coor)) {
 		//there is no boat adjacent to current 
-		Coordinate* firstPoint = new Coordinate (row , col, depth);
-		Boat* boat = new Boat(size, player, ownerBoard, rivelBoard, firstPoint);
+		std::shared_ptr<Boat> boat = std::make_shared<Boat>(size, player, ownerBoard, rivalBoard, coor);
 		ownerBoard->addBoat(boat);
 	}
 	else {
 		//there is a boat adjacent to current point
-		if (row > 0) {
-			char upCoordinateChar = this->board.at(depth).at(row-1).at(col);
+		if (coor.row > 0) {
+			char upCoordinateChar = this->board.at(coor.depth).at(coor.row-1).at(coor.col);
 			if (upCoordinateChar != ' ') {
-				Boat* boat = ownerBoard->getBoatAt (row-1, col, depth);
-				//there is a boat above current point 
-				checkAdjacentBoat(boat, row , col, depth, size, 1, player, ownerBoard, rivelBoard);
+				std::shared_ptr<Boat> boat = ownerBoard->getBoatAt(Coordinate(coor.row-1, coor.col, coor.depth));
+				checkAdjacentBoat(boat, coor, size, 1, player, ownerBoard, rivalBoard);
 			}
 		}
 
-		if (col > 0) {
-			char leftCoordinateChar = this->board.at(depth).at(row).at(col-1);
+		if (coor.col > 0) {
+			char leftCoordinateChar = this->board.at(coor.depth).at(coor.row).at(coor.col-1);
 			if (leftCoordinateChar != ' ') {
-				Boat* boat = ownerBoard->getBoatAt (row, col-1, depth);
-				//there is a boat left of current point
-				checkAdjacentBoat(boat, row , col, depth, size, 2, player, ownerBoard, rivelBoard);
+				std::shared_ptr<Boat> boat = ownerBoard->getBoatAt(Coordinate(coor.row, coor.col-1, coor.depth));
+				checkAdjacentBoat(boat, coor, size, 2, player, ownerBoard, rivalBoard);
 			}
 		}
 
-		if (depth > 0) {
-			char behindCoordinateChar = this->board.at(depth-1).at(row).at(col);
+		if (coor.depth > 0) {
+			char behindCoordinateChar = this->board.at(coor.depth-1).at(coor.row).at(coor.col);
 			if (behindCoordinateChar != ' ') {
-				//there is a boat left of current point
-				Boat* boat = ownerBoard->getBoatAt (row, col, depth-1);
-				checkAdjacentBoat(boat, row , col, depth, size, 3, player, ownerBoard, rivelBoard);
+				std::shared_ptr<Boat> boat = ownerBoard->getBoatAt (Coordinate(coor.row, coor.col, coor.depth-1));
+				checkAdjacentBoat(boat, coor, size, 3, player, ownerBoard, rivalBoard);
 			}
 		}
 	}
 }
-bool Board:: thereIsBoatNearby(int row, int col, int depth){
+
+bool Board::thereIsABoatNearby(Coordinate coor){
 	bool boatNearby = false;
-	if (depth > 0){
-		if (this->board.at(depth-1).at(row).at(col) != ' '){
+	if (coor.depth > 0){
+		if (this->board.at(coor.depth-1).at(coor.row).at(coor.col) != ' '){
 			boatNearby = true;
 		}
 	}
-	if (row > 0){
-		if (this->board.at(depth).at(row-1).at(col) != ' '){
+	if (coor.row > 0){
+		if (this->board.at(coor.depth).at(coor.row-1).at(coor.col) != ' '){
 			boatNearby = true;
 		}
 	}
-	if (col > 0){
-		if (this->board.at(depth).at(row).at(col-1) != ' '){
+	if (coor.col > 0){
+		if (this->board.at(coor.depth).at(coor.row).at(coor.col-1) != ' '){
 			boatNearby = true;
 		}
 	}
 	return boatNearby;
 }
 
-
-void Board::checkAdjacentBoat(Boat* boat, int row, int col, int depth, int size, int direction, int player, PlayerBoard* ownerBoard, PlayerBoard* rivalBoard) {
+void Board::checkAdjacentBoat(std::shared_ptr<Boat> boat, Coordinate coor, int size, int direction, int player, std::shared_ptr<PlayerBoard> ownerBoard, std::shared_ptr<PlayerBoard> rivalBoard) {
 	if (boat->getBoatSize() == size && boat->getPlayer() == player) {
 		if (boat->getDirection() == 0) {
 			boat->setDirection(direction);
 		}
 		//same boat, merge needed
-		if (ownerBoard->getBoatAt(row , col, depth) != nullptr) {
+		if (ownerBoard->getBoatAt(coor) != nullptr) {
 			//there is already a boat at point
-			if (ownerBoard->getBoatAt(row , col, depth) != boat) {
-				mergeBoats(boat, ownerBoard->getBoatAt(row , col, depth), direction);
+			if (ownerBoard->getBoatAt(coor) != boat) {
+				mergeBoats(boat, ownerBoard->getBoatAt(coor), direction, ownerBoard);
 			}
 		}
 		else {
@@ -214,56 +203,23 @@ void Board::checkAdjacentBoat(Boat* boat, int row, int col, int depth, int size,
 			if (direction != boat->getDirection()) {
 				boat->setValidity(false);
 			}
-			boat->addPoint(row , col, depth);
+			boat->addPoint(coor);
 		}
 	}
 	else {
 		//different boat
-		if (ownerBoard->getBoatAt(row , col, depth) == nullptr) {
-			Coordinate* firstPoint = new Coordinate (row , col, depth);
-			Boat* newBoat = new Boat(size, player, ownerBoard, rivelBoard, firstPoint);
+		if (ownerBoard->getBoatAt(coor) == nullptr) {
+			std::shared_ptr<Boat> newBoat = std::make_shared<Boat>(size, player, ownerBoard, rivalBoard, coor);
 		}
 		this->hasAdjacentBoats = true;
 	}
 }
 
-//checking that all boats are of correct size and shape
-void Board::checkBoatValidity() {
-	for(int dep =0 ; dep< this->depth; dep++ ){
-		for (int i = 0; i < this->row; i++) {
-			for (int j = 0; j < this->col; j++) {
-				
-				Boat* boat = nullptr;
-				if (this->playerABoard->getBoatAt(row, col, depth) != nullptr){
-					boat = this->playerABoard->getBoatAt(row, col, depth) != nullptr;
-				}
-				else if (this->playerBBoard->getBoatAt(row, col, depth) != nullptr){
-					boat = this->playerBBoard->getBoatAt(row, col, depth) != nullptr;
-				}
-
-				if (boat != nullptr) {
-					if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
-						int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
-						errorArray[errorNum] = true;
-						if (boat->getPlayer() == 0) {
-							this->playerABoard->removeBoat(boat);
-						}
-						else if (boat->getPlayer() == 1) {
-							this->playerBBoard->removeBoat(boat);
-						}
-						delete boat;
-					}
-			}
-		}
-	}
-}
-
-
-void Board::mergeBoats(Boat* boat1, Boat* boat2, int direction, PlayerBoard* ownerBoard) {
+void Board::mergeBoats(std::shared_ptr<Boat> boat1, std::shared_ptr<Boat> boat2, int direction, std::shared_ptr<PlayerBoard> ownerBoard) {
 
 	//make sure boat1 is bigger (we will later 'copy' boat2 onto boat1, this makes the process 'easier') 
 	if (boat2->getAcctualSize() > boat1->getAcctualSize()) {
-		Boat *tmp = boat2;
+		std::shared_ptr<Boat> tmp = boat2;
 		boat2 = boat1;
 		boat1 = tmp;
 	}
@@ -277,70 +233,95 @@ void Board::mergeBoats(Boat* boat1, Boat* boat2, int direction, PlayerBoard* own
 	else if (boat1->getDirection() != boat2->getDirection()) {
 		boat1->setValidity(false);
 	}
-	//need to decide where this number is kept
+
 	//merge the boats
 	boat1->mergeBoats(boat2);
-//	if (boat1->getPlayer() == 0) {
-	//	PlayerANumOfBoats--;
-	//}
-	//else if (boat1->getPlayer() == 1) {
-		//PlayerBNumOfBoats--;
-	//}
+}
+
+//checking that all boats are of correct size and shape
+void Board::checkBoatValidity() {
+	for (int dep = 0; dep < this->depth; dep++) {
+		for (int row = 0; row < this->numOfRows; row++) {
+			for (int col = 0; col < this->numOfCols; col++) {
+
+				Coordinate point = Coordinate(row, col, dep);
+				std::shared_ptr<Boat> boat = nullptr;
+
+				boat = this->playerABoard->getBoatAt(point);
+
+				if (boat == nullptr) {
+					boat = this->playerBBoard->getBoatAt(point);
+				}
+
+				if (boat != nullptr) {
+					if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
+						int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
+						errorArray[errorNum] = true;
+						if (boat->getPlayer() == 0) {
+							this->playerABoard->removeBoat(boat);
+						}
+						else if (boat->getPlayer() == 1) {
+							this->playerBBoard->removeBoat(boat);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 bool Board::checkBoard() {
 	bool result = true;
 
 	if (this->errorArray[0]) {
-		std::cout << "Wrong size or shape for ship B for player A" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship B for player A");
 		result = false;
 	}
 	if (this->errorArray[1]) {
-		std::cout << "Wrong size or shape for ship P for player A" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship P for player A");
 		result = false;
 	}
 	if (this->errorArray[2]) {
-		std::cout << "Wrong size or shape for ship M for player A" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship M for player A");
 		result = false;
 	}
 	if (this->errorArray[3]) {
-		std::cout << "Wrong size or shape for ship D for player A" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship D for player A");
 		result = false;
 	}
 	if (this->errorArray[4]) {
-		std::cout << "Wrong size or shape for ship b for player B" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship b for player B");
 		result = false;
 	}
 	if (this->errorArray[5]) {
-		std::cout << "Wrong size or shape for ship p for player B" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship p for player B");
 		result = false;
 	}
 	if (this->errorArray[6]) {
-		std::cout << "Wrong size or shape for ship m for player B" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship m for player B");
 		result = false;
 	}
 	if (this->errorArray[7]) {
-		std::cout << "Wrong size or shape for ship d for player B" << std::endl;
+		this->logger->logMessage("Wrong size or shape for ship d for player B");
 		result = false;
 	}
 	return result;
 }
 
-
 BoardData& Board::getPlayerBoard (int player){
 	if(player == 0){
-		return this->PlayerABoard;
+		return this->playerABoard;
 	}
-	else if (player==1){
-		return this->PlayerBBoard;
+	else if (player == 1) {
+		return this->playerBBoard;
 	}
-	else{
+	else {
 		return nullptr;
 	}
 }
 
 int Board::getGameScore(int player){
-		if(player == 0){
+	if(player == 0){
 		return this->playerAScore;
 	}
 	else if (player==1){
@@ -352,6 +333,6 @@ int Board::getGameScore(int player){
 
 }
 
-void Board ::handleSunkBoat (int owner, int value){
+void Board::handleSunkBoat (int owner, int value){
 
 }

@@ -9,11 +9,12 @@
 
 class Board {
 	std::vector<std::vector<std::vector<char>>> board;
-    int row, col, depth;
-	std::shared_ptr<BoardData> playerABoard;
-	std::shared_ptr<BoardData> playerBBoard;
+    int numOfRows, numOfCols, depth;
+	PlayerBoard playerABoard;
+	PlayerBoard playerBBoard;
 	Logger* logger;
-	bool errorArray[9] = {false};
+	bool errorArray[8] = {false};
+	bool hasAdjacentBoats = false;
 	int playerAScore;
 	int playerBScore;
 	Boat** PlayerABoats;
@@ -21,26 +22,25 @@ class Board {
 
 	bool setUpParameters(std::string params);
 
-	void addToPlayerBoard(char currentChar, int row, int col, int depth);
-	void addBoatToBoard(int row, int col, int depth, int size, int player, PlayerBoard* ownerBoard, PlayerBoard* rivalBoard);
-	void checkAdjacentBoat(Boat* boat, int row, int col, int depth, int size, int direction, int player, PlayerBoard* ownerBoard, PlayerBoard* rivalBoard);
+	void addToPlayerBoard(char currentChar, Coordinate coor);
+	void addBoatToBoard(Coordinate coor, int size, int player, std::shared_ptr<PlayerBoard> ownerBoard, std::shared_ptr<PlayerBoard> rivalBoard);
+	void checkAdjacentBoat(std::shared_ptr<Boat> boat, Coordinate coor, int size, int direction, int player, std::shared_ptr<PlayerBoard> ownerBoard, std::shared_ptr<PlayerBoard> rivalBoard);
 	void checkBoatValidity();
-	void mergeBoats(Boat* boat1, Boat* boat2, int direction, PlayerBoard* ownerBoard);
+	void mergeBoats(std::shared_ptr<Boat> boat1, std::shared_ptr<Boat> boat2, int direction, std::shared_ptr<PlayerBoard> ownerBoard);
 	bool checkBoard();
-	bool thereIsBoatNearby(int row, int col, int depth);
-	//shoud write!!
+	bool thereIsABoatNearby(Coordinate coor);
+	//should write!!
 	void handleSunkBoat (int owner, int value);
 
 public:
 
-	Board() : row(0), col(0), depth(0){}
+	Board() : numOfRows(0), numOfCols(0), depth(0){}
     ~Board ();
 
 	bool loadBoard(const std::string& boardFile, Logger* logger);
-	AttackResult attack (Coordinate coor, int attacker, bool* selfHit);
-	bool hasNoMoreBoats (int player);
+	AttackResult attack(Coordinate coor, int attacker, bool* selfHit);
+	bool hasNoMoreBoats(int player);
 	BoardData& getPlayerBoard (int player);
 	int getGameScore(int player);
-
 
 };

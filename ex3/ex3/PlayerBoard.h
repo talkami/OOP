@@ -1,12 +1,13 @@
 #pragma once
 #include "IBattleshipGameAlgo.h"
 #include "Boat.h"
+#include <memory>
 
 class PlayerBoard : public BoardData{
 	int boatsCount[4] = {0};
-	std::vector<std::vector<std::vector<char>>> _board;
-	std::vector<Boat*> boats;
-	int _player; 
+	std::vector<std::vector<std::vector<char>>> board;
+	std::vector<std::shared_ptr<Boat>> boats;
+	int playerNum; 
 	int numOfPlayerBoats;
 
 	//what is it?
@@ -15,17 +16,15 @@ class PlayerBoard : public BoardData{
 	bool invalidCoordinate(Coordinate c) const;
 public:
 
-	PlayerBoard(int rows, int cols, int depth);
-	PlayerBoard(int rows, int cols, int depth, std::vector<std::vector<std::vector<char>>> board, int player);
-		
-
+	PlayerBoard(int rows, int cols, int depth, int player);		
+	PlayerBoard(PlayerBoard& board) = delete;
 	virtual char charAt(Coordinate c) const override;
-	void addBoat(Boat * boat);
-	Boat* getBoatAt (int row, int col, int depth);
-	void removeBoat(Boat* boat);
+	void addBoat(std::shared_ptr<Boat> boat);
+	std::shared_ptr<Boat> getBoatAt (Coordinate coor);
+	void removeBoat(std::shared_ptr<Boat> boat);
 	bool isThereMoreBoats ();
-	void editBoardAtPoint (int rows, int cols, int depth, char characterAtPoint);
-	bool loadBoard (const BoardData& board);
+	void editBoardAtPoint (Coordinate coor, char characterAtPoint);
+	void loadBoard (const BoardData& board);
 	std::pair<AttackResult,int> attack (Coordinate coor);
 	int* getBoatsCount();
 	bool isValidToExplorationAttack(Coordinate coor);

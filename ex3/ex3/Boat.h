@@ -14,7 +14,7 @@ class Boat {
 	int value;
 	PlayerBoard* ownerBoard;
 	PlayerBoard* rivelBoard;
-	std::vector<Coordinate*> coordinatesArray;
+	std::vector<Coordinate> coordinatesArray;
 	bool validity;
 
 	void notifyPlayerSunk();
@@ -36,12 +36,12 @@ public:
 	PlayerBoard* getRivalBoard();
 	bool isSunk();
 	bool isValid();
-	void addPoint(Coordinate* point);
+	void addPoint(Coordinate point);
 	void setDirection(int direction);
 	void setValidity(bool validity);
-	void mergeBoats(Boat* boat);
+	void mergeBoats(shared_ptr<Boat> boat);
 	std::vector<std::tuple<int, int,int>> getPoints();
-	Coordinate* getCoordinatesArray();
+	std::vector<Coordinate> getCoordinatesArray();
 	int getValue ();
 	int addHit(Coordinate coor);
 
