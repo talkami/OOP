@@ -38,6 +38,14 @@ void Player::setBoard(const BoardData& board) {
 	this-> numberOfRows= this->player_board->rows();
 	this-> numberOfCols= this->player_board->cols();
 	this-> numberOfDepths= this->player_board->depth();
+	for (int depth = 0; depth < numberOfDepths; depth++) {
+		for (int col = 0; col < numberOfCols; col++) {
+			for (int row = 0; row < numberOfRows; row++) {
+				possibleAttacks.push_back(Coordinate(depth, row, col));
+			}
+		}
+	}
+
 }
 //override function
 Coordinate Player::attack() {
@@ -49,14 +57,14 @@ Coordinate Player::attack() {
 			return attack;
 		}
 	}
-	while (true){
-	//starts with 0;
-		int row = rand() % this->numberOfRows;
-		int col = rand() % this->numberOfCols;
-		int depth = rand() % this->numOfDepths;
-		if (isValidToExplorationAttack (Coordinate (row,col,depth))){
-			this->player_board->invalidateExplorationAttackArea(row,col,depth, this->smalestBoat);
-			return Coordinate (row,col,depth);
+	std::random_shuffle(this->possibleAttacks.begin(), this->possibleAttacks.end());
+	while (!(possibleAttacks.empty())){
+		//starts with 0;
+			Coordinate coor = this->possibleAttacks.back();
+		this->possibleAttacks.pop_back();
+		if (isValidToExplorationAttack (coor)){
+			this->player_board->invalidateExplorationAttackArea(coor.row,coor.col,coor.depth, this->smalestBoat);
+			return coor;
 		}
 	}
 }
