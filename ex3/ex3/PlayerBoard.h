@@ -8,10 +8,8 @@ class PlayerBoard : public BoardData{
 	std::vector<std::vector<std::vector<char>>> board;
 	int playerNum; 
 
-	//what is it?
-	void invalidatePoint(Coordinate c);
-
 	bool invalidCoordinate(Coordinate c) const;
+	void setChar(Coordinate coor, char ch);
 
 public:
 	PlayerBoard(){}
@@ -20,19 +18,16 @@ public:
 	PlayerBoard(const PlayerBoard&&) = delete;
 	PlayerBoard& operator=(const PlayerBoard& board) = delete;
 
+	virtual char charAt(Coordinate c) const override;
 	void setVars(int rows, int cols, int depth, int player);
 	void loadBoard(const BoardData& boardData, int player);
-
-
-	virtual char charAt(Coordinate c) const override;
 	void editBoardAtPoint (Coordinate coor, char characterAtPoint);
+
+	bool isValidAttack (Coordinate coor);
 	bool isValidToExplorationAttack(Coordinate coor);
 	void invalidateExplorationAttackArea(Coordinate c, int smalestBoat);
-	void setChar(Coordinate coor, char ch);
-
 	void setInvalidVertical(Coordinate coor) ;
 	void setInvalidDepth(Coordinate coor) ;
-	bool isValidAttack (Coordinate coor);
 	void setInvalidAttack (Coordinate coor);
 	void setInvalidArea (Coordinate coor);
 	void setInvalidHorizontal(Coordinate coor);

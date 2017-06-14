@@ -244,7 +244,17 @@ void Board::mergeBoats(std::shared_ptr<Boat> boat1, std::shared_ptr<Boat> boat2,
 
 	//merge the boats
 	boat1->mergeBoats(boat2);
+	deleteBoat(boat2);
 }
+
+void Board::deleteBoat(std::shared_ptr<Boat> boat) {
+	for (int i = 0; i < this->boats.size(); i++) {
+		if (boat->equals(this->boats.at(i))) {
+			this->boats.erase(this->boats.begin() + i);
+		}
+	}
+}
+
 
 //checking that all boats are of correct size and shape
 void Board::checkBoatValidity() {

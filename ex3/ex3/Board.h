@@ -20,13 +20,12 @@ class Board {
 	void addBoatToBoard(Coordinate coor, int size, int player);
 	std::shared_ptr<Boat> getBoatAt(Coordinate coor);
 	void checkAdjacentBoat(std::shared_ptr<Boat> boat, Coordinate coor, int size, int direction, int player);
-
 	void addToPlayerBoard(char currentChar, Coordinate coor);
-
 	void checkBoatValidity();
 	void mergeBoats(std::shared_ptr<Boat> boat1, std::shared_ptr<Boat> boat2, int direction);
 	bool checkBoard(Logger* logger);
 	bool isThereABoatNearby(Coordinate coor);
+	void deleteBoat(std::shared_ptr<Boat> boat);
 
 public:
 

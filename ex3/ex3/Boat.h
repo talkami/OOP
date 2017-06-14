@@ -22,7 +22,7 @@ class Boat {
 public:
 	Boat() {}
 	Boat(int size, int player, Coordinate firstPoint);
-	~Boat();
+	~Boat(){}
 
 	bool containsPoint(Coordinate coor);
 
@@ -31,21 +31,19 @@ public:
 	int getPlayer();
 	int getBoatSize();
 	int getAcctualSize();
-	PlayerBoard* getOwnerBoard();
-	PlayerBoard* getRivalBoard();
 	bool isSunk();
 	bool isValid();
 	void addPoint(Coordinate point);
 	void setDirection(int direction);
 	void setValidity(bool validity);
 	void mergeBoats(std::shared_ptr<Boat> boat);
-	std::vector<std::tuple<int, int,int>> getPoints();
 	std::vector<Coordinate> getCoordinatesArray();
 	int getValue();
 	int addHit(Coordinate coor);
+	bool equals(std::shared_ptr<Boat> boat);
 
 	Boat(const Boat&) = delete;
 	Boat(const Boat&&) = delete;
-	Boat& operator=(const Boat&) = delete;
+	Boat& operator=(const Boat& boat) = delete;
 
 };

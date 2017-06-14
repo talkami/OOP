@@ -107,10 +107,12 @@ void PlayerBoard::setInvalidVertical(Coordinate coor) {
 	editBoardAtPoint(Coordinate(coor.row, coor.col-1, coor.depth), 'i');
 	editBoardAtPoint(Coordinate(coor.row, coor.col+1, coor.depth), 'i');
 }
+
 void PlayerBoard::setInvalidDepth(Coordinate coor) {
 	editBoardAtPoint(Coordinate(coor.row, coor.col, coor.depth-1), 'i');
 	editBoardAtPoint(Coordinate(coor.row, coor.col, coor.depth+1), 'i');
 }
+
 void PlayerBoard::setInvalidArea(Coordinate coor) {
 	editBoardAtPoint(coor, 'i');
 	setInvalidHorizontal(coor);
