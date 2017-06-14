@@ -18,8 +18,6 @@ Player::~Player() {
 
 Coordinate Player::findNextAttack() {
 	// TODO: Complete function!
-
-
 	return Coordinate(-1, -1, -1);
 }
 
@@ -67,9 +65,9 @@ Coordinate Player::attack() {
 //override function
 void Player::notifyOnAttackResult(int player, Coordinate move, AttackResult result) {
 ////ask tal!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	int row = move.row - 1;
-	int col = move.col - 1;
-	int depth = move.depth - 1;
+	int row = move.row;
+	int col = move.col;
+	int depth = move.depth;
 
 	player_board.setInvalidAttack(move);
 	if (result == AttackResult::Sink) {
@@ -124,7 +122,6 @@ void Player::notifyOnAttackResult(int player, Coordinate move, AttackResult resu
 
 }
 
-
 //ask tal!!!
 void Player::setGoodShot(int row, int col, int depth) {
 	if (row < this->numOfRows && row >= 0 && col < this->numOfCols && col >= 0 && depth < this->numOfDepths && depth>=0) {
@@ -150,8 +147,6 @@ Coordinate Player::playGoodAttack() {
 bool Player::hasFinishedAttacking() {
 	return this->finishedAttacking;
 }
-
-
 
 IBattleshipGameAlgo* GetAlgorithm() {
 	_instancesVec.push_back(new Player());					// Create new instance and keep it in vector
