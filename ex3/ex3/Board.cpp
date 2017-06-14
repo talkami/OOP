@@ -253,24 +253,11 @@ void Board::checkBoatValidity() {
 			for (int col = 0; col < this->numOfCols; col++) {
 
 				Coordinate point = Coordinate(row, col, dep);
-				std::shared_ptr<Boat> boat = nullptr;
-
-				boat = this->playerABoard.getBoatAt(point);
-
-				if (boat == nullptr) {
-					boat = this->playerBBoard.getBoatAt(point);
-				}
-
+				std::shared_ptr<Boat> boat = getBoatAt(point);
 				if (boat != nullptr) {
 					if ((boat->getBoatSize() != boat->getAcctualSize()) || !boat->isValid()) {
 						int errorNum = (boat->getBoatSize() - 1) + (4 * boat->getPlayer());
 						errorArray[errorNum] = true;
-						if (boat->getPlayer() == 0) {
-							this->playerABoard.removeBoat(boat);
-						}
-						else if (boat->getPlayer() == 1) {
-							this->playerBBoard.removeBoat(boat);
-						}
 					}
 				}
 			}
