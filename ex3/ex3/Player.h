@@ -25,6 +25,7 @@ class Player : public IBattleshipGameAlgo{
 	int* boatsCount;
 	void setGoodShot(int row, int col, int depth);	
 	void handleAttackResult();
+	std::vector <Coordinate> possibleAttacks;
 	Coordinate playGoodAttack();
 	//whats this?
 	Coordinate findNextAttack();
