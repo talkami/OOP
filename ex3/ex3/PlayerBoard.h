@@ -30,9 +30,12 @@ public:
 	int* getBoatsCount();
 	bool isValidToExplorationAttack(Coordinate coor);
 	void invalidateExplorationAttackArea(int row, int col, int depth, int smalestBoat);
+
+	void setInvalidVertical(Coordinate coor) ;
+	void setInvalidDepth(Coordinate coor) ;
 	bool isValidAttack (Coordinate coor);
 	void setInvalidAttack (Coordinate coor);
 	void setInvalidArea (Coordinate coor);
-	//ask tal
-	void setInvalidHorizontal ();
+	void setInvalidHorizontal(Coordinate coor);
+
 };

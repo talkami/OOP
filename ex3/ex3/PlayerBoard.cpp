@@ -15,8 +15,8 @@ char PlayerBoard::charAt(Coordinate c) const{
 	if (invalidCoordinate(c)) {
 		return ' ';
 	}
-	char currChar = this->_board.at(c.depth-1).at(c.row-1).at(c.col-1);
-	if (currChar == 'I') {//invalid char
+	char currChar = this->_board.at(c.depth).at(c.row).at(c.col);
+	if (currChar == 'i' || currChar == 'e') {//invalid char
 		return ' ';
 	}
 	else {
@@ -101,27 +101,9 @@ std::pair<AttackResult,int> PlayerBoard::attack (Coordinate coor){
 		}
 	}
 }
-
-
-bool PlayerBoard::isValidAttack (Coordinate coor){
-	
-}
-
-void PlayerBoard::setInvalidAttack (Coordinate coor){
-	
-}
-
-void PlayerBoard::setInvalidArea (Coordinate coor){
-	
-}
-
-void PlayerBoard::setInvalidHorizontal (){
-	
-}
 int* PlayerBoard::getBoatsCount(){
 	return this->boatsCount;
 }
-
 bool PlayerBoard::isValidToExplorationAttack(Coordinate coor){
 	if (charAt (coor) == ' '){
 		return true;
@@ -141,4 +123,39 @@ void invalidateExplorationAttackArea(int row, int col, int depth, int smallestBo
 		editBoardAtPoint(row, col, depth+i, 'e');
 		editBoardAtPoint(row, col, depth-i, 'e');
 	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void PlayerBoard::setInvalidHorizontal(Coordinate coor) {
+	editBoardAtPoint(coor.row-1, coor.col, coor.depth, 'i');
+	editBoardAtPoint(coor.row+1, coor.col, coor.depth, 'i');
+}
+
+void PlayerBoard::setInvalidVertical(Coordinate coor) {
+	editBoardAtPoint(coor.row, coor.col-1, coor.depth, 'i');
+	editBoardAtPoint(coor.row, coor.col+1, coor.depth, 'i');
+}
+void PlayerBoard::setInvalidDepth(Coordinate coor) {
+	editBoardAtPoint(coor.row, coor.col, coor.depth-1, 'i');
+	editBoardAtPoint(coor.row, coor.col, coor.depth+1, 'i');
+}
+void PlayerBoard::setInvalidArea(Coordinate coor) {
+	setInvalidHorizontal(coor);
+	setInvalidVertical(coor);
+	setInvalidDepth(coor);
+}
+
+bool PlayerBoard::isValidAttack (Coordinate coor){
+	char currChar = this->_board.at(coor.depth).at(coor.row).at(coor.col);
+	if (currChar == 'i'){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+void PlayerBoard::setInvalidAttack (Coordinate coor){
+	editBoardAtPoint(coor.row, coor.col, coor.depth,'i');
 }
