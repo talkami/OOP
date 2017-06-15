@@ -1,13 +1,8 @@
 ﻿  SingleGame.cpp
-c:\users\tal\oop\ex3\ex3\singlegame.cpp(24): error C2440: '=': cannot convert from 'std::shared_ptr<Board> *' to 'Board *'
-  c:\users\tal\oop\ex3\ex3\singlegame.cpp(24): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-c:\users\tal\oop\ex3\ex3\singlegame.cpp(50): error C2039: 'play_attack': is not a member of 'Board'
-  c:\users\tal\oop\ex3\ex3\board.h(10): note: see declaration of 'Board'
-c:\users\tal\oop\ex3\ex3\singlegame.cpp(65): error C2039: 'hasNoMoreBoats': is not a member of 'Board'
-  c:\users\tal\oop\ex3\ex3\board.h(10): note: see declaration of 'Board'
-c:\users\tal\oop\ex3\ex3\singlegame.cpp(71): error C2039: 'hasNoMoreBoats': is not a member of 'Board'
-  c:\users\tal\oop\ex3\ex3\board.h(10): note: see declaration of 'Board'
-  Player.cpp
-c:\users\tal\oop\ex3\ex3\player.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
-  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(65): note: see previous definition of 'GetAlgorithm'
   Generating Code...
+  Compiling...
+  TournamentManager.cpp
+  Generating Code...
+     Creating library C:\Users\tal\OOP\ex3\x64\Debug\ex3.lib and object C:\Users\tal\OOP\ex3\x64\Debug\ex3.exp
+  ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.exe
+  ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.pdb (Partial PDB)

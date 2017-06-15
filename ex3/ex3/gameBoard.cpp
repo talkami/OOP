@@ -1,111 +1,80 @@
-#include "gameBoard.h"
+#include "GameBoard.h"
 
-gameBoard(std::vector<std::shared_ptr<Boat>> boats) {
-	this-> playerAScore = 0;
-	this-> playerBScore = 0;
-	for (std::vector<Boat>::iterator boat = boats.begin(); boat != boats.end(); ++boat) {
-		if (boat.getPlayer()) {
-			this->playerBboats.push_back(boat);
+GameBoard::GameBoard(std::vector<std::shared_ptr<Boat>> boats) {
+	for (std::shared_ptr<Boat> boat : boats) {
+		if (boat->getPlayer()) {
+			this->playerBBoats.push_back(boat->getNewCopy());
 		}
 		else {
-			this->playerAboats.push_back(boat);
+			this->playerABoats.push_back(boat->getNewCopy());
 		}
 	}
 }
-int getGameScore(int player) {
-	if (player) {
-		return this->playerBScore;
-	}
-	else {
-		return this->playerAScore;
-	}
+
+int GameBoard::getGameScore(int player) {
+	return this->scores[player];
 }
 
-bool hasNoMoreBoats(int player) {
-	if (player) {
-		return this->playerBboats.empty();
-	}
-	else {
-		return this->playerBboats.empty();
-	}
-}
-
-AttackResult attack(Coordinate coor, int attacker, bool* selfHit) {
+AttackResult GameBoard::attack(Coordinate coor, int attacker, bool* selfHit) {
+	AttackResult res = AttackResult::Miss;
 	if (attacker) {
-		for (std::vector<Boat>::iterator boat = playerAboats.begin(); boat != playerAboats.end(); ++boat) {
-			if (boat.containsPoint(coor) {
-				int value = boat.addHit(coor);
-				if (value == 0) {
-					return Hit;
-				}
-				else {
-					this->playerAScore = this->playerAScore + value;
-					playerAboats.erase(std::remove(playerAboats.begin(), playerAboats.end(), boat), playerAboats.end()); 
-
-					return Sink;
-
-				}
-			}
+		res = checkABoats(coor, attacker, selfHit);
+		if (res == AttackResult::Miss) {
+			res = checkBBoats(coor, attacker, selfHit);
 		}
-		for (std::vector<Boat>::iterator boat = playerBboats.begin(); boat != playerBboats.end(); ++boat) {
-			if (boat.containsPoint(coor) {
-				int value = boat.addHit(coor);
-				if (value == 0) {
-					selfHit* = true;
-					return Hit;
-				}
-				else {
-					this->playerBScore = this->playerBScore + value;
-					selfHit* = true;
-					playerBboats.erase(std::remove(playerBboats.begin(), playerBboats.end(), boat), playerBboats.end()); 
-					return Sink;
-
-				}
-			}
-		}
-		return Miss;
+		return res;
 	}
 	else {
-		for (std::vector<Boat>::iterator boat = playerBboats.begin(); boat != playerBboats.end(); ++boat) {
-			if (boat.containsPoint(coor) {
-				int value = boat.addHit(coor);
-				if (value == 0) {
-					return Hit;
-				}
-				else {
-					this->playerBScore = this->playerBScore + value;
-					playerBboats.erase(std::remove(playerBboats.begin(), playerBboats.end(), boat), playerBboats.end()); 
-					return Sink;
-
-				}
-			}
+		res = checkBBoats(coor, attacker, selfHit);
+		if (res == AttackResult::Miss) {
+			res = checkABoats(coor, attacker, selfHit);
 		}
-		for (std::vector<Boat>::iterator boat = playerAboats.begin(); boat != playerAboats.end(); ++boat) {
-			if (boat.containsPoint(coor) {
-				int value = boat.addHit(coor);
-				if (value == 0) {
-					selfHit* = true;
-					return Hit;
-				}
-				else {
-					this->playerAScore = this->playerAScore + value;
-					selfHit* = true;
-					playerAboats.erase(std::remove(playerAboats.begin(), playerAboats.end(), boat), playerAboats.end()); 
-					return Sink;
-
-				}
-			}
-		}
-		return Miss;
+		return res;
 	}
 }
 
-
-
-
-bool gameBoard::playerAOutOfBoats (){
-	return this->playerAboats.empty();
+AttackResult GameBoard::checkABoats(Coordinate coor, int attacker, bool* selfHit) {
+	for (int i = 0; i < this->playerABoats.size(); i++) {
+		std::shared_ptr<Boat> boat = this->playerABoats.at(i);
+		if (boat->containsPoint(coor)) {
+			*selfHit = attacker == 0 ? true : false;
+			int value = boat->addHit(coor);
+			if (value == 0) {
+				return AttackResult::Hit;
+			}
+			else {
+				this->scores[1] += value;
+				this->playerABoats.erase(this->playerABoats.begin() + i);
+				return AttackResult::Sink;
+			}
+		}
+	}
+	return AttackResult::Miss;
 }
-bool gameBoard::playerBOutOfBoats (){
-	return this->playerBboats.empty();
+
+AttackResult GameBoard::checkBBoats(Coordinate coor, int attacker, bool* selfHit) {
+	for (int i = 0; i < this->playerBBoats.size(); i++) {
+		std::shared_ptr<Boat> boat = this->playerBBoats.at(i);
+		if (boat->containsPoint(coor)) {
+			*selfHit = attacker == 1 ? true : false;
+			int value = boat->addHit(coor);
+			if (value == 0) {
+				return AttackResult::Hit;
+			}
+			else {
+				this->scores[0] += value;
+				this->playerBBoats.erase(this->playerBBoats.begin() + i);
+				return AttackResult::Sink;
+			}
+		}
+	}
+	return AttackResult::Miss;
+}
+
+bool GameBoard::AIsOutOfBoats() {
+	return this->playerABoats.empty();
+}
+
+bool GameBoard::BIsOutOfBoats() {
+	return this->playerBBoats.empty();
 }

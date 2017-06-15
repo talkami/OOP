@@ -18,14 +18,13 @@ class Boat {
 
 	int setValue(int size);
 
-
 public:
-	Boat() {}
+	Boat() : direction(0), hits(0), validity(true) {}
 	Boat(int size, int player, Coordinate firstPoint);
 	~Boat(){}
 
 	bool containsPoint(Coordinate coor);
-
+	std::shared_ptr<Boat> getNewCopy();
 	int getNumOftHits();
 	int getDirection();
 	int getPlayer();

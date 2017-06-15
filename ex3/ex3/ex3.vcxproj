@@ -23,6 +23,7 @@
     <ClCompile Include="Boat.cpp" />
     <ClCompile Include="FilesLister.cpp" />
     <ClCompile Include="FilesListerWithSuffix.cpp" />
+    <ClCompile Include="gameBoard.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="dirent.h" />
     <ClInclude Include="FilesLister.h" />
     <ClInclude Include="FilesListerWithSuffix.h" />
+    <ClInclude Include="gameBoard.h" />
     <ClInclude Include="IBattleshipGameAlgo.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Player.h" />

@@ -1,7 +1,7 @@
 #include "Boat.h"
 
-Boat::Boat(int size, int player, Coordinate firstPoint) : boatSize(size), direction(0), acctualSize(1),
-			hits(0), player(player), validity(true) {
+Boat::Boat(int size, int _player, Coordinate firstPoint) : boatSize(size), direction(0), acctualSize(1),
+			hits(0), player(_player), validity(true) {
 	this->coordinatesArray.push_back(firstPoint);
 	this->value = setValue(size);
 }
@@ -113,4 +113,15 @@ bool Boat::equals(std::shared_ptr<Boat> boat) {
 		}
 	}
 	return true;
+}
+
+std::shared_ptr<Boat> Boat::getNewCopy() {
+	std::shared_ptr<Boat> copyBoat = std::make_shared<Boat>();
+	copyBoat->boatSize = this->boatSize;
+	copyBoat->acctualSize = this->acctualSize;
+	copyBoat->player = this->player;
+	copyBoat->value = this->value;
+	copyBoat->coordinatesArray = this->coordinatesArray;
+
+	return copyBoat;
 }

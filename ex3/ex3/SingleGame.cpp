@@ -2,26 +2,14 @@
 
 //single game constructor
 SingleGame::SingleGame(std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>,
-	std::shared_ptr<Board>> gameStats) : scoreA(0), scoreB(0), dataA(std::get<0>(gameStats)), 
-	dataB(std::get<1>(gameStats)) {
-	setupBoard(std::get<2>(gameStats));
+	std::shared_ptr<Board>> gameStats) : dataA(std::get<0>(gameStats)), dataB(std::get<1>(gameStats)) {
+	this->board = std::get<2>(gameStats)->getGameBoard();
 	this->PlayerA = this->dataA->getDLLAlgo();
 	this->PlayerB = this->dataB->getDLLAlgo();
 	this->PlayerA->setPlayer(0);
 	this->PlayerB->setPlayer(1);
 	this->PlayerA->setBoard(std::get<2>(gameStats)->getPlayerBoard(0));
 	this->PlayerB->setBoard(std::get<2>(gameStats)->getPlayerBoard(1));
-}
-
-//single game destructor
-SingleGame::~SingleGame() {
-	//TBD
-}
-
-//init board ask tal
-void SingleGame::setupBoard(std::shared_ptr<Board> board) {
-
-	this->board = &board;
 }
 
 std::pair<int,int> SingleGame::playSingleGame() {
@@ -46,29 +34,29 @@ std::pair<int,int> SingleGame::playSingleGame() {
 		}
 		bool selfHit = false;
 
-		//create this function at board.h
-		res = this->board->play_attack(nextMove, this->turn, &selfHit);
+		res = this->board->attack(nextMove, this->turn, &selfHit);
 		this->PlayerA->notifyOnAttackResult(turn, nextMove, res);
 		this->PlayerB->notifyOnAttackResult(turn, nextMove, res);
 		
 		setNextTurn(res, selfHit);
 	}
-
-	int AGames = this->dataA->addData(this->winner == 0, this->winner == 1, this->scoreA, this->scoreB);
-	int BGames = this->dataB->addData(this->winner == 1, this->winner == 0, this->scoreB, this->scoreA);
+	int scoreA = this->board->getGameScore(0);
+	int scoreB = this->board->getGameScore(1);
+	int AGames = this->dataA->addData(this->winner == 0, this->winner == 1, scoreA, scoreB);
+	int BGames = this->dataB->addData(this->winner == 1, this->winner == 0, scoreB, scoreA);
 
 	return std::make_pair(AGames, BGames);
 }
 
 void SingleGame::setNextTurn(AttackResult res, bool selfHit) {
 	//check for victory
-	if (this->board->hasNoMoreBoats(0)) {
+	if (this->board->AIsOutOfBoats()) {
 		//player A is out of boats - player B wins
 		this->winner = 1;
 		this->turn = -1;
 		return;
 	}
-	else if (this->board->hasNoMoreBoats(1)) {
+	else if (this->board->BIsOutOfBoats()) {
 		//player B is out of boats - player A wins
 		this->winner = 0;
 		this->turn = -1;

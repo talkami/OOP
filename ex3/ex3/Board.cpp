@@ -321,3 +321,7 @@ BoardData& Board::getPlayerBoard (int player){
 		return this->playerBBoard;
 	}
 }
+
+std::unique_ptr<GameBoard> Board::getGameBoard() {
+	return std::make_unique<GameBoard>(this->boats);
+}

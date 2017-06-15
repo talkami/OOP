@@ -6,6 +6,7 @@
 #include "IBattleshipGameAlgo.h"
 #include "PlayerBoard.h"
 #include "Boat.h"
+#include "GameBoard.h"
 
 class Board {
 	std::vector<std::vector<std::vector<char>>> board;
@@ -37,5 +38,6 @@ public:
 
 	bool loadBoard(const std::string& boardFile, Logger* logger);
 	BoardData& getPlayerBoard (int player);
+	std::unique_ptr<GameBoard> getGameBoard();
 
 };
