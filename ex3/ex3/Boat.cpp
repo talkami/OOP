@@ -1,14 +1,11 @@
 #include "Boat.h"
-#include <iostream>
 
-//constructor
 Boat::Boat(int size, int player, Coordinate firstPoint) : boatSize(size), direction(0), acctualSize(1),
 			hits(0), player(player), validity(true) {
 	this->coordinatesArray.push_back(firstPoint);
 	this->value = setValue(size);
 }
 
-//getters
 int Boat::getNumOftHits() {
 	return this->hits;
 }
@@ -42,8 +39,6 @@ bool Boat::isValid() {
 	return this->validity;
 }
 
-//setters
-
 void Boat::addPoint(Coordinate point) {
 	this->coordinatesArray.push_back(point);
 	this->acctualSize++;
@@ -63,8 +58,6 @@ void Boat::mergeBoats(std::shared_ptr<Boat> boat) {
 	this->coordinatesArray.insert(this->coordinatesArray.end(), otherPoints.begin(), otherPoints.end());
 }
 
-//private
-
 int Boat::setValue(int size) {
 	if (size == 1) {
 		return 2;
@@ -79,7 +72,6 @@ int Boat::setValue(int size) {
 		return 8;
 	}
 	else {
-		std::cout << "Error! illegal boat!" << std::endl;
 		return -1;
 	}
 }

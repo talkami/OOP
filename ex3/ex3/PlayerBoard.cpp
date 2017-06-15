@@ -22,18 +22,19 @@ void PlayerBoard::loadBoard(const BoardData& boardData, int player) {
 		for (int row = 0; row < this->_rows; row++) {
 			for (int col = 0; col < this->_cols; col++) {
 				char currChar = boardData.charAt(Coordinate(row + 1, col + 1, dep + 1));
-				setChar(Coordinate(row, col, dep), currChar);
+				editBoardAtPoint(Coordinate(row, col, dep), currChar);
+				setInvalidArea(Coordinate(row, col, dep));
 			}
 		}
 	}
 }
 
 char PlayerBoard::charAt(Coordinate c) const{
-	if (invalidCoordinate(c)) {
+	if (invalidCoordinate(Coordinate(c.row - 1, c.col - 1, c.depth - 1))) {
 		return ' ';
 	}
 	char currChar = this->board.at(c.depth-1).at(c.row-1).at(c.col-1);
-	if (currChar == 'i' || currChar == 'e') {//invalid char
+	if (currChar == 'i') {//invalid char
 		return ' ';
 	}
 	else {
@@ -41,31 +42,11 @@ char PlayerBoard::charAt(Coordinate c) const{
 	}	
 }
 
-void PlayerBoard::setChar(Coordinate coor, char ch) {
-	editBoardAtPoint(coor, ch);
-	if (ch == 'B' || ch == 'b') {
-		this->boatsCount[0] += 1;
-		setInvalidArea(coor);
-	}
-	else if (ch == 'P' || ch == 'p') {
-		this->boatsCount[1] += 1;
-		setInvalidArea(coor);
-	}
-	else if (ch == 'M' || ch == 'm') {
-		this->boatsCount[2] += 1;
-		setInvalidArea(coor);
-	}
-	else if (ch == 'D' || ch == 'd') {
-		this->boatsCount[3] += 1;
-		setInvalidArea(coor);
-	}
-}
-
 bool PlayerBoard::invalidCoordinate(Coordinate c) const {
-	if (c.row <= 0 || c.col <= 0 || c.depth <= 0) {
+	if (c.row < 0 || c.col < 0 || c.depth < 0) {
 		return true;
 	}
-	if (c.row > this->_rows || c.col > this->_cols || c.depth > this->_depth) {
+	if (c.row >= this->_rows || c.col >= this->_cols || c.depth >= this->_depth) {
 		return true;
 	}
 	return false;
@@ -74,27 +55,6 @@ bool PlayerBoard::invalidCoordinate(Coordinate c) const {
 void PlayerBoard::editBoardAtPoint(Coordinate point, char charAtPoint){
 	if (!invalidCoordinate(point)) {
 		this->board.at(point.depth).at(point.row).at(point.col) = charAtPoint;		
-	}
-}
-
-bool PlayerBoard::isValidToExplorationAttack(Coordinate coor){
-	if (charAt(coor) == ' '){
-		return true;
-	}
-	else{ 
-		return false;
-	}
-}
-
-void PlayerBoard::invalidateExplorationAttackArea(Coordinate c, int smallestBoat){
-	editBoardAtPoint(c, 'e');
-	for (int i = 1; i < smallestBoat; i++) {
-		editBoardAtPoint(Coordinate(c.row+i, c.col, c.depth), 'e');
-		editBoardAtPoint(Coordinate(c.row-i, c.col, c.depth), 'e');
-		editBoardAtPoint(Coordinate(c.row, c.col+i, c.depth), 'e');
-		editBoardAtPoint(Coordinate(c.row, c.col-i, c.depth), 'e');
-		editBoardAtPoint(Coordinate(c.row, c.col, c.depth+i), 'e');
-		editBoardAtPoint(Coordinate(c.row, c.col, c.depth-i), 'e');
 	}
 }
 
@@ -121,15 +81,13 @@ void PlayerBoard::setInvalidArea(Coordinate coor) {
 }
 
 bool PlayerBoard::isValidAttack (Coordinate coor){
-	char currChar = this->board.at(coor.depth).at(coor.row).at(coor.col);
-	if (currChar == 'i'){
+	if (invalidCoordinate(coor)) {
 		return false;
 	}
-	else{
-		return true;
-	}
+	char currChar = this->board.at(coor.depth).at(coor.row).at(coor.col);	
+	return currChar == ' ';
 }
 
-void PlayerBoard::setInvalidAttack (Coordinate coor){
+void PlayerBoard::setInvalidAttack(Coordinate coor){
 	editBoardAtPoint(coor, 'i');
 }
