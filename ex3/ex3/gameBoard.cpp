@@ -32,28 +32,32 @@ bool hasNoMoreBoats(int player) {
 
 AttackResult attack(Coordinate coor, int attacker, bool* selfHit) {
 	if (attacker) {
-		for (std::vector<Boat>::iterator boat = boats.begin(); boat != boats.end(); ++boat) {
+		for (std::vector<Boat>::iterator boat = playerAboats.begin(); boat != playerAboats.end(); ++boat) {
 			if (boat.containsPoint(coor) {
 				int value = boat.addHit(coor);
 				if (value == 0) {
 					return Hit;
 				}
 				else {
-					this->playerBScore = this->playerBScore + value;
-					//remove boat
+					this->playerAScore = this->playerAScore + value;
+					playerAboats.erase(std::remove(playerAboats.begin(), playerAboats.end(), boat), playerAboats.end()); 
+
 					return Sink;
 
 				}
 			}
 		}
-		for (std::vector<Boat>::iterator boat = boats.begin(); boat != boats.end(); ++boat) {
+		for (std::vector<Boat>::iterator boat = playerBboats.begin(); boat != playerBboats.end(); ++boat) {
 			if (boat.containsPoint(coor) {
 				int value = boat.addHit(coor);
 				if (value == 0) {
+					selfHit* = true;
 					return Hit;
 				}
 				else {
-					this->playerBScore = this->playerAScore + value;
+					this->playerBScore = this->playerBScore + value;
+					selfHit* = true;
+					playerBboats.erase(std::remove(playerBboats.begin(), playerBboats.end(), boat), playerBboats.end()); 
 					return Sink;
 
 				}
@@ -62,8 +66,46 @@ AttackResult attack(Coordinate coor, int attacker, bool* selfHit) {
 		return Miss;
 	}
 	else {
+		for (std::vector<Boat>::iterator boat = playerBboats.begin(); boat != playerBboats.end(); ++boat) {
+			if (boat.containsPoint(coor) {
+				int value = boat.addHit(coor);
+				if (value == 0) {
+					return Hit;
+				}
+				else {
+					this->playerBScore = this->playerBScore + value;
+					playerBboats.erase(std::remove(playerBboats.begin(), playerBboats.end(), boat), playerBboats.end()); 
+					return Sink;
 
+				}
+			}
+		}
+		for (std::vector<Boat>::iterator boat = playerAboats.begin(); boat != playerAboats.end(); ++boat) {
+			if (boat.containsPoint(coor) {
+				int value = boat.addHit(coor);
+				if (value == 0) {
+					selfHit* = true;
+					return Hit;
+				}
+				else {
+					this->playerAScore = this->playerAScore + value;
+					selfHit* = true;
+					playerAboats.erase(std::remove(playerAboats.begin(), playerAboats.end(), boat), playerAboats.end()); 
+					return Sink;
+
+				}
+			}
+		}
+		return Miss;
 	}
 }
 
-void handleSunkBoat(int owner, int value);
+
+
+
+bool gameBoard::playerAOutOfBoats (){
+	return this->playerAboats.empty();
+}
+bool gameBoard::playerBOutOfBoats (){
+	return this->playerBboats.empty();
+}
