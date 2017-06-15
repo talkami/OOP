@@ -1,8 +1,3 @@
-﻿  SingleGame.cpp
-  Generating Code...
-  Compiling...
-  TournamentManager.cpp
-  Generating Code...
-     Creating library C:\Users\tal\OOP\ex3\x64\Debug\ex3.lib and object C:\Users\tal\OOP\ex3\x64\Debug\ex3.exp
+﻿  Board.cpp
   ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.exe
   ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.pdb (Partial PDB)

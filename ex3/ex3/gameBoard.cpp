@@ -1,6 +1,7 @@
 #include "GameBoard.h"
 
-GameBoard::GameBoard(std::vector<std::shared_ptr<Boat>> boats) {
+GameBoard::GameBoard(int _rows, int _cols, int _depth, std::vector<std::shared_ptr<Boat>> boats) :
+						rows(_rows), cols(_cols), depth(_depth) {
 	for (std::shared_ptr<Boat> boat : boats) {
 		if (boat->getPlayer()) {
 			this->playerBBoats.push_back(boat->getNewCopy());
@@ -16,16 +17,20 @@ int GameBoard::getGameScore(int player) {
 }
 
 AttackResult GameBoard::attack(Coordinate coor, int attacker, bool* selfHit) {
+	if(coor.row <= 0 || coor.col <= 0 || coor.depth <= 0 ||
+		coor.row > this->rows || coor.col > this->cols || coor.depth > this->depth) {
+		return AttackResult::Miss;
+	}
 	AttackResult res = AttackResult::Miss;
 	if (attacker) {
-		res = checkABoats(coor, attacker, selfHit);
+		res = checkABoats(Coordinate(coor.row - 1, coor.col - 1, coor.depth - 1), attacker, selfHit);
 		if (res == AttackResult::Miss) {
 			res = checkBBoats(coor, attacker, selfHit);
 		}
 		return res;
 	}
 	else {
-		res = checkBBoats(coor, attacker, selfHit);
+		res = checkBBoats(Coordinate(coor.row - 1, coor.col - 1, coor.depth - 1), attacker, selfHit);
 		if (res == AttackResult::Miss) {
 			res = checkABoats(coor, attacker, selfHit);
 		}
