@@ -1,17 +1,6 @@
 #include "PlayerBoard.h"
 
-#include <iostream>
-
-PlayerBoard::PlayerBoard(const PlayerBoard& ) {
-	std::cout << "in player board copy ctor" << std::endl;
-/*	std::vector<std::vector<std::vector<char>>> board = this->board;
-	int rows = this->rows;
-	int cols = this->cols;
-	int depth = this->depth;*/
-}
-
 void PlayerBoard::setVars(int rows, int cols, int depth, int player) {
-	//you cannot initialize base class members from initializer list directly
 	this->_rows = rows;
 	this->_cols = cols;
 	this->_depth = depth;
@@ -21,7 +10,7 @@ void PlayerBoard::setVars(int rows, int cols, int depth, int player) {
 	for (int i = 0; i < this->_depth; i++) {
 		board.at(i).resize(this->_rows);
 		for (int j = 0; j < this->_rows; j++) {
-			board.at(i).at(j).resize(this->_cols);
+			board.at(i).at(j).resize(this->_cols, ' ');
 		}
 	}
 }
@@ -33,7 +22,10 @@ void PlayerBoard::loadBoard(const BoardData& boardData, int player) {
 			for (int col = 0; col < this->_cols; col++) {
 				char currChar = boardData.charAt(Coordinate(row + 1, col + 1, dep + 1));
 				editBoardAtPoint(Coordinate(row, col, dep), currChar);
-				setInvalidArea(Coordinate(row, col, dep));
+				if (currChar == 'b' || currChar == 'B' || currChar == 'p' || currChar == 'P' ||
+					currChar == 'm' || currChar == 'M' || currChar == 'd' || currChar == 'D') {
+					setInvalidArea(Coordinate(row, col, dep));
+				}				
 			}
 		}
 	}
@@ -84,7 +76,6 @@ void PlayerBoard::setInvalidDepth(Coordinate coor) {
 }
 
 void PlayerBoard::setInvalidArea(Coordinate coor) {
-	editBoardAtPoint(coor, 'i');
 	setInvalidHorizontal(coor);
 	setInvalidVertical(coor);
 	setInvalidDepth(coor);
@@ -94,8 +85,17 @@ bool PlayerBoard::isValidAttack (Coordinate coor){
 	if (invalidCoordinate(coor)) {
 		return false;
 	}
-	char currChar = this->board.at(coor.depth).at(coor.row).at(coor.col);	
-	return currChar == ' ';
+	char currChar = this->board.at(coor.depth).at(coor.row).at(coor.col);
+	if (currChar == 'i') {
+		return false;
+	}
+	else if (currChar == 'b' || currChar == 'B' || currChar == 'p' || currChar == 'P' ||
+		currChar == 'm' || currChar == 'M' || currChar == 'd' || currChar == 'D') {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 void PlayerBoard::setInvalidAttack(Coordinate coor){

@@ -2,7 +2,7 @@
 #include "IBattleshipGameAlgo.h"
 #include "PlayerBoard.h"
 
-#include <list>
+#include <deque>
 #include <map>
 #include <memory>
 
@@ -11,8 +11,8 @@ class Player : public IBattleshipGameAlgo{
 	std::unique_ptr<PlayerBoard> player_board;
 	bool finishedAttacking;
 	int attackDir; // 0 undecided, 1 horizontal, 2 vertical, 3 depth 
-	std::list<Coordinate> goodShots;
-	std::vector<Coordinate> possibleAttacks;
+	std::deque<Coordinate> goodShots;
+	std::deque<Coordinate> possibleAttacks;
 	Coordinate lastHit = Coordinate(-1, -1, -1);
 
 	void setAttackArea(int row, int col, int depth);	

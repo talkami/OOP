@@ -21,19 +21,16 @@ bool TournamentManager::initTournament(std::string path) {
 	setUpLogger(path);
 	result = setUpBoards(path);
 	result = result && setUpPlayers(path);
-	std::string legalPlayers = "Number of legal players: " + std::to_string(this->players.size());
-	std::string legalBoards = "Number of legal boards: " + std::to_string(this->gameBoards.size());
-	std::cout << legalPlayers << std::endl;
-	std::cout << legalBoards << std::endl;
-	this->logger.logMessage(legalPlayers);
-	this->logger.logMessage(legalBoards);
+	std::cout << "Number of legal players: " << this->players.size() << std::endl;
+	std::cout << "Number of legal boards: " << this->gameBoards.size() << std::endl;
 
 	if (result) {
 		createGameCombinations();
-		logTournamentStatistics();
 		size_t numOfRounds = (this->players.size() - 1) * 2 * this->gameBoards.size();
 		this->playedRounds.resize(numOfRounds, 0);
 	}
+	logTournamentStatistics();
+
 	return result;
 }
 
@@ -49,7 +46,7 @@ void TournamentManager::setUpLogger(const std::string& path) {
 		loggerFile = path + "/" + "game.log";
 	}
 	this->logger.InitLog(loggerFile);
-	this->logger.logMessage("Started running a game tournament!");
+	this->logger.logMessage("Welcome to the Battleship game tournament!");
 }
 
 bool TournamentManager::setUpBoards(const std::string & path) {
@@ -76,7 +73,7 @@ bool TournamentManager::setUpBoards(const std::string & path) {
 }
 
 bool TournamentManager::setUpPlayers(const std::string & path) {
-	this->logger.logMessage("setting up players");
+	this->logger.logMessage("Setting up players");
 	HANDLE dir;
 	WIN32_FIND_DATAA fileData; //data struct for file
 	GetAlgorithmFuncType getAlgorithmFunc;
@@ -97,17 +94,18 @@ bool TournamentManager::setUpPlayers(const std::string & path) {
 			if (!hDll) {
 				this->logger.logMessage("Cannot load dll: " + fullFileName);
 			}
-
-			// Get function pointer
-			getAlgorithmFunc = (GetAlgorithmFuncType)GetProcAddress(hDll, "GetAlgorithm");
-			if (!getAlgorithmFunc) {
-				this->logger.logMessage("Cannot load dll: " + fullFileName);
-			}
 			else {
-				std::shared_ptr<PlayerData> player = std::make_shared<PlayerData>(i++, make_tuple(algoName, hDll, getAlgorithmFunc));
-				this->players.push_back(player);
-				if (algoName.length() > this->nameBuffer) {
-					this->nameBuffer = algoName.length(); //used later to print organized results
+				// Get function pointer
+				getAlgorithmFunc = (GetAlgorithmFuncType)GetProcAddress(hDll, "GetAlgorithm");
+				if (!getAlgorithmFunc) {
+					this->logger.logMessage("Cannot load dll: " + fullFileName);
+				}
+				else {
+					std::shared_ptr<PlayerData> player = std::make_shared<PlayerData>(i++, make_tuple(algoName, hDll, getAlgorithmFunc));
+					this->players.push_back(player);
+					if (algoName.length() > this->nameBuffer) {
+						this->nameBuffer = algoName.length(); //used later to print organized results
+					}
 				}
 			}
 		} while (FindNextFileA(dir, &fileData)); // Notice: Unicode compatible version of FindNextFile
@@ -141,14 +139,13 @@ void TournamentManager::createGameCombinations() {
 }
 
 void TournamentManager::logTournamentStatistics() {
-	const std::string base = "The tournament contains ";
-
-	this->logger.logMessage(base + std::to_string(this->players.size()) + " players");
-	this->logger.logMessage(base + std::to_string(this->gameBoards.size()) + " boards");
-	this->logger.logMessage(base + std::to_string(this->games.size()) + " games");
+	this->logger.logMessage("Today's tournament will include " + std::to_string(this->games.size()) + " games");
+	this->logger.logMessage(std::to_string(this->players.size()) + " players will be participating in the tournament");
+	this->logger.logMessage("The tournament will take place over " + std::to_string(this->gameBoards.size()) + " boards");
 }
 
 bool TournamentManager::playTournament() {
+	this->logger.logMessage("The tournament is starting, please take your seats");
 
 	for (auto & t : this->threads_vec) {
 		t = std::thread(&TournamentManager::threadRunner, this);
@@ -158,18 +155,22 @@ bool TournamentManager::playTournament() {
 		std::unique_lock<std::mutex> lk(this->resultsMutex);
 		this->cv.wait(lk, [this] {
 			return this->playedRounds[this->roundCounter] == this->players.size(); });
-		intermediateResults(this->roundCounter++);
+		if (intermediateResults(this->roundCounter)) {
+			this->roundCounter += 1;
+		}
 		lk.unlock();
 	}
 
 	for (auto & t : this->threads_vec) {
 		t.join();
 	}
-	this->logger.logMessage("printing residual rounds' results");
+
 	while(this->roundCounter < this->playedRounds.size()) {
-		intermediateResults(this->roundCounter++);
+		if (intermediateResults(this->roundCounter)) {
+			this->roundCounter += 1;
+		}
 	}
-	this->logger.logMessage("The tournament has ended");
+	this->logger.logMessage("The tournament has ended. Thank you for joining us!");
 	return true;
 }
 
@@ -178,7 +179,7 @@ void TournamentManager::threadRunner() {
 	std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> gameStats;
 	while ((gameStats = getNextGame()) != std::make_tuple(nullptr, nullptr, nullptr)) {
 		std::unique_ptr<SingleGame> game = std::make_unique<SingleGame>(gameStats);
-		std::pair<int, int> playedRounds;// = play game 
+		std::pair<int, int> playedRounds = game->playSingleGame();
 		increaseRoundCount(playedRounds.first, playedRounds.second);
 
 	}
@@ -195,13 +196,20 @@ void TournamentManager::increaseRoundCount(int roundA, int roundB) {
 	}
 }
 
-void TournamentManager::intermediateResults(int round) {
+bool TournamentManager::intermediateResults(int round) {
 	system("cls");
 	std::vector<std::tuple<int, int, int, int, std::string>> playersResults;
 	for (std::shared_ptr<PlayerData> player : this->players) {
-		playersResults.push_back(player->gotRoundData(round));
+		std::tuple<int, int, int, int, std::string> roundData = player->gotRoundData(round);
+		if (roundData == std::make_tuple(-1, -1, -1, -1, "")) {
+			this->logger.logMessage("accessing illegal game results for player " + player->getID());
+			return false;
+		}
+		else {
+			playersResults.push_back(roundData);
+		}
 	}
-	std::sort(playersResults.begin(), playersResults.end());
+	std::sort(playersResults.rbegin(), playersResults.rend());
 	std::cout << std::left << std::setw(8) << "#" << std::setw(this->nameBuffer) << "Team Name";
 	std::cout << std::setw(8) << "Wins" << std::setw(8) << "Losses" << std::setw(8) << "%";
 	std::cout << std::setw(8) << "Pts For" << std::setw(8) << "Pts Against" << std::endl;
@@ -211,11 +219,14 @@ void TournamentManager::intermediateResults(int round) {
 		std::cout << std::setw(this->nameBuffer) << std::get<4>(playersResults.at(i));
 		std::cout << std::setw(8) << std::get<0>(playersResults.at(i));
 		std::cout << std::setw(8) << std::get<2>(playersResults.at(i));
-		std::cout << std::setw(8) << std::setprecision(2) << (double)std::get<0>(playersResults.at(i)) / round;
+		std::cout << std::setw(8) << std::setprecision(2) << (double)std::get<0>(playersResults.at(i)) / (round+1);
 		std::cout << std::setw(8) << std::get<1>(playersResults.at(i));
 		std::cout << std::setw(8) << std::get<3>(playersResults.at(i)) << std::endl;
 		}
-	this->logger.logResults(playersResults, this->nameBuffer, round);
+	std::cout << std::endl;
+	this->logger.logResults(playersResults, this->nameBuffer, round+1);
+
+	return true;
 }
 
 std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>,

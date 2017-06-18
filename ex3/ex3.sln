@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameManager", "GameManager\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Player", "Player\Player.vcxproj", "{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmartPlayer", "SmartPlayer\SmartPlayer.vcxproj", "{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Release|x64.Build.0 = Release|x64
 		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Release|x86.ActiveCfg = Release|Win32
 		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Release|x86.Build.0 = Release|Win32
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Debug|x64.ActiveCfg = Debug|x64
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Debug|x64.Build.0 = Debug|x64
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Debug|x86.ActiveCfg = Debug|Win32
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Debug|x86.Build.0 = Debug|Win32
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Release|x64.ActiveCfg = Release|x64
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Release|x64.Build.0 = Release|x64
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Release|x86.ActiveCfg = Release|Win32
+		{B6A7E7E3-7B6D-4767-BCF4-B9B95D50742E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

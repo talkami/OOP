@@ -32,7 +32,7 @@ class TournamentManager {
 	void threadRunner();
 	std::tuple<std::shared_ptr<PlayerData>, std::shared_ptr<PlayerData>, std::shared_ptr<Board>> getNextGame();
 	void increaseRoundCount(int roundA, int roundB);
-	void intermediateResults(int round);
+	bool intermediateResults(int round);
 
 public:
 	TournamentManager(int threads) :numOfThreads(threads), threads_vec(threads) {}

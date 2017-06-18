@@ -21,6 +21,10 @@ int PlayerData::addData(int win, int lose, int pointsFor, int poinsAgainst) {
 	return gamesPlayed++;
 }
 
+int PlayerData::getID() {
+	return this->playerID;
+}
+
 std::tuple<int, int, int, int, std::string> PlayerData::gotRoundData(int round) {
 	if (round > this->gamesPlayed) {
 		return std::make_tuple(-1, -1, -1, -1, "");

@@ -1,5 +1,4 @@
 #include "Player.h"	
-#include <iostream>
 #include <algorithm>
 #include <ctime>
 
@@ -10,20 +9,21 @@ void Player::setPlayer(int player) {
 
 //override function
 void Player::setBoard(const BoardData& board) {
+	this->player_board = std::make_unique<PlayerBoard>();
 	this->player_board->loadBoard(board, this->playerNum);
 
 	for (int depth = 0; depth < this->player_board->depth(); depth++) {
 		for (int row = 0; row < this->player_board->rows(); row++) {
 			for (int col = 0; col < this->player_board->cols(); col++) {
-				this->possibleAttacks.push_back(Coordinate(row, col, depth));
+				this->possibleAttacks.emplace_back(Coordinate(row, col, depth));
 			}
 		}
 	}
+	
 	srand(unsigned(time(NULL)));
 	std::random_shuffle(this->possibleAttacks.begin(), this->possibleAttacks.end());
 }
 
-//override function
 Coordinate Player::attack() {
 	if (this->goodShots.size() > 0) {
 		Coordinate attack = findGoodAttack();
@@ -32,8 +32,8 @@ Coordinate Player::attack() {
 		}
 	}
 	while (!(possibleAttacks.empty())){
-		Coordinate coor = this->possibleAttacks.back();
-		this->possibleAttacks.pop_back();
+		Coordinate coor = this->possibleAttacks.front();
+		this->possibleAttacks.pop_front();
 		if (this->player_board->isValidAttack(coor)) {
 			return Coordinate(coor.row + 1, coor.col + 1, coor.depth + 1);
 		}
@@ -42,36 +42,37 @@ Coordinate Player::attack() {
 }
 
 void Player::notifyOnAttackResult(int player, Coordinate move, AttackResult result) {
-	this->player_board->setInvalidAttack(move);
+	Coordinate playerMove = Coordinate(move.row - 1, move.col - 1, move.depth - 1);
+	this->player_board->setInvalidAttack(playerMove);
 	if (player == playerNum) {
 		if (result == AttackResult::Miss) {
 			this->attackDir = 0;
 		}
 		else if (result == AttackResult::Sink) {
-			this->player_board->setInvalidArea(move);
+			this->player_board->setInvalidArea(playerMove);
 			this->attackDir = 0;
 			this->lastHit = Coordinate(-1, -1, -1);
 		}
 		else if (result == AttackResult::Hit) {
 			if (this->attackDir == 1) {
-				this->player_board->setInvalidVertical(move);
+				this->player_board->setInvalidVertical(playerMove);
 				this->player_board->setInvalidVertical(this->lastHit);
-				this->player_board->setInvalidDepth(move);
+				this->player_board->setInvalidDepth(playerMove);
 				this->player_board->setInvalidDepth(this->lastHit);
 			}
 			else if (this->attackDir == 2) {
-				this->player_board->setInvalidHorizontal(move);
+				this->player_board->setInvalidHorizontal(playerMove);
 				this->player_board->setInvalidHorizontal(this->lastHit);
-				this->player_board->setInvalidDepth(move);
+				this->player_board->setInvalidDepth(playerMove);
 				this->player_board->setInvalidDepth(this->lastHit);
 			}
 			else if (this->attackDir == 3) {
-				this->player_board->setInvalidVertical(move);
+				this->player_board->setInvalidVertical(playerMove);
 				this->player_board->setInvalidVertical(this->lastHit);
-				this->player_board->setInvalidHorizontal(move);
+				this->player_board->setInvalidHorizontal(playerMove);
 				this->player_board->setInvalidHorizontal(this->lastHit);
 			}
-			this->lastHit = move;
+			this->lastHit = playerMove;
 		}
 	}
 }
@@ -100,7 +101,6 @@ Coordinate Player::findGoodAttack() {
 			else if (attack.depth == this->lastHit.depth + 1 || attack.depth == this->lastHit.depth - 1) {
 				this->attackDir = 3;
 			}
-
 			return attack;
 		}
 	}

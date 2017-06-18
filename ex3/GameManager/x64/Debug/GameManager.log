@@ -1,8 +1,5 @@
 ﻿  main.cpp
   TournamentManager.cpp
-  SingleGame.cpp
-  PlayerBoard.cpp
-  Board.cpp
   Generating Code...
   GameManager.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\GameManager.exe
   GameManager.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\GameManager.pdb (Partial PDB)

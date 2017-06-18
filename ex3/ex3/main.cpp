@@ -4,7 +4,6 @@
 #include <iostream>
 
 int main(int argc, char* argv[]) {
-	char x;
 	bool initializedSuccessfully, successfulPlay;
 	std::string path = ".";
 	int threads = 4;
@@ -28,7 +27,6 @@ int main(int argc, char* argv[]) {
 	}
 	successfulPlay = game->playTournament();
 	
-	std::cin >> x;
 	if (!successfulPlay) {
 		return -1;
 	}

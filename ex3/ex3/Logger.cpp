@@ -19,20 +19,20 @@ void Logger::logMessage(const std::string& msg) {
 		time_t now = time(0);
 		tm currTime;
 		localtime_s(&currTime, &now);
-		this->logFile << std::setfill('0') << std::setw(2) << currTime.tm_mday << "/";
-		this->logFile << std::setfill('0') << std::setw(2) << 1 + currTime.tm_mon << "/";
+		this->logFile << std::right << std::setfill('0') << std::setw(2) << currTime.tm_mday << "/";
+		this->logFile << std::right << std::setfill('0') << std::setw(2) << 1 + currTime.tm_mon << "/";
 		this->logFile << 1900 + currTime.tm_year << " ";
-		this->logFile << std::setfill('0') << std::setw(2) << currTime.tm_hour << ":";
-		this->logFile << std::setfill('0') << std::setw(2) << currTime.tm_min << ":";
-		this->logFile << std::setfill('0') << std::setw(2) << currTime.tm_sec << " - ";
+		this->logFile << std::right << std::setfill('0') << std::setw(2) << currTime.tm_hour << ":";
+		this->logFile << std::right << std::setfill('0') << std::setw(2) << currTime.tm_min << ":";
+		this->logFile << std::right << std::setfill('0') << std::setw(2) << currTime.tm_sec << " - ";
 		this->logFile << msg << "\n";
 	}
 }	
 
 void Logger::logResults(std::vector<std::tuple<int, int, int, int, std::string>>& results, size_t nameBuffer, int round) {
 	if (this->logFile.is_open()) {
-		logMessage("Results for round " + std::to_string(round) + "are: ");
-		this->logFile << std::setw(8) << "#" << std::setw(nameBuffer) << "Team Name";
+		logMessage("Round " + std::to_string(round) + " is over, the results are: ");
+		this->logFile << std::left << std::setfill(' ') << std::setw(8) << "#" << std::setw(nameBuffer) << "Team Name";
 		this->logFile << std::setw(8) << "Wins" << std::setw(8) << "Losses" << std::setw(8) << "%";
 		this->logFile << std::setw(8) << "Pts For" << std::setw(8) << "Pts Against" << std::endl;
 

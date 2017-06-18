@@ -1,14 +1,5 @@
 ﻿  main.cpp
   TournamentManager.cpp
-  SingleGame.cpp
-  PlayerBoard.cpp
-  Player.cpp
-c:\users\tal\oop\ex3\ex3\player.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
-  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(65): note: see previous definition of 'GetAlgorithm'
-  Board.cpp
   Generating Code...
-  Skipping... (no relevant changes detected)
-  gameBoard.cpp
-     Creating library C:\Users\tal\OOP\ex3\x64\Debug\ex3.lib and object C:\Users\tal\OOP\ex3\x64\Debug\ex3.exp
   ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.exe
   ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.pdb (Partial PDB)

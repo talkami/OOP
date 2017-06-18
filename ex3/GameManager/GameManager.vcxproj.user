@@ -3,6 +3,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <RemoteDebuggerCommandArguments>C:\Users\tal\Desktop\tester -threads 1</RemoteDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>C:\Users\tal\Desktop\tester -threads 1</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>C:\Users\tal\Desktop\tester -threads 30</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
 </Project>

@@ -2,8 +2,6 @@
 #include <algorithm>
 #include <string>
 
-#include <iostream>
-
 //load GameBoard function
 bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 	bool result = true;
@@ -317,9 +315,7 @@ bool Board::checkBoard(Logger* logger) {
 }
 
 BoardData& Board::getPlayerBoard (int player){
-	std::cout << "getting board for player " << player << std::endl;
 	if(player == 0){
-		std::cout << "player 0 board" << std::endl;
 		return this->playerABoard;
 	}
 	else {

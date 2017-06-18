@@ -22,6 +22,7 @@ public:
 		gamesPlayed(0), player_dll(dll){}
 	~PlayerData();
 	int addData(int win, int lose, int pointsFor, int poinsAgainst);
+	int getID();
 	//gotRoundData returns: num of wins, pts for, num of loses, pts against, dll name
 	std::tuple<int, int, int, int, std::string> gotRoundData(int round);
 	std::unique_ptr<IBattleshipGameAlgo> getDLLAlgo();
