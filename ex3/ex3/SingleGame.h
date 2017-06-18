@@ -6,8 +6,8 @@
 class SingleGame {
 	std::shared_ptr<PlayerData> dataA;
 	std::shared_ptr<PlayerData> dataB;
-	IBattleshipGameAlgo* PlayerA;
-	IBattleshipGameAlgo* PlayerB;
+	std::unique_ptr<IBattleshipGameAlgo> PlayerA;
+	std::unique_ptr<IBattleshipGameAlgo> PlayerB;
 	std::unique_ptr<GameBoard> board;
 	int turn;
 	int winner;

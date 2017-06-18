@@ -30,7 +30,6 @@ std::tuple<int, int, int, int, std::string> PlayerData::gotRoundData(int round) 
 		this->loses[round], this->pointsAgainst[round], std::get<0>(this->player_dll));
 }
 
-IBattleshipGameAlgo* PlayerData::getDLLAlgo() {
-
-	return (*std::get<2>(this->player_dll))();
+std::unique_ptr<IBattleshipGameAlgo> PlayerData::getDLLAlgo() {
+	return std::unique_ptr<IBattleshipGameAlgo>((*std::get<2>(this->player_dll))());
 }

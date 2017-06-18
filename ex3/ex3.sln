@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ex3", "ex3\ex3.vcxproj", "{86236961-73AE-4C19-9E16-4DE5FFB41A34}"
 EndProject
@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ex3\TournamentManager.h = ex3\TournamentManager.h
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameManager", "GameManager\GameManager.vcxproj", "{D37075F5-7801-4A76-9258-ED2D1F95A1D8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Player", "Player\Player.vcxproj", "{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +55,22 @@ Global
 		{86236961-73AE-4C19-9E16-4DE5FFB41A34}.Release|x64.Build.0 = Release|x64
 		{86236961-73AE-4C19-9E16-4DE5FFB41A34}.Release|x86.ActiveCfg = Release|Win32
 		{86236961-73AE-4C19-9E16-4DE5FFB41A34}.Release|x86.Build.0 = Release|Win32
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Debug|x64.ActiveCfg = Debug|x64
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Debug|x64.Build.0 = Debug|x64
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Debug|x86.ActiveCfg = Debug|Win32
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Debug|x86.Build.0 = Debug|Win32
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Release|x64.ActiveCfg = Release|x64
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Release|x64.Build.0 = Release|x64
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Release|x86.ActiveCfg = Release|Win32
+		{D37075F5-7801-4A76-9258-ED2D1F95A1D8}.Release|x86.Build.0 = Release|Win32
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Debug|x64.ActiveCfg = Debug|x64
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Debug|x64.Build.0 = Debug|x64
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Debug|x86.ActiveCfg = Debug|Win32
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Debug|x86.Build.0 = Debug|Win32
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Release|x64.ActiveCfg = Release|x64
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Release|x64.Build.0 = Release|x64
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Release|x86.ActiveCfg = Release|Win32
+		{FAA147CF-ED4E-4FB0-9E42-25C2E360E292}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

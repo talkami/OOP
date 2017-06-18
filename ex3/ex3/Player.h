@@ -27,5 +27,3 @@ public:
 	Player() : finishedAttacking(false) {}
 	~Player() {}
 };
-
-static std::vector<Player*> _instancesVec; //Our Player collection

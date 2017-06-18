@@ -1,3 +1,5 @@
-﻿  Board.cpp
+﻿  Player.cpp
+c:\users\tal\oop\ex3\ex3\player.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
+  c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(65): note: see previous definition of 'GetAlgorithm'
   ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.exe
   ex3.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\ex3.pdb (Partial PDB)

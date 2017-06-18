@@ -109,6 +109,5 @@ Coordinate Player::findGoodAttack() {
 }
 
 IBattleshipGameAlgo* GetAlgorithm() {
-	_instancesVec.push_back(new Player());					// Create new instance and keep it in vector
-	return _instancesVec[_instancesVec.size() - 1];			// Return last instance
+	return new Player();
 }

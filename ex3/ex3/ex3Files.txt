@@ -1,0 +1,40 @@
+ Volume in drive C is TI31428300A
+ Volume Serial Number is 18B7-1C82
+
+ Directory of C:\Users\tal\OOP\ex3\ex3
+
+06/18/2017  10:38 AM    <DIR>          .
+06/18/2017  10:38 AM    <DIR>          ..
+06/06/2017  04:10 PM    <DIR>          .vs
+06/15/2017  07:11 PM             9,278 Board.cpp
+06/15/2017  06:55 PM             1,351 Board.h
+06/15/2017  06:53 PM             2,790 Boat.cpp
+06/15/2017  06:50 PM             1,091 Boat.h
+06/01/2017  12:49 PM            19,968 dirent.h
+06/15/2017  05:39 PM             6,758 ex3.vcxproj
+06/15/2017  05:39 PM             3,294 ex3.vcxproj.filters
+06/18/2017  10:29 AM               458 ex3.vcxproj.user
+06/18/2017  10:38 AM                 0 exFiles.txt
+06/01/2017  12:49 PM             1,127 FilesLister.cpp
+06/01/2017  12:50 PM               535 FilesLister.h
+06/01/2017  12:42 PM               584 FilesListerWithSuffix.cpp
+06/01/2017  12:45 PM               874 FilesListerWithSuffix.h
+06/15/2017  07:14 PM             2,389 gameBoard.cpp
+06/15/2017  07:09 PM               680 gameBoard.h
+06/01/2017  11:27 AM             2,569 IBattleshipGameAlgo.h
+06/12/2017  05:14 PM             2,000 Logger.cpp
+06/12/2017  04:16 PM               349 Logger.h
+06/13/2017  01:10 PM               778 main.cpp
+06/18/2017  10:30 AM             3,638 Player.cpp
+06/18/2017  10:30 AM               823 Player.h
+06/15/2017  01:47 PM             2,730 PlayerBoard.cpp
+06/15/2017  11:43 AM               910 PlayerBoard.h
+06/18/2017  10:29 AM             1,164 PlayerData.cpp
+06/18/2017  10:18 AM               870 PlayerData.h
+06/15/2017  07:05 PM             2,813 SingleGame.cpp
+06/18/2017  10:30 AM               645 SingleGame.h
+06/12/2017  05:39 PM             8,292 TournamentManager.cpp
+06/12/2017  05:30 PM             1,362 TournamentManager.h
+05/28/2017  02:32 PM    <DIR>          x64
+              29 File(s)         80,120 bytes
+               4 Dir(s)  63,470,178,304 bytes free

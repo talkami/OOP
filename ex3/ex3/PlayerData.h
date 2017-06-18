@@ -24,6 +24,6 @@ public:
 	int addData(int win, int lose, int pointsFor, int poinsAgainst);
 	//gotRoundData returns: num of wins, pts for, num of loses, pts against, dll name
 	std::tuple<int, int, int, int, std::string> gotRoundData(int round);
-	IBattleshipGameAlgo* getDLLAlgo();
+	std::unique_ptr<IBattleshipGameAlgo> getDLLAlgo();
 
 };
