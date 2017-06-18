@@ -12,9 +12,9 @@ class PlayerBoard : public BoardData{
 public:
 	PlayerBoard() {}
 	~PlayerBoard() {}
-	PlayerBoard(const PlayerBoard&) = delete;
-	PlayerBoard(const PlayerBoard&&) = delete;
-	PlayerBoard& operator=(const PlayerBoard& board) = delete;
+	PlayerBoard(const PlayerBoard&);
+	//PlayerBoard(const PlayerBoard&&) = default;
+	//PlayerBoard& operator=(const PlayerBoard& board) = default;
 
 	virtual char charAt(Coordinate c) const override;
 

@@ -36,7 +36,6 @@ public:
 	void setDirection(int direction);
 	void setValidity(bool validity);
 	void mergeBoats(std::shared_ptr<Boat> boat);
-	std::vector<Coordinate> getCoordinatesArray();
 	int getValue();
 	int addHit(Coordinate coor);
 	bool equals(std::shared_ptr<Boat> boat);

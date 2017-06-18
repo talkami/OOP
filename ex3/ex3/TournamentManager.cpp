@@ -21,8 +21,12 @@ bool TournamentManager::initTournament(std::string path) {
 	setUpLogger(path);
 	result = setUpBoards(path);
 	result = result && setUpPlayers(path);
-	std::cout << "Number of legal players: " << this->players.size() << std::endl;
-	std::cout << "Number of legal boards: " << this->gameBoards.size() << std::endl;
+	std::string legalPlayers = "Number of legal players: " + std::to_string(this->players.size());
+	std::string legalBoards = "Number of legal boards: " + std::to_string(this->gameBoards.size());
+	std::cout << legalPlayers << std::endl;
+	std::cout << legalBoards << std::endl;
+	this->logger.logMessage(legalPlayers);
+	this->logger.logMessage(legalBoards);
 
 	if (result) {
 		createGameCombinations();
@@ -49,6 +53,7 @@ void TournamentManager::setUpLogger(const std::string& path) {
 }
 
 bool TournamentManager::setUpBoards(const std::string & path) {
+	this->logger.logMessage("setting up boards");
 	std::string errorPath = path == "." ? "Working Directory" : path;
 
 	this->boardFileLister = FilesListerWithSuffix(path);
@@ -71,6 +76,7 @@ bool TournamentManager::setUpBoards(const std::string & path) {
 }
 
 bool TournamentManager::setUpPlayers(const std::string & path) {
+	this->logger.logMessage("setting up players");
 	HANDLE dir;
 	WIN32_FIND_DATAA fileData; //data struct for file
 	GetAlgorithmFuncType getAlgorithmFunc;

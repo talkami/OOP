@@ -1,13 +1,7 @@
-﻿  TournamentManager.cpp
+﻿  main.cpp
+  TournamentManager.cpp
   SingleGame.cpp
-  PlayerData.cpp
   PlayerBoard.cpp
-  main.cpp
-  Logger.cpp
-  gameBoard.cpp
-  FilesListerWithSuffix.cpp
-  FilesLister.cpp
-  Boat.cpp
   Board.cpp
   Generating Code...
   GameManager.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\GameManager.exe

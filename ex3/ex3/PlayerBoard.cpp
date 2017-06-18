@@ -1,5 +1,15 @@
 #include "PlayerBoard.h"
 
+#include <iostream>
+
+PlayerBoard::PlayerBoard(const PlayerBoard& ) {
+	std::cout << "in player board copy ctor" << std::endl;
+/*	std::vector<std::vector<std::vector<char>>> board = this->board;
+	int rows = this->rows;
+	int cols = this->cols;
+	int depth = this->depth;*/
+}
+
 void PlayerBoard::setVars(int rows, int cols, int depth, int player) {
 	//you cannot initialize base class members from initializer list directly
 	this->_rows = rows;

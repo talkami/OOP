@@ -3,6 +3,5 @@
 c:\users\tal\oop\ex3\ex3\player.cpp(111): warning C4273: 'GetAlgorithm': inconsistent dll linkage
   c:\users\tal\oop\ex3\ex3\ibattleshipgamealgo.h(65): note: see previous definition of 'GetAlgorithm'
   Generating Code...
-     Creating library C:\Users\tal\OOP\ex3\x64\Debug\Player.lib and object C:\Users\tal\OOP\ex3\x64\Debug\Player.exp
   Player.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\Player.dll
   Player.vcxproj -> C:\Users\tal\OOP\ex3\x64\Debug\Player.pdb (Partial PDB)

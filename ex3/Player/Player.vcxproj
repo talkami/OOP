@@ -110,11 +110,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\ex3\Boat.h" />
     <ClInclude Include="..\ex3\IBattleshipGameAlgo.h" />
     <ClInclude Include="..\ex3\Player.h" />
     <ClInclude Include="..\ex3\PlayerBoard.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ex3\Boat.cpp" />
     <ClCompile Include="..\ex3\Player.cpp" />
     <ClCompile Include="..\ex3\PlayerBoard.cpp" />
   </ItemGroup>

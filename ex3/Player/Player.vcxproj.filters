@@ -24,12 +24,18 @@
     <ClInclude Include="..\ex3\PlayerBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\ex3\Boat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ex3\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\ex3\PlayerBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ex3\Boat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

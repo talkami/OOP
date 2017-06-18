@@ -2,9 +2,12 @@
 #include <algorithm>
 #include <string>
 
+#include <iostream>
+
 //load GameBoard function
 bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 	bool result = true;
+	logger->logMessage("Started Checking " + boardFile);
 
 	std::ifstream fin(boardFile);
 	if (!fin) {
@@ -37,12 +40,12 @@ bool Board::loadBoard(const std::string& boardFile, Logger* logger) {
 			}
 		}
 	}
-	
+
 	checkBoatValidity();
 	result = checkBoard(logger);
 	if (this->hasAdjacentBoats) {
 		result = false;
-		logger->logMessage(boardFile + ": Adjacent Ships on Board" );
+		logger->logMessage("Adjacent Ships on Board");
 	}
 
 	logger->logMessage("Finished Checking " + boardFile);
@@ -314,7 +317,9 @@ bool Board::checkBoard(Logger* logger) {
 }
 
 BoardData& Board::getPlayerBoard (int player){
+	std::cout << "getting board for player " << player << std::endl;
 	if(player == 0){
+		std::cout << "player 0 board" << std::endl;
 		return this->playerABoard;
 	}
 	else {
