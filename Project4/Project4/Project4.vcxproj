@@ -111,11 +111,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.h" />
-    <ClInclude Include="MatrixCopier.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrix.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
