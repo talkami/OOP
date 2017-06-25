@@ -133,8 +133,14 @@ public:
 	auto groupValues(GroupingFunc groupingFunc) {
 		using GroupingType = std::result_of_t<GroupingFunc(G&)>;
 		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
+		std::vector<int> exploredCoordinate;
 		for (size_t i = 0; i < _size; i++) {
-
+			if(std::find(exploredCoordinate.begin(), exploredCoordinate.end(), i) != exploredCoordinate.end()) {
+   				continue;
+			}
+			exploredCoordinate.push_back(i);
+			vector<int> coordinate = getCoord (i);
+			checkForNearbyGroup(coordinate, &exploredCoorinate, groupingFunc, &groups);
 		}
 		/*std::for_each(begin, end, [&groups, groupingFunc](const auto& val) {
 			groups[groupingFunc(val)].push_back(val);
