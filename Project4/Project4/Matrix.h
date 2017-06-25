@@ -130,7 +130,15 @@ public:
 
 	//support function 
 	void checkForNearbyGroup(std::vector <int> coordinate, std::vector<std::vector<int>> * exploredCoorinate, GroupingFunc groupingFunc, std::map<GroupingType, std::vector<std::vector<std::vector<int>>>>* groups){
-		
+		for (int i =0; i<DIMENSIONS ; i++){
+			std::vector <int> tmpCoor = coordinate;
+			tmpCoor[i]= tmpCoor[i]+1;
+			if (groupingFunc(getval(tmpCoor)) == groupingFunc(getval(coordinate))){
+				//add to groups
+				exploredCoorinate->push_back(tmpCoor);
+				checkForNearbyGroup(tmpCoor, exploredCoorinate, groupingFunc, groups);
+			}
+		}
 	}
 
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
