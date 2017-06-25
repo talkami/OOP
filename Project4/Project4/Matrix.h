@@ -1,9 +1,6 @@
 #include <iostream>
 #include <memory>
 
-using std::cout;
-using std::endl;
-
 template<class T, size_t DIMENSIONS>
 class Matrix;
 
@@ -133,10 +130,9 @@ public:
 	template <typename T>
 	using deref_iter_t = std::remove_reference_t<decltype(*std::declval<T>())>;
 
-
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
 	template<class Iterator, class GroupingFunc>
-	auto groupValues(Iterator begin, Iterator end, GroupingFunc groupingFunc) {
+	auto groupValues(GroupingFunc groupingFunc) {
 		using T = deref_iter_t<Iterator>;
 		using GroupingType = std::result_of_t<GroupingFunc(T&)>;
 		std::map<GroupingType, std::list<T>> groups;

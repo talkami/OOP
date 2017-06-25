@@ -1,5 +1,3 @@
 ﻿  main.cpp
-c:\users\tal\oop\project4\project4\main.cpp(22): error C2672: 'Matrix<char,2>::groupValues': no matching overloaded function found
-c:\users\tal\oop\project4\project4\main.cpp(22): error C2780: 'auto Matrix<char,2>::groupValues(Iterator,Iterator,GroupingFunc)': expects 3 arguments - 1 provided
-  c:\users\tal\oop\project4\project4\matrix.h(137): note: see declaration of 'Matrix<char,2>::groupValues'
-c:\users\tal\oop\project4\project4\main.cpp(23): error C3536: 'all_groups': cannot be used before it is initialized
+  Project4.vcxproj -> C:\Users\tal\OOP\Project4\Debug\Project4.exe
+  Project4.vcxproj -> C:\Users\tal\OOP\Project4\Debug\Project4.pdb (Partial PDB)
