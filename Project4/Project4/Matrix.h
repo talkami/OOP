@@ -23,7 +23,7 @@ struct MatrixCopier<T, 1> {
 		}
 	}
 };
-
+/*
 template<class T, size_t DIMENSIONS>
 struct MatrixPrinter {
 	static void print(const T* values, size_t size, const size_t* dimensions, std::ostream& out = cout) {
@@ -48,7 +48,7 @@ struct MatrixPrinter<T, 1> {
 		}
 		out << '}';
 	}
-};
+};*/
 
 template<class T, size_t DIMENSIONS>
 class Matrix {
@@ -127,18 +127,14 @@ public:
 		return _dimensions[i];
 	}
 
-	template <typename T>
-	using deref_iter_t = std::remove_reference_t<decltype(*std::declval<T>())>;
-
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
-	template<class Iterator, class GroupingFunc>
+	template<class GroupingFunc>
 	auto groupValues(GroupingFunc groupingFunc) {
-		using T = deref_iter_t<Iterator>;
-		using GroupingType = std::result_of_t<GroupingFunc(T&)>;
-		std::map<GroupingType, std::list<T>> groups;
-		std::for_each(begin, end, [&groups, groupingFunc](const auto& val) {
+		using GroupingType = std::result_of_t<GroupingFunc>;
+		std::map<GroupingType, std::vector<std::vector<std::vector<int>>> groups;
+		/*std::for_each(begin, end, [&groups, groupingFunc](const auto& val) {
 			groups[groupingFunc(val)].push_back(val);
-		});
+		});*/
 		return groups;
 	}
 
