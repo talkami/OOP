@@ -59,6 +59,12 @@ class Matrix {
 	size_t _dimensions[DIMENSIONS] = {};
 	const size_t _size = 0;
 	friend class Matrix<T, DIMENSIONS + 1>;
+
+	template<typename G = T>
+	Vector<int> getCoord(int location) {
+
+	}
+
 public:
 	size_t size() const { return _size; }
 	Matrix() {}
@@ -133,6 +139,7 @@ public:
 	auto groupValues(GroupingFunc groupingFunc) {
 		using GroupingType = std::result_of_t<GroupingFunc(G&)>;
 		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
+		
 		for (size_t i = 0; i < _size; i++) {
 
 		}
