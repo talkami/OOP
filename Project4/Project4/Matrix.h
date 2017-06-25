@@ -131,16 +131,29 @@ public:
 	//support function 
 	void checkForNearbyGroup(std::vector <int> coordinate, std::vector<std::vector<int>> * exploredCoorinate, GroupingFunc groupingFunc, std::map<GroupingType, std::vector<std::vector<std::vector<int>>>>* groups){
 		for (int i =0; i<DIMENSIONS ; i++){
+			//if the i's Dim is finished stop the recurrtion
+			if (getDimension(i) == coordinate[i] +1)
+			{
+				continue;
+			}
 			std::vector <int> tmpCoor = coordinate;
 			tmpCoor[i]= tmpCoor[i]+1;
 			if (groupingFunc(getval(tmpCoor)) == groupingFunc(getval(coordinate))){
-				//add to groups
-				exploredCoorinate->push_back(tmpCoor);
-				checkForNearbyGroup(tmpCoor, exploredCoorinate, groupingFunc, groups);
+				//if exploredCoordinate does not contains tmpCoor
+				if(std::find(exploredCoordinate->begin(), exploredCoordinate->end(), tmpCoor) == exploredCoordinate->end()) {
+					//add to groups
+					exploredCoorinate->push_back(tmpCoor);
+					checkForNearbyGroup(tmpCoor, exploredCoorinate, groupingFunc, groups);
+				}
 			}
 		}
 	}
 
+
+	// another support func that returns the value of the matrix at the coordinate
+	getval(std::vector <int> coordinate){
+		
+	}
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
 	template<class GroupingFunc, typename G = T>
 	auto groupValues(GroupingFunc groupingFunc) {
