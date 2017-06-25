@@ -25,7 +25,7 @@ struct MatrixCopier<T, 1> {
 		}
 	}
 };
-/*
+
 template<class T, size_t DIMENSIONS>
 struct MatrixPrinter {
 	static void print(const T* values, size_t size, const size_t* dimensions, std::ostream& out = cout) {
@@ -50,7 +50,7 @@ struct MatrixPrinter<T, 1> {
 		}
 		out << '}';
 	}
-};*/
+};
 
 template<class T, size_t DIMENSIONS>
 class Matrix {
@@ -103,7 +103,6 @@ public:
 		for (size_t dim = 0; dim < DIMENSIONS; ++dim) {
 			size *= _dimensions[dim];
 		}
-
 		const_cast<size_t&>(_size) = size;
 		_array = std::make_unique<T[]>(_size); // "zero initialized" - T()
 		size_t i = 0;
@@ -130,16 +129,16 @@ public:
 	}
 
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
-	template<typename G = T, class GroupingFunc>
+	template<class GroupingFunc, typename G = T>
 	auto groupValues(GroupingFunc groupingFunc) {
 		using GroupingType = std::result_of_t<GroupingFunc(G&)>;
 		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
+
 		/*std::for_each(begin, end, [&groups, groupingFunc](const auto& val) {
 			groups[groupingFunc(val)].push_back(val);
 		});*/
 		return groups;
 	}
-
 
 	friend std::ostream& operator<<(std::ostream& out, const Matrix& m) {
 		MatrixPrinter<T, DIMENSIONS>::print(m._array.get(), m._size, m._dimensions, out);
@@ -155,6 +154,3 @@ using Matrix2d = Matrix<T, 2>;
 // defining Matrix3d<T> as Matrix<T, 3>
 template<class T>
 using Matrix3d = Matrix<T, 3>;
-
-// defining IntVector as Matrix<int, 1>
-using IntVector = Matrix<int, 1>;

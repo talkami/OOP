@@ -22,6 +22,10 @@ int main() {
 	auto all_groups = m.groupValues([](auto i) {return islower(i) ? "L" : "U"; });
 	print(all_groups);
 
+	Matrix3d<int> m2 = { { { 1, 2, 3 },{ 1, 2 },{ 1, 2 } },{ { 1, 2 },{ 1, 2, 3, 4 } } };
+	auto groups = m2.groupValues([](auto i) {return i % 3 ? "!x3" : "x3"; });
+	print(groups);
+
 }
 
 /*
