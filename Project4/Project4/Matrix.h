@@ -1,5 +1,7 @@
 #include <iostream>
 #include <memory>
+#include <vector>
+#include <map>
 
 template<class T, size_t DIMENSIONS>
 class Matrix;
@@ -128,10 +130,10 @@ public:
 	}
 
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
-	template<class GroupingFunc>
+	template<typename G = T, class GroupingFunc>
 	auto groupValues(GroupingFunc groupingFunc) {
-		using GroupingType = std::result_of_t<GroupingFunc>;
-		std::map<GroupingType, std::vector<std::vector<std::vector<int>>> groups;
+		using GroupingType = std::result_of_t<GroupingFunc(G&)>;
+		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
 		/*std::for_each(begin, end, [&groups, groupingFunc](const auto& val) {
 			groups[groupingFunc(val)].push_back(val);
 		});*/
