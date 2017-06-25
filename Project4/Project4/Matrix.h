@@ -128,18 +128,24 @@ public:
 		return _dimensions[i];
 	}
 
+	//support function 
+	void checkForNearbyGroup(std::vector <int> coordinate, std::vector<std::vector<int>> * exploredCoorinate, GroupingFunc groupingFunc, std::map<GroupingType, std::vector<std::vector<std::vector<int>>>>* groups){
+		
+	}
+
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
 	template<class GroupingFunc, typename G = T>
 	auto groupValues(GroupingFunc groupingFunc) {
 		using GroupingType = std::result_of_t<GroupingFunc(G&)>;
 		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
-		std::vector<int> exploredCoordinate;
+		std::vector<std::vector<int>> exploredCoordinate;
 		for (size_t i = 0; i < _size; i++) {
-			if(std::find(exploredCoordinate.begin(), exploredCoordinate.end(), i) != exploredCoordinate.end()) {
+
+			vector<int> coordinate = getCoord (i);
+			if(std::find(exploredCoordinate.begin(), exploredCoordinate.end(), coordinate) != exploredCoordinate.end()) {
    				continue;
 			}
-			exploredCoordinate.push_back(i);
-			vector<int> coordinate = getCoord (i);
+			exploredCoordinate.push_back(coordinate);
 			checkForNearbyGroup(coordinate, &exploredCoorinate, groupingFunc, &groups);
 		}
 		/*std::for_each(begin, end, [&groups, groupingFunc](const auto& val) {
