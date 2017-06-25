@@ -60,11 +60,30 @@ class Matrix {
 	const size_t _size = 0;
 	friend class Matrix<T, DIMENSIONS + 1>;
 
-	template<typename G = T>
-	Vector<int> getCoord(int location) {
-
+	std::vector<int> getCoord(int location) {
+		std::vector<int> coord(DIMENSIONS);
+		for (int i = 0; i < DIMENSIONS; i++) {
+			int temp = 1;
+			for (int j = i + 1; j < DIMENSIONS; j++) {
+				temp *= _dimensions[j];
+			}
+			coord.at(i) = (location / temp) % _dimensions[i];
+		}
+		return coord;
 	}
 
+	int getLocation(std::vector<int> coord) {
+		int location = 0;
+		for (int i = 0; i < DIMENSIONS; i++) {
+			int temp = 1;
+			for (int j = i + 1; j < DIMENSIONS; j++) {
+				temp *= _dimensions[j];
+			}
+			location += temp*coord[i];
+		}
+		return location;
+	}
+	
 public:
 	size_t size() const { return _size; }
 	Matrix() {}
@@ -134,16 +153,15 @@ public:
 		return _dimensions[i];
 	}
 
-	//support function 
-	void checkForNearbyGroup(std::vector <int> coordinate, std::vector<std::vector<int>> * exploredCoorinate, GroupingFunc groupingFunc, std::map<GroupingType, std::vector<std::vector<std::vector<int>>>>* groups){
+	template<class GroupingFunc>
+	void checkForNearbyGroup(std::vector<int> coordinate, std::vector<std::vector<int>>* exploredCoorinate, GroupingFunc groupingFunc, std::map<GroupingType, std::vector<std::vector<std::vector<int>>>>* groups){
 		for (int i =0; i<DIMENSIONS ; i++){
 			//if the i's Dim is finished stop the recurrtion
-			if (getDimension(i) == coordinate[i] +1)
-			{
+			if (getDimension(i) == coordinate[i] + 1) {
 				continue;
 			}
-			std::vector <int> tmpCoor = coordinate;
-			tmpCoor[i]= tmpCoor[i]+1;
+			std::vector<int> tmpCoor = coordinate;
+			tmpCoor[i] = tmpCoor[i] + 1;
 			if (groupingFunc(getval(tmpCoor)) == groupingFunc(getval(coordinate))){
 				//if exploredCoordinate does not contains tmpCoor
 				if(std::find(exploredCoordinate->begin(), exploredCoordinate->end(), tmpCoor) == exploredCoordinate->end()) {
@@ -156,10 +174,12 @@ public:
 	}
 
 
-	// another support func that returns the value of the matrix at the coordinate
-	getval(std::vector <int> coordinate){
+	//returns the value of the matrix at the coordinate
+	template<typename G = T>
+	G getVal(std::vector <int> coordinate){
 		
 	}
+
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
 	template<class GroupingFunc, typename G = T>
 	auto groupValues(GroupingFunc groupingFunc) {
@@ -167,17 +187,13 @@ public:
 		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
 		std::vector<std::vector<int>> exploredCoordinate;
 		for (size_t i = 0; i < _size; i++) {
-
-			vector<int> coordinate = getCoord (i);
+			std::vector<int> coordinate = getCoord(i);
 			if(std::find(exploredCoordinate.begin(), exploredCoordinate.end(), coordinate) != exploredCoordinate.end()) {
    				continue;
 			}
-			exploredCoordinate.push_back(coordinate);
+			exploredCoordinate.push_back(coordinate);//no point, we are not checking back
 			checkForNearbyGroup(coordinate, &exploredCoorinate, groupingFunc, &groups);
 		}
-		/*std::for_each(begin, end, [&groups, groupingFunc](const auto& val) {
-			groups[groupingFunc(val)].push_back(val);
-		});*/
 		return groups;
 	}
 
