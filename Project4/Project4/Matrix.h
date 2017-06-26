@@ -141,7 +141,7 @@ public:
 
 	//needs to return something (a group to add to groups?)
 	template<class GroupingFunc>
-	void checkForNearbyGroup(std::vector<int> coordinate, std::vector<std::vector<int>>* exploredCoorinate, GroupingFunc groupingFunc){
+	void checkForNearbyGroup(std::vector<int> coordinate, std::vector<std::vector<int>>* exploredCoorinate, std::vector<std::vector<int>>* group){
 		for (int i = 0; i < DIMENSIONS; i++) {
 			//if the i's Dim is finished stop the recurrtion
 			if (getDimension(i) == coordinate[i] + 1) {
@@ -169,12 +169,14 @@ public:
 		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
 		std::vector<std::vector<int>> exploredCoordinate;
 		for (int i = 0; i < _size; i++) {
+			std::vector<std::vector<int>> newGroup;
 			std::vector<int> coordinate = getCoord(i);
 			if(std::find(exploredCoordinate.begin(), exploredCoordinate.end(), coordinate) != exploredCoordinate.end()) {
    				continue;
 			}
 			exploredCoordinate.push_back(coordinate);//no point, we are not checking back
-			checkForNearbyGroup(coordinate, &exploredCoorinate, groupingFunc, &groups);
+			checkForNearbyGroup(coordinate, &exploredCoorinate, groupingFunc, &newGroup);
+			groups[groupingFunc(getVal(coordinate))].push_back(newGroup);
 		}
 		return groups;
 	}
