@@ -1,8 +1,26 @@
 ﻿  main.cpp
-c:\users\tal\oop\project4\project4\matrix.h(178): error C2065: 'exploredCoorinate': undeclared identifier
-  c:\users\tal\oop\project4\project4\main.cpp(22): note: see reference to function template instantiation 'auto Matrix<char,2>::groupValues<main::<lambda_f93681e0334b1e6a4f8cf3a273703cc8>,T>(GroupingFunc)' being compiled
+c:\users\tal\oop\project4\project4\matrix.h(22): warning C4267: '*=': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\tal\oop\project4\project4\matrix.h(17): note: while compiling class template member function 'std::vector<int,std::allocator<_Ty>> Matrix<int,3>::getCoord(int)'
           with
           [
-              T=char,
-              GroupingFunc=main::<lambda_f93681e0334b1e6a4f8cf3a273703cc8>
+              _Ty=int
           ]
+  c:\users\tal\oop\project4\project4\matrix.h(156): note: see reference to function template instantiation 'std::vector<int,std::allocator<_Ty>> Matrix<int,3>::getCoord(int)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  c:\users\tal\oop\project4\project4\main.cpp(28): note: see reference to class template instantiation 'Matrix<int,3>' being compiled
+c:\users\tal\oop\project4\project4\matrix.h(34): warning C4267: '*=': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\tal\oop\project4\project4\matrix.h(29): note: while compiling class template member function 'int Matrix<int,3>::getLocation(std::vector<int,std::allocator<_Ty>>)'
+          with
+          [
+              _Ty=int
+          ]
+  c:\users\tal\oop\project4\project4\matrix.h(44): note: see reference to function template instantiation 'int Matrix<int,3>::getLocation(std::vector<int,std::allocator<_Ty>>)' being compiled
+          with
+          [
+              _Ty=int
+          ]
+  Project4.vcxproj -> C:\Users\tal\OOP\Project4\x64\Debug\Project4.exe
+  Project4.vcxproj -> C:\Users\tal\OOP\Project4\x64\Debug\Project4.pdb (Partial PDB)

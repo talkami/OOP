@@ -2,34 +2,9 @@
 #include <memory>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 #include "MatrixCopier.h"
-
-template<class T, size_t DIMENSIONS>
-struct MatrixPrinter {
-	static void print(const T* values, size_t size, const size_t* dimensions, std::ostream& out = cout) {
-		out << '{';
-		size_t size0 = size / dimensions[0];
-		MatrixPrinter<T, DIMENSIONS - 1>::print(values, size0, dimensions + 1, out);
-		for (size_t i = 1; i < dimensions[0]; ++i) {
-			out << ',';
-			MatrixPrinter<T, DIMENSIONS - 1>::print(values + (i*size0), size0, dimensions + 1, out);
-		}
-		out << '}';
-	}
-};
-
-template<class T>
-struct MatrixPrinter<T, 1> {
-	static void print(const T* values, size_t size, const size_t* dimensions, std::ostream& out = cout) {
-		out << '{';
-		out << values[0];
-		for (size_t i = 1; i < size; ++i) {
-			out << ',' << values[i];
-		}
-		out << '}';
-	}
-};
 
 template<class T, size_t DIMENSIONS>
 class Matrix {
@@ -139,30 +114,38 @@ public:
 		return _dimensions[i];
 	}
 
-	//needs to return something (a group to add to groups?)
 	template<class GroupingFunc>
-	void checkForNearbyGroup(std::vector<int> coordinate, std::vector<std::vector<int>>* exploredCoorinate, std::vector<std::vector<int>>* group){
-		for (int i = 0; i < DIMENSIONS; i++) {
-			//if the i's Dim is finished stop the recurrtion
-			if (getDimension(i) == coordinate[i] + 1) {
-				continue;
-			}
+	void checkForNearbyGroup(std::vector<int> coordinate, std::vector<std::vector<int>>* exploredCoordinate, GroupingFunc groupingFunc, std::vector<std::vector<int>>* group){
+		for (int i = 0; i < DIMENSIONS*2; i++) {
+			bool checkCoord = true;
 			std::vector<int> tmpCoor = coordinate;
-			tmpCoor[i] = tmpCoor[i] + 1;
-			if (groupingFunc(getval(tmpCoor)) == groupingFunc(getval(coordinate))){
-				//if exploredCoordinate does not contains tmpCoor
+			if (i >= DIMENSIONS) {
+				int j = i - DIMENSIONS;
+				if (coordinate[j] == 0) {
+					checkCoord = false;
+				}
+				else {
+					tmpCoor[j] = tmpCoor[j] - 1;
+				}				
+			}
+			else {
+				if (getDimension(i) == coordinate[i] + 1) {
+					checkCoord = false;
+				}
+				else {
+					tmpCoor[i] = tmpCoor[i] + 1;
+				}
+			}
+			if (checkCoord && groupingFunc(getVal(tmpCoor)) == groupingFunc(getVal(coordinate))){
 				if(std::find(exploredCoordinate->begin(), exploredCoordinate->end(), tmpCoor) == exploredCoordinate->end()) {
-					//add to groups
-					exploredCoorinate->push_back(tmpCoor);
-					checkForNearbyGroup(tmpCoor, exploredCoorinate, groupingFunc);
+					group->push_back(tmpCoor);
+					exploredCoordinate->push_back(tmpCoor);
+					checkForNearbyGroup(tmpCoor, exploredCoordinate, groupingFunc, group);
 				}
 			}
 		}
 	}
 
-
-	//need to actually put stuff in groups
-	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
 	template<class GroupingFunc, typename G = T>
 	auto groupValues(GroupingFunc groupingFunc) {
 		using GroupingType = std::result_of_t<GroupingFunc(G&)>;
@@ -174,17 +157,15 @@ public:
 			if(std::find(exploredCoordinate.begin(), exploredCoordinate.end(), coordinate) != exploredCoordinate.end()) {
    				continue;
 			}
-			exploredCoordinate.push_back(coordinate);//no point, we are not checking back
-			checkForNearbyGroup(coordinate, &exploredCoorinate, groupingFunc, &newGroup);
+			exploredCoordinate.push_back(coordinate);
+			newGroup.push_back(coordinate);
+			checkForNearbyGroup(coordinate, &exploredCoordinate, groupingFunc, &newGroup);
+			std::sort(newGroup.begin(), newGroup.end());
 			groups[groupingFunc(getVal(coordinate))].push_back(newGroup);
 		}
 		return groups;
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, const Matrix& m) {
-		MatrixPrinter<T, DIMENSIONS>::print(m._array.get(), m._size, m._dimensions, out);
-		return out;
-	}
 };
 
 // defining Matrix2d<T> as Matrix<T, 2>
