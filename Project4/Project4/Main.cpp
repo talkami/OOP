@@ -1,5 +1,5 @@
 #include "Matrix.h"
-/*
+/**/
 template<typename Groups>
 void print(const Groups& all_groups) {
 	for (const auto& groupType : all_groups) {
@@ -27,8 +27,8 @@ int main() {
 	print(groups);
 
 }
-*/
-/**/
+
+/*
 int main() {
 	Matrix<int, 1> m0 = { 25, 10, 15 };
 	std::cout << m0 << std::endl;
@@ -58,5 +58,5 @@ int main() {
 	std::cout << m5 << std::endl;
 	char x;
 	std::cin >> x;
-}
+}*/
 

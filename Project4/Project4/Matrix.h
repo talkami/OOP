@@ -3,28 +3,7 @@
 #include <vector>
 #include <map>
 
-template<class T, size_t DIMENSIONS>
-class Matrix;
-
-template<class T, size_t DIMENSIONS>
-struct MatrixCopier {
-	static void copy(T* dest, size_t dest_size, const size_t* dest_dimensions, const T* source, size_t source_size, const size_t* source_dimensions) {
-		size_t dest_size0 = dest_dimensions[0] ? dest_size / dest_dimensions[0] : 0;
-		size_t source_size0 = source_dimensions[0] ? source_size / source_dimensions[0] : 0;
-		for (size_t i = 0; i < source_dimensions[0]; ++i) {
-			MatrixCopier<T, DIMENSIONS - 1>::copy(dest + (i * dest_size0), dest_size0, dest_dimensions + 1, source + (i * source_size0), source_size0, source_dimensions + 1);
-		}
-	}
-};
-
-template<class T>
-struct MatrixCopier<T, 1> {
-	static void copy(T* dest, size_t dest_size, const size_t* dest_dimensions, const T* source, size_t source_size, const size_t* source_dimensions) {
-		for (size_t i = 0; i < source_size; ++i) {
-			dest[i] = source[i];
-		}
-	}
-};
+#include "MatrixCopier.h"
 
 template<class T, size_t DIMENSIONS>
 struct MatrixPrinter {
@@ -83,6 +62,14 @@ class Matrix {
 		}
 		return location;
 	}
+
+	//returns the value of the matrix at the coordinate
+	template<typename G = T>
+	G getVal(std::vector<int> coordinate) {
+		int location = getLocation(coordinate);
+		return _array[location];
+	}
+
 	
 public:
 	size_t size() const { return _size; }
@@ -156,13 +143,13 @@ public:
 	//needs to return something (a group to add to groups?)
 	template<class GroupingFunc>
 	void checkForNearbyGroup(std::vector<int> coordinate, std::vector<std::vector<int>>* exploredCoorinate, GroupingFunc groupingFunc){
-		for (int i =0; i<DIMENSIONS ; i++){
+		for (int i = 0; i < DIMENSIONS; i++) {
 			//if the i's Dim is finished stop the recurrtion
 			if (getDimension(i) == coordinate[i] + 1) {
 				continue;
 			}
 			std::vector<int> tmpCoor = coordinate;
-			tmpCoor[i] = tmpCoor[i] + 1;
+			tmpCoor[i] = tmpCoor[i] + 1;//BAD!!!!!
 			if (groupingFunc(getval(tmpCoor)) == groupingFunc(getval(coordinate))){
 				//if exploredCoordinate does not contains tmpCoor
 				if(std::find(exploredCoordinate->begin(), exploredCoordinate->end(), tmpCoor) == exploredCoordinate->end()) {
@@ -175,12 +162,6 @@ public:
 	}
 
 
-	//returns the value of the matrix at the coordinate
-	template<typename G = T>
-	G getVal(std::vector <int> coordinate){
-		
-	}
-
 	//need to actually put stuff in groups
 	//NEED TO CHANGE FUNCTION TO FIT OUR NEEDS!!!
 	template<class GroupingFunc, typename G = T>
@@ -188,7 +169,7 @@ public:
 		using GroupingType = std::result_of_t<GroupingFunc(G&)>;
 		std::map<GroupingType, std::vector<std::vector<std::vector<int>>>> groups;
 		std::vector<std::vector<int>> exploredCoordinate;
-		for (size_t i = 0; i < _size; i++) {
+		for (int i = 0; i < _size; i++) {
 			std::vector<int> coordinate = getCoord(i);
 			if(std::find(exploredCoordinate.begin(), exploredCoordinate.end(), coordinate) != exploredCoordinate.end()) {
    				continue;

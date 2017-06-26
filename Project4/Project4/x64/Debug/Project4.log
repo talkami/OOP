@@ -1,3 +1,8 @@
 ﻿  main.cpp
-  Project4.vcxproj -> C:\Users\tal\OOP\Project4\x64\Debug\Project4.exe
-  Project4.vcxproj -> C:\Users\tal\OOP\Project4\x64\Debug\Project4.pdb (Partial PDB)
+c:\users\tal\oop\project4\project4\matrix.h(178): error C2065: 'exploredCoorinate': undeclared identifier
+  c:\users\tal\oop\project4\project4\main.cpp(22): note: see reference to function template instantiation 'auto Matrix<char,2>::groupValues<main::<lambda_f93681e0334b1e6a4f8cf3a273703cc8>,T>(GroupingFunc)' being compiled
+          with
+          [
+              T=char,
+              GroupingFunc=main::<lambda_f93681e0334b1e6a4f8cf3a273703cc8>
+          ]
