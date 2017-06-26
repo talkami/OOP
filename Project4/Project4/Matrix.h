@@ -69,7 +69,6 @@ class Matrix {
 		int location = getLocation(coordinate);
 		return _array[location];
 	}
-
 	
 public:
 	size_t size() const { return _size; }
@@ -149,7 +148,7 @@ public:
 				continue;
 			}
 			std::vector<int> tmpCoor = coordinate;
-			tmpCoor[i] = tmpCoor[i] + 1;//BAD!!!!!
+			tmpCoor[i] = tmpCoor[i] + 1;
 			if (groupingFunc(getval(tmpCoor)) == groupingFunc(getval(coordinate))){
 				//if exploredCoordinate does not contains tmpCoor
 				if(std::find(exploredCoordinate->begin(), exploredCoordinate->end(), tmpCoor) == exploredCoordinate->end()) {
