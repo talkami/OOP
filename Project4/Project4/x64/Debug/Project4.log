@@ -10,7 +10,7 @@ c:\users\tal\oop\project4\project4\matrix.h(22): warning C4267: '*=': conversion
           [
               _Ty=int
           ]
-  c:\users\tal\oop\project4\project4\main.cpp(28): note: see reference to class template instantiation 'Matrix<int,3>' being compiled
+  c:\users\tal\oop\project4\project4\main.cpp(33): note: see reference to class template instantiation 'Matrix<int,3>' being compiled
 c:\users\tal\oop\project4\project4\matrix.h(34): warning C4267: '*=': conversion from 'size_t' to 'int', possible loss of data
   c:\users\tal\oop\project4\project4\matrix.h(29): note: while compiling class template member function 'int Matrix<int,3>::getLocation(std::vector<int,std::allocator<_Ty>>)'
           with

@@ -167,12 +167,3 @@ public:
 	}
 
 };
-
-// defining Matrix2d<T> as Matrix<T, 2>
-template<class T>
-using Matrix2d = Matrix<T, 2>;
-
-
-// defining Matrix3d<T> as Matrix<T, 3>
-template<class T>
-using Matrix3d = Matrix<T, 3>;
